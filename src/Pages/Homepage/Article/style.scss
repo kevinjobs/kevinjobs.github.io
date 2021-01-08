@@ -1,0 +1,221 @@
+@import '../../../static/styles/index.scss';
+
+/*************** desktop article *******************/
+.desktop-article {
+  max-width: 1280px;
+  min-width: 960px;
+  margin: 0 auto;
+  .article-seperator {
+    height: 2px;
+    background-image: linear-gradient(90deg,$gold,$red);
+  }
+  
+  .article-navbar {
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    overflow-y: hidden;
+    position: relative;
+    font-size: 1.2rem;
+    ul {
+      width: auto;
+      white-space: nowrap;
+      margin: 0;
+      padding: 0;
+      li {
+        display: inline-block;
+        list-style-type: none;
+        line-height: 50px;
+        margin: 0 10px;
+        cursor: pointer;
+      }
+      li:hover {
+        color: $orange;
+      }
+      li.selected {
+        color: $orange;
+      }
+    }
+  }
+  
+  .float-card {
+    //width: 1000px;
+    //height: 800px;
+    border-radius: 0;
+    padding: 30px 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    //transform: translateX(-50%);
+    background-color: $gray-2;
+    z-index: 10;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    .article-container {
+      margin: 0 auto;
+      max-width: 1000px;
+      min-width: 600px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      line-height: 2;
+    }
+    .close {
+      width: 100%;
+      cursor: pointer;
+      transition: ease-out .1s;
+      font-size: 24px;
+      line-height: 26px;
+      color: #bfbfbf;
+      text-align: right;
+    }
+    .close:hover {
+      font-size: 24px;
+      color: #40a9ff;
+    }
+  }
+  
+  .article-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    .article {
+      width: 300px;
+      height: 350px;
+      margin: 10px;
+      background-color: $gray-1;
+      cursor: pointer;
+      .left {
+        width: 100%;
+        height: 180px;
+      }
+      .right {
+        /*border-top: 1px solid #d9d9d9;*/
+        margin: 0 20px;
+        padding: 5px 0;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .loadmore {
+    cursor: pointer;
+    text-align: center;
+    width: 99%;
+    height: 50px;
+    margin: 0 auto;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nomore {
+    color: #d0d0d0;
+  }
+}
+
+/*************** mobile article *******************/
+.mobile-article {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+  font-size: 1rem;
+  .article-seperator {
+    height: 2px;
+    background-image: linear-gradient(90deg,$gold,$red);
+  }
+  .article-navbar {
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    overflow-y: hidden;
+    position: relative;
+    ul {
+      width: auto;
+      white-space: nowrap;
+      margin: 0;
+      padding: 0;
+      li {
+        display: inline-block;
+        list-style-type: none;
+        line-height: 50px;
+        margin: 0 10px;
+      }
+      li.selected {
+        color: $orange;
+      }
+    }
+  }
+  
+  .float-card {
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    position: fixed;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $gray-2;
+    z-index: 10;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    cursor: text;
+    .article-container {
+      height: 100%;
+      padding: 0 0 100px 0;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      line-height: 2;
+    }
+    .close {
+      width: 100%;
+      padding: 10px;
+      cursor: pointer;
+      transition: ease-out .1s;
+      font-size: 24px;
+      line-height: 26px;
+      color: #bfbfbf;
+      text-align: right;
+    }
+  }
+  
+  .article-list {
+    .article {
+      width: 100%;
+      margin-bottom: 10px;
+      background-color: $gray-1;
+      cursor: pointer;
+      .left {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+        height: 135px;
+      }
+      .right {
+        /*border-top: 1px solid #d9d9d9;*/
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+        padding: 5px 10px;
+        font-size: .8rem;
+      }
+    }
+  }
+
+  .loadmore {
+    cursor: pointer;
+    text-align: center;
+    height: 50px;
+    background-color: $gray-1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nomore {
+    color: #d0d0d0;
+  }
+}

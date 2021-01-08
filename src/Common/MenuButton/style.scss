@@ -1,0 +1,92 @@
+$normal: 30px;
+$slash: 35.67px;
+$delay: .3s;
+
+@keyframes rotateRightBottom {
+  from {
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes rotateRightTop {
+  from {
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes an {
+  from {
+    width: $normal;
+  }
+  to {
+    width: $slash;
+  }
+}
+
+@keyframes dispear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.close-button {
+  position: relative;
+  cursor: pointer;
+  width: $normal*2;
+  height: $normal;
+  .child {
+    width: $normal * 2;
+    height: 2px;
+    background-color: rgba($color: #dfaafa, $alpha: 0);
+    position: absolute;
+    .grandson {
+      width: $normal;
+      height: 2px;
+      margin-left: $normal;
+      background-color: #000;
+    }
+  }
+  .first {
+    top: 0px;
+  }
+  .second {
+    top: 13px;
+  }
+  .third {
+    top: 26px;
+  }
+  .first-move {
+    top: 0px;
+    transform: rotate(45deg);
+    animation: rotateRightBottom $delay;
+    .grandson {
+      width: $slash;
+    }
+  }
+  .second-move {
+    top: 13px;
+    opacity: 0;
+    animation: dispear $delay;
+  }
+  .third-move {
+    top: 26px;
+    transform: rotate(-45deg);
+    animation: rotateRightTop $delay;
+    .grandson {
+      width: $slash;
+    }
+  }
+}

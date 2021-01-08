@@ -1,0 +1,31 @@
+.desktop-gallery {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  .gallery-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      cursor: zoom-out;
+      animation: zoomIn .5s;
+      max-width: 95%;
+      max-height: 90%;
+    }
+  }
+}
+
+.mobile-gallery {
+  position: relative;
+  width: 365px;
+  margin: 0 auto;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0,0);
+  }
+  to {
+    transform: scale(1,1);
+  }
+}

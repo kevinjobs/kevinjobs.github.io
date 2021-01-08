@@ -1,0 +1,18 @@
+@import '../../static/styles/color.scss';
+
+.divider {
+  width: 95%;
+  height: 30px;
+  margin: 30px 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .divider-line {
+    width: 100%;
+    border-bottom: 1px solid $gray-6;
+  }
+  .divider-text {
+    width: 200px;
+    margin: 0 20px;
+  }
+}

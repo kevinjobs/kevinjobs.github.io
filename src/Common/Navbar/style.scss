@@ -1,0 +1,117 @@
+/**********************************************************/
+.desktop-navbar {
+  width: 100%;
+  background-color: #262626;
+}
+.desktop-navbar-container {
+  width: 70%;
+  height: 100%;
+  margin: 0 auto;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .menu {
+    margin: 0;
+    padding: 0;
+    line-height: 80px;
+    list-style-type: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    li {
+      height: 100%;
+      color: #fff;
+      width: 100px;
+      text-align: center;
+      cursor: pointer;
+      font-size: large;
+      &:hover {
+        background-color: #fff;
+        color: #000;
+      }
+      a {
+        color: inherit;
+      }
+    }
+  }
+  .login {
+    .login-button {
+      width: fit-content;
+    }
+    .login-dialog {
+      position: fixed;
+      width: 400px;
+      height: 500px;
+      top: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      text-align: center;
+      margin: 120px auto;
+      border-radius: 20px;
+      background-image: linear-gradient(45deg, #52789f, #7c9cc3);
+      color: #fff;
+      .login-dialog-mask {
+        width: 100%;
+        height: 100%;
+        padding: 40px 80px;
+        border-radius: inherit;
+        background-color: rgba(0, 0, 0, .3);
+        color: inherit;
+        span {
+          margin: 5px 0;
+          background-color: transparent;
+          color: inherit;
+          input {
+            background-color: inherit;
+          }
+        }
+        button {
+          margin: 5px 0;
+          width: 100%;
+        }
+      }
+    }
+    .login-dialog.out {
+      opacity: 0;
+    }
+  }    
+}
+
+.appear {
+  opacity: 1;
+  animation: myanimate .5s;
+}
+@keyframes myanimate {
+  from {
+    position: fixed;
+    left: 50%;
+    transform: perspective(500px) rotate3d(0,1,0,-90deg) translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    position: fixed;
+    left: 50%;
+    transform: perspective(500px) translateX(-50%);
+    opacity: 1;
+  }
+}
+
+.dispear {
+  animation: myanimate2 .5s;
+}
+@keyframes myanimate2 {
+  from {
+    position: fixed;
+    left: 50%;
+    opacity: 1;
+    transform: perspective(1000px) translateX(-50%);
+  }
+  to {
+    position: fixed;
+    left: 50%;
+    transform: perspective(1000px) rotate3d(0,1,0,90deg) translateX(-50%);
+    opacity: 0;
+  }
+}
