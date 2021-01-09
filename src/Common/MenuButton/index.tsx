@@ -4,7 +4,8 @@ import './style.scss';
 
 interface Props {
   show?: boolean,
-  onClick?: any
+  onClick?: any,
+  color?: string
 }
 
 interface State {
@@ -12,7 +13,7 @@ interface State {
 }
 
 class MenuButton extends React.Component<Props, State> {
-  state = {
+  state: State = {
     delayShow: false
   }
 
@@ -32,16 +33,19 @@ class MenuButton extends React.Component<Props, State> {
         <div className={this.props.show ? 'first-move child' : 'first child'}>
           <div
             className="grandson"
+            style={{backgroundColor: this.props.color || '#000'}}
             onClick={handleClick}></div>
         </div>
         <div className={this.props.show ? 'second-move child' : 'second child'}>
           <div
             className="grandson"
+            style={{backgroundColor: this.props.color || '#000'}}
             onClick={handleClick}></div>
         </div>
         <div className={this.props.show ? 'third-move child' : 'third child'}>
           <div
             className="grandson"
+            style={{backgroundColor: this.props.color || '#000'}}
             onClick={handleClick}></div>
         </div>
       </div>

@@ -1,6 +1,9 @@
 @import './static/styles/index.scss';
 
 /********************************************/
+.App {
+  width: 100%;
+}
 .top {
   margin: 0;
   padding: 0;
@@ -9,7 +12,6 @@
   width: 100%;
   min-height: 700px;
   background-color: transparent;
-  margin: 20px auto;
 }
 
 .foot {

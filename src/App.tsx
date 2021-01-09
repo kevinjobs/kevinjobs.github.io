@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.scss';
-import { Navbar, Footer } from './Common';
 import { Exam, Homepage, About, Gallery } from './Pages';
 import {
   HashRouter as Router,
@@ -22,9 +21,6 @@ const App: React.FC = () => {
     <ViewportProvider>
       <Router>
         <div className="App">
-          <div className="top">
-            <Navbar menus={menus} />
-          </div>
           <div className="container">
             <Switch>
               <Route path="/exam" component={Exam} />
@@ -33,9 +29,6 @@ const App: React.FC = () => {
               <Route path="/gallery" component={Gallery} />
               <Route path="/" component={Gallery} />
             </Switch>
-          </div>
-          <div className="foot">
-            <Footer />
           </div>
         </div>
       </Router>
