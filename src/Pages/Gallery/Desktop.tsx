@@ -1,19 +1,26 @@
 import React, { createRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { MenuButton } from '../../Common';
+import { getImages } from '../../Apis/image';
+import { ImageType } from '../Types';
 
-import './style-d.scss';
-import IMG from '../../static/img/cool-background.png';
+import './style.scss';
 
 interface State {
   mask: boolean,
-  isMenuOpen: boolean
+  isMenuOpen: boolean,
+  images: ImageType[],
+  page: number,
+  limit: number
 }
 
 class DesktopGallery extends React.Component<any, State> {
   state: State = {
     mask: false,
-    isMenuOpen: false
+    isMenuOpen: false,
+    images: [],
+    page: 2,
+    limit: 12
   }
 
   private containerRef: any = createRef();
@@ -34,8 +41,26 @@ class DesktopGallery extends React.Component<any, State> {
     : e.stopPropagation();
   }
 
+  private loadmore = (e: any) => {
+    e.preventDefault();
+    getImages(this.state.page, this.state.limit).then(res => {
+      this.setState({images: this.state.images.concat(res.data.data.items)})
+    })
+    this.setState({page: this.state.page + 1});
+  }
+
   componentDidMount() {
     document.body.addEventListener('wheel', this.stopScroll, {passive: false});
+    document.body.addEventListener('touchmove', this.stopScroll, {passive: false});
+    getImages(1,this.state.limit).then(res => {
+      this.setState({images: res.data.data.items});
+      // console.log(res.data.data);
+    })
+  }
+
+  componentWillUnmount() {
+    document.body.removeEventListener('wheel', this.stopScroll);
+    document.body.removeEventListener('touchmove', this.stopScroll);
   }
 
   render() {
@@ -62,7 +87,10 @@ class DesktopGallery extends React.Component<any, State> {
                 show={this.state.isMenuOpen}
                 color='#d1d1d1'
               /></div>
-            <img src={IMG} style={{height: document.body.clientHeight}} />
+            <img
+              src='https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/background.png'
+              style={{height: document.body.clientHeight}}
+            />
             <div className="moto"><p>我曾见过光 再无法忘记</p></div>
           </div>
 
@@ -77,82 +105,26 @@ class DesktopGallery extends React.Component<any, State> {
           </div>
 
           <div className="gallery-box">
-            <div className="img-box">
-              <img
-                onMouseOver={this.handleMouse}
-                onMouseOut={this.handleMouse}
-                src='https://cdn.sspai.com/2021/01/03/35922638c1ae0add1ba6a14db62f9fac.png?imageMogr2/auto-orient/quality/95/thumbnail/!1420x708r/gravity/Center/crop/1420x708/interlace/1' />
-            </div>
-            <div className="img-box">
-              <img
-                onMouseOver={this.handleMouse}
-                onMouseOut={this.handleMouse}
-                src='https://cdn.sspai.com/2021/01/03/35922638c1ae0add1ba6a14db62f9fac.png?imageMogr2/auto-orient/quality/95/thumbnail/!1420x708r/gravity/Center/crop/1420x708/interlace/1' />
-            </div>
-            <div className="img-box">
-              <img
-                onMouseOver={this.handleMouse}
-                onMouseOut={this.handleMouse}
-                src='https://cdn.sspai.com/2021/01/03/35922638c1ae0add1ba6a14db62f9fac.png?imageMogr2/auto-orient/quality/95/thumbnail/!1420x708r/gravity/Center/crop/1420x708/interlace/1' />
-            </div>
-            <div className="img-box">
-              <img
-                onMouseOver={this.handleMouse}
-                onMouseOut={this.handleMouse}
-                src='https://cdn.sspai.com/2021/01/03/35922638c1ae0add1ba6a14db62f9fac.png?imageMogr2/auto-orient/quality/95/thumbnail/!1420x708r/gravity/Center/crop/1420x708/interlace/1' />
-            </div>
-            <div className="img-box">
-              <img
-                onMouseOver={this.handleMouse}
-                onMouseOut={this.handleMouse}
-                src='https://cdn.sspai.com/2021/01/03/35922638c1ae0add1ba6a14db62f9fac.png?imageMogr2/auto-orient/quality/95/thumbnail/!1420x708r/gravity/Center/crop/1420x708/interlace/1' />
-            </div>
-            <div className="img-box">
-              <img
-                onMouseOver={this.handleMouse}
-                onMouseOut={this.handleMouse}
-                src='https://cdn.sspai.com/2021/01/03/35922638c1ae0add1ba6a14db62f9fac.png?imageMogr2/auto-orient/quality/95/thumbnail/!1420x708r/gravity/Center/crop/1420x708/interlace/1' />
-            </div>
-            <div className="img-box">
-              <img
-                onMouseOver={this.handleMouse}
-                onMouseOut={this.handleMouse}
-                src='https://cdn.sspai.com/2021/01/03/35922638c1ae0add1ba6a14db62f9fac.png?imageMogr2/auto-orient/quality/95/thumbnail/!1420x708r/gravity/Center/crop/1420x708/interlace/1' />
-            </div>
-            <div className="img-box">
-              <img
-                onMouseOver={this.handleMouse}
-                onMouseOut={this.handleMouse}
-                src='https://cdn.sspai.com/2021/01/03/35922638c1ae0add1ba6a14db62f9fac.png?imageMogr2/auto-orient/quality/95/thumbnail/!1420x708r/gravity/Center/crop/1420x708/interlace/1' />
-            </div>
-            <div className="img-box">
-              <img
-                onMouseOver={this.handleMouse}
-                onMouseOut={this.handleMouse}
-                src='https://cdn.sspai.com/2021/01/03/35922638c1ae0add1ba6a14db62f9fac.png?imageMogr2/auto-orient/quality/95/thumbnail/!1420x708r/gravity/Center/crop/1420x708/interlace/1' />
-            </div>
-            <div className="img-box">
-              <img
-                onMouseOver={this.handleMouse}
-                onMouseOut={this.handleMouse}
-                src='https://cdn.sspai.com/2021/01/03/35922638c1ae0add1ba6a14db62f9fac.png?imageMogr2/auto-orient/quality/95/thumbnail/!1420x708r/gravity/Center/crop/1420x708/interlace/1' />
-            </div>
-            <div className="img-box">
-              <img
-                onMouseOver={this.handleMouse}
-                onMouseOut={this.handleMouse}
-                src='https://cdn.sspai.com/2021/01/03/35922638c1ae0add1ba6a14db62f9fac.png?imageMogr2/auto-orient/quality/95/thumbnail/!1420x708r/gravity/Center/crop/1420x708/interlace/1' />
-            </div>
-            <div className="img-box">
-              <img
-                onMouseOver={this.handleMouse}
-                onMouseOut={this.handleMouse}
-                src='https://cdn.sspai.com/2021/01/03/35922638c1ae0add1ba6a14db62f9fac.png?imageMogr2/auto-orient/quality/95/thumbnail/!1420x708r/gravity/Center/crop/1420x708/interlace/1' />
-            </div>
+            {
+              this.state.images.map((image, index) => {
+                const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
+                // console.log(this.state.images[0])
+                return(
+                  <div
+                    className="img-box"
+                    key={index}
+                    onMouseOver={this.handleMouse}
+                    onMouseOut={this.handleMouse}
+                    style={{backgroundImage:`url(${baseUrl + image.source.replace('JPG', 'jpg')})`}}
+                  >
+                  </div>
+                )
+              })
+            }
           </div>
 
           <div className="gallery-loadmore">
-            <button>Load More...</button>
+            <button onClick={this.loadmore}>Load More...</button>
           </div>
         </div>
         <div className="mask" style={{display:this.state.isMenuOpen?'':'none',zIndex:2}}></div>

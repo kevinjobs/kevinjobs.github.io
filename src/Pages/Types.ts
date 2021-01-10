@@ -20,17 +20,36 @@ interface ArticleType {
 }
 
 interface ImageType {
-  author: string,
-  category: string,
   create_time: string,
-  desc: string,
-  device: string,
-  id: string,
-  location: string,
-  source: string,
-  tags: string,
+  update_time: string,
+  //
   title: string,
-  update_time: string
+  author: string,
+  source: string,
+  desc: string,
+  //
+  tags: string,
+  category: string,
+  //
+  manufacturer: string,
+  system_version: string,
+  cameral_model: string,
+  cameral_lens: string,
+  //
+  width: number,
+  length: number,
+  //
+  exposure_time: string,
+  iso: number,
+  //
+  latitude: string,
+  latitude_ref: string,
+  longitude: string,
+  longitude_ref: string,
+  altitude: string,
+  altitude_ref: string,
+  //
+  position: string
 }
 
 interface SectionType {
