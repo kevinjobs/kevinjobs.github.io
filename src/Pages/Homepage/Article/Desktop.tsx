@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import ArticleList from './partial/List';
 import FloatCard from './partial/FloatCard';
 import ArticleCate from './partial/Cate';
@@ -67,7 +67,9 @@ class DesktopArticle extends React.Component<any, ArticleState> {
   }
 
   private handleWheel = (e: any) => {
-    e.stopPropagation();
+    if (this.state.index !== -1) {
+      e.preventDefault();
+    }
   }
 
   componentDidMount() {
@@ -75,14 +77,11 @@ class DesktopArticle extends React.Component<any, ArticleState> {
       let data = res.data.data;
       this.setState({articles: data.items})
     })
+    document.body.addEventListener('wheel', this.handleWheel, {passive: false});
   }
 
   componentDidUpdate() {
-    if (this.state.index !== -1) {
-      document.getElementById('floatcard')?.addEventListener('wheel', this.handleWheel, {passive: false});
-    } else {
-      document.getElementById('floatcard')?.removeEventListener('wheel', this.handleWheel);
-    }
+    document.body.removeEventListener('wheel', this.handleWheel);
   }
 
   render() {

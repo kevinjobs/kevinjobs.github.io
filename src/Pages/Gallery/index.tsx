@@ -1,9 +1,9 @@
 import React from 'react';
-import { useViewport, breakpoint } from '../../Utils/viewportContext';
+// import { useViewport, breakpoint } from '../../Utils/viewportContext';
 import DesktopGallery from './Desktop';
 
 const Gallery: React.FC = () => {
-  const { width } = useViewport();
+  // const { width } = useViewport();
   return(
     <DesktopGallery />
   )

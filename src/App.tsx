@@ -8,15 +8,7 @@ import {
 } from 'react-router-dom';
 import { ViewportProvider } from './Utils/viewportContext';
 
-const App: React.FC = () => { 
-
-  const menus: string[] = [
-    'home',
-    'exam',
-    'gallery',
-    'about'
-  ]
-
+const App: React.FC = () => {
   return (
     <ViewportProvider>
       <Router>

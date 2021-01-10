@@ -88,6 +88,7 @@ class DesktopGallery extends React.Component<any, State> {
                 color='#d1d1d1'
               /></div>
             <img
+              alt='background'
               src='https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/background.png'
               style={{height: document.body.clientHeight}}
             />
