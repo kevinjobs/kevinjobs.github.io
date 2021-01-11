@@ -2,21 +2,47 @@
 
 /*************** desktop article *******************/
 .desktop-article {
-  max-width: 1280px;
-  min-width: 960px;
+  width: 100%;
   margin: 0 auto;
+  .desktop-navbar {
+    padding: 20px 0;
+    border-bottom: 1px solid $gray-5;
+    ul {
+      max-width: 1280px;
+      min-width: 960px;
+      margin: 0 auto;
+      padding: 0;
+      font-size: 30px;
+      li {
+        display: inline-block;
+        list-style-type: none;
+        line-height: 50px;
+        margin: 0 10px;
+        cursor: pointer;
+        a {
+          color: $gray-8;
+        }
+      }
+      li:hover {
+        color: $orange;
+      }
+    }
+  }
   .article-seperator {
+    margin-top: 20px;
     height: 2px;
     background-image: linear-gradient(90deg,$gold,$red);
+    display: none;
   }
   
   .article-navbar {
-    margin: 0;
+    max-width: 1280px;
+    min-width: 960px;
+    margin: 20px auto 10px auto;
     padding: 0;
-    height: 50px;
     overflow-y: hidden;
     position: relative;
-    font-size: 1.2rem;
+    font-size: .8rem;
     ul {
       width: auto;
       white-space: nowrap;
@@ -25,15 +51,19 @@
       li {
         display: inline-block;
         list-style-type: none;
-        line-height: 50px;
         margin: 0 10px;
+        padding: 0 5px;
         cursor: pointer;
+        background-color: $gray-1;
+        border-radius: 5px;
+        vertical-align: middle;
+        color: $gray-8;
       }
       li:hover {
-        color: $orange;
+        color: $red;
       }
       li.selected {
-        color: $orange;
+        color: $red;
       }
     }
   }
@@ -78,6 +108,9 @@
   }
   
   .article-list {
+    max-width: 1280px;
+    min-width: 960px;
+    margin: 0 auto;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -121,9 +154,10 @@
 .mobile-article {
   width: 100%;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0;
   font-size: 1rem;
   .article-seperator {
+    margin-top: 10px;
     height: 2px;
     background-image: linear-gradient(90deg,$gold,$red);
   }
@@ -184,6 +218,7 @@
   }
   
   .article-list {
+    padding: 0 5px;
     .article {
       width: 100%;
       margin-bottom: 10px;

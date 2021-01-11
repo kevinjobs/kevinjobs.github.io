@@ -9,6 +9,7 @@ import { message } from 'antd';
 import { ArticleType } from '../../Types';
 
 import './style.scss';
+import { NavLink } from 'react-router-dom';
 
 interface ArticleState {
   articles: ArticleType[],
@@ -108,8 +109,23 @@ class DesktopArticle extends React.Component<any, ArticleState> {
       }
     }
 
+    const menus = [
+      'home',
+      'gallery',
+      'about'
+    ]
+
     return(
       <div className="desktop-article">
+        <div className="desktop-navbar">
+          <ul>
+          {
+            menus.map((menu, index) => {
+              return <li key={index}><NavLink to={menu}>{menu.toUpperCase()}</NavLink></li>
+            })
+          }
+          </ul>
+        </div>
         <div className="article-seperator"></div>
         <ArticleCate
           categories={categories()}

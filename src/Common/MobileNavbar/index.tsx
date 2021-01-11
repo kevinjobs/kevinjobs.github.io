@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './style-m.scss';
+import './style.scss';
 import MenuButton from '../MenuButton';
 import { NavLink } from 'react-router-dom';
 

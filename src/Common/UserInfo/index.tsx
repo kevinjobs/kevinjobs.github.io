@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Dropdown, Menu, Modal } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import store from '../../../Store';
-import { toLogout } from '../../../Store/actions/auth-action';
-import { UserType } from '../../../Pages/Types';
+import store from '../../Store';
+import { toLogout } from '../../Store/actions/auth-action';
+import { UserType } from '../../Pages/Types';
 
 interface Props {
   user: UserType
 }
 
-const Logout: React.FC<Props> = (props) => {
+const UserInfo: React.FC<Props> = (props) => {
   const [visible, setVisible] = useState(false);
 
   const handleOk = () => {
@@ -59,4 +59,4 @@ const Logout: React.FC<Props> = (props) => {
   )
 }
 
-export default Logout;
+export default UserInfo;

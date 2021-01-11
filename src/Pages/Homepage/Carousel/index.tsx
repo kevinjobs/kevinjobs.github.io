@@ -1,4 +1,4 @@
-import './all.scss';
+import './style.scss';
 import React from 'react';
 
 const Carousel: React.FC = () => {

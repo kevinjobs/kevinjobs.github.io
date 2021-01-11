@@ -29,7 +29,7 @@
   .menu-list {
     text-align: center;
     ul {
-      height: 100%;
+      // height: 100%;
       margin: 0;
       padding: 0;
       font-size: 1.2rem;
@@ -45,8 +45,8 @@
 }
 .mobile-navbar.open {
   width: 100%;
-  height: 210px;
-  padding-bottom: 20px;
+  height: 200px;
+  // padding-bottom: 20px;
   background-color: $gray-1;
   z-index: 11;
   opacity: 1;
@@ -58,13 +58,13 @@
     height: 50px;
   }
   to {
-    height: 210px;
+    height: 200px;
   }
 }
 
 @keyframes shrink {
   from {
-    height: 210px;
+    height: 200px;
   }
   to {
     height: 50px;

@@ -1,8 +1,12 @@
 import React from 'react';
+
 import ArticleList from './partial/List';
 import ArticleCard from './partial/FloatCard';
 import ArticleCate from './partial/Cate';
 import LoadMore from './partial/Loadmore';
+
+import { MobileNavbar } from '../../../Common';
+
 import { getArticles } from '../../../Apis/article.js';
 import { message } from 'antd';
 import { ArticleType } from '../../Types';
@@ -94,8 +98,15 @@ class MobileArticle extends React.Component<any, ArticleState> {
       }
     }
 
+    const menus = [
+      'home',
+      'gallery',
+      'about'
+    ]
+
     return(
       <div className="mobile-article">
+        <MobileNavbar menus={menus} />
         <div className="article-seperator"></div>
         <ArticleCate
           categories={categories()}

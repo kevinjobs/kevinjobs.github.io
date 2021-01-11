@@ -1,11 +1,17 @@
-import footer from './Footer';
-import Navbar from './Navbar';
+import Dialog from './Dialog';
 import Divider from './Divider';
+import Footer from './Footer';
 import MenuButton from './MenuButton';
+import MobileNavbar from './MobileNavbar';
+import Search from './Search';
+import UserInfo from './UserInfo';
 
 export {
-  MenuButton,
-  Navbar,
+  Dialog,
   Divider,
-  footer as Footer,
+  Footer,
+  MenuButton,
+  MobileNavbar,
+  Search,
+  UserInfo
 }
