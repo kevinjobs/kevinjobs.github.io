@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Input, message } from "antd";
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import store from '../../../Store';
@@ -9,6 +9,73 @@ interface State {
   password: string,
   fastMask: boolean,
   delayMask: boolean
+}
+
+interface Props {
+  onClick: any,
+  username: string,
+  password: string,
+  isLogined: boolean,
+  isShow: boolean
+}
+
+const LoginDialog: React.FC<Props> = (props: Props) => {
+  const { isShow } = props || false;
+
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const { onClick } = props;
+    if (onClick) {
+      (onClick as React.MouseEventHandler<HTMLButtonElement>)(e);
+    }
+  }
+
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setUsername(e.target.value);
+  }
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setPassword(e.target.value);
+  }
+  
+  const onSubmit = () => {}
+  const onCancel = () => {}
+
+  const Dialog = () => {
+    return(
+      <div className={isShow ? 'login-dialog card appear' : 'login-dialog out card dispear'}>
+        <div className="login-dialog-container">
+          <h2 style={{color:'#fff'}}>登录界面</h2>
+          <Input
+            value={username}
+            onChange={handleUsernameChange}
+            prefix={<UserOutlined />}
+            placeholder="please input username"
+          />
+          <Input.Password
+            value={password}
+            onChange={handlePasswordChange}
+            prefix={<LockOutlined />}
+            placeholder="please input password"
+          />
+          <Button onClick={onSubmit} type="primary">Submit</Button><br />
+          <Button onClick={onCancel}>Cancel</Button>
+        </div>
+      </div>
+    )
+  }
+
+  return(
+    <div className="login">
+      <button className="login-button" onClick={handleClick}>Login/Register</button>
+      <Dialog />
+      <div className={isShow ? 'mask fade-in' : 'mask fade-out'}></div>
+    </div>
+  )
 }
 
 class Login extends React.Component<any, State> {
@@ -22,11 +89,9 @@ class Login extends React.Component<any, State> {
   handleUsernameChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
     this.setState({username: value});
-    // console.log(value);
   }
 
   handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>) {
-    // this.setState({password: e.target.value})
     const value = e.target.value;
     this.setState({password: value})
   }
@@ -112,4 +177,4 @@ class Login extends React.Component<any, State> {
   }
 }
 
-export default Login;
+export default LoginDialog;

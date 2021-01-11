@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { MenuButton } from '../../Common';
 import { getImages } from '../../Apis/image';
@@ -20,10 +20,8 @@ class DesktopGallery extends React.Component<any, State> {
     isMenuOpen: false,
     images: [],
     page: 2,
-    limit: 12
+    limit: 8
   }
-
-  private containerRef: any = createRef();
 
   private handleMouse = (e: any) => {
     e.preventDefault();
@@ -42,7 +40,7 @@ class DesktopGallery extends React.Component<any, State> {
   }
 
   private loadmore = (e: any) => {
-    e.preventDefault();
+    // e.preventDefault();
     getImages(this.state.page, this.state.limit).then(res => {
       this.setState({images: this.state.images.concat(res.data.data.items)})
     })
@@ -78,7 +76,7 @@ class DesktopGallery extends React.Component<any, State> {
           </ul>
         </div>
 
-        <div className="gallery-container" ref={this.containerRef}>
+        <div className="gallery-container">
 
           <div className="gallery-cover" style={{height: document.body.clientHeight}}>
             <div className="gallery-menu">

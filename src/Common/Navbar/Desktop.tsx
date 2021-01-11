@@ -2,9 +2,9 @@ import React from 'react';
 import store from '../../Store';
 
 import { UserType } from '../../Pages/Types';
-import MyMenu from './common/Menu';
-import Logout from './common/Logout';
-import Login from './common/Login';
+import MyMenu from './partial/Menu';
+import Logout from './partial/Logout';
+import Login from './partial/Login';
 // import Search from './Search';
 
 import './style.scss';
