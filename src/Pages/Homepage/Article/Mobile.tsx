@@ -33,15 +33,12 @@ class MobileArticle extends React.Component<any, ArticleState> {
     mask: false
   }
 
-  private handleClick = (e: any) => {
+  private openArticle = (e: any) => {
     const index: number = e.target.attributes.getNamedItem('data-index').value;
-    // console.log();
     this.setState({index: index});
-    // this.setState({mask: true});
   }
 
   private onClose = () => {
-    // console.log(e);
     this.setState({index: -1});
     this.setState({mask: false});
   }
@@ -53,7 +50,6 @@ class MobileArticle extends React.Component<any, ArticleState> {
   }
 
   public loadMore = () => {
-    // console.log(e)
     if (this.state.more) {
       getArticles(this.state.page+1, this.state.limit).then(res => {
         let data = res.data.data;
@@ -68,11 +64,18 @@ class MobileArticle extends React.Component<any, ArticleState> {
     }
   }
 
+  private handleTouchMove = (e: any) => {
+    if (this.state.index !== -1) {
+      e.preventDefault();
+    }
+  }
+
   componentDidMount() {
     getArticles(this.state.page, this.state.limit).then(res => {
       let data = res.data.data;
       this.setState({articles: data.items})
-    })
+    });
+    document.body.addEventListener('touchmove', this.handleTouchMove, {passive:false});
   }
 
   render() {
@@ -93,6 +96,7 @@ class MobileArticle extends React.Component<any, ArticleState> {
           <ArticleCard
             article={this.state.articles[this.state.index]}
             onClose={this.onClose}
+            onTouchMove={(e)=>{e.stopPropagation()}}
           />
         )
       }
@@ -116,7 +120,8 @@ class MobileArticle extends React.Component<any, ArticleState> {
         <ArticleList
           articles={this.state.articles}
           filter={this.state.filter}
-          onClick={this.handleClick}
+          onClick={this.openArticle}
+          words={20}
         />
         <LoadMore loadmore={this.loadMore} more={this.state.more} />
         { showArticleCard() }

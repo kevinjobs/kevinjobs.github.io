@@ -46,16 +46,14 @@
   }
   
   .float-card {
-    //width: 1000px;
-    //height: 800px;
+    width: 1000px;
+    height: 800px;
     border-radius: 0;
-    padding: 30px 60px;
+    padding: 20px 60px;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    //transform: translateX(-50%);
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
     background-color: $gray-2;
     z-index: 10;
     display: flex;
@@ -63,10 +61,8 @@
     flex-wrap: wrap;
     .article-container {
       margin: 0 auto;
-      max-width: 1000px;
-      min-width: 600px;
+      height: 700px;
       overflow-y: scroll;
-      overflow-x: hidden;
       line-height: 2;
     }
     .close {
@@ -77,10 +73,17 @@
       line-height: 26px;
       color: #bfbfbf;
       text-align: right;
-    }
-    .close:hover {
-      font-size: 24px;
-      color: #40a9ff;
+      display: flex;
+      justify-content: space-between;
+      h3 {
+        font-size: 22px;
+      }
+      span {
+        &:hover {
+          font-size: 24px;
+          color: #40a9ff;
+        }
+      }
     }
   }
   
@@ -187,7 +190,7 @@
 .mobile-article {
   width: 100%;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 0 60px 0;
   font-size: 1rem;
   .article-seperator {
     margin-top: 10px;
@@ -239,14 +242,22 @@
       line-height: 2;
     }
     .close {
+      margin-top: 20px;
       width: 100%;
-      padding: 10px;
       cursor: pointer;
       transition: ease-out .1s;
       font-size: 24px;
       line-height: 26px;
       color: #bfbfbf;
       text-align: right;
+      display: flex;
+      justify-content: space-between;
+      h3 {
+        font-size: 22px;
+      }
+      span {
+        margin-right: 20px;
+      }
     }
   }
   
@@ -268,12 +279,42 @@
         display: inline-block;
         vertical-align: top;
         width: 50%;
+        height: 135px;
         padding: 5px 10px;
         font-size: .8rem;
+        position: relative;
+        .category {
+          display: block;
+          width: fit-content;
+          background-color: $gray-4;
+          padding: 0 10px;
+          border-radius: 5px;
+          color: $gray-9;
+          font-size: 13px;
+          font-weight: 700;
+        }
+        .update-time {
+          display: block;
+          margin: 5px;
+          color: $gray-6;
+          font-size: 12px;
+        }
+        h3 {
+          font-weight: 800;
+          margin: 5px;
+        }
+        .content {
+          display: none;
+        }
+        .author {
+          margin: 5px;
+          color: $gray-6;
+          position: absolute;
+          bottom: 5px;
+        }
       }
     }
   }
-
   .loadmore {
     cursor: pointer;
     text-align: center;

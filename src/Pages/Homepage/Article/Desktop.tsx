@@ -27,7 +27,7 @@ class DesktopArticle extends React.Component<any, ArticleState> {
   state: ArticleState = {
     articles: [],
     page: 1,
-    limit: 7,
+    limit: 6,
     more: true,
     filter: 'all',
     index: -1,
@@ -69,11 +69,16 @@ class DesktopArticle extends React.Component<any, ArticleState> {
     }
   }
 
+  private handleWheel = (e: any) => {
+    if (this.state.index !== -1) e.preventDefault();
+  }
+
   componentDidMount() {
-    getArticles(this.state.page, this.state.limit).then(res => {
+    getArticles(1, 7).then(res => {
       let data = res.data.data;
       this.setState({articles: data.items})
-    })
+    });
+    document.body.addEventListener('wheel', this.handleWheel, {passive: false});
   }
 
   render() {
@@ -95,6 +100,7 @@ class DesktopArticle extends React.Component<any, ArticleState> {
             id="floatcard"
             article={this.state.articles[this.state.index]}
             onClose={this.onClose}
+            onWheel={(e)=>e.stopPropagation()}
           />
         )
       }
@@ -128,6 +134,7 @@ class DesktopArticle extends React.Component<any, ArticleState> {
           onSubmit={this.onSubmit}
           onCancel={()=>this.setState({mask:!this.state.mask})}
         />
+        <div className="mask" style={{display:this.state.index !== -1 ? '' : 'none'}}></div>
       </div>
     )
   }
