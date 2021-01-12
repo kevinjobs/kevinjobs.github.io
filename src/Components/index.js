@@ -3,7 +3,7 @@ import Divider from './Divider';
 import Footer from './Footer';
 import MenuButton from './MenuButton';
 import MobileNavbar from './MobileNavbar';
-import Search from './Search';
+import SearchBar from './SearchBar';
 import UserInfo from './UserInfo';
 
 export {
@@ -12,6 +12,6 @@ export {
   Footer,
   MenuButton,
   MobileNavbar,
-  Search,
+  SearchBar,
   UserInfo
 }

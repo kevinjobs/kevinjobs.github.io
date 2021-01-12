@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { MenuButton } from '../../Common';
+import { MenuButton } from '../../Components';
 import { getImages } from '../../Apis/image';
 import { ImageType } from '../Types';
 

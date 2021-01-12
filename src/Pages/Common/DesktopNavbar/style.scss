@@ -1,0 +1,39 @@
+@import '../../../static/styles/index.scss';
+
+.desktop-navbar {
+  width: 100%;
+  background-color: $gray-11;
+  .desktop-navbar-container {
+    max-width: 1280px;
+    min-width: 960px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    ul.left {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      font-size: 25px;
+      width: fit-content;
+      li {
+        padding: 0 20px;
+        display: inline-block;
+        line-height: 50px;
+        list-style-type: none;
+        color: $gray-4;
+        cursor: pointer;
+        a {
+          color: inherit;
+        }
+        &:hover {
+          background-color: $gray-4;
+          color: $gray-11;
+        }
+      }
+    }
+    .right {
+      margin-right: 50px;
+    }
+  }
+}

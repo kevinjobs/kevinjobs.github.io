@@ -5,7 +5,7 @@ import ArticleCard from './partial/FloatCard';
 import ArticleCate from './partial/Cate';
 import LoadMore from './partial/Loadmore';
 
-import { MobileNavbar } from '../../../Common';
+import { MobileNavbar } from '../../../Components';
 
 import { getArticles } from '../../../Apis/article.js';
 import { message } from 'antd';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Divider } from '../../../../Common';
+import { Divider } from '../../../../Components';
 import { useViewport, breakpoint } from '../../../../Utils/viewportContext';
 
 interface Props {

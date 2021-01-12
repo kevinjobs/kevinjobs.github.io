@@ -1,0 +1,21 @@
+@import '../../static/styles/index.scss';
+
+.search-bar {
+  min-width: 200px;
+  height: 30px;
+  display: inline-block;
+  border-radius: 15px;
+  background-color: $gray-5;
+  display: flex;
+  justify-content: center;
+  input {
+    background-color: transparent;
+    outline-style: none;
+    border: none;
+    &:focus {
+      background-color: transparent;
+      outline-style: none;
+      border: none;
+    }
+  }
+}

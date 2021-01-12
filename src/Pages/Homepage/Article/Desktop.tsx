@@ -1,15 +1,16 @@
-import React, { createRef } from 'react';
+import React from 'react';
+
 import ArticleList from './partial/List';
 import FloatCard from './partial/FloatCard';
 import ArticleCate from './partial/Cate';
 import LoadMore from './partial/Loadmore';
+import DesktopNavbar from '../../Common/DesktopNavbar';
 
 import { getArticles } from '../../../Apis/article.js';
 import { message } from 'antd';
 import { ArticleType } from '../../Types';
 
 import './style.scss';
-import { NavLink } from 'react-router-dom';
 
 interface ArticleState {
   articles: ArticleType[],
@@ -117,15 +118,7 @@ class DesktopArticle extends React.Component<any, ArticleState> {
 
     return(
       <div className="desktop-article">
-        <div className="desktop-navbar">
-          <ul>
-          {
-            menus.map((menu, index) => {
-              return <li key={index}><NavLink to={menu}>{menu.toUpperCase()}</NavLink></li>
-            })
-          }
-          </ul>
-        </div>
+        <DesktopNavbar menus={menus} />
         <div className="article-seperator"></div>
         <ArticleCate
           categories={categories()}
