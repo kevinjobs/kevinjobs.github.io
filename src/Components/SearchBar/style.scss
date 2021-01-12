@@ -5,9 +5,28 @@
   height: 30px;
   display: inline-block;
   border-radius: 15px;
-  background-color: $gray-5;
+  background-color: #fff;
   display: flex;
   justify-content: center;
+  align-items: center;
+  .search-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    border: 2px solid $gray-7;
+    border-radius: 8px;
+    position: relative;
+    bottom: 2px;
+    .search-icon-bar {
+      height: 2px;
+      width: 9px;
+      background-color: $gray-7;
+      transform: rotate(45deg);
+      position: relative;
+      top: 12.5px;
+      left: 9px;
+    }
+  }
   input {
     background-color: transparent;
     outline-style: none;

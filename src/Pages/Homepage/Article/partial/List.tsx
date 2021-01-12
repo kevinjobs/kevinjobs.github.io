@@ -23,8 +23,6 @@ export default class ArticleList extends React.Component<Props, any> {
         <div
           className="article animate__animated animate__fadeInUp"
           key={index}
-          data-index={index}
-          onClick={this.handleClick}
         >
           <div
             className="left"
@@ -39,13 +37,14 @@ export default class ArticleList extends React.Component<Props, any> {
           ></div>
           <div
             className="right"
-            data-index={index}
-            onClick={this.handleClick}
           >
+            <span className="category">{a.category.toUpperCase()}</span>
+            <span className="update-time">{a.update_time.slice(0,10)}</span>
             <h3 data-index={index} onClick={this.handleClick}>{a.title}</h3>
-            <div className="info" data-index={index} onClick={this.handleClick}>
-              <span data-index={index} onClick={this.handleClick}>{a.author}</span>
-              <span data-index={index} onClick={this.handleClick}>{a.update_time}</span>
+            <div className="content">{a.content.slice(0,80)}...</div>
+            <div className="author">
+              <span className="avatar"></span>
+              <span className="name">{a.author}</span>
             </div>
           </div>
         </div>

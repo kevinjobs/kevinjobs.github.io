@@ -98,13 +98,7 @@ $width: 1120px;
         transition: all .3s ease-out;
         filter: brightness(70%);
         &:hover {
-          transform: scale(1.1);
-          z-index: 3;
           filter: brightness(100%);
-        }
-        &::after {
-          content: '';
-          flex: auto;
         }
       }
     }

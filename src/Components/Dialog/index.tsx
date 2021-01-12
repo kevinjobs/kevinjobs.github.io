@@ -13,7 +13,16 @@ interface LoginDialogType {
 }
 
 const Dialog: React.FC<LoginDialogType> = (props: LoginDialogType) => {
-  return <LoginDialog />
+  return(
+    <LoginDialog
+      isShow={props.isShow}
+      onClick={props.onClick}
+      onSubmit={props.onSubmit}
+      onCancel={props.onCancel}
+      username={props.username}
+      password={props.password}
+    />
+  )
 }
 
 export default Dialog;

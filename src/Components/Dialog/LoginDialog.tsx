@@ -16,6 +16,7 @@ const LoginDialog: React.FC<LoginDialogType> = (props: LoginDialogType) => {
 
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [hide, setHide] = useState(true);
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -43,8 +44,17 @@ const LoginDialog: React.FC<LoginDialogType> = (props: LoginDialogType) => {
     }
   }
 
+  if (isShow) {
+    setTimeout(() => {
+      setHide(false);
+    }, 100);
+  }
+
   return(
-    <div className={isShow ? 'login-dialog card appear' : 'login-dialog card dispear'}>
+    <div
+      className={isShow ? 'login-dialog card appear' : 'login-dialog card dispear'}
+      style={{display: hide ? 'none' : ''}}
+    >
       <div className="login-dialog-container">
         <h2 style={{color:'#fff'}}>登录界面</h2>
         <Input
@@ -59,7 +69,7 @@ const LoginDialog: React.FC<LoginDialogType> = (props: LoginDialogType) => {
           prefix={<LockOutlined />}
           placeholder="please input password"
         />
-        <Button onClick={onSubmit} type="primary">Submit</Button><br />
+        <Button onClick={onSubmit} type="primary">Submit</Button>
         <Button onClick={onCancel}>Cancel</Button>
       </div>
     </div>

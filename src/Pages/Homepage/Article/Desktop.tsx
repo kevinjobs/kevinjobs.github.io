@@ -5,6 +5,7 @@ import FloatCard from './partial/FloatCard';
 import ArticleCate from './partial/Cate';
 import LoadMore from './partial/Loadmore';
 import DesktopNavbar from '../../Common/DesktopNavbar';
+import { Dialog } from '../../../Components';
 
 import { getArticles } from '../../../Apis/article.js';
 import { message } from 'antd';
@@ -26,34 +27,34 @@ class DesktopArticle extends React.Component<any, ArticleState> {
   state: ArticleState = {
     articles: [],
     page: 1,
-    limit: 8,
+    limit: 7,
     more: true,
     filter: 'all',
     index: -1,
     mask: false
   }
 
-  private handleClick = (e: any) => {
+  private openArticle = (e: any) => {
     const index: number = e.target.attributes.getNamedItem('data-index').value;
-    // console.log();
     this.setState({index: index});
-    this.setState({mask: true});
   }
 
   private onClose = () => {
-    // console.log(e);
     this.setState({index: -1});
     this.setState({mask: false});
   }
 
   private onFilter = (e: any) => {
     const cate: string = e.target.attributes.getNamedItem('data-cate').value;
-    // console.log('selected cate:', cate);
     this.setState({filter: cate});
   }
 
+  private onSubmit = (e: any) => {
+    message.info('正在登录...');
+    this.setState({mask: false});
+  }
+
   public loadMore = () => {
-    // console.log(e)
     if (this.state.more) {
       getArticles(this.state.page+1, this.state.limit).then(res => {
         let data = res.data.data;
@@ -68,22 +69,11 @@ class DesktopArticle extends React.Component<any, ArticleState> {
     }
   }
 
-  private handleWheel = (e: any) => {
-    if (this.state.index !== -1) {
-      e.preventDefault();
-    }
-  }
-
   componentDidMount() {
     getArticles(this.state.page, this.state.limit).then(res => {
       let data = res.data.data;
       this.setState({articles: data.items})
     })
-    document.body.addEventListener('wheel', this.handleWheel, {passive: false});
-  }
-
-  componentDidUpdate() {
-    document.body.removeEventListener('wheel', this.handleWheel);
   }
 
   render() {
@@ -118,7 +108,7 @@ class DesktopArticle extends React.Component<any, ArticleState> {
 
     return(
       <div className="desktop-article">
-        <DesktopNavbar menus={menus} />
+        <DesktopNavbar menus={menus} onLogin={()=>this.setState({mask: !this.state.mask})} />
         <div className="article-seperator"></div>
         <ArticleCate
           categories={categories()}
@@ -129,13 +119,15 @@ class DesktopArticle extends React.Component<any, ArticleState> {
           id="article-list"
           articles={this.state.articles}
           filter={this.state.filter}
-          onClick={this.handleClick}
+          onClick={this.openArticle}
         />
         <LoadMore loadmore={this.loadMore} more={this.state.more} />
         { showFloatCard() }
-        {
-          this.state.mask ? <div className="mask fade-in"></div> : <></>
-        }
+        <Dialog
+          isShow={this.state.mask}
+          onSubmit={this.onSubmit}
+          onCancel={()=>this.setState({mask:!this.state.mask})}
+        />
       </div>
     )
   }

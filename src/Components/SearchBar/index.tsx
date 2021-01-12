@@ -16,6 +16,9 @@ const About: React.FC<Props> = (props: Props) => {
 
   return(
     <div className="search-bar">
+      <div className="search-icon">
+        <div className="search-icon-bar"></div>
+      </div>
       <input onChange={handleChange} value={props.value} />
     </div>
   )
