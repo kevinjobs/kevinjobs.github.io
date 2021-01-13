@@ -1,11 +1,11 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 import ArticleList from './partial/List';
-import ArticleCard from './partial/FloatCard';
 import ArticleCate from './partial/Cate';
 import LoadMore from './partial/Loadmore';
 
-import { MobileNavbar } from '../../../Components';
+import { MobileNavbar, FloatPanel } from '../../../Components';
 
 import { getArticles } from '../../../Apis/article.js';
 import { message } from 'antd';
@@ -88,20 +88,6 @@ class MobileArticle extends React.Component<any, ArticleState> {
       return arr
     }
 
-    const showArticleCard = () => {
-      if (this.state.index === -1) {
-        return <div></div>
-      } else {
-        return(
-          <ArticleCard
-            article={this.state.articles[this.state.index]}
-            onClose={this.onClose}
-            onTouchMove={(e)=>{e.stopPropagation()}}
-          />
-        )
-      }
-    }
-
     const menus = [
       'home',
       'gallery',
@@ -124,9 +110,14 @@ class MobileArticle extends React.Component<any, ArticleState> {
           words={20}
         />
         <LoadMore loadmore={this.loadMore} more={this.state.more} />
-        { showArticleCard() }
         {
-          this.state.mask ? <div className="mask fade-in"></div> : <></>
+          this.state.index !== -1
+          ?
+          <FloatPanel onClose={this.onClose} onWheel={(e)=>e.stopPropagation()}>
+            <ReactMarkdown>{ this.state.articles[this.state.index]?.content }</ReactMarkdown>
+          </FloatPanel>
+          :
+          null
         }
       </div>
     )

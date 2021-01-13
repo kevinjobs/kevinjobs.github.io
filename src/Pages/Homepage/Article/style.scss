@@ -4,6 +4,7 @@
 .desktop-article {
   width: 100%;
   margin: 0 auto;
+  padding-bottom: 50px;
   .article-seperator {
     margin-top: 20px;
     height: 2px;
@@ -268,11 +269,13 @@
       margin-bottom: 10px;
       background-color: $gray-1;
       cursor: pointer;
+      border-radius: 5px;
       .left {
         display: inline-block;
         vertical-align: top;
         width: 50%;
         height: 135px;
+        border-radius: 5px 0 0 5px;
       }
       .right {
         /*border-top: 1px solid #d9d9d9;*/
@@ -283,6 +286,7 @@
         padding: 5px 10px;
         font-size: .8rem;
         position: relative;
+        border-radius: 5px;
         .category {
           display: block;
           width: fit-content;

@@ -1,11 +1,11 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 import ArticleList from './partial/List';
-import FloatCard from './partial/FloatCard';
 import ArticleCate from './partial/Cate';
 import LoadMore from './partial/Loadmore';
 import DesktopNavbar from '../../Common/DesktopNavbar';
-import { Dialog } from '../../../Components';
+import { Dialog, FloatPanel } from '../../../Components';
 
 import { getArticles } from '../../../Apis/article.js';
 import { message } from 'antd';
@@ -91,21 +91,6 @@ class DesktopArticle extends React.Component<any, ArticleState> {
       return arr
     }
 
-    const showFloatCard = () => {
-      if (this.state.index === -1) {
-        return <div></div>
-      } else {
-        return(
-          <FloatCard
-            id="floatcard"
-            article={this.state.articles[this.state.index]}
-            onClose={this.onClose}
-            onWheel={(e)=>e.stopPropagation()}
-          />
-        )
-      }
-    }
-
     const menus = [
       'home',
       'gallery',
@@ -128,7 +113,15 @@ class DesktopArticle extends React.Component<any, ArticleState> {
           onClick={this.openArticle}
         />
         <LoadMore loadmore={this.loadMore} more={this.state.more} />
-        { showFloatCard() }
+        {
+          this.state.index !== -1
+          ?
+          <FloatPanel onClose={this.onClose} onWheel={(e)=>e.stopPropagation()}>
+            <ReactMarkdown>{ this.state.articles[this.state.index]?.content }</ReactMarkdown>
+          </FloatPanel>
+          :
+          null
+        }
         <Dialog
           isShow={this.state.mask}
           onSubmit={this.onSubmit}

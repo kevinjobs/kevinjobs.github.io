@@ -1,18 +1,14 @@
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import { FullscreenOutlined, CloseOutlined } from '@ant-design/icons';
-import { ArticleType } from '../../../Types';
+import { CloseOutlined } from '@ant-design/icons';
+import './style.scss';
 
 interface Props {
   onClose?: React.MouseEventHandler<HTMLElement>,
   onWheel?: React.WheelEventHandler<HTMLElement>,
-  onTouchMove?: React.TouchEventHandler<HTMLElement>,
-  article: ArticleType,
-  id?: string
+  onTouchMove?: React.TouchEventHandler<HTMLElement>
 }
 
-const ArticleCard: React.FC<Props> = (props) => {
-
+const FloatPanel: React.FC<Props> = (props) => {
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const { onClose } = props;
     if (onClose) {
@@ -35,21 +31,15 @@ const ArticleCard: React.FC<Props> = (props) => {
   }
 
   return(
-    <div className="float-card fade-in" id={props.id} onWheel={handleWheel} onTouchMove={handleTouchMove}>
+    <div className="float-card fade-in" onWheel={handleWheel} onTouchMove={handleTouchMove}>
       <span className="close">
-        <h3>{props.article.title}</h3>
         <CloseOutlined style={{fontSize:'inherit'}} onClick={handleClick} />
       </span>
-      <div className="article-container no-scroll-bar" onWheel={handleWheel} onTouchMove={handleTouchMove}>
-        <FullscreenOutlined style={{display:'none'}} />
-        <ReactMarkdown>
-          {
-            props.article ? props.article.content : ''
-          }
-        </ReactMarkdown>
+      <div className="float-card-container no-scroll-bar" onWheel={handleWheel} onTouchMove={handleTouchMove}>
+        { props.children }
       </div>
     </div>
   )
 }
 
-export default ArticleCard;
+export default FloatPanel;
