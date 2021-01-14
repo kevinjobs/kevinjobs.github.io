@@ -1,0 +1,43 @@
+@import '../../static/styles/index.scss';
+
+.calendar {
+  max-width: 1200px;
+  min-width: 800px;
+  margin: 0 auto;
+  overflow-y: hidden;
+  .calendar-container {
+    width: 100%;
+    background-color: $gray-1;
+    padding: 50px 0;
+    table {
+      width: 90%;
+      margin: 0 auto;
+      border: 1px solid #000;
+      tr {
+        border: 1px solid #000;
+        text-align: center;
+        td,th {
+          border: 1px solid #000;
+          width: 14.29%;
+          vertical-align: top;
+        }
+        td {
+          h3 {
+            text-align: right;
+          }     
+          .inner {
+            height: 100px;
+            overflow-y: scroll;
+            div {
+              text-align: left;
+              margin: 2px 5px;
+              padding: 2px 5px;
+              background-color: $gold;
+              border-radius: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
