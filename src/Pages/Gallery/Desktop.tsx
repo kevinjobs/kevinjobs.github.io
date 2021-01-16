@@ -116,6 +116,11 @@ class DesktopGallery extends React.Component<any, State> {
                     onMouseOut={this.handleMouse}
                     style={{backgroundImage:`url(${baseUrl + image.source.replace('JPG', 'jpg')})`}}
                   >
+                    <div className="img-box-content fade-in">
+                      <h2>{image.title || 'No title'}</h2>
+                      <p>{image.position || 'Unkown Location'}</p>
+                      <p>{image.manufacturer || 'Unkown Manufacturer'}</p>
+                    </div>
                   </div>
                 )
               })
