@@ -7,7 +7,9 @@ import {
   BulbFilled,
   SkinFilled,
   VideoCameraFilled,
-  CloseCircleOutlined
+  CloseCircleOutlined,
+  EnvironmentFilled,
+  CalendarFilled
 } from '@ant-design/icons';
 
 type Props = {
@@ -42,14 +44,17 @@ const ImageFloatCard: React.FC<Props> = (props: Props) => {
     backgroundColor: 'rgba(0,0,0,.75)',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    color: '#f1f1f1'
   } as React.CSSProperties;
 
   const infoStyle = {
     width: 1000,
     padding: '20px 30px',
     borderRadius: 'inherit',
-    overflowY: 'scroll'
+    overflowY: 'scroll',
+    lineHeight: props.type === 'mobile' ? 1.2 : 1.5,
+    backgroundColor: '#e9e9e9'
   } as React.CSSProperties;
 
   const commentStyle = {
@@ -57,10 +62,6 @@ const ImageFloatCard: React.FC<Props> = (props: Props) => {
     borderRadius: 10,
     padding: 10
   } as React.CSSProperties;
-
-  const commentItemStyle = {
-    backgroundColor: '#f1f1f1'
-  }
 
   const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
 
@@ -72,8 +73,13 @@ const ImageFloatCard: React.FC<Props> = (props: Props) => {
   }
 
   return(
-    <div className="image-float-card" style={cardStyle}>
+    <div className="image-float-card"
+      style={cardStyle}
+    >
       <div className="image-float-card__image" style={imgStyle}>
+        <div style={{textAlign:'right',fontSize:20}} onClick={handleClick.bind(this)}>
+          <CloseCircleOutlined style={{cursor:'pointer',position:'absolute',top:10,left:10,color:'inherit'}} />
+        </div>
         <img
           src={baseUrl + image.source.replace('JPG', 'jpg')}
           alt={image.title}
@@ -81,23 +87,15 @@ const ImageFloatCard: React.FC<Props> = (props: Props) => {
         />
       </div>
       <div className="image-float-card__info no-scroll-bar" style={infoStyle}>
-        <div style={{textAlign:'right',fontSize:20}} onClick={handleClick.bind(this)}>
-          <CloseCircleOutlined style={{cursor: 'pointer'}} />
-        </div>
-        <h3>{image.title || 'no title'}</h3>
-        <p>{image.desc || 'no desc'}</p>
+        <h2>{image.title || '我们向往未知'}</h2>
+        <p>{image.desc || '这是未知的世界'}</p>
         <p><SkinFilled /> {image.author}</p>
         <p><BulbFilled /> {image.exposure_time}</p>
         <p><VideoCameraFilled /> {image.iso} (ISO)</p>
         <p><CameraFilled /> {image.manufacturer}</p>
-        <p><CompassFilled /> {image.position}</p>
-        <hr />
-        <div className="image-float-card__comment" style={commentStyle}>
-          <h3>Selected Comments</h3>
-          <div className="image-float-card__comment_item" style={commentItemStyle}>
-            <p style={{padding:'2px 10px',borderRadius:5,margin:0}}>Hello, Everyone! </p>
-          </div>
-        </div>
+        <p><CompassFilled /> {image.position.split('|')[0] || '未知地点'}</p>
+        <p><EnvironmentFilled /> {image.position.split('|')[1] || '未知景点'}</p>
+        <p><CalendarFilled /> {image.create_time}</p>
       </div>
     </div>
   )
