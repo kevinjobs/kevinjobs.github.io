@@ -1,13 +1,15 @@
-import about from './About';
+import About from './About';
+import Admin from './Admin'
 import Calendar from './Calendar';
-import exam from './Exam';
-import gallery from './Gallery';
-import homepage from './Homepage';
+import Exam from './Exam';
+import Gallery from './Gallery';
+import Homepage from './Homepage';
 
 export {
-  about as About,
+  About,
+  Admin,
   Calendar,
-  exam as Exam,
-  gallery as Gallery,
-  homepage as Homepage
+  Exam,
+  Gallery,
+  Homepage
 }

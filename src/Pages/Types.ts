@@ -20,6 +20,7 @@ interface ArticleType {
 }
 
 interface ImageType {
+  [key: string]: string | number,
   create_time: string,
   update_time: string,
   //

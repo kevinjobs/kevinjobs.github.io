@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { Exam, Homepage, About, Gallery, Calendar } from './Pages';
+import { Exam, Admin, Homepage, About, Gallery, Calendar } from './Pages';
 import {
   HashRouter as Router,
   Switch,
@@ -16,6 +16,7 @@ const App: React.FC = () => {
           <div className="container">
             <Switch>
               <Route path="/exam" component={Exam} />
+              <Route path="/admin" component={Admin} />
               <Route path="/calendar" component={Calendar} />
               <Route path="/home" component={Homepage} />
               <Route path="/about" component={About} />
