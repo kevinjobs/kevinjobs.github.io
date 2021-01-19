@@ -7,14 +7,16 @@ const Gallery: React.FC = () => {
 
   let columns: number = 4;
   let gutter: number = 10;
+  let type: 'desktop' | 'mobile' = 'desktop';
 
   if (width < breakpoint) {
     columns = 2;
     gutter= 5;
+    type = 'mobile';
   }
 
   return(
-    <DesktopGallery columns={columns} gutter={gutter} />
+    <DesktopGallery columns={columns} gutter={gutter} type={type}/>
   )
 }
 

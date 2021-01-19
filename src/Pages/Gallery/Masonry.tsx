@@ -5,6 +5,7 @@ interface Props {
   columnWidth: number,
   gutter: number,
   items: any[],
+  openImage?: any
 }
 /*
  * The classic "masonry" style Pinterest grid
@@ -15,6 +16,13 @@ interface Props {
  */
 export default class Masonry extends React.Component<Props, any> {
   private columnHeights = Array.from({ length: this.props.columns }, () => 0);
+
+  handleClick(e: React.MouseEvent<HTMLElement>) {
+    const { openImage } = this.props;
+    if (openImage) {
+      (openImage as React.MouseEventHandler<HTMLElement>)(e);
+    }
+  }
   /*
    * Get the shortest column in the list of columns heights
    */
@@ -59,6 +67,8 @@ export default class Masonry extends React.Component<Props, any> {
         alt={item.title || 'noname'}
         style={this.getItemStyle(item)}
         key={index}
+        data-index={index}
+        onClick={this.handleClick.bind(this)}
       />
     );
   }

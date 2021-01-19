@@ -5,13 +5,15 @@ import { getImages } from '../../Apis/image';
 import { ImageType } from '../Types';
 
 import Masonry from './Masonry';
+import ImageFloatCard from './ImageFloatCard';
 
 import './style.scss';
 import { message } from 'antd';
 
 interface Props {
   columns: number,
-  gutter: number
+  gutter: number,
+  type?: 'desktop' | 'mobile'
 }
 
 interface State {
@@ -19,7 +21,9 @@ interface State {
   isMenuOpen: boolean,
   images: ImageType[],
   page: number,
-  limit: number
+  limit: number,
+  isShowImageFloatCard: boolean,
+  imageShowIndex: number
 }
 
 class DesktopGallery extends React.Component<Props, State> {
@@ -28,7 +32,9 @@ class DesktopGallery extends React.Component<Props, State> {
     isMenuOpen: false,
     images: [],
     page: 2,
-    limit: 8
+    limit: 8,
+    isShowImageFloatCard: false,
+    imageShowIndex: -1
   }
 
   private ref: any = createRef();
@@ -38,8 +44,20 @@ class DesktopGallery extends React.Component<Props, State> {
     this.setState({isMenuOpen: !this.state.isMenuOpen})
   }
 
+  private openImageFloatCard = (e: any) => {
+    const index: number = e.target.attributes.getNamedItem('data-index').value;
+    this.setState({isShowImageFloatCard: true});
+    this.setState({imageShowIndex: index});
+    // console.log(index);
+  }
+
+  private closeImageFloatCard = (e: any) => {
+    this.setState({isShowImageFloatCard: false});
+    this.setState({imageShowIndex: -1})
+  }
+
   private stopScroll = (e: any) => {
-    this.state.isMenuOpen
+    this.state.isMenuOpen || this.state.isShowImageFloatCard
     ? e.preventDefault()
     : e.stopPropagation();
   }
@@ -75,14 +93,14 @@ class DesktopGallery extends React.Component<Props, State> {
     const height = document.documentElement.scrollHeight;
     const cHeight = document.documentElement.clientHeight;
     const diff = height - top - cHeight
-    if (diff <= 50) {
+    if (diff <= 100) {
       // console.log(diff);
       this.loadmore(this.state.page, this.state.limit);
     }
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.debounce(this.scroll, 200));
+    window.addEventListener('scroll', this.debounce(this.scroll, 500));
     document.body.addEventListener('wheel', this.stopScroll, {passive: false});
     document.body.addEventListener('touchmove', this.stopScroll, {passive: false});
     getImages(1,this.state.limit).then(res => {
@@ -127,7 +145,6 @@ class DesktopGallery extends React.Component<Props, State> {
             style={{height: document.body.clientHeight}}
           />
           <div className="moto"><p>我曾见过光 再无法忘记</p></div>
-          <div className="mask" style={{display:this.state.isMenuOpen?'':'none',zIndex:2}}></div>
         </div>
       )
     }
@@ -141,10 +158,13 @@ class DesktopGallery extends React.Component<Props, State> {
             columnWidth={(this.ref.current?.clientWidth-gutter*(columns-1))/columns}
             columns={columns}
             gutter={gutter}
+            openImage={this.openImageFloatCard}
           />
         </div>
       )
     }
+
+    const { isShowImageFloatCard, images, imageShowIndex } = this.state;
 
     return(
       <div className="desktop-gallery">
@@ -153,6 +173,19 @@ class DesktopGallery extends React.Component<Props, State> {
           <Cover />
           <ImageBox />
         </div>
+        {
+          this.state.imageShowIndex !== -1
+          ?
+          <ImageFloatCard
+            isShow={isShowImageFloatCard}
+            image={images[imageShowIndex]}
+            close={this.closeImageFloatCard}
+            type={this.props.type || 'desktop'}
+          />
+          : ''
+        }
+        <div className="mask" style={{display:this.state.isMenuOpen?'':'none',zIndex:2}}></div>
+        <div className="mask" style={{display:this.state.isShowImageFloatCard?'':'none',zIndex:2}}></div>
       </div>
     )
   }
