@@ -52,12 +52,14 @@ export default class Masonry extends React.Component<Props, any> {
   renderItem(item: any, index: number) {
     const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
     return (
-      <img className="ImageLayout__item"
+      <img
+        className="masonry__item"
         src={baseUrl + item.source.replace('JPG', 'jpg')}
         width={this.props.columnWidth}
+        alt={item.title || 'noname'}
         style={this.getItemStyle(item)}
-        alt={item.title}
-        key={index} />
+        key={index}
+      />
     );
   }
 

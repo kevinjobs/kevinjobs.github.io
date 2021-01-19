@@ -103,6 +103,12 @@ $width: 1120px;
   }
 }
 
+.masonry__item {
+  background-color: transparent;
+  border-radius: 0px;
+  cursor: pointer;
+}
+
 @keyframes pullLeftToRight {
   from {
     width: 0;

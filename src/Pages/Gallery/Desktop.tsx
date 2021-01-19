@@ -55,20 +55,34 @@ class DesktopGallery extends React.Component<Props, State> {
     this.setState({page: this.state.page + 1});
   }
 
+  /*
+   *
+   *
+   * 
+   */
+  private debounce = (fn: Function, wait: number) => {
+    let timer: number | null = null;
+    return function() {
+      if (timer !== null) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(fn, wait);
+    }
+  }
+
   private scroll = (e: any) => {
-    e.preventDefault();
     const top = document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight;
     const cHeight = document.documentElement.clientHeight;
     const diff = height - top - cHeight
-    if (diff <= 0) {
+    if (diff <= 50) {
       // console.log(diff);
       this.loadmore(this.state.page, this.state.limit);
     }
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.scroll);
+    window.addEventListener('scroll', this.debounce(this.scroll, 200));
     document.body.addEventListener('wheel', this.stopScroll, {passive: false});
     document.body.addEventListener('touchmove', this.stopScroll, {passive: false});
     getImages(1,this.state.limit).then(res => {
