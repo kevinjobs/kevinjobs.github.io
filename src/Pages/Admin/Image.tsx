@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ImageType } from '../Types';
 
+import { Input } from '../../Components';
+
 import { CloseCircleOutlined } from '@ant-design/icons';
 
 type Props = {
@@ -50,8 +52,8 @@ const AdminImage: React.FC<Props> = (props: Props) => {
     setForm(undefined);
   }
 
-  const handleSubmit = (e: any) => {
-    console.log('submit');
+  const submitForm = (e: any) => {
+    console.log(form);
     e.preventDefault();
   }
 
@@ -73,13 +75,11 @@ const AdminImage: React.FC<Props> = (props: Props) => {
           <div style={{textAlign:'right',fontSize:20}} onClick={onClose}>
             <CloseCircleOutlined style={{cursor:'pointer',position:'absolute',top:10,left:10,color:'#a1a1a1'}} />
           </div>
-          <form style={formStyle} onSubmit={handleSubmit}>
+          <form style={formStyle}>
             <div className="admin-image__edit--item admin-image__edit--base">
-              <div><label>标题</label><input value={form?.title} name="title" onChange={handleChange} /></div>
-              <div>
-                <label>图源</label><input value={form?.source} name="source" onChange={handleChange} />
-                <label>作者</label><input value={form?.author} name="author" onChange={handleChange} />
-              </div>
+              <Input name="title" value={form.title} onChange={handleChange} label="标题" />
+              <Input name="source" value={form.source} onChange={handleChange} label="图源" />
+              <Input name="author" value={form.author} onChange={handleChange} label="作者" />
               <div>
                 <label>分类</label><input value={form?.category} name="category" onChange={handleChange} />
                 <label>标签</label><input value={form?.tags} name="tags" onChange={handleChange} />
@@ -128,7 +128,7 @@ const AdminImage: React.FC<Props> = (props: Props) => {
               <label>预览图</label>
               <img src={baseUrl + form?.source.replace('JPG','jpg')} alt={form?.title} />
             </div>
-            <input type="submit" value="submit" />
+            <button onClick={submitForm}>submit</button>
           </form>
         </div>
       )

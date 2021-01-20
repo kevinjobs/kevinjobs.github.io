@@ -2,6 +2,7 @@ import Dialog from './Dialog';
 import Divider from './Divider';
 import FloatPanel from './FloatPanel';
 import Footer from './Footer';
+import Input from './Input';
 import MenuButton from './MenuButton';
 import MobileNavbar from './MobileNavbar';
 import SearchBar from './SearchBar';
@@ -12,6 +13,7 @@ export {
   Divider,
   FloatPanel,
   Footer,
+  Input,
   MenuButton,
   MobileNavbar,
   SearchBar,
