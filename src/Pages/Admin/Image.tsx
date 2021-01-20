@@ -8,8 +8,6 @@ type Props = {
 }
 
 const AdminImage: React.FC<Props> = (props: Props) => {
-
-  const [index, setIndex] = useState(-1);
   const [form, setForm] = useState<ImageType>();
 
   const style = {
