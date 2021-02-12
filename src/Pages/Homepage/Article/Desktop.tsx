@@ -6,9 +6,8 @@ import ArticleCate from './partial/Cate';
 import LoadMore from './partial/Loadmore';
 import DesktopNavbar from '../../Common/DesktopNavbar';
 import { Dialog, FloatPanel } from '../../../Components';
-
-import { getArticles } from '../../../Apis/article.js';
 import { message } from 'antd';
+import { getArticles } from '../../../Apis/article.js';
 import { ArticleType } from '../../Types';
 
 import './style.scss';

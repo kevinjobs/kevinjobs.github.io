@@ -8,7 +8,6 @@ import Masonry from './Masonry';
 import ImageFloatCard from './ImageFloatCard';
 
 import './style.scss';
-import { message } from 'antd';
 
 interface Props {
   columns: number,
@@ -65,7 +64,7 @@ class DesktopGallery extends React.Component<Props, State> {
   private loadmore = (page: number, limit: number) => {
     getImages(page, limit).then(res => {
       if (res.data.data.items.length === 0) {
-        message.info('没有更多图片')
+        // message.info('没有更多图片',1)
       } else {
         this.setState({images: this.state.images.concat(res.data.data.items)});
       }
@@ -73,11 +72,7 @@ class DesktopGallery extends React.Component<Props, State> {
     this.setState({page: this.state.page + 1});
   }
 
-  /*
-   *
-   *
-   * 
-   */
+  //
   private debounce = (fn: Function, wait: number) => {
     let timer: number | null = null;
     return function() {
@@ -89,27 +84,30 @@ class DesktopGallery extends React.Component<Props, State> {
   }
 
   private scroll = (e: any) => {
-    const top = document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight;
-    const cHeight = document.documentElement.clientHeight;
+    const top = document.documentElement.scrollTop || document.body.scrollTop;
+    const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+    const cHeight = document.documentElement.clientHeight || document.body.clientHeight;
+    const threshold = 500;
     const diff = height - top - cHeight
-    if (diff <= 100) {
+    if (diff <= threshold) {
       // console.log(diff);
       this.loadmore(this.state.page, this.state.limit);
     }
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.debounce(this.scroll, 500));
+    window.addEventListener('scroll', this.debounce(this.scroll, 800));
+    window.addEventListener('touchmove', this.debounce(this.scroll, 500));
     document.body.addEventListener('wheel', this.stopScroll, {passive: false});
     document.body.addEventListener('touchmove', this.stopScroll, {passive: false});
-    getImages(1,this.state.limit).then(res => {
+    getImages(1,8).then(res => {
       this.setState({images: res.data.data.items});
     })
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.scroll);
+    window.removeEventListener('scroll', this.debounce(this.scroll, 500));
+    window.removeEventListener('touchmove', this.debounce(this.scroll, 500));
     document.body.removeEventListener('wheel', this.stopScroll);
     document.body.removeEventListener('touchmove', this.stopScroll);
   }

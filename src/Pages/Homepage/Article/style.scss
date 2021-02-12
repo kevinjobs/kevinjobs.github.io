@@ -235,6 +235,10 @@
     justify-content: flex-end;
     flex-wrap: wrap;
     cursor: text;
+    p {
+      overflow: hidden;
+      line-break: normal;
+    }
     .article-container {
       height: 100%;
       padding: 0 0 100px 0;
@@ -243,7 +247,7 @@
       line-height: 2;
     }
     .close {
-      margin-top: 20px;
+      margin-top: 10px;
       width: 100%;
       cursor: pointer;
       transition: ease-out .1s;
@@ -315,6 +319,16 @@
           color: $gray-6;
           position: absolute;
           bottom: 5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .avatar {
+            width: 16px;
+            height: 16px;
+          }
+          .name {
+            margin-left: 5px;
+          }
         }
       }
     }

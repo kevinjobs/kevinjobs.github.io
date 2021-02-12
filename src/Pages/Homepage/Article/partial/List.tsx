@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArticleType } from '../../../Types';
 import moment from 'moment';
+import multiavatar from '@multiavatar/multiavatar';
 
 interface Props {
   id?: string,
@@ -18,6 +19,8 @@ export default class ArticleList extends React.Component<Props, any> {
       (onClick as React.MouseEventHandler<HTMLElement>)(e);
     }
   }
+
+  componentDidMount() {}
 
   render() {
     const ListCard = (a: ArticleType, index: number) => {
@@ -47,7 +50,9 @@ export default class ArticleList extends React.Component<Props, any> {
               {a.content.slice(0,this.props.words||80)}
             </div>
             <div className="author">
-              <span className="avatar"></span>
+              <span className="avatar"
+                dangerouslySetInnerHTML={{__html: multiavatar(a.author)}}>
+              </span>
               <span className="name">{a.author}</span>
             </div>
           </div>

@@ -78,6 +78,10 @@ class MobileArticle extends React.Component<any, ArticleState> {
     document.body.addEventListener('touchmove', this.handleTouchMove, {passive:false});
   }
 
+  componentWillUnmount() {
+    document.body.removeEventListener('touchmove', this.handleTouchMove);
+  }
+
   render() {
     const categories = () => {
       let arr: string[] = ['all']
@@ -113,7 +117,7 @@ class MobileArticle extends React.Component<any, ArticleState> {
         {
           this.state.index !== -1
           ?
-          <FloatPanel onClose={this.onClose} onWheel={(e)=>e.stopPropagation()}>
+          <FloatPanel onClose={this.onClose} onTouchMove={(e)=>e.stopPropagation()}>
             <ReactMarkdown>{ this.state.articles[this.state.index]?.content }</ReactMarkdown>
           </FloatPanel>
           :
