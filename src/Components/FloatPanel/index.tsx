@@ -31,7 +31,7 @@ const FloatPanel: React.FC<Props> = (props) => {
   }
 
   return(
-    <div className="float-card fade-in" onWheel={handleWheel} onTouchMove={handleTouchMove}>
+    <div className="float-card fade-in">
       <span className="close">
         <CloseOutlined style={{fontSize:'inherit'}} onClick={handleClick} />
       </span>

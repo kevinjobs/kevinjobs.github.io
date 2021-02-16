@@ -9,20 +9,21 @@ interface QuestionType {
 }
 
 interface ArticleType {
+  id: string,
   cover: string,
   title: string,
   author: string,
   content: string,
-  create_time: string,
-  update_time: string,
+  create_at: string,
+  update_at: string,
   tags: string,
-  category: string
+  desc: string
 }
 
 interface ImageType {
   [key: string]: string | number,
-  create_time: string,
-  update_time: string,
+  create_at: string,
+  update_at: string,
   //
   title: string,
   author: string,

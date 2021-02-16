@@ -1,12 +1,11 @@
-import DesktopArticle from './Desktop';
-import MobileArticle from './Mobile';
+import Article from './Artilce';
 import React from 'react';
 import { useViewport, breakpoint } from '../../../Utils/viewportContext';
 
-const Article: React.FC = () => {
+const A: React.FC = () => {
   const { width } = useViewport();
-  // console.log(width);
-  return width < breakpoint ? <MobileArticle /> : <DesktopArticle />;
+  const type = width < breakpoint ? 1 : 2;
+  return <Article type={type} />
 }
 
-export default Article;
+export default A;

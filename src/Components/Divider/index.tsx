@@ -9,9 +9,9 @@ class Divider extends React.Component<Props, any> {
   render() {
     return(
       <div className="divider">
-        <div className="divider-line"></div>
-        <p className="divider-text">{this.props.children}</p>
-        <div className="divider-line"></div>
+        <span className="divider-line"></span>
+        <span className="divider-text">{this.props.children}</span>
+        <span className="divider-line"></span>
       </div>
     )
   }
