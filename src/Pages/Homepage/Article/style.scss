@@ -193,33 +193,6 @@
   margin: 0 auto;
   padding: 0 0 60px 0;
   font-size: 1rem;
-  .article-seperator {
-    margin-top: 10px;
-    height: 2px;
-    background-image: linear-gradient(90deg,$gold,$red);
-  }
-  .article-navbar {
-    margin: 0;
-    padding: 0;
-    height: 50px;
-    overflow-y: hidden;
-    position: relative;
-    ul {
-      width: auto;
-      white-space: nowrap;
-      margin: 0;
-      padding: 0;
-      li {
-        display: inline-block;
-        list-style-type: none;
-        line-height: 50px;
-        margin: 0 10px;
-      }
-      li.selected {
-        color: $orange;
-      }
-    }
-  }
   
   .float-card {
     width: 100%;
@@ -268,12 +241,16 @@
   
   .article-list {
     padding: 0 5px;
+    margin-top: 5px;
     .article {
       width: 100%;
+      height: 135px;
       margin-bottom: 10px;
       background-color: $gray-1;
       cursor: pointer;
       border-radius: 5px;
+      display: flex;
+      flex-wrap: nowrap;
       .left {
         display: inline-block;
         vertical-align: top;
@@ -287,7 +264,7 @@
         vertical-align: top;
         width: 50%;
         height: 135px;
-        padding: 5px 10px;
+        padding: 0 10px;
         font-size: .8rem;
         position: relative;
         border-radius: 5px;
@@ -323,8 +300,8 @@
           justify-content: center;
           align-items: center;
           .avatar {
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
           }
           .name {
             margin-left: 5px;

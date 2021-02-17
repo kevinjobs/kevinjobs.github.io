@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { message } from 'antd';
 import classNames from 'classnames';
 
 import List from './List';
@@ -47,7 +46,6 @@ class Article extends React.Component<ArticleProps, ArticleState> {
         this.setState({articleList: this.state.articleList.concat(data.items)});
         if (this.state.pageSize * (this.state.currentPage+1) >= data.total) {
           this.setState({more: false});
-          message.warning('最后一页');
         } else {
           this.setState({currentPage: this.state.currentPage + 1})
         }

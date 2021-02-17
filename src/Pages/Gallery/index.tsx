@@ -1,23 +1,17 @@
 import React from 'react';
 import { useViewport, breakpoint } from '../../Utils/viewportContext';
-import DesktopGallery from './Desktop';
+import Gallery from './Gallery';
 
-const Gallery: React.FC = () => {
+const G: React.FC = () => {
   const { width } = useViewport();
 
-  let columns: number = 4;
-  let gutter: number = 10;
-  let type: 'desktop' | 'mobile' = 'desktop';
-
-  if (width < breakpoint) {
-    columns = 2;
-    gutter= 5;
-    type = 'mobile';
-  }
+  const columns = width < breakpoint ? 2 : 4;
+  const gutter = width < breakpoint ? 5 : 10;
+  const type = width < breakpoint ? 1 : 2;
 
   return(
-    <DesktopGallery columns={columns} gutter={gutter} type={type}/>
+    <Gallery columns={columns} gutter={gutter} type={type}/>
   )
 }
 
-export default Gallery;
+export default G;

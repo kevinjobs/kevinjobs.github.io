@@ -1,10 +1,11 @@
 import React from 'react';
+import { ImageInterface } from './gallery.interface';
 
 interface Props {
   columns: number,
   columnWidth: number,
   gutter: number,
-  items: any[],
+  items: ImageInterface[],
   openImage?: any
 }
 /*
@@ -38,12 +39,12 @@ export default class Masonry extends React.Component<Props, any> {
    * @param {Object} item.height - the grid item's image height
    * @param {Object} item.width - the grid item's image width
    */
-  getItemStyle(item: any) {
+  getItemStyle(item: ImageInterface) {
     const { columnWidth, gutter } = this.props;
     const shortestColumnIndex = this.getShortestColumn();
     const left = (columnWidth + gutter) * shortestColumnIndex;
     const top = this.columnHeights[shortestColumnIndex];
-    const normalizedHeight = (columnWidth / item.width) * item.length;
+    const normalizedHeight = (columnWidth / item.exif.width) * item.exif.height;
     this.columnHeights[shortestColumnIndex] += (normalizedHeight + gutter);
     return {
       left: `${left}px`,
@@ -62,12 +63,13 @@ export default class Masonry extends React.Component<Props, any> {
     return (
       <img
         className="masonry__item"
-        src={baseUrl + item.source.replace('JPG', 'jpg')}
+        src={baseUrl + item.cover.replace('JPG', 'jpg')}
         width={this.props.columnWidth}
         alt={item.title || 'noname'}
         style={this.getItemStyle(item)}
         key={index}
-        data-index={index}
+        data-id={item.id}
+        data-key={index}
         onClick={this.handleClick.bind(this)}
       />
     );
