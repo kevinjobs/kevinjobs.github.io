@@ -4,7 +4,9 @@ import classNames from 'classnames';
 
 import List from './List';
 import { MobileNavbar, FloatPanel, Divider } from '../../../Components';
+import LoginDialog from '../../../Components/Dialog/LoginDialog';
 import DesktopNavbar from '../../Common/DesktopNavbar';
+
 import { getPostList, getPostById } from '../../../Apis/post';
 import { ArticleInterface } from './article.interface';
 
@@ -19,7 +21,8 @@ interface ArticleState {
   currentPage: number,
   pageSize: number,
   more: boolean,
-  currentPost: ArticleInterface | undefined
+  currentPost: ArticleInterface | undefined,
+  isLoginDialogShow: boolean
 }
 
 class Article extends React.Component<ArticleProps, ArticleState> {
@@ -28,7 +31,8 @@ class Article extends React.Component<ArticleProps, ArticleState> {
     currentPage: 1,
     pageSize: 6,
     more: true,
-    currentPost: undefined
+    currentPost: undefined,
+    isLoginDialogShow: false
   }
 
   private onFloatPanel = (e: any) => {
@@ -59,6 +63,12 @@ class Article extends React.Component<ArticleProps, ArticleState> {
       e.preventDefault();
     }
   }
+
+  private handleLogin = (e: any) => {
+    this.setState({isLoginDialogShow: !this.state.isLoginDialogShow});
+  }
+
+  private handleLoginSubmit = (e: any) => {}
 
   componentDidMount() {
     getPostList(1, 7).then(res => {
@@ -120,14 +130,18 @@ class Article extends React.Component<ArticleProps, ArticleState> {
 
     return(
       <div className={classnames}>
-        { this.props.type === 1 ? <MobileNavbar menus={menus} /> : <DesktopNavbar menus={menus} /> }
-        <List
-          articleList={this.state.articleList}
-          onClick={this.onFloatPanel}
-        />
+        {
+          this.props.type === 1
+          ? <MobileNavbar menus={menus} />
+          : <DesktopNavbar menus={menus} onLogin={this.handleLogin} />
+        }
+        <List articleList={this.state.articleList} onClick={this.onFloatPanel}/>
         { showLoadmore(this.state.more) }
         { showFloatPanel(this.state.currentPost) }
         { showMask(this.state.currentPost) }
+        <LoginDialog
+          isShow={this.state.isLoginDialogShow}
+        />
       </div>
     )
   }

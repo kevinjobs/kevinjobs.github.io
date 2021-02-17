@@ -58,3 +58,40 @@
     }
   }
 }
+
+.DesktopNavbar-UserInfo {
+  position: relative;
+  margin-left: 20px;
+  .DesktopNavbar-UserInfo__Avatar {
+    width: 30px;
+    height: 30px;
+  }
+  .DesktopNavbar-UserInfo__Menu {
+    position: absolute;
+    left: -25px;
+    background-color: #414141;
+    z-index: 2;
+    transition: all .1s ease-in-out;
+    padding: 10px 0;
+    margin-top: 5px;
+    visibility: hidden;
+    border-radius: 5px;
+    p {
+      font-size: 12px;
+      cursor: pointer;
+      padding: 5px 25px;
+      margin: 0;
+      visibility: inherit;
+      color: #ddd;
+      &:hover {
+        background-color: #ddd;
+        color: #414141;
+      }
+    }
+  }
+  &:hover {
+    .DesktopNavbar-UserInfo__Menu {
+      visibility: visible;
+    }
+  }
+}

@@ -5,7 +5,7 @@ export async function login(form, val) {
   let resp = await axios({
     method: 'post',
     url: '/login',
-    auth: form
+    data: form
   }, val)
   return resp
 }

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Input } from "antd";
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
+import { toLogin } from '../../Store/actions/auth-action';
+import store from '../../Store';
 
 interface LoginDialogType {
   onClick?: any,
-  onSubmit?: any,
+  // onSubmit?: any,
   onCancel?: any,
   username?: string,
   password?: string,
-  isShow?: boolean
+  isShow: boolean
 }
 
 const LoginDialog: React.FC<LoginDialogType> = (props: LoginDialogType) => {
@@ -16,6 +17,7 @@ const LoginDialog: React.FC<LoginDialogType> = (props: LoginDialogType) => {
 
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [show, setShow] = useState(false);
   const [hide, setHide] = useState(true);
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,10 +32,12 @@ const LoginDialog: React.FC<LoginDialogType> = (props: LoginDialogType) => {
   
   const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const { onSubmit } = props;
-    if (onSubmit) {
-      (onSubmit as React.MouseEventHandler<HTMLButtonElement>)(e);
+    const loginForm = {
+      'username': username,
+      'password': password
     }
+    store.dispatch(toLogin(loginForm));
+    setShow(false);
   }
 
   const onCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -50,27 +54,33 @@ const LoginDialog: React.FC<LoginDialogType> = (props: LoginDialogType) => {
     }, 100);
   }
 
+  React.useEffect(() => {
+    if (!show && !isShow) {
+      setShow(true);
+    } else {
+      setShow(isShow);
+    }
+  }, [isShow, show]);
+
   return(
     <div
-      className={isShow ? 'login-dialog card appear' : 'login-dialog card dispear'}
+      className={show ? 'login-dialog card appear' : 'login-dialog card dispear'}
       style={{display: hide ? 'none' : ''}}
     >
       <div className="login-dialog-container">
         <h2 style={{color:'#fff'}}>登录界面</h2>
-        <Input
+        <input
           value={username}
           onChange={handleUsernameChange}
-          prefix={<UserOutlined />}
           placeholder="please input username"
-        />
-        <Input.Password
+        ></input>
+        <input
           value={password}
           onChange={handlePasswordChange}
-          prefix={<LockOutlined />}
           placeholder="please input password"
-        />
-        <Button onClick={onSubmit} type="primary">Submit</Button>
-        <Button onClick={onCancel}>Cancel</Button>
+        ></input>
+        <button onClick={onSubmit}>Submit</button>
+        <button onClick={onCancel}>Cancel</button>
       </div>
     </div>
   )

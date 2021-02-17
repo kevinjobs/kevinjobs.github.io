@@ -7,8 +7,9 @@ instance.defaults.baseURL = 'https://api.iyum.in:5000'
 
 instance.interceptors.request.use(
   config => {
-    config.data = JSON.stringify(config.data)
-    return config
+    config.data = JSON.stringify(config.data);
+    config.headers= {'content-type': 'application/json'};
+    return config;
   }
 )
 

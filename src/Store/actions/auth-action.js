@@ -6,15 +6,15 @@ export const toLogin = loginForm => dispatch => {
     let currentUser = {};
     if (res.status === 200) {
       const token = res.data.data.token;
-      const id = res.data.data.id;
-      const username = res.data.data.username;
+      // const id = res.data.data.id;
+      // const username = res.data.data.username;
       localStorage.setItem('token', token);
-      localStorage.setItem('id', id);
-      localStorage.setItem('username', username);
+      // localStorage.setItem('id', id);
+      // localStorage.setItem('username', username);
       currentUser = {
         isLogin: true,
-        id: id,
-        username: username,
+        // id: id,
+        // username: username,
         token: token
       }
       // console.log(currentUser);
