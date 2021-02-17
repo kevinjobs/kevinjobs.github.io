@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ImageInterface } from './gallery.interface';
 import classNames from 'classnames';
 
