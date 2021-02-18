@@ -1,0 +1,86 @@
+.DesktopNavbar {
+  height: 80px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  .DesktopNavbar--Container {
+    width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .DesktopNavbar--Container__Menus {
+      display: flex;
+      list-style: none;
+      line-height: 80px;
+      li {
+        display: inline-block;
+        padding: 0 20px;
+        font-size: 24px;
+        &:hover {
+          background-color: #919191;
+          color: #fff;
+        }
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+      }
+    }
+    .DesktopNavbar--Container__Others {
+      display: flex;
+      align-items: center;
+      .DesktopNavbar--Container__Others--SearchBar {
+        width: 300px;
+        height: 20px;
+      }
+      .DesktopNavbar--Container__Others--Login {
+        width: 70px;
+        height: 30px;
+        background-color: lightseagreen;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        cursor: pointer;
+      }
+      .DesktopNavbar--Container__Others--UserInfo {
+        position: relative;
+        width: 70px;
+        &:hover {
+          .infos {
+            visibility: visible;
+          }
+        }
+        .avatar {
+          margin: 0 auto;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: #d1d1d1;
+        }
+        .infos {
+          width: 70px;
+          position: absolute;
+          top: 50px;
+          padding: 10px 0;
+          visibility: hidden;
+          background-color: #414141;
+          text-align: center;
+          color: #fff;
+          border-radius: 5px;
+          transition: visibility .1s linear;
+          .item {
+            padding: 5px 0;
+            cursor: pointer;
+            &:hover {
+              background-color: #f1f1f1;
+              color: #111;
+            }
+          }
+        }
+      }
+    }
+  }
+}
