@@ -17,13 +17,18 @@ export default function (props: Props) {
   }
 
   return (
-    <div className="ArticleFloatCard">
+    <div
+      className="ArticleFloatCard"
+      onWheel={(e: any) => e.stopPropagation()}
+      onTouchMove={(e: any) => e.stopPropagation()}
+    >
       <div
         className="ArticleFloatCard__Close"
         onClick={handleClick}>X</div>
       <div
         className="ArticleFloatCard__Container"
         onWheel={(e: any) => e.stopPropagation()}
+        onTouchMove={(e: any) => e.stopPropagation()}
       >
         <div className="ArticleFloatCard__Container--title">
           <h3>{article.title}</h3>

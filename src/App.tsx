@@ -1,18 +1,19 @@
 import './App.scss';
+import React from 'react';
 //
 import { ViewportProvider } from '@/hooks/viewportCtx';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 //
-import DesktopNavbar from '@/components/Navbar/DesktopNavbar';
+import Navbar from '@/components/Navbar';
 import Gallery from '@/pages/Gallery';
 import Homepage from '@/pages/Homepage';
 
-function App() {
+const App: React.FC = () => {
   return (
     <ViewportProvider>
       <HashRouter>
         <div className="App">
-          <DesktopNavbar />
+          <Navbar />
           <Switch>
             <Route path="/" component={Homepage} />
             <Route path="/homepage" component={Homepage} />

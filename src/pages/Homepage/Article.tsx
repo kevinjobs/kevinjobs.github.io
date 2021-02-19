@@ -18,6 +18,7 @@ const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
   const [currentPage, setCurrentPage] = React.useState(2);
   const [pageSize, setPageSize] = React.useState(6);
   const [selectedPost, setSelectedPost] = React.useState<ArticleInterface>();
+  const [isMorePost, setIsMorePost] = React.useState(true);
 
   const openArticleFloatCard = (e: any) => {
     const id = e.target.attributes.getNamedItem('data-id').value;
@@ -28,14 +29,20 @@ const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
   }
   
   const loadMore = (e: any) => {
-    getPostList(currentPage, pageSize)
+    if (isMorePost) {
+      getPostList(currentPage, pageSize)
       .then(res => {
         if (res.status === 200) {
-          setArticleList(articleList?.concat(res.data.data.items));
+          const { items, total } = res.data.data;
+          setArticleList(articleList?.concat(items));
           setCurrentPage(currentPage + 1);
+          if (currentPage * pageSize >= total) {
+            setIsMorePost(false);
+          }
         }
       })
       .catch(err => console.log(err));
+    }
   }
 
   const handleScroll = (e: any) => {if (selectedPost) e.preventDefault();}
@@ -50,7 +57,7 @@ const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
       document.body.removeEventListener('touchmove', handleScroll);
       document.body.removeEventListener('wheel', handleScroll);
     }
-  }, [])
+  }, [selectedPost])
   
   const classnames = classNames({
     "Article": true,
@@ -71,7 +78,13 @@ const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
         :
         null
       }
-      <button onClick={loadMore}>Load More</button>
+      <div className="Article__LoadMore">
+        <span className="Article__LoadMore--front"></span>
+        <span className="Article__LoadMore--center">
+          <button onClick={loadMore}>{isMorePost ? '加载更多' : '没有更多了'}</button>
+        </span>
+        <span className="Article__LoadMore--back"></span>
+      </div>
     </div>
   )
 }
