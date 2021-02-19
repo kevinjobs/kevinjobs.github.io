@@ -1,9 +1,10 @@
 import './style.scss';
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { toLogin } from '@/apis/auth';
 
 interface LoginDialogType {
-  onClick?: any,
+  onSubmit?: any,
   onCancel?: any,
   username?: string,
   password?: string,
@@ -26,7 +27,20 @@ const LoginDialog: React.FC<LoginDialogType> = (props: LoginDialogType) => {
     setPassword(e.target.value);
   }
   
-  const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {}
+  const onSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const resp = await toLogin({username: username, password: password});
+    if (resp.status === 200) {
+      const user = resp.data.data.user;
+      const token = resp.data.data.token;
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('token', token);
+    }
+    const { onSubmit } = props;
+    if (onSubmit) {
+      (onSubmit as React.MouseEventHandler<HTMLElement>)(e);
+    }
+  }
 
   const onCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
