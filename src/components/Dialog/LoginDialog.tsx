@@ -31,10 +31,14 @@ const LoginDialog: React.FC<LoginDialogType> = (props: LoginDialogType) => {
     e.preventDefault();
     const resp = await toLogin({username: username, password: password});
     if (resp.status === 200) {
-      const user = resp.data.data.user;
-      const token = resp.data.data.token;
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('token', token);
+      if (resp.data.code === 1) {
+        const user = resp.data.data.user;
+        const token = resp.data.data.token;
+        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('token', token);
+      } else {
+        console.log('Cannot Login');
+      }
     }
     const { onSubmit } = props;
     if (onSubmit) {

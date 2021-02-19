@@ -19,20 +19,27 @@
     h2 {
       margin: 10px 0 30px 0;
     }
-    span {
-      margin: 10px 0;
-      border-radius: 20px;
-      height: 40px;
-      display: flex;
-      align-items: center;
+    input {
+      margin: 5px auto;
+      padding: 0 15px;
+      height: 30px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      background-color: #fff;
+      outline: none;
     }
     button {
+      display: inline-block;
       width: 100%;
-      margin: 10px 0;
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      height: 30px;
+      margin: 5px 0;
+      border-radius: 5px;
+      border: none;
+      background-color: teal;
+      cursor: pointer;
+      color: #f1f1f1;
+      outline: none;
     }
   }
 }

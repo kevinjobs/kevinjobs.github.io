@@ -33,7 +33,7 @@ $delay: .3s;
   }
 }
 
-@keyframes dispear {
+@keyframes todispear {
   from {
     opacity: 1;
   }
@@ -79,7 +79,7 @@ $delay: .3s;
   .second-move {
     top: 13px;
     opacity: 0;
-    animation: dispear $delay;
+    animation: todispear $delay;
   }
   .third-move {
     top: 26px;
