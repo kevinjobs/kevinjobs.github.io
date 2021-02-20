@@ -4,20 +4,28 @@ import React from 'react';
 import { ViewportProvider } from '@/hooks/viewportCtx';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 //
+import Admin from '@/pages/Admin';
 import Navbar from '@/components/Navbar';
 import Gallery from '@/pages/Gallery';
 import Homepage from '@/pages/Homepage';
 
 const App: React.FC = () => {
+  const menus = [
+    'home',
+    'gallery',
+    'about'
+  ]
+
   return (
     <ViewportProvider>
       <HashRouter>
         <div className="App">
-          <Navbar />
+          <Navbar menus={menus} />
           <Switch>
-            <Route path="/" component={Homepage} />
-            <Route path="/homepage" component={Homepage} />
+            <Route path="/home" component={Homepage} />
             <Route path="/gallery" component={Gallery} />
+            <Route path="/admin" component={Admin} />
+            <Route path="/" component={Homepage} />
           </Switch>
         </div>
       </HashRouter>

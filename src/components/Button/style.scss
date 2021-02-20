@@ -1,0 +1,21 @@
+.mint-button {
+  border: none;
+  padding: 5px 10px;
+  margin: 5px;
+  color: #f1f1f1;
+  background-color: dodgerblue;
+  cursor: pointer;
+  border-radius: 5px;
+  &:hover {
+    opacity: .8;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    outline: 3px solid rgba($color: #fff, $alpha: .65);
+  }
+}
+.mint-button-primary {
+  background-color: forestgreen;
+}
