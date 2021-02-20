@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArticleInterface } from './homepage.interface';
 import multiavatar from '@multiavatar/multiavatar';
+import dayjs from 'dayjs';
 
 interface ListProps {
   articleList: ArticleInterface[],
@@ -24,7 +25,9 @@ const List: React.FC<ListProps> = (props: ListProps) => {
         </div>
         {/* article details */}
         <div className="ArticleList__item--Info">
-          <div className="ArticleList__item--Info__datetime">{a.update_at}</div>
+          <span className="ArticleList__item--Info__datetime">
+            { dayjs(a.update_at).format('YYYY-MM-DD') }
+          </span>
           <h3
             className="ArticleList__item--Info__title"
             onClick={handleClick}

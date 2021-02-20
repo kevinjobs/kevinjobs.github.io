@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArticleInterface } from './homepage.interface';
+import ReactMarkdown from 'react-markdown';
 
 interface Props {
   article: ArticleInterface,
@@ -34,7 +35,7 @@ export default function (props: Props) {
           <h3>{article.title}</h3>
         </div>
         <div className="ArticleFloatCard__Container--content">
-          {article.content}
+          <ReactMarkdown children={article.content} />
         </div>
       </div>
     </div>
