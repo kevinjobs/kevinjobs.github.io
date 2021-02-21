@@ -3,6 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LoginDialog from '@/components/Dialog/LoginDialog';
 import multiavatar from '@multiavatar/multiavatar';
+import Button from '@/components/Button';
 
 interface Props {
   menus?: string[]
@@ -35,12 +36,10 @@ const DesktopNavbar: React.FC<Props> = (props: Props) => {
 
   const showLoginButton = () => {
     return (
-      <div
-        className="DesktopNavbar--Container__Others--Login"
+      <Button
+        type="primary"
         onClick={(e: any) => setShowDialog(!showDialog)}
-      >
-        <span>登录</span>
-      </div>
+      >登录</Button>
     )
   }
 

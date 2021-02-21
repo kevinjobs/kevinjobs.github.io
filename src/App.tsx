@@ -2,7 +2,7 @@ import './App.scss';
 import React from 'react';
 //
 import { ViewportProvider } from '@/hooks/viewportCtx';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 //
 import Admin from '@/pages/Admin';
 import Navbar from '@/components/Navbar';
@@ -18,7 +18,7 @@ const App: React.FC = () => {
 
   return (
     <ViewportProvider>
-      <HashRouter>
+      <Router>
         <div className="App">
           <Navbar menus={menus} />
           <Switch>
@@ -28,7 +28,7 @@ const App: React.FC = () => {
             <Route path="/" component={Homepage} />
           </Switch>
         </div>
-      </HashRouter>
+      </Router>
     </ViewportProvider>
   );
 }

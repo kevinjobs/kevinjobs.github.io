@@ -9,7 +9,7 @@ const NavPanel: React.FC<Props> = (props: Props) => {
   return (
     <div className="Admin-NavPanel">
       <div className="Admin-NavPanel__Header">
-        <h2>Admin Panel</h2>
+        <h3>Admin Panel</h3>
       </div>
       <div className="Admin-NavPanel__Container">
         <div className="Admin-NavPanel__Container--Menus">

@@ -5,8 +5,10 @@ import Pagination from '@/components/Pagination';
 import ArticleEditor from './ArticleEditor';
 import ArticleFloatCard from '@/pages/Homepage/ArticleFloatCard';
 import { ArticleInterface } from '../Homepage/homepage.interface';
+import dayjs from 'dayjs';
 
 const AdminArticle: React.FC = () => {
+  const [latestPost, setLatestPost] = React.useState<ArticleInterface>();
   const [postListPage, setPostListPage] = React.useState<number>(1);
   const [postList, setPostList] = React.useState<ArticleInterface []>();
   const [total, setTotal] = React.useState(0);
@@ -36,6 +38,15 @@ const AdminArticle: React.FC = () => {
         }
       }).catch(err => console.log(err));
   }, [postListPage, fresh]);
+
+  React.useEffect(() => {
+    getPostList(postListPage,9)
+      .then(res => {
+        if (res.status === 200) {
+          setLatestPost(res.data.data.items[0]);
+        }
+      }).catch(err => console.log(err));
+  }, []);
 
   React.useEffect(() => {
     if (viewPostId) {
@@ -143,7 +154,7 @@ const AdminArticle: React.FC = () => {
         <div className="left">
           <h4>{ post.title }</h4>
           <span>{ post.author }</span>
-          <span>{ post.create_at }</span>
+          <span> { dayjs(post.update_at).format('YYYY-MM-DD HH:mm:ss') }</span>
         </div>
         <div className="right">
           <Button onClick={(e: any) => setSelectedPostId(post.id)}>Edit</Button>
@@ -158,7 +169,7 @@ const AdminArticle: React.FC = () => {
     <div className="Admin-Article">
       <div className="Admin-Article__Left">
         <div className="Admin-Article__Left--Newlist">
-          { postList ? showLatestPost(postList[0]) : null }
+          { latestPost ? showLatestPost(latestPost) : null }
         </div>
       </div>
       <div className="Admin-Article__Right">
