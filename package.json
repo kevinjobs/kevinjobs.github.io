@@ -10,10 +10,12 @@
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "dayjs": "^1.10.4",
+    "markdown-it": "^12.0.4",
     "node-sass": "4.14.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-markdown": "^5.0.3",
+    "react-markdown-editor-lite": "^1.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "typescript": "^4.1.2",
@@ -21,6 +23,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
+    "dev": "cross-env NODE_ENV=development react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
@@ -46,10 +49,12 @@
   "devDependencies": {
     "@types/classnames": "^2.2.11",
     "@types/jest": "^26.0.20",
+    "@types/markdown-it": "^12.0.1",
     "@types/node": "^14.14.28",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "@types/react-router-dom": "^5.1.7",
+    "cross-env": "^7.0.3",
     "react-app-rewired": "^2.1.8"
   }
 }

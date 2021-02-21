@@ -1,3 +1,4 @@
+import './style.scss';
 import React from 'react';
 import { ArticleInterface } from './homepage.interface';
 import ReactMarkdown from 'react-markdown';

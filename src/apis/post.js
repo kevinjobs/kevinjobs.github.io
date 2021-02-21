@@ -15,3 +15,29 @@ export async function getPostById (id, val) {
   }, val)
   return resp
 }
+
+export async function postNew (form, val) {
+  let resp = await axios({
+    method: 'post',
+    url: '/post',
+    data: form
+  }, val)
+  return resp;
+}
+
+export async function patchById (id, form, val) {
+  let resp = await axios({
+    method: 'patch',
+    url: `/post/${id}`,
+    data: form
+  }, val)
+  return resp;
+}
+
+export async function deleteById (id, val) {
+  let resp = await axios({
+    method: 'delete',
+    url: `/post/${id}`
+  }, val)
+  return resp;
+}
