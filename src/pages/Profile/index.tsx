@@ -27,12 +27,13 @@ const Profile: React.FC = (props: any) => {
   }, [])
 
   const showPost = (post: ArticleInterface, index: number) => {
-    let username = user ? user.username : 'default';
+    let username = user ? user.username : '易名';
     return (
       <div className="item" key={index}>
         <h3>{ post.title }</h3>
         <div className="author">
-          <div dangerouslySetInnerHTML={{__html: multiavatar(username)}}></div>
+          <span className="username"
+          dangerouslySetInnerHTML={{__html: multiavatar(username)}}></span>
           <span>{ post.author }</span>
         </div>
         <div className="item-edit">
