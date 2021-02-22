@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArticleInterface } from './homepage.interface';
 import multiavatar from '@multiavatar/multiavatar';
 import dayjs from 'dayjs';
@@ -32,13 +33,15 @@ const List: React.FC<ListProps> = (props: ListProps) => {
             className="ArticleList__item--Info__title"
             onClick={handleClick}
             data-id={a.id}>{a.title}</h3>
-          <div className="ArticleList__item--Info__desc">{a.desc}</div>
+          <p className="ArticleList__item--Info__desc">{a.desc}</p>
           <div className="ArticleList__item--Info__author">
             <span
               className="ArticleList__item--Info__author-avatar"
               dangerouslySetInnerHTML={{__html: multiavatar(a.author)}}>
             </span>
-            <span className="ArticleList__item--Info__author-name">{a.author}</span>
+            <span className="ArticleList__item--Info__author-name">
+              <Link to={`/profile/${a.author}`}>{a.author}</Link>
+            </span>
           </div>
         </div>
       </div>

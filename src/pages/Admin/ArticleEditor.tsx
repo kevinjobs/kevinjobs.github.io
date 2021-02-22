@@ -45,7 +45,7 @@ const ArticleEditor: React.FC<Props> = (props: Props) => {
     }
   }
 
-  const FormItem = (label: string, name: string, value: string | undefined, isDisable = false) => {
+  const FormItem = (label: string, name: string, value: string | undefined, isDisable = false, ph: string = '') => {
     return (
       <div className="form__item">
         <label>{label}</label>
@@ -54,6 +54,7 @@ const ArticleEditor: React.FC<Props> = (props: Props) => {
           value={value}
           name={name}
           disabled={isDisable}
+          placeholder={ph}
           onChange={handleChange}/>
       </div>
     )
@@ -76,6 +77,7 @@ const ArticleEditor: React.FC<Props> = (props: Props) => {
                 type="text"
                 value={articleForm.title}
                 name="title"
+                placeholder='请在此填写标题'
                 onChange={handleChange}/>
             </div>
             <div className="form__item">
@@ -92,11 +94,11 @@ const ArticleEditor: React.FC<Props> = (props: Props) => {
           </div>
           <div className="Right">
             { FormItem('ID', 'id', articleForm.id, true) }
-            { FormItem('作者', 'author', articleForm.author) }
-            { FormItem('封面', 'cover', articleForm.cover) }
+            { FormItem('作者', 'author', articleForm.author, true) }
+            { FormItem('封面', 'cover', articleForm.cover, false, '此处填写封面图片 URL') }
             { FormItem('创建日期', 'create_at', articleForm.create_at, true) }
             { FormItem('修改日期', 'update_at', articleForm.update_at, true) }
-            { FormItem('简介', 'desc', articleForm.desc) }
+            { FormItem('简介', 'desc', articleForm.desc, false, '此处填写简介') }
             <div className="Operation">
               <Button type="primary"
                 onClick={handleSubmit}

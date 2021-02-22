@@ -118,9 +118,16 @@ const AdminArticle: React.FC = () => {
   }
 
   const postNewArticle = (e: any) => {
+    const user = localStorage.getItem('user');
+    let username = '';
+    if (user) {
+      const userJson = JSON.parse(user);
+      username = userJson.username;
+    }
+
     const newArticle: ArticleInterface = {
       title: '',
-      author: '',
+      author: username,
       content: '',
       cover: ''
     }

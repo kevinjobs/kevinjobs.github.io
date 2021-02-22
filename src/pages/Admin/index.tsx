@@ -8,9 +8,9 @@ export default function () {
     <div className="Admin">
       <NavPanel />
       <HashRouter>
-        <Switch>
+        <Route path="/admin">
           <Route path="/admin/article" component={AdminArticle} />
-        </Switch>
+        </Route>
       </HashRouter>
     </div>
   )

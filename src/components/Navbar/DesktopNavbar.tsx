@@ -1,6 +1,6 @@
 import './style.scss';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import LoginDialog from '@/components/Dialog/LoginDialog';
 import multiavatar from '@multiavatar/multiavatar';
 import Button from '@/components/Button';
@@ -29,7 +29,7 @@ const DesktopNavbar: React.FC<Props> = (props: Props) => {
   const showMenus = (menu: string, index: number) => {
     return (
       <li key={index}>
-        <NavLink to={menu}>{menu}</NavLink>
+        <NavLink to={'/' + menu}>{menu}</NavLink>
       </li>
     )
   }
@@ -49,6 +49,7 @@ const DesktopNavbar: React.FC<Props> = (props: Props) => {
     } = {
       0: '超级用户',
       1: '管理员',
+      2: '还没想好',
       3: 'VIP',
       4: '普通用户'
     }
@@ -59,6 +60,9 @@ const DesktopNavbar: React.FC<Props> = (props: Props) => {
         <div className="infos">
           <div className="item">{user.username}</div>
           <div className="item">{Roles[user.role]}</div>
+          <div className="item">
+            <Link to={`/profile/${user.username}`}>个人中心</Link>
+          </div>
           <div className="item" onClick={(e: any) => {
             localStorage.clear();
             setUserInfo(undefined);

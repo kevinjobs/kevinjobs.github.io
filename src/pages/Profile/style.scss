@@ -1,0 +1,99 @@
+.Profile {
+  .Profile-Container {
+    width: 1000px;
+    min-height: 800px;
+    margin: 10px auto;
+    .header {
+      height: 200px;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba($color: #000000, $alpha: .1);
+    }
+    .main {
+      margin-top: 10px;
+      display: flex;
+      .main-left {
+        width: 700px;
+        min-height: 500px;
+        background-color: #fff;
+        box-shadow: 0 1px 3px rgba($color: #000000, $alpha: .1);
+        .post-list {
+          .item {
+            position: relative;
+            padding: 16px 20px;
+            .author {
+              display: flex;
+              align-items: center;
+              margin: 10px 0;
+              div { width: 40px; height: 40px; margin-right: 10px; }
+              span { color: #717171; }
+            }
+            .item-edit {
+              height: 20px;
+              width: 100%;
+            }
+          }
+          .item::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0 20px;
+            display: block;
+            border-bottom: 1px solid #f1f1f1;
+            content: "";
+          }
+        }
+      }
+      .main-right {
+        .main-right-idcard {
+          width: 290px;
+          margin-left: 10px;
+          height: 200px;
+          background-color: #fff;
+          box-shadow: 0 1px 3px rgba($color: #000000, $alpha: .1);
+          .top {
+            display: flex;
+            padding: 12px;
+            align-items: center;
+            position: relative;
+            .avatar {
+              width: 70px;
+              height: 70px;
+              border-radius: 50%;
+              margin: 10px;
+              background-color: #f1f1f1;
+            }
+            .info {
+              padding: 0 10px;
+              line-height: 1.5;
+              font-size: 14px;
+              color: #717171;
+              position: relative;
+              p.id {
+                max-width: 150px;
+                white-space: nowrap;
+                overflow-x: hidden;
+                text-overflow: ellipsis;
+                cursor: pointer;
+              }
+            }
+          }
+          .top::after {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0 20px;
+            display: block;
+            border-bottom: 1px solid #f1f1f1;
+            content: "";
+          }
+          .bottom-motto {
+            padding: 10px 20px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
