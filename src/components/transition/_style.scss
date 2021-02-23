@@ -1,0 +1,39 @@
+.SlideInTop {
+  &-enter { opacity: 0; }
+  &-enter-active {
+    opacity: 1;
+    transition: opacity 1s ease-in;
+    animation: slideIntop 1s;
+  }
+  &-enter-done { opacity: 1; }
+  &-exit { opacity: 1; }
+  &-exit-active {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+    animation: slideOutUp 1s;
+  }
+  &-exit-done { opacity: 0; }
+  
+}
+
+@keyframes slideIntop {
+  from {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideOutUp {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(0, -100%, 0);
+  }
+}

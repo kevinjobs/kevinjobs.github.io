@@ -2,6 +2,7 @@ import './style.scss';
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { toLogin } from '@/apis/auth';
+import message from '@/components/message';
 
 interface LoginDialogType {
   onSubmit?: any,
@@ -32,11 +33,16 @@ const LoginDialog: React.FC<LoginDialogType> = (props: LoginDialogType) => {
     const resp = await toLogin({username: username, password: password});
     if (resp.status === 200) {
       if (resp.data.code === 1) {
+        message({type: 'success', text: '登录成功'});
+        setTimeout(() => {
+          message({type: 'info', text: `欢迎你, ${username}`})
+        }, 1000);
         const user = resp.data.data.user;
         const token = resp.data.data.token;
         localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('token', token);
       } else {
+        message({type: 'danger', text: '登录失败，请检查用户名及密码'});
         console.log('Cannot Login');
       }
     }

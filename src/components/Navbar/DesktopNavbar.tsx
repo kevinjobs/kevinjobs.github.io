@@ -4,6 +4,7 @@ import { NavLink, Link } from 'react-router-dom';
 import LoginDialog from '@/components/Dialog/LoginDialog';
 import multiavatar from '@multiavatar/multiavatar';
 import Button from '@/components/Button';
+import message from '@/components/message';
 
 interface Props {
   menus?: string[]
@@ -34,7 +35,7 @@ const DesktopNavbar: React.FC<Props> = (props: Props) => {
     )
   }
 
-  const showLoginButton = () => {
+  const renderLoginButton = () => {
     return (
       <Button
         type="primary"
@@ -43,7 +44,7 @@ const DesktopNavbar: React.FC<Props> = (props: Props) => {
     )
   }
 
-  const showUserInfo = (user: UserInterface) => {
+  const renderUserInfo = (user: UserInterface) => {
     const Roles: {
       [key: string]: any
     } = {
@@ -64,8 +65,12 @@ const DesktopNavbar: React.FC<Props> = (props: Props) => {
             <Link to={`/profile/${user.username}`}>个人中心</Link>
           </div>
           <div className="item" onClick={(e: any) => {
-            localStorage.clear();
+            message({ type: 'success', text: '退出登录' });
+            setTimeout(() => {
+              message({ type: 'info', text: `再见 ${userInfo?.username}`})
+            }, 1000);
             setUserInfo(undefined);
+            localStorage.clear();
           }}>Logout</div>
         </div>
       </div>
@@ -80,7 +85,7 @@ const DesktopNavbar: React.FC<Props> = (props: Props) => {
         </ul>
         <div className="DesktopNavbar--Container__Others">
           <div className="DesktopNavbar--Container__Others--SearchBar"></div>
-          { userInfo ? showUserInfo(userInfo) : showLoginButton() }
+          { userInfo ? renderUserInfo(userInfo) : renderLoginButton() }
         </div>
       </div>
       <LoginDialog isShow={showDialog}
