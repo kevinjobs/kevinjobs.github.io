@@ -1,7 +1,6 @@
 import NavPanel from './NavPanel';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import AdminArticle from './AdminArticle';
-import './style.scss';
 
 export default function () {
   return (

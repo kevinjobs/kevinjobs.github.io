@@ -2,11 +2,11 @@ import { useViewport, breakpoint } from '@/hooks/viewportCtx';
 import DesktopNavbar from './DesktopNavbar';
 import MobileNavbar from './MobileNavbar';
 
-interface Props {
+export interface NavbarProps {
   menus?: string[]
 }
 
-export default function (props: Props) {
+const Navbar: React.FC<NavbarProps> = (props) => {
   const { width } = useViewport();
   const type = width < breakpoint ? 1 : 2;
 
@@ -18,3 +18,5 @@ export default function (props: Props) {
     return <DesktopNavbar menus={menus!} />
   }
 }
+
+export default Navbar;

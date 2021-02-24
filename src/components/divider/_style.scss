@@ -1,0 +1,14 @@
+.mint-divider {
+  display: flex;
+  align-items: center;
+  .mint-divider-line {
+    flex-grow: 1;
+    display: inline-block;
+    height: 1px;
+    border-top: 1px solid #c1c1c1;
+  }
+  .mint-divider-center {
+    display: inline-block;
+    margin: auto 20px;
+  }
+}

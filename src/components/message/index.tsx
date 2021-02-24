@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { TransitionGroup } from 'react-transition-group';
 import Message, { MessageType } from './message';
-import Transition from '@/components/transition';
+import { Transition } from '@/components';
 
 export interface Notice {
   text: string;

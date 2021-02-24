@@ -1,10 +1,7 @@
-import './style.scss';
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import LoginDialog from '@/components/Dialog/LoginDialog';
 import multiavatar from '@multiavatar/multiavatar';
-import Button from '@/components/Button';
-import message from '@/components/message';
+import { Button, message } from '@/components';
 
 interface Props {
   menus?: string[]
@@ -88,9 +85,6 @@ const DesktopNavbar: React.FC<Props> = (props: Props) => {
           { userInfo ? renderUserInfo(userInfo) : renderLoginButton() }
         </div>
       </div>
-      <LoginDialog isShow={showDialog}
-        onSubmit={(e: any) => setShowDialog(false)}
-        onCancel={(e: any) => setShowDialog(false)} />
     </div>
   )
 }

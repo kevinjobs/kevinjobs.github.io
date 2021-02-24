@@ -1,8 +1,7 @@
 import React from 'react';
-import './style.scss';
 
 
-interface Props {
+export interface MenuProps {
   show?: boolean,
   onClick?: any,
   color?: string
@@ -12,7 +11,7 @@ interface State {
   delayShow: boolean;
 }
 
-class MenuButton extends React.Component<Props, State> {
+class MenuButton extends React.Component<MenuProps, State> {
   state: State = {
     delayShow: false
   }

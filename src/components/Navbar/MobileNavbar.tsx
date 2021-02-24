@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import './style.scss';
-import TripleMenu from '@/components/Menu/TripleMenu';
+import { Menu } from '@/components';
 import { NavLink } from 'react-router-dom';
 import multiavatar from '@multiavatar/multiavatar';
 
@@ -42,7 +41,7 @@ const MobileNavbar: React.FC<Props> = (props) => {
     <div className={open ? 'mobile-navbar open' : 'mobile-navbar'}>
       <div className="menu">
         <div className="menu-button">
-          <TripleMenu onClick={openMenu} show={open} />
+          <Menu onClick={openMenu} show={open} />
         </div>
         <div className="menu-logo">
           <span>Mint Forge</span>

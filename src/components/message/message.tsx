@@ -1,7 +1,7 @@
 import './_style.scss';
 import React from 'react';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import Icon from '@/components/Icon';
+import { Icon } from '@/components';
 
 export type MessageType = 'info' | 'success' | 'danger' | 'warning';
 

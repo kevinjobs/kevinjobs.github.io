@@ -1,4 +1,3 @@
-import './style.scss';
 import Paging from './pagination';
 
 export interface PaginationProps {

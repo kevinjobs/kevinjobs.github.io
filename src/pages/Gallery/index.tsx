@@ -1,5 +1,7 @@
 import React from 'react';
-import message from '@/components/message';
+import { message } from '@/components';
+
+export interface GalleryPageProps {};
 
 export default function () {
   return (

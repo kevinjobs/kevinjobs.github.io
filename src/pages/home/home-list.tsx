@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArticleInterface } from './homepage.interface';
+import { ArticleInterface } from '@/pages';
 import multiavatar from '@multiavatar/multiavatar';
 import dayjs from 'dayjs';
 

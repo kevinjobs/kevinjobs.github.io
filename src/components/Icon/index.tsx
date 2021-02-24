@@ -1,4 +1,3 @@
-import './_style.scss';
 import React from 'react';
 import classNames from 'classnames';
 import { IconProp, library } from '@fortawesome/fontawesome-svg-core';

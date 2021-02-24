@@ -1,4 +1,3 @@
-import './style.scss';
 import React from 'react';
 import { Omit, tuple } from '../_utils/type';
 import classNames from 'classnames';

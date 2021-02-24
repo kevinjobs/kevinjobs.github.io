@@ -1,11 +1,12 @@
-import './style.scss';
 import React from 'react';
 import { getPostList } from '@/apis/post';
 import { getUser } from '@/apis/auth';
-import { ArticleInterface } from '@/pages/Homepage/homepage.interface';
+import { ArticleInterface } from '@/pages';
 import multiavatar from '@multiavatar/multiavatar';
 
-const Profile: React.FC = (props: any) => {
+export interface ProfileProps {};
+
+const Profile: React.FC<ProfileProps | any> = (props) => {
   const [postList, setPostList] = React.useState<ArticleInterface>();
   const [user, setUser] = React.useState({username: ''});
 

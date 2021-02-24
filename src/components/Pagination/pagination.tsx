@@ -3,9 +3,8 @@ import classNames from 'classnames';
 import { PaginationProps } from './index';
 
 const Paging: React.FC<PaginationProps> = (props: PaginationProps) => {
-  const [pageArr, setPageArr] = React.useState<number[]>();
 
-  const { type = 'default', onPrev, onNext, totals = 2, pages = 8 } = props;
+  const { type = 'default', onPrev, onNext, totals = 2 } = props;
 
   const showPages = (totals: number) => {
     if (totals <= 2) return null;

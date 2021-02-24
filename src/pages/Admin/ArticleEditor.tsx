@@ -1,10 +1,9 @@
 import React from 'react';
-import { ArticleInterface } from '../Homepage/homepage.interface';
+import { ArticleInterface } from '@/pages';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
-import Button from '@/components/Button';
-import { postNew } from '@/apis/post';
+import { Button } from '@/components';
 
 interface Props {
   post: ArticleInterface,

@@ -1,7 +1,6 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
-import './_style.scss';
 
 type AnimationName =
   | 'zoom-in-top'

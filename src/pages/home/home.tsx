@@ -1,13 +1,12 @@
-import './style.scss';
 import React from 'react';
 import classNames from 'classnames';
 // utils
-import { getPostList, getPostById } from '@/apis/post';
+import { getPostList } from '@/apis/post';
 // interface
-import { ArticleInterface } from './homepage.interface'; 
+import { ArticleInterface } from '@/pages'; 
 // partial
-import ArticleList from './ArticleList';
-import ArticleFloatCard from './ArticleFloatCard';
+import ArticleList from './home-list';
+import { Divider, Button } from '@/components';
 
 interface ArticleProps {
   type: number; // 1: mobile; 2: desktop: 3: pad; 4: ...
@@ -20,14 +19,6 @@ const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
   const [selectedPost, setSelectedPost] = React.useState<ArticleInterface>();
   const [isMorePost, setIsMorePost] = React.useState(true);
 
-  const openArticleFloatCard = (e: any) => {
-    const id = e.target.attributes.getNamedItem('data-id').value;
-    console.log(id);
-    getPostById(id)
-      .then(res => setSelectedPost(res.data.data))
-      .catch(err => console.log(err));
-  }
-  
   const loadMore = (e: any) => {
     if (isMorePost) {
       getPostList(currentPage, pageSize)
@@ -67,23 +58,15 @@ const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
 
   return (
     <div className={classnames}>
-      <ArticleList articleList={articleList!} onOpen={openArticleFloatCard}/>
-      {
-        selectedPost
-        ?
-        <ArticleFloatCard
-          article={selectedPost}
-          onClose={(e: any) => setSelectedPost(undefined)}
-        />
-        :
-        null
-      }
+      <ArticleList articleList={articleList!} onOpen={() => {}} />
       <div className="Article__LoadMore">
-        <span className="Article__LoadMore--front"></span>
-        <span className="Article__LoadMore--center">
-          <button onClick={loadMore}>{isMorePost ? '加载更多' : '没有更多了'}</button>
-        </span>
-        <span className="Article__LoadMore--back"></span>
+        <Divider>
+          {
+            isMorePost
+              ? <Button onClick={loadMore}>加载更多</Button>
+              : <small>我是有底线的</small>
+          }
+        </Divider>
       </div>
     </div>
   )

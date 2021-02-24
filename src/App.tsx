@@ -4,11 +4,8 @@ import React from 'react';
 import { ViewportProvider } from '@/hooks/viewportCtx';
 import { HashRouter as Router, Route } from 'react-router-dom';
 //
-import Admin from '@/pages/Admin';
-import Profile from '@/pages/Profile';
-import Navbar from '@/components/Navbar';
-import Gallery from '@/pages/Gallery';
-import Homepage from '@/pages/Homepage';
+import { AdminPage, ArticlePage, GalleryPage, HomePage, ProfilePage } from '@/pages';
+import { Navbar } from '@/components';
 
 const App: React.FC = () => {
   const menus = [
@@ -22,11 +19,12 @@ const App: React.FC = () => {
       <Router>
         <div className="App">
           <Navbar menus={menus} />
-          <Route path="/" component={Homepage}>
-            <Route path="/gallery" component={Gallery} />
-            <Route path="/admin" component={Admin} />
-            <Route path="/home" component={Homepage} />
-            <Route path="/profile/:username" component={Profile} />
+          <Route path="/" component={HomePage}>
+            <Route path="/admin" component={AdminPage} />
+            <Route path="/article/:id" component={ArticlePage} />
+            <Route path="/gallery" component={GalleryPage} />
+            <Route path="/home" component={HomePage} />
+            <Route path="/profile/:username" component={ProfilePage} />
           </Route>
         </div>
       </Router>

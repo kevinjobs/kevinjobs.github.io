@@ -1,10 +1,8 @@
 import React from 'react';
 import { getPostById, getPostList, patchById, deleteById, postNew } from '@/apis/post';
-import Button from '@/components/Button';
-import Pagination from '@/components/Pagination';
+import { Button, Pagination } from '@/components';
 import ArticleEditor from './ArticleEditor';
-import ArticleFloatCard from '@/pages/Homepage/ArticleFloatCard';
-import { ArticleInterface } from '../Homepage/homepage.interface';
+import { ArticleInterface } from '@/pages';
 import dayjs from 'dayjs';
 
 const AdminArticle: React.FC = () => {
@@ -197,13 +195,6 @@ const AdminArticle: React.FC = () => {
           post={selectedPost}
           onSubmit={handleSubmitForm}
           onCancel={(e: any) => setSelectedPost(undefined)}/>
-        :
-        null
-      }
-      {
-        viewPost
-        ?
-        <ArticleFloatCard article={viewPost} onClose={(e:any) => setViewPost(undefined)} />
         :
         null
       }
