@@ -1,18 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
-// utils
+
 import { getPostList } from '@/apis/post';
-// interface
-import { ArticleInterface } from '@/pages'; 
-// partial
+import { ArticleInterface, HomePageProps } from '@/pages';
 import ArticleList from './home-list';
 import { Divider, Button } from '@/components';
 
-interface ArticleProps {
-  type: number; // 1: mobile; 2: desktop: 3: pad; 4: ...
-}
 
-const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
+const Article: React.FC<HomePageProps> = (props) => {
   const [articleList, setArticleList] = React.useState<ArticleInterface[]>();
   const [currentPage, setCurrentPage] = React.useState(2);
   const [pageSize, setPageSize] = React.useState(6);

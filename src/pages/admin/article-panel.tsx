@@ -1,7 +1,7 @@
 import React from 'react';
 import { getPostById, getPostList, patchById, deleteById, postNew } from '@/apis/post';
 import { Button, Pagination } from '@/components';
-import ArticleEditor from './ArticleEditor';
+import ArticleEditor from './editor';
 import { ArticleInterface } from '@/pages';
 import dayjs from 'dayjs';
 

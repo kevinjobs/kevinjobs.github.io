@@ -1,0 +1,47 @@
+.Login {
+  .Login-Container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    .panel {
+      width: 500px;
+      height: 600px;
+      background-color: #fff;
+      padding: 80px;
+      text-align: center;
+      .header {
+        color: $dark;  
+      }
+      .input {
+        width: 100%;
+        margin-top: 50px;
+      }
+      .handle {
+        margin-top: 50px;
+      }
+      .other-methods {
+        margin-top: 100px;
+        .methods {
+          margin-top: 20px;
+          span {
+            display: inline-block;
+            margin: 0 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.Login.Mobile {
+  .Login-Container {
+    position: static;
+    width: 100%;
+    margin-top: 5px;
+    transform: translateX(0) translateY(0);
+    .panel {
+      width: 100%;
+    }
+  }
+}

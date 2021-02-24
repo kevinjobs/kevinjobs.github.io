@@ -1,0 +1,24 @@
+.mint-input {
+  label {
+    font-size: 16px;
+    display: inline-block;
+    text-align: justify;
+    text-align-last: justify;
+  }
+  input {
+    padding: 8px 10px;
+    margin: 5px 0;
+    border: 1px solid #d9d9d9;
+    &:hover {
+      border: 1px solid #717171;
+    }
+    &:active {
+      box-shadow: 0 0 0 3px rgba($color: $primary, $alpha: .5);
+    }
+    &:focus {
+      border: 1px solid transparent;
+      outline: 1px solid $primary;
+      box-shadow: 0 0 0 3px rgba($color: $primary, $alpha: .2);
+    }
+  }
+}

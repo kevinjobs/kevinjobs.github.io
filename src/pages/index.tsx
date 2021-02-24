@@ -13,6 +13,10 @@ export { default as GalleryPage } from './gallery';
 export type { HomePageProps } from './home';
 export { default as HomePage } from './home';
 
+// login page
+export type { LoginPageProps } from './login';
+export { default as LoginPage } from './login';
+
 // profile page
 export type { ProfileProps } from './profile';
 export { default as ProfilePage } from './profile';

@@ -7,8 +7,14 @@ export { default as Dialog } from './dialog';
 export type { DividerProps } from './divider';
 export { default as Divider } from './divider';
 
+export type { DropdownProps } from './dropdown';
+export { default as Dropdown } from './dropdown';
+
 export type { IconProps } from './icon';
 export { default as Icon } from './icon';
+
+export type { InputProps } from './input';
+export { default as Input } from './input';
 
 export type { MenuProps } from './menu';
 export { default as Menu } from './menu';

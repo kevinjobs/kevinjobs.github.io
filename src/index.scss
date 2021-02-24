@@ -20,12 +20,15 @@ body {
   background-color: #f1f1f1;
 }
 
-@import './static/styles/color.scss';
+@import './styles/color.scss';
+@import './styles/index.scss';
 
 @import './components/button/_style.scss';
 @import './components/dialog/_style.scss';
 @import './components/divider/_style.scss';
+@import './components/dropdown/_style.scss';
 @import './components/icon/_style.scss';
+@import './components/input/_style.scss';
 @import './components/menu/_style.scss';
 @import './components/message/_style.scss';
 @import './components/navbar/_style.scss';
@@ -37,4 +40,5 @@ body {
 @import './pages/article/_style.scss';
 @import './pages/gallery/_style.scss';
 @import './pages/home/_style.scss';
+@import './pages/login/_style.scss';
 @import './pages/profile/_style.scss';

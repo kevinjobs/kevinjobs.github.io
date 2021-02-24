@@ -14,7 +14,6 @@ const MobileNavbar: React.FC<Props> = (props) => {
 
   const openMenu = (e: any) => {
     e.preventDefault();
-    // console.log('menus');
     open ? setOpen(false) : setOpen(true);
     delayOpen ? setTimeout(() => {setDelayOpen(false)}, 100) : setDelayOpen(true);
   }

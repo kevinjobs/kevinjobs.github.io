@@ -1,21 +1,10 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import multiavatar from '@multiavatar/multiavatar';
-import { Button, message } from '@/components';
+import { Button, message, NavbarProps } from '@/components';
+import { UserInterface } from '@/types';
 
-interface Props {
-  menus?: string[]
-}
-
-interface UserInterface {
-  username: string,
-  id: string,
-  avatar: string,
-  role: number,
-  gender: number
-}
-
-const DesktopNavbar: React.FC<Props> = (props: Props) => {
+const DesktopNavbar: React.FC<NavbarProps> = (props) => {
   const [userInfo, setUserInfo] = React.useState<UserInterface>();
   const [showDialog, setShowDialog] = React.useState<boolean | undefined>(undefined);
 
@@ -32,14 +21,12 @@ const DesktopNavbar: React.FC<Props> = (props: Props) => {
     )
   }
 
-  const renderLoginButton = () => {
-    return (
-      <Button
-        type="primary"
-        onClick={(e: any) => setShowDialog(!showDialog)}
-      >登录</Button>
-    )
-  }
+  const renderLoginButton = () => (
+    <Button
+      type="primary"
+      onClick={e => window.location.href = '#/login'}
+    >登录</Button>
+  )
 
   const renderUserInfo = (user: UserInterface) => {
     const Roles: {
@@ -67,7 +54,8 @@ const DesktopNavbar: React.FC<Props> = (props: Props) => {
               message({ type: 'info', text: `再见 ${userInfo?.username}`})
             }, 1000);
             setUserInfo(undefined);
-            localStorage.clear();
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
           }}>Logout</div>
         </div>
       </div>
@@ -75,7 +63,7 @@ const DesktopNavbar: React.FC<Props> = (props: Props) => {
   }
 
   return(
-    <div className="DesktopNavbar">
+    <div className="DesktopNavbar shadow-card">
       <div className="DesktopNavbar--Container">
         <ul className="DesktopNavbar--Container__Menus">
           { props.menus?.map(showMenus) }
