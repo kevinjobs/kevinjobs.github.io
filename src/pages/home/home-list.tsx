@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { ArticleInterface } from '@/pages';
 import multiavatar from '@multiavatar/multiavatar';
 import dayjs from 'dayjs';
 
 interface ListProps {
   articleList: ArticleInterface[],
-  onOpen: React.MouseEventHandler<HTMLElement>;
+  onOpen?: React.MouseEventHandler<HTMLElement>;
 }
 
 const List: React.FC<ListProps> = (props: ListProps) => {
@@ -29,10 +29,9 @@ const List: React.FC<ListProps> = (props: ListProps) => {
           <span className="ArticleList__item--Info__datetime">
             { dayjs(a.update_at).format('YYYY-MM-DD') }
           </span>
-          <h3
-            className="ArticleList__item--Info__title"
-            onClick={handleClick}
-            data-id={a.id}>{a.title}</h3>
+          <h3 className="ArticleList__item--Info__title">
+            <Link to={`/article/${a.id}`}>{a.title}</Link>
+          </h3>
           <p className="ArticleList__item--Info__desc">{a.desc}</p>
           <div className="ArticleList__item--Info__author">
             <span

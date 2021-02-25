@@ -1,0 +1,39 @@
+.ArticlePage-Container {
+  width: 1000px;
+  margin: 10px auto;
+  padding: 40px;
+  background-color: #fff;
+  .header {
+    margin-bottom: 20px;
+    .datetime {
+      font-size: 14px;
+      color: #a1a1a1;
+      margin: 5px 0;
+    }
+    .author {
+      color: #777;
+      a {
+        color: #000;
+        &:hover {
+          color: $primary;
+        }
+      }
+      .author-icon {
+        margin-right: 10px;
+        color: inherit;
+      }
+    }
+  }
+  .content {
+    line-height: 2;
+    p {
+      margin: 12px 0;
+      img {
+        display: block;
+        width: 90%;
+        margin: 0 auto;
+        box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: .5);
+      }
+    }
+  }
+}

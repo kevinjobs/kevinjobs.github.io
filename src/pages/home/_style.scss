@@ -37,8 +37,11 @@
           font-weight: 1000;
           font-size: 20px;
           cursor: pointer;
-          &:hover {
-            color: $red;
+          a {
+            color: #000;
+            &:hover {
+              color: $red;
+            }
           }
         }
         .ArticleList__item--Info__author {

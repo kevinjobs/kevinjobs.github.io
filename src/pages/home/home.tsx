@@ -53,7 +53,7 @@ const Article: React.FC<HomePageProps> = (props) => {
 
   return (
     <div className={classnames}>
-      <ArticleList articleList={articleList!} onOpen={() => {}} />
+      <ArticleList articleList={articleList!} />
       <div className="Article__LoadMore">
         <Divider>
           {
