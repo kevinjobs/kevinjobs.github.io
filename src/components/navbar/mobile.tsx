@@ -34,7 +34,7 @@ const MobileNavbar: React.FC<Props> = (props) => {
     if (user) {
       setUserInfo(JSON.parse(user));
     }
-  })
+  }, [])
 
   return(
     <div className={open ? 'mobile-navbar open' : 'mobile-navbar'}>

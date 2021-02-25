@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter, Route, Redirect } from 'react-router-dom';
 import { Navbar } from '@/components';
 import {
+  AboutPage,
   AdminPage,
   ArticlePage,
   GalleryPage,
@@ -21,6 +22,7 @@ const Routes: React.FC = () => {
     <HashRouter>
       <Navbar menus={menus} />
       <Route path="/">
+        <Route path="/about" component={AboutPage} />
         <Route path="/admin" component={AdminPage} />
         <Route path="/article/:id" component={ArticlePage} />
         <Route path="/gallery" component={GalleryPage} />
@@ -28,7 +30,7 @@ const Routes: React.FC = () => {
         <Route path="/login" component={LoginPage} />
         <Route path="/profile/:username" component={ProfilePage} />
       </Route>
-      <Redirect from="/" to="/home" />
+      { /* <Redirect from="/" to="/home" /> */}
     </HashRouter>
   )
 }

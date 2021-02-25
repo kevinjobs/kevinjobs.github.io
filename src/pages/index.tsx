@@ -1,3 +1,6 @@
+// about page
+export { default as AboutPage } from './about';
+
 // admin page
 export { default as AdminPage } from './admin';
 

@@ -20,6 +20,7 @@ const Masonry: React.FC<MasonryProps> = props => {
 
   const { items, columnWidth, columns, gutter } = props;
   const length = items.length;
+
   let longestHeight = 0;
   let columnHeights = Array.from({ length: columns }, () => 0);
 
@@ -70,8 +71,9 @@ const Masonry: React.FC<MasonryProps> = props => {
    * @param {Object} item - the grid item to render
    * @param {Object} item.url - the image src url
    */
-  const renderItem = (item: any, index: number) => {
+  const renderItem = (item: ImageInterface, index: number) => {
     const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
+    // console.log('index', index, 'img', item.id);
     return (
       <img
         className="masonry__item shadow-card"
@@ -88,17 +90,8 @@ const Masonry: React.FC<MasonryProps> = props => {
   }
 
   React.useEffect(() => {
-    // console.log(longestHeight);
     setHeight(longestHeight);
   })
-
-  React.useEffect(() => {
-    columnHeights = Array.from({ length: columns }, () => 0);
-  }, [])
-
-  React.useEffect(() => {
-    columnHeights = Array.from({ length: columns }, () => 0);
-  }, [items])
 
   const style = {
     position: 'relative',

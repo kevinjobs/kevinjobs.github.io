@@ -1,7 +1,17 @@
 .Gallery {
   display: flex;
   justify-content: center;
+  padding-bottom: 50px;
   .Gallery-Container {
     margin-top: 10px;
+    .loadmore-button {
+      width: 100%;
+      margin: 5px auto;
+      padding: 10px 0;
+      background-color: #e7e7e7;
+      color: #222;
+      text-align: center;
+      cursor: pointer;
+    }
   }
 }
