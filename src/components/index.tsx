@@ -16,6 +16,9 @@ export { default as Icon } from './icon';
 export type { InputProps } from './input';
 export { default as Input } from './input';
 
+export type { MasonryProps } from './masonry';
+export { default as Masonry } from './masonry';
+
 export type { MenuProps } from './menu';
 export { default as Menu } from './menu';
 
