@@ -4,9 +4,9 @@ import AdminArticle from './article-panel';
 export default function () {
   return (
     <div className="Admin">
-      <div className="Admin-NavPanel">
+      <div className="Admin-NavPanel shadow-card">
         <div className="Admin-NavPanel__Header">
-          <h3>Admin Panel</h3>
+          <h3>后 台 导 航</h3>
         </div>
         <div className="Admin-NavPanel__Container">
           <div className="Admin-NavPanel__Container--Menus">

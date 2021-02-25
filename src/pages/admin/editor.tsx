@@ -62,7 +62,7 @@ const ArticleEditor: React.FC<Props> = (props: Props) => {
 
   const markdownStyle: React.CSSProperties = {
     height: 600,
-    width: 750,
+    width: 600,
     border: 'none'
   }
 
@@ -70,9 +70,9 @@ const ArticleEditor: React.FC<Props> = (props: Props) => {
     // console.log(articleForm);
     return (
       <div className="Admin-ArticleEditor">
-        <div className="Admin-ArticleEditor__Container">
+        <div className="Admin-ArticleEditor__Container shadow-card">
           <div className="Left">
-            <div className="form__item">
+            <div className="header">
               <input
                 type="text"
                 value={articleForm.title}
@@ -80,8 +80,8 @@ const ArticleEditor: React.FC<Props> = (props: Props) => {
                 placeholder='请在此填写标题'
                 onChange={handleChange}/>
             </div>
-            <div className="form__item">
-              <div className="form__item--content">
+            <div className="editor">
+              <div className="content">
                 <MdEditor
                   style={markdownStyle}
                   renderHTML={(text) => mdParser.render(text)}

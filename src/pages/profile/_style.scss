@@ -97,3 +97,28 @@
     }
   }
 }
+
+.Profile.Mobile {
+  width: 100%;
+  .Profile-Container {
+    width: 100%;
+    margin-top: 5px;
+    .main {
+      flex-wrap: wrap;
+      margin-top: 5px;
+      width: 100%;
+      .main-left {
+        width: 100%;
+        min-height: 0;
+      }
+      .main-right {
+        width: 100%;
+        .main-right-idcard {
+          width: 100%;
+          margin: 0;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+}

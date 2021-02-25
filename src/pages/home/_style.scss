@@ -10,12 +10,10 @@
     flex-wrap: wrap;
     .ArticleList__item {
       background-color: #fff;
-      border-radius: 5px;
       .ArticleList__item--Cover {
         img {
           height: 100%;
           width: 100%;
-          border-radius: 5px;
           object-fit: cover;
           cursor: pointer;
           transition: height .5s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -69,12 +67,12 @@
 
 .Article.Desktop {
   .ArticleList {
-    max-width: 1200px;
-    min-width: 800px;
+    max-width: 1000px;
+    margin-top: 10px;
     .ArticleList__item {
-      width: 380px;
+      width: 323px;
       height: 450px;
-      margin: 10px;
+      margin: 5px;
       .ArticleList__item--Cover {
         height: 240px;
       }
@@ -104,26 +102,9 @@
 }
 
 .Article.Mobile {
-  .ArticleFloatCard {
-    background-color: #fff;
-    flex-wrap: wrap;
-    .ArticleFloatCard__Close {
-      position: absolute;
-      color: #000;
-      right: 0px;
-      top: 10px;
-      font-size: 20px;
-    }
-    .ArticleFloatCard__Container {
-      max-width: 100%;
-      height: 100%;
-      padding: 20px 20px 50px 20px;
-      margin-top: 30px;
-    }
-  }
   .ArticleList {
     width: 100%;
-    min-width: 100%;
+    margin-top: 0px;
     .ArticleList__item {
       width: 100%;
       height: 300px;
@@ -142,51 +123,14 @@
         padding: 10px 20px;
         .ArticleList__item--Info__author {
           bottom: 10px;
+          a {
+            color: #000;
+          }
         }
       }
     }
   }
   .Article__LoadMore {
     width: 94%;
-  }
-}
-
-.ArticleFloatCard {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  background-color: rgba($color: #000000, $alpha: 0.75);
-  .ArticleFloatCard__Close {
-    font-size: 30px;
-    position: absolute;
-    top: 20px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #fff;
-    cursor: pointer;
-  }
-  .ArticleFloatCard__Container {
-    width: 1000px;
-    .ArticleFloatCard__Container--title {
-      position: sticky;
-      top: -20px;
-      background-color: #fff;
-    }
-    max-width: 1000px;
-    height: 90%;
-    padding: 20px 40px;
-    background-color: #fff;
-    overflow-y: scroll;
-    line-height: 2;
-    border-radius: 5px;
   }
 }

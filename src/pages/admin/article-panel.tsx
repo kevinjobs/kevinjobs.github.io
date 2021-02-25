@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { getPostById, getPostList, patchById, deleteById, postNew } from '@/apis/post';
 import { Button, Pagination } from '@/components';
 import ArticleEditor from './editor';
@@ -6,14 +7,11 @@ import { ArticleInterface } from '@/pages';
 import dayjs from 'dayjs';
 
 const AdminArticle: React.FC = () => {
-  const [latestPost, setLatestPost] = React.useState<ArticleInterface>();
   const [postListPage, setPostListPage] = React.useState<number>(1);
   const [postList, setPostList] = React.useState<ArticleInterface []>();
   const [total, setTotal] = React.useState(0);
   const [selectedPostId, setSelectedPostId] = React.useState<string>();
   const [selectedPost, setSelectedPost] = React.useState<ArticleInterface>();
-  const [viewPost, setViewPost] = React.useState<ArticleInterface>();
-  const [viewPostId, setViewPostId] = React.useState<string>();
   const [fresh, setFresh] = React.useState<number>();
 
   React.useEffect(() => {
@@ -36,26 +34,6 @@ const AdminArticle: React.FC = () => {
         }
       }).catch(err => console.log(err));
   }, [postListPage, fresh]);
-
-  React.useEffect(() => {
-    getPostList(postListPage,9)
-      .then(res => {
-        if (res.status === 200) {
-          setLatestPost(res.data.data.items[0]);
-        }
-      }).catch(err => console.log(err));
-  }, []);
-
-  React.useEffect(() => {
-    if (viewPostId) {
-      getPostById(viewPostId)
-        .then(res => {
-          if (res.status === 200 && res.data.code === 1) {
-            setViewPost(res.data.data);
-          }
-        }).catch(err => console.log(err));
-    }
-  }, [viewPostId])
 
   const handleSubmitForm = (e: any) => {
     const articleForm = JSON.parse(e.target.dataset.form);
@@ -132,27 +110,6 @@ const AdminArticle: React.FC = () => {
     setSelectedPost(newArticle);
   }
 
-  const showLatestPost = (post: any) => {
-    return (
-      <div className="Admin-Article__Left--Newlist__latest">
-        <h3 className="Admin-Article__Left--Newlist__latest--header">
-           最 新 文 章
-        </h3>
-        <div className="Admin-Article__Left--Newlist__latest--container">
-          <div className="cover">
-            <img src={post.cover} alt={post.title} />
-          </div>
-          <div className="info">
-            <h3 className="item title">{post.title}</h3>
-            <div className="item author">作者: {post.author}</div>
-            <div className="item id">文章ID: {post.id}</div>
-            <div className="item tags">{post.tags}</div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   const showPostList = (post: any, index: number) => {
     return (
       <div key={index} className="item">
@@ -163,8 +120,9 @@ const AdminArticle: React.FC = () => {
         </div>
         <div className="right">
           <Button onClick={(e: any) => setSelectedPostId(post.id)}>Edit</Button>
-          <Button type="primary" onClick={(e:any) => setViewPostId(post.id)}>View</Button>
-          <Button type="danger" onClick={(e: any) => handleDelete(e, post.id)}>Delete</Button>
+          <Link to={`/article/${post.id}`}><Button type="primary">View</Button></Link>
+          <Button type="danger"
+            onClick={(e: any) => handleDelete(e, post.id)}>Delete</Button>
         </div>
       </div>
     )
@@ -172,12 +130,7 @@ const AdminArticle: React.FC = () => {
 
   return (
     <div className="Admin-Article">
-      <div className="Admin-Article__Left">
-        <div className="Admin-Article__Left--Newlist">
-          { latestPost ? showLatestPost(latestPost) : null }
-        </div>
-      </div>
-      <div className="Admin-Article__Right">
+      <div className="Admin-Article__Container shadow-card">
         <h3 className="header">文 章 列 表 <Button onClick={postNewArticle}>新增文章</Button></h3>
         <div className="Admin-Article__Right--PostList">
           <div className="items">

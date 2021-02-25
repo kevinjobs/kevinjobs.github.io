@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import MarkdownIt from 'markdown-it';
+import classNames from 'classnames';
 import dayjs from 'dayjs';
 import { getPostById } from '@/apis/post';
 import { Icon } from '@/components';
+import { useViewport, breakpoint } from '@/hooks/viewportCtx';
 
 export interface ArticleInterface {
   [key: string]: any,
@@ -26,6 +28,7 @@ export interface ArticlePageProps {
 const ArticlePage: React.FC<ArticlePageProps | any> = (props) => {
   const [article, setArticle] = React.useState<ArticleInterface>();
 
+  const { width } = useViewport();
   const md = new MarkdownIt();
 
   React.useEffect(() => {
@@ -37,9 +40,16 @@ const ArticlePage: React.FC<ArticlePageProps | any> = (props) => {
     }).catch(err => console.log(err));
   }, [])
 
+  const classname = classNames(
+    'ArticlePage',
+    {
+      'Mobile': width < breakpoint
+    }
+  )
+
   if (article) {
     return (
-      <div className="ArticlePage">
+      <div className={classname}>
         <div className="ArticlePage-Container shadow-card">
           <div className="header">
             <h2 className="title">{ article.title }</h2>
@@ -62,7 +72,7 @@ const ArticlePage: React.FC<ArticlePageProps | any> = (props) => {
     )
   } else {
     return (
-      <div className="ArticlePage">
+      <div className={classname}>
         <div className="ArticlePage-Container shadow-card">
           <p style={{textAlign: 'center'}}>未能获取文章详情</p>
         </div>

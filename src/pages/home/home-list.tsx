@@ -19,7 +19,7 @@ const List: React.FC<ListProps> = (props: ListProps) => {
 
   const ListCard = (a: ArticleInterface, index: number) => {
     return(
-      <div className="ArticleList__item" key={index}>
+      <div className="ArticleList__item shadow-card" key={index}>
         {/* article cover */}
         <div className="ArticleList__item--Cover">
           <img src={a.cover} alt={a.title} data-id={a.id} onClick={handleClick} />

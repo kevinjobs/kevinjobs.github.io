@@ -1,8 +1,10 @@
 import React from 'react';
+import classNames from 'classnames';
 import { getPostList } from '@/apis/post';
 import { getUser } from '@/apis/auth';
 import { ArticleInterface } from '@/pages';
 import multiavatar from '@multiavatar/multiavatar';
+import { useViewport, breakpoint } from '@/hooks/viewportCtx';
 
 export interface ProfileProps {};
 
@@ -83,8 +85,17 @@ const Profile: React.FC<ProfileProps | any> = (props) => {
     )
   }
 
+  const { width } = useViewport();
+
+  const classname = classNames(
+    'Profile',
+    {
+      'Mobile': width < breakpoint
+    }
+  )
+
   return (
-    <div className="Profile">
+    <div className={classname}>
       <div className="Profile-Container">
         <div className="header">
         </div>

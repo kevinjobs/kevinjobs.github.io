@@ -9,6 +9,7 @@ $radius: 25px;
   min-width: 280px;
   min-height: 800px;
   margin: 20px 0 0 20px;
+  background-color: #fff;
   .Admin-NavPanel__Header {
     width: 100%;
     height: 70px;
@@ -17,8 +18,6 @@ $radius: 25px;
     justify-content: center;
   }
   .Admin-NavPanel__Container {
-    background-color: #fff;
-    border-radius: $radius;
     min-height: 700px;
     .Admin-NavPanel__Container--Menus {
       ul {
@@ -43,11 +42,6 @@ $radius: 25px;
             background-color: #333;
             color: #f1f1f1;
           }
-          &:nth-child(1) {
-            a {
-              border-radius: $radius $radius 0 0;
-            }
-          }
         }
       }
     }
@@ -60,65 +54,25 @@ $radius: 25px;
   padding: 20px 20px 0 20px;
   display: flex;
   flex-wrap: nowrap;
-  .Admin-Article__Left {
-    width: 500px;
-    .Admin-Article__Left--Newlist {
-      width: 100%;
-      height: 200px;
-      .Admin-Article__Left--Newlist__latest {
-        .Admin-Article__Left--Newlist__latest--header {
-          padding: 20px;
-          height: 70px;
-        }
-        .Admin-Article__Left--Newlist__latest--container {
-          display: flex;
-          height: 200px;
-          box-shadow:  33px 33px 66px #cecece, -10px -10px 10px #ffffff;
-          border-radius: $radius;
-          background-color: #fff;
-          .cover {
-            width: 350px;
-            img {
-              border-radius: $radius 0 0 $radius;
-              object-fit: cover;
-              width: 100%;
-              height: 100%;
-            }
-          }
-          .info {
-            padding: 20px;
-            .item {
-              margin: 10px 0;
-            }
-            .item.id {
-              font-size: 12px;
-            }
-          }
-        }
-      }
-    }
-  }
-  .Admin-Article__Right {
+  .Admin-Article__Container {
     padding: 0 20px 0 0;
     flex-grow: 1;
+    background-color: #fff;
     .header {
-      padding: 20px 40px;
+      padding: 20px 80px;
       height: 70px;
     }
     .Admin-Article__Right--PostList {
-      width: 100%;
-      min-width: 700px;
+      width: 800px;
       height: 700px;
       margin: 0 20px;
-      padding: 40px 60px;
+      padding: 20px 60px 0 20px;
       display: flex;
       justify-content: space-between;
       align-items: stretch;
       flex-wrap: wrap;
-      background-color: #fff;
-      box-shadow:  33px 33px 66px #cecece, -0px -0px 0px #ffffff;
-      border-radius: $radius;
-      overflow-y: scroll;
+      overflow-y: hidden;
+      border-right: 1px solid #e7e7e7;
       .items {
         width: 100%;
         .item {
@@ -167,12 +121,10 @@ $radius: 25px;
   flex-wrap: wrap;
   background-color: rgba($color: #000000, $alpha: 0.75);
   .Admin-ArticleEditor__Container {
-    min-width: 1000px;
-    width: 80%;
+    width: 1000px;
     height: 90%;
     padding: 60px;
     background-color: #fff;
-    border-radius: $radius;
     overflow-y: hidden;
     display: flex;
     justify-content: center;
@@ -200,16 +152,16 @@ $radius: 25px;
       }
     }
     .Left {
-      width: 800px;
+      width: 650px;
       padding: 0 25px;
-      .form__item {
-        width: 350px;
+      .header {
+        width: 100%;
         margin: 10px 0;
         display: flex;
         align-items: center;
         width: 100%;
         input {
-          width: 600px;
+          width: 100%;
           background-color: transparent;
           font-size: 20px;
           font-weight: 700;
@@ -217,14 +169,14 @@ $radius: 25px;
       }
     }
     .Right {
-      width: 350px;
+      width: 300px;
       .form__item {
         width: 100%;
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
-        label { width: 100px; }
-        input { flex-grow: 1; }
+        label { width: 100px; color: #a1a1a1; }
+        input { width: 200px; }
       }
       .Operation {
         width: 100%;

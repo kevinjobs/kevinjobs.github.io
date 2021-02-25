@@ -14,7 +14,7 @@ const MobileNavbar: React.FC<Props> = (props) => {
 
   const openMenu = (e: any) => {
     e.preventDefault();
-    open ? setOpen(false) : setOpen(true);
+    setOpen(!open);
     delayOpen ? setTimeout(() => {setDelayOpen(false)}, 100) : setDelayOpen(true);
   }
 
@@ -54,7 +54,13 @@ const MobileNavbar: React.FC<Props> = (props) => {
         <ul>
           {
             props.menus?.map((menu, index) => {
-              return <li key={index}><NavLink to={menu}>{menu.toUpperCase()}</NavLink></li>
+              return (
+                <li key={index}>
+                  <NavLink to={`/${menu}`}>
+                    {menu.toUpperCase()}
+                  </NavLink>
+                </li>
+              )
             })
           }
         </ul>
