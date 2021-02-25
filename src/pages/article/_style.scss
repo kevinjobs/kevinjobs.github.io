@@ -28,10 +28,11 @@
     line-height: 2;
     p {
       margin: 12px 0;
+      color: #777777;
       img {
         display: block;
-        width: 90%;
-        margin: 0 auto;
+        max-width: 90%;
+        margin: 20px auto;
         box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: .5);
       }
     }
@@ -41,5 +42,6 @@
 .ArticlePage.Mobile {
   .ArticlePage-Container {
     width: 100%;
+    margin-top: 5px;
   }
 }

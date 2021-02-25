@@ -129,12 +129,12 @@ const AdminArticle: React.FC = () => {
   }
 
   return (
-    <div className="Admin-Article">
-      <div className="Admin-Article__Container shadow-card">
+    <div className="Admin-Article shadow-card">
+      <div className="Admin-Article__Container">
         <h3 className="header">文 章 列 表 <Button onClick={postNewArticle}>新增文章</Button></h3>
         <div className="Admin-Article__Right--PostList">
           <div className="items">
-            { postList?.map(showPostList) }
+            { postList ? postList.map(showPostList) : <div className="mint-loader"></div> }
           </div>
           <div className="prev-next">
             <Pagination onPrev={handlePrev} onNext={handleNext} />

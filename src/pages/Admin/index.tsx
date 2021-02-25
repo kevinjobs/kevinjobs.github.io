@@ -1,5 +1,6 @@
 import { HashRouter, Route, NavLink } from 'react-router-dom';
 import AdminArticle from './article-panel';
+import AdminGalleryPage from './gallery';
 
 export default function () {
   return (
@@ -18,11 +19,14 @@ export default function () {
           </div>
         </div>
       </div>
-      <HashRouter>
-        <Route path="/admin">
-          <Route path="/admin/article" component={AdminArticle} />
-        </Route>
-      </HashRouter>
+      <div className="Admin-Container">
+        <HashRouter>
+          <Route path="/admin">
+            <Route path="/admin/article" component={AdminArticle} />
+            <Route path="/admin/gallery" component={AdminGalleryPage} />
+          </Route>
+        </HashRouter>
+      </div>
     </div>
   )
 }
