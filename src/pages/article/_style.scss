@@ -29,12 +29,20 @@
     p {
       margin: 12px 0;
       color: #777777;
+    }
+    .content-image {
+      width: fit-content !important;
+      margin: 15px auto 0 auto !important;
+      border-radius: 2px !important;
       img {
-        display: block;
-        max-width: 90%;
-        margin: 20px auto;
-        box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: .5);
+        width: fit-content !important;
+        max-width: 100% !important;
+        border-radius: 2px !important;
       }
+    }
+    .content-image-alt {
+      color: #999999;
+      text-align: center;
     }
   }
 }
@@ -43,5 +51,9 @@
   .ArticlePage-Container {
     width: 100%;
     margin-top: 5px;
+    padding: 20px 30px;
+    div.content-image {
+      max-width: 100% !important;
+    }
   }
 }

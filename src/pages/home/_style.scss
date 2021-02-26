@@ -16,10 +16,6 @@
           width: 100%;
           object-fit: cover;
           cursor: pointer;
-          transition: height .5s cubic-bezier(0.075, 0.82, 0.165, 1);
-          &:hover {
-            height: 95%;
-          }
         }
       }
       .ArticleList__item--Info {
@@ -76,6 +72,10 @@
       margin: 5px;
       .ArticleList__item--Cover {
         height: 240px;
+        transition: height .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        &:hover {
+          height: 230px;
+        }
       }
       .ArticleList__item--Info {
         padding: 10px 20px;
