@@ -7,7 +7,8 @@ export interface NavbarProps {
   onLogin?: React.MouseEventHandler<HTMLElement>,
   onLogout?: React.MouseEventHandler<HTMLElement>,
   fresh?: any,
-  isLogin?: boolean
+  isLogin?: boolean,
+  setNightMode?: any
 }
 
 const Navbar: React.FC<NavbarProps> = (props) => {

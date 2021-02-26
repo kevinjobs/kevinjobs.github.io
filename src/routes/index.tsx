@@ -20,6 +20,7 @@ import { Navbar, message } from '@/components';
 const Routes: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
+  const [nightMode, setNightMode] = React.useState(false);
 
   const handleLogin = () => {
     history.push('/login');
@@ -31,13 +32,14 @@ const Routes: React.FC = () => {
     localStorage.removeItem('user');
     history.push('/login');
   }
-  
+
   return (
     <>
       <Navbar
         fresh={location.pathname}
         onLogin={handleLogin}
         onLogout={handleLogout}
+        setNightMode={(e: any) => setNightMode(!nightMode)}
       />
       <Route path="/about" component={AboutPage} />
       <Route path="/admin" component={AdminPage} />

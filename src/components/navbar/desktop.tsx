@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import multiavatar from '@multiavatar/multiavatar';
-import { Button, message, NavbarProps } from '@/components';
+import { Button, NavbarProps } from '@/components';
 import { UserInterface } from '@/types';
 
 const DesktopNavbar: React.FC<NavbarProps> = (props) => {
   const [userInfo, setUserInfo] = React.useState<UserInterface>();
 
-  const { fresh, onLogin, onLogout } = props;
+  const { fresh, onLogin, onLogout, setNightMode } = props;
 
   React.useEffect(() => {
     const user = localStorage.getItem('user');
@@ -74,6 +74,9 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
         <div className="DesktopNavbar--Container__Others">
           <div className="DesktopNavbar--Container__Others--SearchBar"></div>
           { userInfo ? renderUserInfo() : renderLoginButton() }
+          <div className="Night-Mode">
+            <Button onClick={setNightMode}>Night Mode</Button>
+          </div>
         </div>
       </div>
     </div>

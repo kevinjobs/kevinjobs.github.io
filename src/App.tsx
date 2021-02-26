@@ -5,10 +5,7 @@ import { HashRouter } from 'react-router-dom';
 import { ViewportProvider } from '@/hooks/viewportCtx';
 import Routes from '@/routes';
 
-
 const App: React.FC = () => {
-  
-
   return (
     <ViewportProvider>
       <div className="App">
