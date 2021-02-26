@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ArticleInterface } from '@/pages';
 import multiavatar from '@multiavatar/multiavatar';
 import dayjs from 'dayjs';
+import { Image } from '@/components';
 
 interface ListProps {
   articleList: ArticleInterface[],
@@ -21,9 +22,13 @@ const List: React.FC<ListProps> = (props: ListProps) => {
     return(
       <div className="ArticleList__item shadow-card" key={index}>
         {/* article cover */}
-        <div className="ArticleList__item--Cover">
-          <img src={a.cover} alt={a.title} data-id={a.id} onClick={handleClick} />
-        </div>
+        <Image
+          className="ArticleList__item--Cover"
+          src={a.cover}
+          alt={a.title}
+          data-picid={a.id}
+          onClick={handleClick}
+        />
         {/* article details */}
         <div className="ArticleList__item--Info">
           <span className="ArticleList__item--Info__datetime">
@@ -47,11 +52,7 @@ const List: React.FC<ListProps> = (props: ListProps) => {
     )
   }
 
-  return(
-    <div className="ArticleList">
-      { props.articleList?.map(ListCard) }
-    </div>
-  )
+  return <>{ props.articleList.map(ListCard) }</>
 }
 
 export default List;

@@ -47,7 +47,13 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   return (
     <div className="Gallery">
       <div className="Gallery-Container">
-        <Masonry items={imageList} {...masonryProps} />
+        <div className="masonry">
+          {
+            imageList.length !== 0
+              ? <Masonry items={imageList} {...masonryProps} />
+              : <div className="mint-loader"></div>
+          }
+        </div>
         <div className="loadmore-button" onClick={loadmore}>
           { isMore ? '加载更多图片' : '我是有底线的' }
         </div>

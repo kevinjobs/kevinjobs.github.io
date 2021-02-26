@@ -13,6 +13,9 @@ export { default as Dropdown } from './dropdown';
 export type { IconProps } from './icon';
 export { default as Icon } from './icon';
 
+export type { ImageProps } from './image';
+export { default as Image } from './image';
+
 export type { InputProps } from './input';
 export { default as Input } from './input';
 

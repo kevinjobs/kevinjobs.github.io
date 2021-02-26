@@ -4,6 +4,10 @@
   padding-bottom: 50px;
   .Gallery-Container {
     margin-top: 10px;
+    min-width: 1000px;
+    .masonry {
+      min-height: 600px;
+    }
     .loadmore-button {
       width: 100%;
       margin: 5px auto;

@@ -53,7 +53,13 @@ const Article: React.FC<HomePageProps> = (props) => {
 
   return (
     <div className={classnames}>
-      <ArticleList articleList={articleList!} />
+      <div className="ArticleList">
+        {
+          articleList
+            ? <ArticleList articleList={articleList} />
+            : <div className="mint-loader"></div>
+        }
+      </div>
       <div className="Article__LoadMore">
         <Divider>
           {

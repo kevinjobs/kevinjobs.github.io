@@ -1,5 +1,6 @@
 import React from 'react';
 import { ImageInterface } from '@/types';
+import { Image } from '@/components';
 
 export interface MasonryProps {
   columns: number,
@@ -62,7 +63,9 @@ const Masonry: React.FC<MasonryProps> = props => {
     return {
       left: `${left}px`,
       top: `${top}px`,
-      position: `absolute`
+      position: 'absolute',
+      width: `${columnWidth}px`,
+      height: `${normalizedHeight}px`
     } as React.CSSProperties;
   }
 
@@ -75,16 +78,14 @@ const Masonry: React.FC<MasonryProps> = props => {
     const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
     // console.log('index', index, 'img', item.id);
     return (
-      <img
+      <Image
         className="masonry__item shadow-card"
-        src={baseUrl + item.cover.replace('JPG', 'jpg')}
-        width={columnWidth}
-        alt={item.title || 'noname'}
         style={getItemStyle(item, index)}
         key={index}
-        data-id={item.id}
-        data-key={index}
+        data-picid={item.id}
         onClick={handleClick}
+        src={baseUrl + item.cover.replace('JPG', 'jpg')}
+        alt={item.title || 'noname'}
       />
     );
   }
