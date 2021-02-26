@@ -7,7 +7,7 @@ import ArticleList from './home-list';
 import { Divider, Button } from '@/components';
 
 
-const Article: React.FC<HomePageProps> = (props) => {
+const Homepage: React.FC<HomePageProps> = (props) => {
   const [articleList, setArticleList] = React.useState<ArticleInterface[]>();
   const [currentPage, setCurrentPage] = React.useState(2);
   const [pageSize, setPageSize] = React.useState(6);
@@ -47,8 +47,8 @@ const Article: React.FC<HomePageProps> = (props) => {
   
   const classnames = classNames({
     "Article": true,
-    "Mobile": props.type === 1 ? true : false,
-    "Desktop": props.type === 2 ? true : false
+    "Mobile": props.type === 1,
+    "Desktop": props.type === 2
   });
 
   return (
@@ -73,4 +73,4 @@ const Article: React.FC<HomePageProps> = (props) => {
   )
 }
 
-export default Article;
+export default Homepage;

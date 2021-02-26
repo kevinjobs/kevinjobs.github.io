@@ -8,6 +8,8 @@ type AnimationName =
   | 'zoom-in-bottom'
   | 'zoom-in-right'
   | 'SlideInTop'
+  | 'ExpandShrink'
+  | 'FadeInOut'
 
 type TransitionProps = CSSTransitionProps & {
   animation?: AnimationName,

@@ -1,92 +1,40 @@
-$normal: 30px;
-$slash: 35.67px;
-$delay: .3s;
+$width: 34px;
+$height: 32px;
+$sqrt: 45px;
 
-@keyframes rotateRightBottom {
-  from {
-    opacity: 0;
-    transform: rotate(0deg);
-  }
-  to {
-    opacity: 1;
-    transform: rotate(45deg);
-  }
-}
-
-@keyframes rotateRightTop {
-  from {
-    opacity: 0;
-    transform: rotate(0deg);
-  }
-  to {
-    opacity: 1;
-    transform: rotate(-45deg);
-  }
-}
-
-@keyframes an {
-  from {
-    width: $normal;
-  }
-  to {
-    width: $slash;
-  }
-}
-
-@keyframes todispear {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-.close-button {
-  position: relative;
-  cursor: pointer;
-  width: $normal*2;
-  height: $normal;
-  .child {
-    width: $normal * 2;
+.mint-menu-button {
+  width: $width;
+  height: $height;
+  .line {
     height: 2px;
-    background-color: rgba($color: #dfaafa, $alpha: 0);
-    position: absolute;
-    .grandson {
-      width: $normal;
-      height: 2px;
-      margin-left: $normal;
-      background-color: #000;
+    width: 100%;
+    background-color: inherit;
+    transition: all .4s cubic-bezier(.64,.05,.41,1.06);
+    &.first {
+      transform-origin: 0px 1px;
+    }
+    &.second {
+      position: relative;
+      top: 14px;
+    }
+    &.third {
+      position: relative;
+      top: 28px;
+      transform-origin: 0px 1px;
     }
   }
-  .first {
-    top: 0px;
+}
+
+.mint-menu-button.open {
+  .line.first {
+    transform: rotate(44deg);
+    width: $sqrt;
   }
-  .second {
-    top: 13px;
-  }
-  .third {
-    top: 26px;
-  }
-  .first-move {
-    top: 0px;
-    transform: rotate(45deg);
-    animation: rotateRightBottom $delay;
-    .grandson {
-      width: $slash;
-    }
-  }
-  .second-move {
-    top: 13px;
+  .line.second {
     opacity: 0;
-    animation: todispear $delay;
   }
-  .third-move {
-    top: 26px;
-    transform: rotate(-45deg);
-    animation: rotateRightTop $delay;
-    .grandson {
-      width: $slash;
-    }
+  .line.third {
+    transform: rotate(-44deg);
+    width: $sqrt;
   }
 }

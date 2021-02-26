@@ -1,43 +1,33 @@
 import React from 'react';
-
+import classNames from 'classnames';
 
 export interface MenuProps {
-  show?: boolean,
+  isOpen?: boolean,
   onClick?: any,
-  onClickMenu?: any,
   color?: string
 }
 
-class MenuButton extends React.Component<MenuProps, any> {
-  render() {
-    const { onClick, onClickMenu } = this.props;
+const MenuButton: React.FC<MenuProps> = props => {
+  const { isOpen, onClick, color } = props;
 
-    return(
-      <div
-        className="close-button"
-        onClick={onClick}
-      >
-        <div className={this.props.show ? 'first-move child' : 'first child'}>
-          <div
-            className="grandson"
-            style={{backgroundColor: this.props.color || '#000'}}
-            onClick={onClickMenu}></div>
-        </div>
-        <div className={this.props.show ? 'second-move child' : 'second child'}>
-          <div
-            className="grandson"
-            style={{backgroundColor: this.props.color || '#000'}}
-            onClick={onClickMenu}></div>
-        </div>
-        <div className={this.props.show ? 'third-move child' : 'third child'}>
-          <div
-            className="grandson"
-            style={{backgroundColor: this.props.color || '#000'}}
-            onClick={onClickMenu}></div>
-        </div>
-      </div>
-    )
-  }
+  const classname = classNames(
+    'mint-menu-button',
+    {
+      'open': isOpen
+    }
+  )
+
+  return (
+    <div className={classname} onClick={onClick}>
+      <div className="first line" style={{backgroundColor: color}}></div>
+      <div className="second line" style={{backgroundColor: color}}></div>
+      <div className="third line" style={{backgroundColor: color}}></div>
+    </div>
+  )
+}
+
+MenuButton.defaultProps = {
+  color: '#555555'
 }
 
 export default MenuButton;

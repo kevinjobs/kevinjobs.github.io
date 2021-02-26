@@ -1,34 +1,18 @@
 import React, { useState } from 'react';
-import { Menu } from '@/components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import multiavatar from '@multiavatar/multiavatar';
-import { Transition } from '@/components';
+import { Menu, Transition } from '@/components';
 
 interface Props {
   menus?: string[]
 }
 
 const MobileNavbar: React.FC<Props> = (props) => {
-  const [open, setOpen] = useState(false);
-  const [delayOpen, setDelayOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userInfo, setUserInfo] = useState<{username: string}>();
 
-  const openMenu = (e: any) => {
-    e.preventDefault();
-    setOpen(!open);
-    delayOpen ? setTimeout(() => {setDelayOpen(false)}, 100) : setDelayOpen(true);
-  }
-
-  const showUserInfo = (user: {username: string} | undefined) => {
-    if (user) {
-      return (
-        <div className="avatar"
-          dangerouslySetInnerHTML={{__html: multiavatar(user.username)}}></div>
-      )
-    } else {
-      return <div className="avatar"></div>
-    }
-  }
+  const { menus } = props;
+  const history = useHistory();
 
   React.useEffect(() => {
     const user = localStorage.getItem('user');
@@ -37,41 +21,54 @@ const MobileNavbar: React.FC<Props> = (props) => {
     }
   }, [])
 
-  return(
-    <div className={open ? 'mobile-navbar open' : 'mobile-navbar'}>
-      <div className="menu">
-        <div className="menu-button">
-          <Menu onClick={openMenu} show={open} />
-        </div>
-        <div className="menu-logo">
-          <span>Mint Forge</span>
-        </div>
-        <div className="menu-avatar">
-          {  showUserInfo(userInfo) }
-        </div>
-      </div>
+  const handleClick = (e: any, menu: string) => {
+    e.preventDefault();
+    setIsMenuOpen(!isMenuOpen);
+    history.push(`/${menu}`);
+  }
 
-      <div className="menu-list fade-in" style={{display: delayOpen ? 'none' : ''}}>
-        <ul>
-          {
-            props.menus?.map((menu, index) => {
-              return (
-                <li key={index}>
-                  <NavLink to={`/${menu}`}>
-                    {menu.toUpperCase()}
-                  </NavLink>
-                </li>
-              )
-            })
-          }
-        </ul>
+  const renderMenu = (menu: string, index: number) => {
+    return (
+      <li key={index}>
+        <NavLink to={`/${menu}`} onClick={e => handleClick(e, menu)}>
+          {menu.toUpperCase()}
+        </NavLink>
+      </li>
+    )
+  }
+
+  const renderUserIcon = (user: {username: string}) => (
+    <div className="avatar-svg"
+      dangerouslySetInnerHTML={{__html: multiavatar(user.username)}}></div>
+  )
+
+  return (
+    <div className="mint-navbar-mobile">
+      <div className="container">
+        <div className="button">
+          <Menu
+            onClick={(e: any) => setIsMenuOpen(!isMenuOpen)}
+            isOpen={isMenuOpen} />
+        </div>
+        <div className="avatar">
+          { userInfo ? renderUserIcon(userInfo) : <span></span> }
+        </div>
       </div>
+      <Transition
+        in={isMenuOpen}
+        timeout={700}
+        animation="ExpandShrink"
+      >
+        <div className="menu-list">
+          <ul>{ menus?.map(renderMenu) }</ul>
+        </div>
+      </Transition>
     </div>
   )
 }
 
 MobileNavbar.defaultProps = {
-  menus: ['Home', 'Gallery', 'About']
+  menus: ['home', 'gallery', 'about']
 }
 
 export default MobileNavbar;

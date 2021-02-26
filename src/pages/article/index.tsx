@@ -62,7 +62,7 @@ const ArticlePage: React.FC<ArticlePageProps | any> = (props) => {
             </div>
             <div className="author">
               <Icon icon='user' className="icon-dark author-icon" />
-              <Link to={`/user/${article.author}`}>{ article.author }</Link>
+              <Link to={`/profile/${article.author}`}>{ article.author }</Link>
             </div>
           </div>
           <div className="content"

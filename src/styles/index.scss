@@ -1,6 +1,9 @@
 .shadow-card {
   box-shadow: 0 1px 3px rgba($color: #000000, $alpha: .3);
 }
+.shadow-card-middle {
+  box-shadow: 5px 5px 10px rgba($color: #000000, $alpha: .2);
+}
 
 .mint-loader,
 .mint-loader:before,
