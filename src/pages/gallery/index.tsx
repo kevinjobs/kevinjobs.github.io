@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+import { useHistory } from 'react-router-dom';
 import { Masonry } from '@/components';
 import { getPostList } from '@/apis/post';
 import { ImageInterface } from '@/types';
@@ -13,6 +13,7 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   const [isMore, setIsMore] = React.useState(true);
 
   const { width } = useViewport();
+  const history = useHistory();
 
   const loadmore = () => {
     getPostList(currentPage, 12, 1).then(res => {
@@ -26,6 +27,11 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
         }
       }
     }).catch(err => console.log(err));
+  }
+
+  const handleOpen = (e: any) => {
+    console.log(e.target.dataset.picid);
+    history.push(`/photo/${e.target.dataset.picid}`);
   }
 
   React.useEffect(() => {
@@ -50,7 +56,7 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
         <div className="masonry">
           {
             imageList.length !== 0
-              ? <Masonry items={imageList} {...masonryProps} />
+              ? <Masonry items={imageList} openImage={handleOpen} {...masonryProps} />
               : <div className="mint-loader"></div>
           }
         </div>

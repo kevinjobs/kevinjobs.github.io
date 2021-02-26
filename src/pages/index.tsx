@@ -20,6 +20,9 @@ export { default as HomePage } from './home';
 export type { LoginPageProps } from './login';
 export { default as LoginPage } from './login';
 
+// photo page
+export { default as PhotoPage } from './photo';
+
 // profile page
 export type { ProfileProps } from './profile';
 export { default as ProfilePage } from './profile';

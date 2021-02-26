@@ -12,6 +12,7 @@ import {
   GalleryPage,
   HomePage,
   LoginPage,
+  PhotoPage,
   ProfilePage
 } from '@/pages';
 import { Navbar, message } from '@/components';
@@ -44,6 +45,7 @@ const Routes: React.FC = () => {
       <Route path="/gallery" component={GalleryPage} />
       <Route path="/home" component={HomePage} />
       <Route path="/login" component={LoginPage} />
+      <Route path="/photo/:id" component={PhotoPage} />
       <Route path="/profile/:username" component={ProfilePage} />
       <Redirect from="/" to="/home" />
     </>

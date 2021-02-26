@@ -19,18 +19,12 @@ export interface MasonryProps {
 const Masonry: React.FC<MasonryProps> = props => {
   const [height, setHeight] = React.useState(0);
 
-  const { items, columnWidth, columns, gutter } = props;
+  const { items, columnWidth, columns, gutter, openImage } = props;
   const length = items.length;
 
   let longestHeight = 0;
   let columnHeights = Array.from({ length: columns }, () => 0);
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-    const { openImage } = props;
-    if (openImage) {
-      (openImage as React.MouseEventHandler<HTMLElement>)(e);
-    }
-  }
   /*
    * Get the shortest column in the list of columns heights
    */
@@ -83,7 +77,7 @@ const Masonry: React.FC<MasonryProps> = props => {
         style={getItemStyle(item, index)}
         key={index}
         data-picid={item.id}
-        onClick={handleClick}
+        onClick={openImage}
         src={baseUrl + item.cover.replace('JPG', 'jpg')}
         alt={item.title || 'noname'}
       />

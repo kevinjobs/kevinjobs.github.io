@@ -3,7 +3,7 @@ import { Omit } from '@/components/_utils/type';
 import classNames from 'classnames';
 
 export type ImageProps = {
-  className: string,
+  className?: string,
   style?: React.CSSProperties,
   onError?: any,
   onLoad?: string
@@ -14,7 +14,6 @@ const Image: React.FC<ImageProps> = props => {
 
   const classname = classNames(
     'mint-image',
-    'shadow-card',
     className
   )
 
