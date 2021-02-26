@@ -17,13 +17,14 @@ const LoginPage: React.FC<LoginPageProps> = props => {
   const { width } = useViewport();
 
   const onSubmit = (e: any) => {
+    e.preventDefault();
     toLogin({username, password}).then(res => {
       if (res.status === 200 && res.data.code === 1) {
-        message({text: '登录成功'});
+        message({text: '登录成功', type: 'success'});
         const { token, user } = res.data.data;
         storeTokenAndUser(token, user);
         setIsLogined(true);
-        setTimeout(() => history.goBack(), 1500);
+        setTimeout(() => history.goBack(), 500);
       } else {
         message({type: 'danger', text: '登录失败'});
       }
@@ -32,7 +33,7 @@ const LoginPage: React.FC<LoginPageProps> = props => {
 
   const onCancel = (e: any) => {
     message({text: '正在返回原网页'});
-    setTimeout(() => history.goBack(), 1500);
+    setTimeout(() => history.goBack(), 1000);
   }
 
   const handleChange = (e: any) => {
@@ -67,21 +68,24 @@ const LoginPage: React.FC<LoginPageProps> = props => {
         <h3>登 录 界 面</h3>
       </div>
       <div className="input">
-        <Input
-          onChange={handleChange}
-          placeholder="请输入用户名"
-          value={username}
-          name='username' />
-        <Input
-          onChange={handleChange}
-          placeholder="请输入密码"
-          onKeyDown={e => console.log(e)}
-          value={password}
-          name='password'
-          type='password' />
+        <form>
+          <Input
+            onChange={handleChange}
+            placeholder="请输入用户名"
+            autoComplete="on"
+            value={username}
+            name='username' />
+          <Input
+            onChange={handleChange}
+            placeholder="请输入密码"
+            autoComplete="on"
+            value={password}
+            name='password'
+            type='password' />
+        </form>
       </div>
       <div className="handle">
-        <Button onClick={onSubmit} type='primary'>Submit</Button>
+        <Button onClick={onSubmit} type='primary' onKeyDown={onSubmit}>Submit</Button>
         <Button onClick={onCancel}>Cancel</Button>
       </div>
       <div className="other-methods">

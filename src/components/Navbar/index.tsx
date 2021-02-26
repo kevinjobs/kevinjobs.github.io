@@ -5,19 +5,19 @@ import MobileNavbar from './mobile';
 export interface NavbarProps {
   menus?: string[],
   onLogin?: React.MouseEventHandler<HTMLElement>,
-  onLogout?: React.MouseEventHandler<HTMLElement>
+  onLogout?: React.MouseEventHandler<HTMLElement>,
+  fresh?: any,
+  isLogin?: boolean
 }
 
 const Navbar: React.FC<NavbarProps> = (props) => {
   const { width } = useViewport();
   const type = width < breakpoint ? 1 : 2;
 
-  const { menus } = props;
-
   if (type === 1) {
-    return <MobileNavbar menus={menus!} />
+    return <MobileNavbar {...props} />
   } else {
-    return <DesktopNavbar menus={menus!} />
+    return <DesktopNavbar {...props} />
   }
 }
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu } from '@/components';
 import { NavLink } from 'react-router-dom';
 import multiavatar from '@multiavatar/multiavatar';
+import { Transition } from '@/components';
 
 interface Props {
   menus?: string[]

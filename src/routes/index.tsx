@@ -1,6 +1,10 @@
 import React from 'react';
-import { HashRouter, Route, Redirect } from 'react-router-dom';
-import { Navbar } from '@/components';
+import {
+  Route,
+  Redirect,
+  useLocation,
+  useHistory
+} from 'react-router-dom';
 import {
   AboutPage,
   AdminPage,
@@ -10,28 +14,39 @@ import {
   LoginPage,
   ProfilePage
 } from '@/pages';
+import { Navbar, message } from '@/components';
 
 const Routes: React.FC = () => {
-  const menus = [
-    'home',
-    'gallery',
-    'about'
-  ]
+  const location = useLocation();
+  const history = useHistory();
+
+  const handleLogin = () => {
+    history.push('/login');
+  }
+
+  const handleLogout = () => {
+    message({ type: 'success', text: '再见' });
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    history.push('/login');
+  }
   
   return (
-    <HashRouter>
-      <Navbar menus={menus} />
-      <Route path="/">
-        <Route path="/about" component={AboutPage} />
-        <Route path="/admin" component={AdminPage} />
-        <Route path="/article/:id" component={ArticlePage} />
-        <Route path="/gallery" component={GalleryPage} />
-        <Route path="/home" component={HomePage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/profile/:username" component={ProfilePage} />
-      </Route>
-      { /* <Redirect from="/" to="/home" /> */}
-    </HashRouter>
+    <>
+      <Navbar
+        fresh={location.pathname}
+        onLogin={handleLogin}
+        onLogout={handleLogout}
+      />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/admin" component={AdminPage} />
+      <Route path="/article/:id" component={ArticlePage} />
+      <Route path="/gallery" component={GalleryPage} />
+      <Route path="/home" component={HomePage} />
+      <Route path="/login" component={LoginPage} />
+      <Route path="/profile/:username" component={ProfilePage} />
+      <Redirect from="/" to="/home" />
+    </>
   )
 }
 
