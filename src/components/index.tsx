@@ -34,3 +34,6 @@ export type { PaginationProps } from './pagination';
 export { default as Pagination } from './pagination';
 
 export { default as Transition } from './transition';
+
+export type { UploadProps } from './upload';
+export { default as Upload } from './upload';

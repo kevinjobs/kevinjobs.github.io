@@ -19,11 +19,14 @@ const Image: React.FC<ImageProps> = props => {
 
   const beforeLoaded: string = 'http://inews.gtimg.com/newsapp_ls/0/13215742764/0';
 
+  /*
   const handleOnError = (e: any) => {
+    e.preventDefault();
     e.target.src = 'http://inews.gtimg.com/newsapp_ls/0/13215710182/0';
-  }
+  } */
 
   const handleOnLoad = (e: any) => {
+    e.preventDefault();
     e.target.src = src;
   }
 
@@ -32,7 +35,7 @@ const Image: React.FC<ImageProps> = props => {
       <img
         {...restProps}
         src={onLoad ? onLoad : beforeLoaded}
-        onError={handleOnError}
+        // onError={handleOnError}
         onLoad={handleOnLoad} />
     </div>
   )

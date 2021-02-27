@@ -1,0 +1,11 @@
+.About-Container {
+  width: 500px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  .mint-image {
+    width: 100%;
+    height: 100%;
+  }
+}
