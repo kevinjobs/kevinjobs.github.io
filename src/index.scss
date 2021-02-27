@@ -17,26 +17,12 @@ body {
   font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f1f1f1;
 }
 
 @import './styles/color.scss';
 @import './styles/index.scss';
 
-@import './components/button/_style.scss';
-@import './components/dialog/_style.scss';
-@import './components/divider/_style.scss';
-@import './components/dropdown/_style.scss';
-@import './components/icon/_style.scss';
-@import './components/image/_style.scss';
-@import './components/input/_style.scss';
-@import './components/masonry/_style.scss';
-@import './components/menu/_style.scss';
-@import './components/message/_style.scss';
-@import './components/navbar/_style.scss';
-@import './components/pagination/_style.scss';
-@import './components/transition/_style.scss';
-@import './components/upload/_style.scss';
+@import './components/index.scss';
 
 // pages
 @import './pages/about/_style.scss';

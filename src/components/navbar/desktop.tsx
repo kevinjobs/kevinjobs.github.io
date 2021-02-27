@@ -1,13 +1,15 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import multiavatar from '@multiavatar/multiavatar';
-import { Button, NavbarProps } from '@/components';
+import { Button, NavbarProps, Switch } from '@/components';
 import { UserInterface } from '@/types';
+import classNames from 'classnames';
+import { useTheme } from '@/hooks';
 
 const DesktopNavbar: React.FC<NavbarProps> = (props) => {
   const [userInfo, setUserInfo] = React.useState<UserInterface>();
 
-  const { fresh, onLogin, onLogout, setNightMode } = props;
+  const { fresh, onLogin, onLogout, onSwitchTheme } = props;
 
   React.useEffect(() => {
     const user = localStorage.getItem('user');
@@ -65,8 +67,17 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
     }
   }
 
+  const { theme } = useTheme();
+  const classname = classNames(
+    'DesktopNavbar',
+    'shadow-card',
+    {
+      [`theme-${theme}`]: theme
+    }
+  )
+
   return(
-    <div className="DesktopNavbar shadow-card">
+    <div className={classname}>
       <div className="DesktopNavbar--Container">
         <ul className="DesktopNavbar--Container__Menus">
           { props.menus?.map(renderMenu) }
@@ -74,9 +85,7 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
         <div className="DesktopNavbar--Container__Others">
           <div className="DesktopNavbar--Container__Others--SearchBar"></div>
           { userInfo ? renderUserInfo() : renderLoginButton() }
-          <div className="Night-Mode">
-            <Button onClick={setNightMode}>Night Mode</Button>
-          </div>
+          <Switch color="#000" onSwitch={onSwitchTheme} />
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { getPostById } from '@/apis/post';
 import { Icon } from '@/components';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
+import { useTheme } from '@/hooks';
 import { MdPluginImage } from './md-plugins';
 
 export interface ArticleInterface {
@@ -28,7 +29,7 @@ export interface ArticlePageProps {
 
 const ArticlePage: React.FC<ArticlePageProps | any> = (props) => {
   const [article, setArticle] = React.useState<ArticleInterface>();
-
+  const { theme } = useTheme();
   const { width } = useViewport();
   const md = new MarkdownIt().use(MdPluginImage);
 
@@ -44,7 +45,8 @@ const ArticlePage: React.FC<ArticlePageProps | any> = (props) => {
   const classname = classNames(
     'ArticlePage',
     {
-      'Mobile': width < breakpoint
+      'Mobile': width < breakpoint,
+      'Night': theme === 'night'
     }
   )
 

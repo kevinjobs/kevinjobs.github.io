@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import multiavatar from '@multiavatar/multiavatar';
-import { Menu, Transition } from '@/components';
+import { Menu, Transition, Switch } from '@/components';
+import { NavbarProps } from './index';
+import classNames from 'classnames';
 
-interface Props {
-  menus?: string[]
-}
-
-const MobileNavbar: React.FC<Props> = (props) => {
+const MobileNavbar: React.FC<NavbarProps> = (props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userInfo, setUserInfo] = useState<{username: string}>();
 
-  const { menus } = props;
+  const { menus, onSwitchTheme, theme } = props;
   const history = useHistory();
 
   React.useEffect(() => {
@@ -42,17 +40,29 @@ const MobileNavbar: React.FC<Props> = (props) => {
       dangerouslySetInnerHTML={{__html: multiavatar(user.username)}}></div>
   )
 
+  const classname = classNames(
+    'mint-navbar-mobile',
+    {
+      [`theme-${theme}`]: theme
+    }
+  )
+
   return (
-    <div className="mint-navbar-mobile">
+    <div className={classname}>
       <div className="container">
         <div className="button">
           <Menu
             onClick={(e: any) => setIsMenuOpen(!isMenuOpen)}
             isOpen={isMenuOpen} />
         </div>
-        <div className="avatar">
-          { userInfo ? renderUserIcon(userInfo) : <span></span> }
+        <div className="avatar" onClick={e => history.push('/login')}>
+          {
+            userInfo
+              ? renderUserIcon(userInfo)
+              : <span></span>
+          }
         </div>
+        <Switch onSwitch={onSwitchTheme} type="dot" />
       </div>
       <Transition
         in={isMenuOpen}
@@ -60,7 +70,9 @@ const MobileNavbar: React.FC<Props> = (props) => {
         animation="ExpandShrink"
       >
         <div className="menu-list">
-          <ul>{ menus?.map(renderMenu) }</ul>
+          <ul>
+            { menus?.map(renderMenu) }
+          </ul>
         </div>
       </Transition>
     </div>

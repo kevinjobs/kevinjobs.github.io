@@ -3,6 +3,13 @@
   background-color: #fff;
   display: flex;
   align-items: center;
+  &.theme-night {
+    background-color: #222222;
+    a { color: #a1a1a1 !important; }
+    a.active {
+      background-color: #333333 !important;
+    }
+  }
   .DesktopNavbar--Container {
     width: 1000px;
     margin: 0 auto;
@@ -109,6 +116,17 @@
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
+  &.theme-night {
+    background-color: #333333;
+    a {
+      color: #a1a1a1 !important;
+    }
+    .menu-list {
+      a.active {
+        background-color: #444444;
+      }
+    }
+  }
   .container {
     display: flex;
     justify-content: space-between;
@@ -129,7 +147,7 @@
       background-color: #f1f1f1;
       border-radius: 50%;
       position: absolute;
-      right: 20px;
+      right: 45px;
       .avatar {
         width: 100%;
         height: 100%;

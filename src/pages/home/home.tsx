@@ -6,7 +6,6 @@ import { ArticleInterface, HomePageProps } from '@/pages';
 import ArticleList from './home-list';
 import { Divider, Button } from '@/components';
 
-
 const Homepage: React.FC<HomePageProps> = (props) => {
   const [articleList, setArticleList] = React.useState<ArticleInterface[]>();
   const [currentPage, setCurrentPage] = React.useState(2);
@@ -44,11 +43,10 @@ const Homepage: React.FC<HomePageProps> = (props) => {
       document.body.removeEventListener('wheel', handleScroll);
     }
   }, [selectedPost])
-  
+
   const classnames = classNames({
     "Article": true,
-    "Mobile": props.type === 1,
-    "Desktop": props.type === 2
+    [`${props.type}`]: props.type
   });
 
   return (
