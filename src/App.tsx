@@ -23,6 +23,14 @@ const App: React.FC = () => {
     history.push('/login');
   }
 
+  React.useEffect(() => {
+    if (nightMode) {
+      document.body.style.backgroundColor = "#333333";
+    } else {
+      document.body.style.backgroundColor = '#f1f1f1';
+    }
+  }, [nightMode])
+
   return (
     <ViewportProvider>
       <ThemeProvider value={nightMode ? 'night' : 'day'}>
@@ -33,9 +41,7 @@ const App: React.FC = () => {
             onLogout={handleLogout}
             onSwitchTheme={(e: any) => {
               e.preventDefault();
-              setNightMode(!nightMode);
-              document.body.style.backgroundColor =
-                nightMode ? "#f1f1f1" : '#333333';
+              setNightMode(!nightMode);  
             }}
           />
           <Routes />

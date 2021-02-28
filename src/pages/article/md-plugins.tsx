@@ -14,11 +14,9 @@ export const MdPluginImage = (md: any) => {
           ReactDOMServer.renderToStaticMarkup(
             <>
               <Image
-                className="content-image"
+                prefixCls="content-image"
                 src={src}
-                onLoad={src}
                 alt={alt !== '' ? alt : content}
-                style={{maxWidth: '80%', lineHeight: 0}}
               />
               <div className="content-image-alt">
                 <small>{ alt ? alt : content }</small>

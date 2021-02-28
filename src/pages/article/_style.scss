@@ -36,11 +36,11 @@
     }
     .content-image {
       width: fit-content !important;
+      max-width: 80%;
       margin: 15px auto 0 auto !important;
       border-radius: 2px !important;
       img {
-        width: fit-content !important;
-        max-width: 100% !important;
+        width: 100% !important;
         border-radius: 2px !important;
       }
     }

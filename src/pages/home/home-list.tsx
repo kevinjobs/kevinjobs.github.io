@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArticleInterface } from '@/pages';
-import multiavatar from '@multiavatar/multiavatar';
 import dayjs from 'dayjs';
+import multiavatar from '@multiavatar/multiavatar';
+import { ArticleInterface } from '@/pages';
 import { Image } from '@/components';
 
 interface ListProps {
@@ -23,7 +23,7 @@ const List: React.FC<ListProps> = (props: ListProps) => {
       <div className="ArticleList__item shadow-card" key={index}>
         {/* article cover */}
         <Image
-          className="ArticleList__item--Cover"
+          prefixCls="ArticleList__item--Cover"
           src={a.cover}
           alt={a.title}
           data-picid={a.id}
