@@ -1,6 +1,5 @@
 import React from 'react';
 import { ImageInterface } from '@/types';
-import { Image } from '@/components';
 
 export interface MasonryProps {
   columns: number,
@@ -72,7 +71,7 @@ const Masonry: React.FC<MasonryProps> = props => {
     const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
     // console.log('index', index, 'img', item.id);
     return (
-      <Image
+      <img
         className="masonry__item shadow-card-middle"
         style={getItemStyle(item, index)}
         key={index}

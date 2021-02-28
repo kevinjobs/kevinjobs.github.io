@@ -1,7 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Masonry } from '@/components';
-import { getPostList } from '@/apis/post';
+import classNames from 'classnames';
+import { Masonry, Icon } from '@/components';
+import { getPostById, getPostList } from '@/apis/post';
 import { ImageInterface } from '@/types';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
 
@@ -10,10 +11,12 @@ export interface GalleryPageProps {};
 const GalleryPage: React.FC<GalleryPageProps> = () => {
   const [currentPage, setCurrentPage] = React.useState(2);
   const [imageList, setImageList] = React.useState<ImageInterface[]>([]);
+  const [selectedImg, setSelectedImg] = React.useState<ImageInterface>();
   const [isMore, setIsMore] = React.useState(true);
 
   const { width } = useViewport();
   const history = useHistory();
+  const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
 
   const loadmore = () => {
     getPostList(currentPage, 12, 1).then(res => {
@@ -31,7 +34,13 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
 
   const handleOpen = (e: any) => {
     console.log(e.target.dataset.picid);
-    history.push(`/photo/${e.target.dataset.picid}`);
+    // history.push(`/photo/${e.target.dataset.picid}`);
+    const picid = e.target.dataset.picid;
+    getPostById(picid).then(res => {
+      if (res.status === 200 && res.data.code === 1) {
+        setSelectedImg(res.data.data);
+      }
+    });
   }
 
   React.useEffect(() => {
@@ -50,8 +59,37 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
     gutter: width < breakpoint ? 5 : 10
   }
 
+  const renderPreview = (image: ImageInterface) => {
+    const { address } = image.exif;
+
+    return (
+      <div className="Gallery-Preview" onClick={e => setSelectedImg(undefined)}>
+        <img
+          src={baseUrl + image.cover.replace('JPG', 'jpg')}
+          alt={image.title}
+        />
+        <div className="info">
+          <div>{ image.desc || '这张图片暂时没有描述' }</div>
+          <div><Icon icon="user" theme="light" />{ image.author }</div>
+          <div><Icon icon="calendar" theme="light" />{ image.exif.datetime.slice(0,10) }</div>
+          <div><Icon icon="clock" theme="light" />{ image.exif.exposure_time }</div>
+          <div><Icon icon="adjust" theme="light" />{ image.exif.iso }</div>
+          <div><Icon icon="location-arrow" theme="light" />{ address.split('|')[1] || '未知地点' }</div>
+          <div><Icon icon="compass" theme="light" />{ address.split('|')[0] }</div>
+        </div>
+      </div>
+    )
+  }
+
+  const classname = classNames(
+    'Gallery',
+    {
+      'Mobile': width < breakpoint
+    }
+  )
+
   return (
-    <div className="Gallery">
+    <div className={classname}>
       <div className="Gallery-Container">
         <div className="masonry">
           {
@@ -64,6 +102,7 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
           { isMore ? '加载更多图片' : '我是有底线的' }
         </div>
       </div>
+      { selectedImg && renderPreview(selectedImg) }
     </div>
   )
 }
