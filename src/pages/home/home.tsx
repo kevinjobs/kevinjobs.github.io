@@ -2,7 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { getPostList } from '@/apis/post';
-import { ArticleInterface, HomePageProps } from '@/pages';
+import { HomePageProps } from '@/pages';
+import { ArticleInterface } from '@/types';
 import ArticleList from './home-list';
 import { Divider, Button } from '@/components';
 

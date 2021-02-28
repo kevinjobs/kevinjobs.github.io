@@ -1,9 +1,12 @@
 import React from 'react';
-import { getPostList } from '@/apis/post';
+import { getPostList, patchById, postNew } from '@/apis/post';
 import { Pagination, message } from '@/components';
+import Editor from './editor';
+import { ImageInterface } from '@/types';
 
 const AdminGalleryPage: React.FC = () => {
   const [imageList, setImageList] = React.useState<any []>();
+  const [selectedImg, setSelectedImg] = React.useState<ImageInterface>();
   const [currentPage, setCurrentPage] = React.useState(1);
   const [total, setTotal] = React.useState(0);
 
@@ -15,6 +18,35 @@ const AdminGalleryPage: React.FC = () => {
       }
     })
   }, [])
+
+  const handleSubmitForm = (e: any) => {
+    const articleForm = JSON.parse(e.target.dataset.form);
+    const submitForm = JSON.parse(JSON.stringify(articleForm));
+    delete submitForm['id'];
+    delete submitForm['create_at'];
+    delete submitForm['update_at'];
+    delete submitForm['exif'];
+
+    submitForm['exif'] = JSON.stringify(articleForm['exif']);
+
+    if (articleForm && articleForm.id) {
+      patchById(articleForm.id, submitForm)
+        .then(res => {
+          if (res.status === 200 && res.data.code === 1) {
+            alert('update success');
+          }
+          setSelectedImg(undefined);
+        }).catch(err => console.log(err));
+    } else {
+      postNew(submitForm)
+        .then(res => {
+          if (res.status === 200 && res.data.code === 1) {
+            alert('post success');
+          }
+          setSelectedImg(undefined);
+        }).catch(err => alert(err));
+    }
+  }
 
   const handlePrev = () => {
     if (currentPage >= 2) {
@@ -45,8 +77,11 @@ const AdminGalleryPage: React.FC = () => {
     const baseurl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
     return (
       <div className="item shadow-card" key={index}>
-        <img src={baseurl + item.cover.replace('JPG', 'jpg')}
-          alt={item.title} />
+        <img
+          src={baseurl + item.cover.replace('JPG', 'jpg')}
+          alt={item.title}
+          onClick={e => setSelectedImg(item)}
+        />
       </div>
     )
   }
@@ -62,6 +97,13 @@ const AdminGalleryPage: React.FC = () => {
           <Pagination onPrev={handlePrev} onNext={handleNext} />
         </div>
       </div>
+      {
+        selectedImg &&
+          <Editor
+            post={selectedImg}
+            onSubmit={handleSubmitForm}
+            onCancel={(e: any) => setSelectedImg(undefined)} />
+      }
     </div>
   )
 }

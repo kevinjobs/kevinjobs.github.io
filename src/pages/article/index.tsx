@@ -8,20 +8,7 @@ import { Icon } from '@/components';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
 import { useTheme } from '@/hooks';
 import { MdPluginImage } from './md-plugins';
-
-export interface ArticleInterface {
-  [key: string]: any,
-  id?: string,
-  cover: string,
-  title: string,
-  author: string,
-  content: string,
-  create_at?: string,
-  update_at?: string,
-  tags?: string,
-  desc?: string,
-  exif?: any
-}
+import { ArticleInterface } from '@/types';
 
 export interface ArticlePageProps {
   id: string

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { getPostById, getPostList, patchById, deleteById, postNew } from '@/apis/post';
 import { Button, Pagination } from '@/components';
 import ArticleEditor from './editor';
-import { ArticleInterface } from '@/pages';
+import { ArticleInterface } from '@/types';
 import dayjs from 'dayjs';
 
 const AdminArticle: React.FC = () => {
@@ -142,14 +142,11 @@ const AdminArticle: React.FC = () => {
         </div>
       </div>
       {
-        selectedPost
-        ?
+        selectedPost &&
         <ArticleEditor
           post={selectedPost}
           onSubmit={handleSubmitForm}
           onCancel={(e: any) => setSelectedPost(undefined)}/>
-        :
-        null
       }
     </div>
   )

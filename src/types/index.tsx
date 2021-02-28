@@ -9,20 +9,24 @@ export interface UserInterface {
   gender: number
 }
 
-export interface ImageInterface {
-  [key: string]: string | number | object,
-  id: string,
-  create_at: string,
-  update_at: string,
+export interface ArticleInterface {
+  [key: string]: any,
+  id?: string,
+  create_at?: string,
+  update_at?: string,
   //
   title: string,
   author: string,
+  content: string,
   cover: string,
-  publish: 0 | 1 | 2 | 3,
-  desc: string,
-  tags: any[],
-  type: 0 | 1,
-  //
+  publish?: 0 | 1 | 2 | 3,
+  desc?: string,
+  tags?: any[],
+  type?: 0 | 1,
+  exif?: any
+}
+
+export interface ImageInterface extends ArticleInterface {
   exif: {
     manufacturer: string,
     cameral_model: string,

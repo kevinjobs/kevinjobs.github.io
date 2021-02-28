@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import multiavatar from '@multiavatar/multiavatar';
-import { ArticleInterface } from '@/pages';
+import { ArticleInterface } from '@/types';
 import { Image } from '@/components';
 
 interface ListProps {

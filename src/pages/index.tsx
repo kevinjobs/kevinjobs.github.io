@@ -5,7 +5,7 @@ export { default as AboutPage } from './about';
 export { default as AdminPage } from './admin';
 
 // article page
-export type { ArticlePageProps, ArticleInterface } from './article';
+export type { ArticlePageProps } from './article';
 export { default as ArticlePage } from './article';
 
 // gallery page

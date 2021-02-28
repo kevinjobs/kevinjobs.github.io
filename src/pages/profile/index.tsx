@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { getPostList } from '@/apis/post';
 import { getUser } from '@/apis/auth';
-import { ArticleInterface } from '@/pages';
+import { ArticleInterface } from '@/types';
 import multiavatar from '@multiavatar/multiavatar';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
 import { Icon } from '@/components';

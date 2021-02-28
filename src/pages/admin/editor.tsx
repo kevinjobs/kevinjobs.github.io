@@ -4,7 +4,7 @@ import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 
 import { Button } from '@/components';
-import { ArticleInterface } from '@/pages';
+import { ArticleInterface } from '@/types';
 
 interface Props {
   post: ArticleInterface,

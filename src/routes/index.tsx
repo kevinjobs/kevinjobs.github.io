@@ -22,7 +22,7 @@ const Routes: React.FC = () => {
   return (
     <>
       <Route exact path="/about" component={AboutPage} />
-      <Route exact path="/admin" component={AdminPage} />
+      <Route path="/admin" component={AdminPage} />
       <Route exact path="/article/:id" component={ArticlePage} />
       <Route exact path="/gallery" component={GalleryPage} />
       <Route exact path="/home" component={HomePage} />
