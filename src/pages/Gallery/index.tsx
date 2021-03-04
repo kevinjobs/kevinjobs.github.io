@@ -61,11 +61,12 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
 
   const renderPreview = (image: ImageInterface) => {
     const { address } = image.exif;
+    const { cover = '' } = image;
 
     return (
       <div className="Gallery-Preview" onClick={e => setSelectedImg(undefined)}>
         <img
-          src={baseUrl + image.cover.replace('JPG', 'jpg')}
+          src={baseUrl + cover.replace('JPG', 'jpg')}
           alt={image.title}
         />
         <div className="info">

@@ -45,7 +45,7 @@ const ArticleEditor: React.FC<Props> = (props: Props) => {
     }
   }
 
-  const FormItem = (label: string, name: string, value: string | undefined, isDisable = false, ph: string = '') => {
+  const FormItem = (label: string, name: string, value: string | number | undefined, isDisable = false, ph: string = '') => {
     return (
       <div className="form__item">
         <label>{label}</label>
@@ -94,11 +94,13 @@ const ArticleEditor: React.FC<Props> = (props: Props) => {
           </div>
           <div className="Right">
             { FormItem('ID', 'id', articleForm.id, true) }
+            { FormItem('类型', 'type', articleForm.type, false, '2: question') }
             { FormItem('作者', 'author', articleForm.author, true) }
             { FormItem('封面', 'cover', articleForm.cover, false, '此处填写封面图片 URL') }
             { FormItem('创建日期', 'create_at', articleForm.create_at, true) }
             { FormItem('修改日期', 'update_at', articleForm.update_at, true) }
             { FormItem('简介', 'desc', articleForm.desc, false, '此处填写简介') }
+            { FormItem('考点', 'questionPoint', articleForm.questionPoint, false, '此处填写考点') }
             <div className="Operation">
               <Button type="primary"
                 onClick={handleSubmit}

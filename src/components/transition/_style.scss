@@ -60,14 +60,14 @@
     opacity: 0;
   }
   to {
-    height: 120px;
+    height: 150px;
     opacity: 1;
   }
 }
 
 @keyframes shrink {
   from {
-    height: 120px;
+    height: 150px;
     opacity: 1;
   }
   30% {

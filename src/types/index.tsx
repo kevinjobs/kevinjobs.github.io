@@ -16,14 +16,16 @@ export interface ArticleInterface {
   update_at?: string,
   //
   title: string,
-  author: string,
+  author?: string,
   content: string,
-  cover: string,
+  cover?: string,
   publish?: 0 | 1 | 2 | 3,
   desc?: string,
   tags?: any[],
-  type?: 0 | 1,
-  exif?: any
+  type?: 0 | 1 | 2,
+  exif?: any,
+  questionPoint?: string,
+  relativeQuestions?: string[]
 }
 
 export interface ImageInterface extends ArticleInterface {

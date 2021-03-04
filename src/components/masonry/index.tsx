@@ -70,6 +70,7 @@ const Masonry: React.FC<MasonryProps> = props => {
   const renderItem = (item: ImageInterface, index: number) => {
     const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
     // console.log('index', index, 'img', item.id);
+    const { cover = '' } = item;
     return (
       <img
         className="masonry__item shadow-card-middle"
@@ -77,7 +78,7 @@ const Masonry: React.FC<MasonryProps> = props => {
         key={index}
         data-picid={item.id}
         onClick={openImage}
-        src={baseUrl + item.cover.replace('JPG', 'jpg')}
+        src={baseUrl + cover.replace('JPG', 'jpg')}
         alt={item.title || 'noname'}
       />
     );
@@ -97,7 +98,7 @@ const Masonry: React.FC<MasonryProps> = props => {
     <div
       className="mint-masonry"
       style={style}>
-      { items.map(renderItem) }
+      { items && items.map(renderItem) }
     </div>
   )
 }

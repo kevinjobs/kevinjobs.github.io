@@ -16,12 +16,12 @@ export { default as GalleryPage } from './gallery';
 export type { HomePageProps } from './home';
 export { default as HomePage } from './home';
 
+// law page
+export { default as LawPage } from './law';
+
 // login page
 export type { LoginPageProps } from './login';
 export { default as LoginPage } from './login';
-
-// photo page
-export { default as PhotoPage } from './photo';
 
 // profile page
 export type { ProfileProps } from './profile';

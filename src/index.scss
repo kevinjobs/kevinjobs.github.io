@@ -23,13 +23,4 @@ body {
 @import './styles/index.scss';
 
 @import './components/index.scss';
-
-// pages
-@import './pages/about/_style.scss';
-@import './pages/admin/_style.scss';
-@import './pages/article/_style.scss';
-@import './pages/gallery/_style.scss';
-@import './pages/home/_style.scss';
-@import './pages/login/_style.scss';
-@import './pages/photo/_style.scss';
-@import './pages/profile/_style.scss';
+@import './pages/index.scss';

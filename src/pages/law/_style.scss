@@ -1,0 +1,102 @@
+.LawPage-Container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 10px;
+  .header {
+    text-align: right;
+    padding: 10px 20px;
+  }
+  .list {
+    .question-card {
+      display: inline-block;
+      width: 320px;
+      height: 150px;
+      background-color: #fff;
+      padding: 20px 40px;
+      margin: 5px;
+      cursor: pointer;
+      vertical-align: top;
+      &:hover {
+        background-color: #dedede;
+      }
+      span {
+        display: inline-block;
+        margin: 5px 0;
+      }
+      h3 {
+        margin: 10px 0;
+      }
+    }
+  }
+}
+
+.question-float {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($color: #000000, $alpha: 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .container {
+    width: 600px;
+    height: 600px;
+    padding: 20px 40px;
+    background-color: #fff;
+    position: relative;
+    .header {
+      margin: 20px 0;
+      width: 100%;
+      span {
+        display: inline-block;
+        &:nth-child(1) { margin: 0 10px; }
+      }
+    }
+    .content {
+      height: 450px;
+      overflow-y: scroll;
+      line-height: 1.8;
+    }
+    .cancel {
+      text-align: right;
+    }
+  }
+}
+
+.LawPage.Mobile {
+  .LawPage-Container {
+    .list {
+      width: 100%;
+      padding: 0 5px 20px 5px;
+      .question-card {
+        width: 100%;
+        margin: 5px 0;
+        padding: 10px;
+      }
+    }
+  }
+  .question-float {
+    .container {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.tag {
+  padding: 2px 8px;
+  color: #f1f1f1;
+  border-radius: 5px;
+  font-size: small;
+  &-primary {
+    background-color: $primary;
+  }
+  &-green-2 {
+    background-color: $green-2;
+  }
+  &-blue {
+     background-color: $blue;
+  }
+}
