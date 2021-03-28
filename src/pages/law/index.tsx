@@ -2,7 +2,7 @@ import React from 'react';
 import { getPostList, getPostById, patchById, postNew, deleteById } from '@/apis/post';
 import { ArticleInterface } from '@/types';
 import { Button } from '@/components';
-import Editor from '@/pages/admin/editor';
+import Editor from '@/pages/_partial/post-editor';
 import MarkdownIt from 'markdown-it';
 import { breakpoint, useViewport } from '@/hooks/viewportCtx';
 

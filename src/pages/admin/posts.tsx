@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { getPostList, deleteById } from '@/apis/post';
 import { Button, Pagination, Icon } from '@/components';
 import { ArticleInterface } from '@/types';
-import PostGlance from '../_partial/post-glance';
+import PostCard from '../_partial/post-card';
 
-const AdminArticle: React.FC = () => {
+const AdminPostsPage: React.FC = () => {
   const [postListPage, setPostListPage] = React.useState<number>(1);
   const [postList, setPostList] = React.useState<ArticleInterface []>();
   const [total, setTotal] = React.useState(0);
@@ -26,7 +27,7 @@ const AdminArticle: React.FC = () => {
       setPostListPage(postListPage - 1);
     } else {
       setPostListPage(1);
-      alert('First Page');
+      window.alert('已经第一页');
     }
   }
 
@@ -35,7 +36,7 @@ const AdminArticle: React.FC = () => {
       setPostListPage(postListPage + 1);
     } else {
       setPostListPage(1);
-      alert('Last Page');
+      window.alert('已经是最后一页');
     }
   }
   
@@ -54,7 +55,7 @@ const AdminArticle: React.FC = () => {
   const renderPostItem = (post: any, index: number) => {
     return (
       <div key={index} className="item">
-        <PostGlance post={post} onDelete={handleDelete} />
+        <PostCard post={post} onDelete={handleDelete} />
       </div>
     )
   }
@@ -79,7 +80,7 @@ const AdminArticle: React.FC = () => {
               </p>
             </div>
           </div>
-          <Button>新增</Button>
+          <Button><Link to="/admin/new">新增</Link></Button>
         </div>
         <div className="post-list">
           <div className="items">
@@ -94,4 +95,4 @@ const AdminArticle: React.FC = () => {
   )
 }
 
-export default AdminArticle;
+export default AdminPostsPage;

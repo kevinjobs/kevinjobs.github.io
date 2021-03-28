@@ -41,3 +41,72 @@
   border-bottom: 1px solid #e1e1e1;
   content: "";
 }
+
+// article editor
+.PostEditor {
+  padding: 10px 50px;
+  .container {
+    display: flex;
+    label {
+      width: 100px;
+      padding: 0 10px;
+      display: inline-block;
+      text-align: right;
+    }
+    input {
+      padding: 5px 15px;
+      font-size: 15px;
+      border: none;
+      background-color: #f1f1f1;
+      &:hover {
+        opacity: .65;
+      }
+      &:focus {
+        outline: none;
+      }
+      &:active {
+        // outline: 3px solid rgba($color: #fff, $alpha: .65);
+        box-shadow: 0 0 0 5px rgba($color: #fff, $alpha: .25);
+      }
+    }
+    .title-and-content {
+      flex-grow: 1;
+      .header {
+        width: 100%;
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        input {
+          width: 100%;
+          background-color: transparent;
+          font-size: 20px;
+          font-weight: 700;
+        }
+      }
+    }
+    .other-infos {
+      padding-top: 70px;
+      .form__item {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        margin: 10px 0;
+        label { width: 100px; color: #a1a1a1; }
+        input { width: 200px; }
+      }
+      .operation {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+      }
+    }
+  }
+}
+
+// markdown editor textarea font size
+.rc-md-editor .editor-container .sec-md .input {
+  font-size: 18px !important;
+}

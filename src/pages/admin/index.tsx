@@ -1,5 +1,6 @@
 import { HashRouter, Route, NavLink } from 'react-router-dom';
-import AdminArticleOverview from './posts';
+import AdminPostsOverview from './posts';
+import AdminNewPage from './new';
 
 export default function () {
   const LeftPanel = () => (
@@ -26,7 +27,8 @@ export default function () {
       <div className="Admin-Right">
         <HashRouter>
           <Route path="/admin">
-            <Route path="/admin/posts" component={AdminArticleOverview} />
+            <Route path="/admin/posts" component={AdminPostsOverview} />
+            <Route path="/admin/new" component={AdminNewPage} />
           </Route>
         </HashRouter>
       </div>
