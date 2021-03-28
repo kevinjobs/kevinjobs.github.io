@@ -8,7 +8,7 @@ const AdminArticle: React.FC = () => {
   const [postListPage, setPostListPage] = React.useState<number>(1);
   const [postList, setPostList] = React.useState<ArticleInterface []>();
   const [total, setTotal] = React.useState(0);
-  const [fresh, setFresh] = React.useState<number>();
+  const [fresh, setFresh] = React.useState<number>(0);
   const [postType, setPostType] = React.useState(0);
 
   React.useEffect(() => {
@@ -40,12 +40,15 @@ const AdminArticle: React.FC = () => {
   }
   
   const handleDelete = (e: any, id: string) => {
-    deleteById(id).then(res => {
-      if (res.status === 200 && res.data.code === 1) {
-        alert('Deleted');
-        setFresh(Math.random());
-      }
-    }).catch(err => alert(err));
+    const r = window.confirm('确定删除这篇文章？');
+    if (r) {
+      deleteById(id).then(res => {
+        if (res.status === 200 && res.data.code === 1) {
+          window.alert('Deleted');
+          setFresh(Math.random());
+        }
+      }).catch(err => alert(err));
+    }
   }
 
   const renderPostItem = (post: any, index: number) => {
@@ -67,9 +70,10 @@ const AdminArticle: React.FC = () => {
             </div>
             <div className="more">
               <p onClick={(e: any) => {
-                if(postType === 0) setPostType(1);
-                else setPostType(0);
+                if (postType === 0) setPostType(1);
+                if (postType === 1) setPostType(0);
                 setFresh(Math.random());
+                setPostListPage(1);
               }}>
                 { postType === 0 ? '图片列表' : '文章列表' }
               </p>
