@@ -1,5 +1,5 @@
 .DesktopNavbar {
-  height: 80px;
+  height: 70px;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -20,7 +20,7 @@
     .DesktopNavbar--Container__Menus {
       display: flex;
       list-style: none;
-      line-height: 80px;
+      line-height: 70px;
       li {
         display: inline-block;
         font-size: 24px;
@@ -48,7 +48,7 @@
       display: flex;
       align-items: center;
       .DesktopNavbar--Container__Others--SearchBar {
-        width: 300px;
+        width: 100px;
         height: 20px;
       }
       .DesktopNavbar--Container__Others--Login {

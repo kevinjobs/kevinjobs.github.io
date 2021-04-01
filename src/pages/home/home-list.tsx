@@ -22,13 +22,15 @@ const List: React.FC<ListProps> = (props: ListProps) => {
     return(
       <div className="ArticleList__item shadow-card" key={index}>
         {/* article cover */}
-        <Image
-          prefixCls="ArticleList__item--Cover"
-          src={a.cover}
-          alt={a.title}
-          data-picid={a.id}
-          onClick={handleClick}
-        />
+        <Link to={`/article/${a.id}`}>
+          <Image
+            prefixCls="ArticleList__item--Cover"
+            src={a.cover}
+            alt={a.title}
+            data-picid={a.id}
+            onClick={handleClick}
+          />
+        </Link>
         {/* article details */}
         <div className="ArticleList__item--Info">
           <span className="ArticleList__item--Info__datetime">

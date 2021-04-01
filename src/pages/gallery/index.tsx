@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
 import { Masonry, Icon } from '@/components';
 import { getPostById, getPostList } from '@/apis/post';
@@ -15,7 +14,6 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   const [isMore, setIsMore] = React.useState(true);
 
   const { width } = useViewport();
-  const history = useHistory();
   const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
 
   const loadmore = () => {
@@ -33,8 +31,6 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   }
 
   const handleOpen = (e: any) => {
-    console.log(e.target.dataset.picid);
-    // history.push(`/photo/${e.target.dataset.picid}`);
     const picid = e.target.dataset.picid;
     getPostById(picid).then(res => {
       if (res.status === 200 && res.data.code === 1) {

@@ -9,7 +9,7 @@ import { useTheme } from '@/hooks';
 const DesktopNavbar: React.FC<NavbarProps> = (props) => {
   const [userInfo, setUserInfo] = React.useState<UserInterface>();
 
-  const { fresh, onLogin, onLogout, onSwitchTheme } = props;
+  const { fresh, onLogin, onLogout, onSwitchTheme, menus } = props;
 
   React.useEffect(() => {
     const user = localStorage.getItem('user');
@@ -80,7 +80,7 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
     <div className={classname}>
       <div className="DesktopNavbar--Container">
         <ul className="DesktopNavbar--Container__Menus">
-          { props.menus?.map(renderMenu) }
+          { menus && menus.map(renderMenu) }
         </ul>
         <div className="DesktopNavbar--Container__Others">
           <div className="DesktopNavbar--Container__Others--SearchBar"></div>

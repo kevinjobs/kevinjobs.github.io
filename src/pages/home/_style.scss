@@ -33,7 +33,7 @@
       .ArticleList__item--Info {
         flex-grow: 1;
         position: relative;
-        height: 220px;
+        height: 100px;
         padding: 20px;
         .ArticleList__item--Info__datetime {
           font-size: 13px;
@@ -80,13 +80,15 @@
     min-height: 600px;
     .ArticleList__item {
       width: 323px;
-      height: 450px;
+      height: 370px;
       margin: 5px;
       .ArticleList__item--Cover {
-        height: 240px;
+        height: 200px;
         transition: height .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        opacity: .8;
         &:hover {
-          height: 230px;
+          height: 210px;
+          opacity: 1;
         }
       }
       .ArticleList__item--Info {
@@ -99,7 +101,7 @@
         .ArticleList__item--Info__desc {
           margin: 10px 0;
           line-height: 1.5;
-          height: 75px;
+          height: 20px;
           overflow: hidden;
           color: #717171;
         }

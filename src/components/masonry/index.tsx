@@ -58,7 +58,8 @@ const Masonry: React.FC<MasonryProps> = props => {
       top: `${top}px`,
       position: 'absolute',
       width: `${columnWidth}px`,
-      height: `${normalizedHeight}px`
+      height: `${normalizedHeight}px`,
+      cursor: 'pointer'
     } as React.CSSProperties;
   }
 
