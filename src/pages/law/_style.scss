@@ -84,19 +84,3 @@
     }
   }
 }
-
-.tag {
-  padding: 2px 8px;
-  color: #f1f1f1;
-  border-radius: 5px;
-  font-size: small;
-  &-primary {
-    background-color: $primary;
-  }
-  &-green-2 {
-    background-color: $green-2;
-  }
-  &-blue {
-     background-color: $blue;
-  }
-}

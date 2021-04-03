@@ -17,7 +17,7 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
 
   const loadmore = () => {
-    getPostList(currentPage, 12, 1).then(res => {
+    getPostList(currentPage, 12, 'picture').then(res => {
       if (res.status === 200 && res.data.code === 1) {
         const { current_page, page_size, total } = res.data.data;
         if (current_page * page_size <= total) {
@@ -40,7 +40,7 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   }
 
   React.useEffect(() => {
-    getPostList(1, 12, 1).then(res => {
+    getPostList(1, 12, 'picture').then(res => {
       if (res.status === 200 && res.data.code === 1) {
         setImageList(res.data.data.items)
       }

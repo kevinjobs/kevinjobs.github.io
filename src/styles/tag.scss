@@ -1,0 +1,27 @@
+span.tag {
+  display: inline-block;
+  padding: 4px 6px;
+  margin: 0 2px;
+  color: #f1f1f1;
+  border-radius: 4px;
+  font-size: 8px !important;
+  line-height: 12px;
+  text-transform: uppercase;
+  &-primary {
+    background-color: $primary;
+  }
+  &-green-2 {
+    background-color: $green-2;
+  }
+  &-blue {
+    background-color: $blue;
+  }
+  &-default-light {
+    color: #333;
+    background-color: #f1f1f1;
+  }
+  &-green-light { color: $green };
+  &-red-light { color: $red };
+  &-blue-light { color: $blue };
+  &-yellow-light { color: $yellow };
+}

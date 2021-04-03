@@ -16,7 +16,7 @@ const Homepage: React.FC<HomePageProps> = (props) => {
 
   const loadMore = (e: any) => {
     if (isMorePost) {
-      getPostList(currentPage, pageSize)
+      getPostList(currentPage, pageSize, 'article')
       .then(res => {
         if (res.status === 200) {
           const { items, total } = res.data.data;
@@ -34,7 +34,7 @@ const Homepage: React.FC<HomePageProps> = (props) => {
   const handleScroll = (e: any) => {if (selectedPost) e.preventDefault();}
 
   React.useEffect(() => {
-    getPostList(1, 6)
+    getPostList(1, 6, 'article')
       .then(res => setArticleList(res.data.data.items))
       .catch(err => console.error(err));
     document.body.addEventListener('touchmove', handleScroll, {passive:false});

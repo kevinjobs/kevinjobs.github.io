@@ -1,4 +1,5 @@
 import { HashRouter, Route, NavLink } from 'react-router-dom';
+import AdminPathsPage from './paths';
 import AdminPostsOverview from './posts';
 import AdminNewPage from './new';
 
@@ -13,6 +14,7 @@ export default function () {
           <ul>
             <li><NavLink to={'/admin/posts'}>概览</NavLink></li>
             <li><NavLink to={'/admin/tags'}>标签</NavLink></li>
+            <li><NavLink to={'/admin/paths'}>路径编辑</NavLink></li>
           </ul>
         </div>
       </div>
@@ -29,6 +31,7 @@ export default function () {
           <Route path="/admin">
             <Route path="/admin/posts" component={AdminPostsOverview} />
             <Route path="/admin/new" component={AdminNewPage} />
+            <Route path="/admin/paths" component={AdminPathsPage} />
           </Route>
         </HashRouter>
       </div>

@@ -32,7 +32,7 @@ const Profile: React.FC<ProfileProps | any> = (props) => {
   React.useEffect(() => {
     const username = props.match.params.username;
     // console.log(username);
-    getPostList(1, 8, 0, username)
+    getPostList(1, 8, 'article', username)
       .then(res => {
         if (res.status === 200 && res.data.data.items.length !== 0) {
           setPostList(res.data.data.items);

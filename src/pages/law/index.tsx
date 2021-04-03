@@ -15,7 +15,7 @@ const LawPage: React.FC = () => {
   const { width } = useViewport();
 
   React.useEffect(() => {
-    getPostList(1, 8, 2).then(res => {
+    getPostList(1, 8, 'question').then(res => {
       if (res.status === 200 && res.data.code === 1) {
         // console.log(res.data);
         setQuestions(res.data.data.items);

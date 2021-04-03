@@ -22,12 +22,12 @@ const List: React.FC<ListProps> = (props: ListProps) => {
     return(
       <div className="ArticleList__item shadow-card" key={index}>
         {/* article cover */}
-        <Link to={`/article/${a.id}`}>
+        <Link to={`/article/${a._id}`}>
           <Image
             prefixCls="ArticleList__item--Cover"
             src={a.cover}
             alt={a.title}
-            data-picid={a.id}
+            data-picid={a._id}
             onClick={handleClick}
           />
         </Link>
@@ -37,7 +37,7 @@ const List: React.FC<ListProps> = (props: ListProps) => {
             { dayjs(a.update_at).format('YYYY-MM-DD') }
           </span>
           <h3 className="ArticleList__item--Info__title">
-            <Link to={`/article/${a.id}`}>{a.title}</Link>
+            <Link to={`/article/${a._id}`}>{a.title}</Link>
           </h3>
           <p className="ArticleList__item--Info__desc">{a.desc}</p>
           <div className="ArticleList__item--Info__author">

@@ -1,9 +1,13 @@
 import axios from '@/utils/axios';
 
-export async function getPostList(page=1, limit=9, type=0, author='ALL', val) {
+export async function getPostList(page=1, limit=9, type='article', rest = {}, val) {
+  let queries = `current_page=${page}&page_size=${limit}&type=${type}`;
+
+  if (rest.author) queries += `&author=${rest.author}`;
+
   let resp = await axios({
     method: 'get',
-    url: `/posts?current_page=${page}&page_size=${limit}&type=${type}&author=${author}`
+    url: `/posts?` + queries
   }, val)
   return resp
 }

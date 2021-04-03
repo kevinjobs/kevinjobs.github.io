@@ -10,7 +10,7 @@ const AdminPostsPage: React.FC = () => {
   const [postList, setPostList] = React.useState<ArticleInterface []>();
   const [total, setTotal] = React.useState(0);
   const [fresh, setFresh] = React.useState<number>(0);
-  const [postType, setPostType] = React.useState(0);
+  const [postType, setPostType] = React.useState('article');
 
   React.useEffect(() => {
     getPostList(postListPage, 5, postType)
@@ -66,17 +66,17 @@ const AdminPostsPage: React.FC = () => {
         <div className="header">
           <div className="post-type">
             <div className="title">
-              { postType === 0 ? '文章列表' : '图片列表' }
+              { postType === 'article' ? '文章列表' : '图片列表' }
               <Icon icon="angle-down" theme="dark" style={{margin:'0 10px'}} />
             </div>
             <div className="more">
               <p onClick={(e: any) => {
-                if (postType === 0) setPostType(1);
-                if (postType === 1) setPostType(0);
+                if (postType === 'article') setPostType('picture');
+                if (postType === 'picture') setPostType('article');
                 setFresh(Math.random());
                 setPostListPage(1);
               }}>
-                { postType === 0 ? '图片列表' : '文章列表' }
+                { postType === 'article' ? '图片列表' : '文章列表' }
               </p>
             </div>
           </div>
