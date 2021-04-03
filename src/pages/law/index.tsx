@@ -1,15 +1,15 @@
 import React from 'react';
 import { getPostList, getPostById, patchById, postNew, deleteById } from '@/apis/post';
-import { ArticleInterface } from '@/types';
+import { IPost } from '@/types';
 import { Button } from '@/components';
 import Editor from '@/pages/_partial/post-editor';
 import MarkdownIt from 'markdown-it';
 import { breakpoint, useViewport } from '@/hooks/viewportCtx';
 
 const LawPage: React.FC = () => {
-  const [questions, setQuestions] = React.useState<ArticleInterface[]>();
-  const [currentQuestion, setCurrentQuestion] = React.useState<ArticleInterface>();
-  const [newQues, setNewQues] = React.useState<ArticleInterface>();
+  const [questions, setQuestions] = React.useState<IPost[]>();
+  const [currentQuestion, setCurrentQuestion] = React.useState<IPost>();
+  const [newQues, setNewQues] = React.useState<IPost>();
 
   const md = new MarkdownIt();
   const { width } = useViewport();
@@ -38,7 +38,7 @@ const LawPage: React.FC = () => {
   }
 
   const handleAdd = (e: any) => {
-    const ques: ArticleInterface = { title: "", content: "", type: 2 };
+    const ques: IPost = { title: "", content: "", type: 'question' };
     setNewQues(ques);
   }
 
@@ -83,7 +83,7 @@ const LawPage: React.FC = () => {
     }
   }
 
-  const renderQues = (question: ArticleInterface, index: number) => {
+  const renderQues = (question: IPost, index: number) => {
     const {
       title,
       id
@@ -102,7 +102,7 @@ const LawPage: React.FC = () => {
     )
   }
 
-  const renderQuesCard = (question: ArticleInterface) => {
+  const renderQuesCard = (question: IPost) => {
     return (
       <div className="question-float">
         <div className="container">

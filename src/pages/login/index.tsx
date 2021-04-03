@@ -23,7 +23,7 @@ const LoginPage: React.FC<LoginPageProps> = props => {
     toLogin({username, password}).then(res => {
       if (res.status === 200 && res.data.code === 1) {
         message({text: '登录成功', type: 'success'});
-        const { token, user } = res.data.data;
+        const { token, user } = res.data;
         storeTokenAndUser(token, user);
         setIsLogined(true);
         setTimeout(() => history.goBack(), 500);

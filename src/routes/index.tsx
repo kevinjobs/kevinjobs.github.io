@@ -11,7 +11,8 @@ import {
   HomePage,
   LawPage,
   LoginPage,
-  ProfilePage
+  ProfilePage,
+  SchedulePage
 } from '@/pages';
 
 
@@ -32,6 +33,7 @@ const Routes: React.FC = () => {
         path="/profile/:username"
         render={({ match }) => <ProfilePage fresh={location.pathname} match={match} />}
       />
+      <Route exact path="/schedule" component={SchedulePage} />
       <Route exact path="/" component={HomePage} />
     </>
   )

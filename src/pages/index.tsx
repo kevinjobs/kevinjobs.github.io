@@ -26,3 +26,7 @@ export { default as LoginPage } from './login';
 // profile page
 export type { ProfileProps } from './profile';
 export { default as ProfilePage } from './profile';
+
+// schedule
+export type { ScheduleProps } from './schedule';
+export { default as SchedulePage } from './schedule';

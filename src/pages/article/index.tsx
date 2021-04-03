@@ -8,14 +8,14 @@ import { Icon } from '@/components';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
 import { useTheme } from '@/hooks';
 import { MdPluginImage } from './md-plugins';
-import { ArticleInterface } from '@/types';
+import { IPost } from '@/types';
 
 export interface ArticlePageProps {
   id: string
 }
 
 const ArticlePage: React.FC<ArticlePageProps | any> = (props) => {
-  const [article, setArticle] = React.useState<ArticleInterface>();
+  const [article, setArticle] = React.useState<IPost>();
   const { theme } = useTheme();
   const { width } = useViewport();
   const md = new MarkdownIt().use(MdPluginImage);

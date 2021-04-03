@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import multiavatar from '@multiavatar/multiavatar';
-import { ArticleInterface } from '@/types';
+import { IPost } from '@/types';
 import { Image } from '@/components';
 
 interface ListProps {
-  articleList: ArticleInterface[],
+  articleList: IPost[],
   onOpen?: React.MouseEventHandler<HTMLElement>;
 }
 
@@ -18,7 +18,7 @@ const List: React.FC<ListProps> = (props: ListProps) => {
     }
   }
 
-  const ListCard = (a: ArticleInterface, index: number) => {
+  const ListCard = (a: IPost, index: number) => {
     return(
       <div className="ArticleList__item shadow-card" key={index}>
         {/* article cover */}

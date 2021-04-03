@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { getPostList } from '@/apis/post';
 import { getUser } from '@/apis/auth';
-import { ArticleInterface } from '@/types';
+import { IPost } from '@/types';
 import multiavatar from '@multiavatar/multiavatar';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
 import { Icon } from '@/components';
@@ -25,14 +25,14 @@ const roles: {
 }
 
 const Profile: React.FC<ProfileProps | any> = (props) => {
-  const [postList, setPostList] = React.useState<ArticleInterface>();
-  const [user, setUser] = React.useState({username: '', role: 4});
+  const [postList, setPostList] = React.useState<IPost>();
+  const [user, setUser] = React.useState({username: '', role: 'common'});
   const [loginUser, setLoginUser] = React.useState('');
 
   React.useEffect(() => {
     const username = props.match.params.username;
     // console.log(username);
-    getPostList(1, 8, 'article', username)
+    getPostList(1, 8, 'article', {author: username})
       .then(res => {
         if (res.status === 200 && res.data.data.items.length !== 0) {
           setPostList(res.data.data.items);
@@ -49,7 +49,7 @@ const Profile: React.FC<ProfileProps | any> = (props) => {
         }
       }).catch(err => {
         console.log(err);
-        setUser({username: '', role: 9});
+        setUser({username: '', role: 'nobody'});
       });
   }, [props.fresh])
 
@@ -74,7 +74,7 @@ const Profile: React.FC<ProfileProps | any> = (props) => {
     </>
   )
 
-  const renderPost = (post: ArticleInterface, index: number) => {
+  const renderPost = (post: IPost, index: number) => {
     /**
      * render the post for list card of profile
      * @param post

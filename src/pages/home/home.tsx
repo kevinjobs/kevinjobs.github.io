@@ -3,15 +3,15 @@ import classNames from 'classnames';
 
 import { getPostList } from '@/apis/post';
 import { HomePageProps } from '@/pages';
-import { ArticleInterface } from '@/types';
+import { IPost } from '@/types';
 import ArticleList from './home-list';
 import { Divider, Button } from '@/components';
 
 const Homepage: React.FC<HomePageProps> = (props) => {
-  const [articleList, setArticleList] = React.useState<ArticleInterface[]>();
+  const [articleList, setArticleList] = React.useState<IPost[]>();
   const [currentPage, setCurrentPage] = React.useState(2);
   const [pageSize, setPageSize] = React.useState(6);
-  const [selectedPost, setSelectedPost] = React.useState<ArticleInterface>();
+  const [selectedPost, setSelectedPost] = React.useState<IPost>();
   const [isMorePost, setIsMorePost] = React.useState(true);
 
   const loadMore = (e: any) => {
