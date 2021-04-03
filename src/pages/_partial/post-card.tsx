@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import multiavatar from '@multiavatar/multiavatar';
 import dayjs from 'dayjs';
-import { ArticleInterface } from '@/types';
+import { IPost } from '@/types';
 import { Icon } from '@/components';
 
 export const UserRoleLevel: {
@@ -16,7 +16,7 @@ export const UserRoleLevel: {
 }
 
 export interface PostGlanceProps {
-  post: ArticleInterface,
+  post: IPost,
   onEdit?: any,
   onDelete?: any
 } 
@@ -33,7 +33,7 @@ const PostGlance: React.FC<PostGlanceProps> = props => {
 
   return (
     <div className="post-glance">
-      <h3><Link to={`/article/${post.id}`}>
+      <h3><Link to={`/article/${post._id}`}>
         {
           post.title === ' '
             ? 'No Title'
@@ -67,8 +67,8 @@ const PostGlance: React.FC<PostGlanceProps> = props => {
       </div>
       <div className="cover">
         {
-          post.type === 1
-            ? <img src={baseUrl + post.cover} alt={post.title} />
+          post.type === 'picture'
+            ? <img src={baseUrl + post.cover?.toLowerCase()} alt={post.title} />
             : <img src={post.cover} alt={post.title} />
         }
       </div>

@@ -9,7 +9,7 @@ export interface UserInterface {
   gender: number
 }
 
-export interface ArticleInterface {
+export interface IPost {
   [key: string]: any,
   id?: string,
   create_at?: string,
@@ -19,16 +19,17 @@ export interface ArticleInterface {
   author?: string,
   content: string,
   cover?: string,
-  publish?: 0 | 1 | 2 | 3,
+  //
+  publish?: string,
   desc?: string,
   tags?: any[],
-  type?: 0 | 1 | 2,
+  type?: string,
   exif?: any,
-  questionPoint?: string,
-  relativeQuestions?: string[]
+  point?: string,
+  relative?: string[]
 }
 
-export interface ImageInterface extends ArticleInterface {
+export interface ImageInterface extends IPost {
   exif: {
     manufacturer: string,
     cameral_model: string,

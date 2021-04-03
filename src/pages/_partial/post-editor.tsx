@@ -4,16 +4,16 @@ import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 
 import { Button } from '@/components';
-import { ArticleInterface } from '@/types';
+import { IPost } from '@/types';
 
 export interface PostEditorProps {
-  post: ArticleInterface | undefined,
+  post: IPost | undefined,
   onCancel?: any,
   onSubmit?: any
 }
 
 const ArticleEditor: React.FC<PostEditorProps> = props => {
-  const [articleForm ,setArticleForm] = React.useState<ArticleInterface | undefined>(props.post);
+  const [articleForm ,setArticleForm] = React.useState<IPost | undefined>(props.post);
 
   const mdParser = new MarkdownIt();
 

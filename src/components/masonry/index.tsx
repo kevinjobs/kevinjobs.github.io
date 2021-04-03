@@ -45,7 +45,9 @@ const Masonry: React.FC<MasonryProps> = props => {
     const left = (columnWidth + gutter) * shortestColumnIndex;
     const top = columnHeights[shortestColumnIndex];
 
-    const normalizedHeight = (columnWidth / item.exif.width) * item.exif.height;
+    const exif = JSON.parse(String(item.exif));
+
+    const normalizedHeight = (columnWidth / exif.width) * exif.height;
     columnHeights[shortestColumnIndex] += (normalizedHeight + gutter);
 
     if (index === length - 1) {

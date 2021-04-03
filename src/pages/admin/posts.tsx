@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { getPostList, deleteById } from '@/apis/post';
 import { Button, Pagination, Icon } from '@/components';
-import { ArticleInterface } from '@/types';
+import { IPost } from '@/types';
 import PostCard from '../_partial/post-card';
 
 const AdminPostsPage: React.FC = () => {
   const [postListPage, setPostListPage] = React.useState<number>(1);
-  const [postList, setPostList] = React.useState<ArticleInterface []>();
+  const [postList, setPostList] = React.useState<IPost []>();
   const [total, setTotal] = React.useState(0);
   const [fresh, setFresh] = React.useState<number>(0);
   const [postType, setPostType] = React.useState('article');
@@ -26,7 +26,7 @@ const AdminPostsPage: React.FC = () => {
     if (postListPage > 1) {
       setPostListPage(postListPage - 1);
     } else {
-      setPostListPage(1);
+      // setPostListPage(1);
       window.alert('已经第一页');
     }
   }
@@ -35,7 +35,7 @@ const AdminPostsPage: React.FC = () => {
     if (postListPage * 5 < total) {
       setPostListPage(postListPage + 1);
     } else {
-      setPostListPage(1);
+      // setPostListPage(1);
       window.alert('已经是最后一页');
     }
   }
@@ -45,7 +45,7 @@ const AdminPostsPage: React.FC = () => {
     if (r) {
       deleteById(id).then(res => {
         if (res.status === 200 && res.data.code === 1) {
-          window.alert('Deleted');
+          // window.alert('Deleted');
           setFresh(Math.random());
         }
       }).catch(err => alert(err));
@@ -55,7 +55,7 @@ const AdminPostsPage: React.FC = () => {
   const renderPostItem = (post: any, index: number) => {
     return (
       <div key={index} className="item">
-        <PostCard post={post} onDelete={handleDelete} />
+        <PostCard post={post} onDelete={(e: any) => handleDelete(e, post._id)} />
       </div>
     )
   }
