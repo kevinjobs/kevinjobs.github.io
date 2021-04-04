@@ -1,18 +1,22 @@
 .admin-log-page {
+  height: 100%;
   .container {
+    height: calc(100vh - 150px);
     display: flex;
-    table {
-      min-width: 300px;
-      tr {
-        cursor: pointer;
-        &:hover {
-          background-color: #dfdfdf;
+    .log-list {
+      overflow-y: scroll;
+      table {
+        min-width: 300px;
+        tr {
+          cursor: pointer;
+          &:hover {
+            background-color: #dfdfdf;
+          }
         }
       }
     }
     .log-viewer {
       padding: 20px;
-      height: calc(100vh - 200px);
       overflow-y: scroll;
       overflow-x: hidden;
       background-color: #333333;
