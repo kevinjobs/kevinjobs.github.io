@@ -93,7 +93,7 @@ const AdminPathsPage: React.FC<AdminPathsPageProps> = props => {
   }
 
   return (
-    <div className="admin-paths-page">
+    <div className="admin-paths-page admin-page">
       <div className="header">
         <h3>Api 路径编辑页面</h3>
         <Button onClick={handleAdd}>新增路径</Button>

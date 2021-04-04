@@ -1,3 +1,4 @@
+@import './logs/style';
 @import './paths/style';
 
 $radius: 25px;
@@ -6,12 +7,13 @@ $radius: 25px;
   display: flex;
   justify-content: center;
   border-top: 1px solid #e1e1e1;
+  height: calc(100vh - 70px);
 }
 
 .Admin-Left {
   width: 250px;
-  min-width: 250px;
-  height: 850px;
+  min-width: 200px;
+  height: 100%;
   margin: 0;
   background-color: #364f6b;
   color: #f1f1f1;
@@ -58,6 +60,31 @@ $radius: 25px;
 // right
 .Admin-Right {
   width: 100%;
+  .admin-page {
+    background-color: #fff;
+    padding: 20px 40px;
+    height: 100%;
+    .header {
+      padding: 12px 0;
+      h3 { display: inline-block; }
+    }
+    .container {
+      table {
+        padding: 8px;
+        border-spacing: 0;
+        tr {
+          th {
+            padding: 8px;
+          }
+          td {
+            border-top: 1px solid #dfdfdf;
+            padding: 8px 16px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
   .Admin-Article-Overview {
     background-color: #fff;
     height: 850px;
