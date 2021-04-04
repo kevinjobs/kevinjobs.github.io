@@ -1,5 +1,5 @@
 import React from 'react';
-import PostEditor from '../_partial/post-editor';
+import PostEditor from '../../_partial/post-editor';
 
 export interface AdminNewPageProps {}
 

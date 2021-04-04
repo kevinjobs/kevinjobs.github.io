@@ -65,6 +65,10 @@ const AdminPathEditor: React.FC<AdminPathEditorProps> = props => {
               window.alert(res.data.msg);
             }
           }
+        }).catch(err => {
+          if (err.response.status === 401) {
+            window.alert(err.response.data.msg);
+          }
         })
       } else {
         PathApi.postNewPath(form).then(res => {
@@ -75,6 +79,10 @@ const AdminPathEditor: React.FC<AdminPathEditorProps> = props => {
             } else {
               window.alert(res.data.msg);
             }
+          }
+        }).catch(err => {
+          if (err.response.status === 401) {
+            window.alert(err.response.data.msg);
           }
         })
       }

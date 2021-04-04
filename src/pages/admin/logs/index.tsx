@@ -15,6 +15,10 @@ const AdminLogPage: React.FC<AdminLogPageProps> = props => {
           setLog(res.data.data[0]);
         }
       }
+    }).catch(err => {
+      if (err.response.status === 401) {
+        window.alert(err.response.data.msg);
+      }
     })
   }, [])
 
@@ -26,6 +30,10 @@ const AdminLogPage: React.FC<AdminLogPageProps> = props => {
         if (res.data.code === 1) {
           setLog(res.data.data);
         }
+      }
+    }).catch(err => {
+      if (err.response.status === 401) {
+        window.alert(err.response.data.msg);
       }
     })
   }

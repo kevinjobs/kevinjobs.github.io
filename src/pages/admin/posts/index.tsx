@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { getPostList, deleteById } from '@/apis/post';
 import { Button, Pagination, Icon } from '@/components';
 import { IPost } from '@/types';
-import PostCard from '../_partial/post-card';
+import PostCard from '../../_partial/post-card';
 
 const AdminPostsPage: React.FC = () => {
   const [postListPage, setPostListPage] = React.useState<number>(1);

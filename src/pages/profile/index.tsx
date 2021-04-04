@@ -83,7 +83,7 @@ const Profile: React.FC<ProfileProps | any> = (props) => {
     let username = user ? user.username : '易名';
     return (
       <div className="item" key={index}>
-        <h3><Link to={`/article/${post.id}`}>{ post.title }</Link></h3>
+        <h3><Link to={`/article/${post._id}`}>{ post.title }</Link></h3>
         <div className="author">
           <span className="username"
           dangerouslySetInnerHTML={{__html: multiavatar(username)}}></span>

@@ -19,6 +19,10 @@ const AdminPathsPage: React.FC<AdminPathsPageProps> = props => {
           setPaths(res.data.data);
         }
       }
+    }).catch(err => {
+      if (err.response.status === 401) {
+        window.alert(err.response.data.msg);
+      }
     })
   }
 

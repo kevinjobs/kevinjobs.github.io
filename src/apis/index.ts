@@ -3,3 +3,6 @@ export { default as LogApi } from './log';
 
 export type { IPath } from './path';
 export { default as PathApi } from './path';
+
+export type { IUser } from './user';
+export { default as UserApi } from './user';

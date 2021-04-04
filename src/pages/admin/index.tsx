@@ -3,6 +3,7 @@ import AdminLogPage from './logs';
 import AdminPathsPage from './paths';
 import AdminPostsOverview from './posts';
 import AdminNewPage from './new';
+import AdminUserPage from './users';
 
 export default function () {
   const LeftPanel = () => (
@@ -14,9 +15,10 @@ export default function () {
         <div className="menus">
           <ul>
             <li><NavLink to={'/admin/posts'}>概览</NavLink></li>
-            <li><NavLink to={'/admin/tags'}>标签</NavLink></li>
-            <li><NavLink to={'/admin/paths'}>路径编辑</NavLink></li>
+            <li><NavLink to={'/admin/tags'}>标签列表</NavLink></li>
+            <li><NavLink to={'/admin/paths'}>路径列表</NavLink></li>
             <li><NavLink to={'/admin/logs'}>日志查看</NavLink></li>
+            <li><NavLink to={'/admin/users'}>用户列表</NavLink></li>
           </ul>
         </div>
       </div>
@@ -35,6 +37,7 @@ export default function () {
             <Route path="/admin/new" component={AdminNewPage} />
             <Route path="/admin/paths" component={AdminPathsPage} />
             <Route path="/admin/logs" component={AdminLogPage} />
+            <Route path="/admin/users" component={AdminUserPage} />
           </Route>
         </HashRouter>
       </div>
