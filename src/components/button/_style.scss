@@ -20,11 +20,16 @@
 }
 .mint-button-primary {
   border: none;
-  color: #f1f1f1;
+  color: #ffffff;
   background-color: $primary;
 }
 .mint-button-danger {
   border: none;
-  color: #f1f1f1;
+  color: #ffffff;
   background-color: $red;
+}
+.mint-button-success {
+  border: none;
+  color: #ffffff;
+  background-color: $green;
 }
