@@ -20,7 +20,7 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
     getPostList(currentPage, 12, 'picture').then(res => {
       if (res.status === 200 && res.data.code === 1) {
         const { current_page, page_size, total } = res.data.data;
-        if (current_page * page_size <= total) {
+        if ((current_page - 1) * page_size <= total) {
           setImageList(imageList.concat(res.data.data.items));
           setCurrentPage(currentPage + 1);
         } else {
@@ -56,7 +56,7 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   }
 
   const renderPreview = (image: ImageInterface) => {
-    const { address } = image.exif;
+    const { address, author, datetime, exposure_time, iso } = JSON.parse(String(image.exif));
     const { cover = '' } = image;
 
     return (
@@ -67,10 +67,10 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
         />
         <div className="info">
           <div>{ image.desc || '这张图片暂时没有描述' }</div>
-          <div><Icon icon="user" theme="light" />{ image.author }</div>
-          <div><Icon icon="calendar" theme="light" />{ image.exif.datetime.slice(0,10) }</div>
-          <div><Icon icon="clock" theme="light" />{ image.exif.exposure_time }</div>
-          <div><Icon icon="adjust" theme="light" />{ image.exif.iso }</div>
+          <div><Icon icon="user" theme="light" />{ author }</div>
+          <div><Icon icon="calendar" theme="light" />{ datetime.slice(0,10) }</div>
+          <div><Icon icon="clock" theme="light" />{ exposure_time }</div>
+          <div><Icon icon="adjust" theme="light" />{ iso }</div>
           <div><Icon icon="location-arrow" theme="light" />{ address.split('|')[1] || '未知地点' }</div>
           <div><Icon icon="compass" theme="light" />{ address.split('|')[0] }</div>
         </div>

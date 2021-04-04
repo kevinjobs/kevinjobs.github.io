@@ -79,7 +79,7 @@ const Masonry: React.FC<MasonryProps> = props => {
         className="masonry__item shadow-card-middle"
         style={getItemStyle(item, index)}
         key={index}
-        data-picid={item.id}
+        data-picid={item._id}
         onClick={openImage}
         src={baseUrl + cover.replace('JPG', 'jpg')}
         alt={item.title || 'noname'}
