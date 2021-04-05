@@ -2,8 +2,14 @@ import axios from 'axios';
 
 const instance = axios.create();
 
-instance.defaults.baseURL = 'http://localhost:5000'
-// instance.defaults.baseURL = 'https://api.iyum.in:5000';
+let baseUrl: string;
+if (process.env.NODE_ENV === 'development') {
+  baseUrl = 'https://api.iyum.in:5000';
+} else {
+  baseUrl = 'https://api.iyum.in:5000';
+}
+
+instance.defaults.baseURL = baseUrl;
 
 instance.interceptors.request.use(
   config => {

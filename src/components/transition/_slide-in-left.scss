@@ -1,0 +1,39 @@
+.SlideInLeft {
+  &-enter {
+    opacity: 1;
+  }
+  &-enter-active {
+    animation: slideInLeft .5s;
+    animation-fill-mode: forwards;
+  }
+  &-enter-done {
+    opacity: 1;
+  }
+  &-exit { opacity: 1; }
+  &-exit-active {
+    animation: slideOutLeft .5s;
+    animation-fill-mode: forwards;
+  }
+  &-exit-done {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    left: -200px;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: -200px;
+  }
+}

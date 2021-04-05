@@ -1,167 +1,109 @@
-.schedule-page {
+.schedule {
   background-color: #fff;
-  display: flex;
-  justify-content: center;
-  .container {
-    flex-grow: 1;
-    padding: 10px;
-    .todo-list {
-      .day {
-        margin-top: 10px;
-        .header {
-          padding: 0 15px;
-        }
-        .todo-item {
-          padding: 20px 4px;
-          margin: 0;
-          color: #333333;
-          display: flex;
-          align-items: center;
-          position: relative;
-          cursor: pointer;
-          &.done {
-            color: #777777;
-          }
-          &.delete {
-            text-decoration: line-through;
-            color: #777777;
-          }
-          &:hover {
-            background-color: #f7f7f7;
-          }
-          &:after {
-            content: "";
-            border-bottom: 1px solid #f1f1f1;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-          }
-          .todo-check {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 1px solid #777;
-            border-radius: 50vh;
-            margin: 0 8px;
-            .check {
-              position: relative;
-              left: -3px;
-              top: -3px;
-              visibility: hidden;
-            }
-            &:hover {
-              .check { visibility: visible; }
-            }
-          }
-        }
-      }
-      .history {
-        color: #a1a1a1;
-        .todo-item { color: inherit }
-      }
-      .show-history {
-        p {
-          padding: 16px;
-          color: #555555;
-        }
-      }
+  height: calc(100vh - 50px);
+  border-top: 1px solid #f1f1f1;
+  padding: 20px 30px;
+}
+.schedule-slide {
+  width: 200px;
+  height: calc(100vh - 50px);
+  position: fixed;
+  top: 50px;
+  left: 0;
+  background-color: #f1f1f1;
+  z-index: 3;
+  border-right: 1px solid #f1f1f1;
+  .header {
+    position: relative;
+    height: 50px;
+    .close {
+      font-size: 24px;
+      position: absolute;
+      right: 12px;
+      top: 4px;
     }
   }
-  .schedule-add {
-    position: fixed;
-    right: 30px;
-    bottom: 40px;
+  .menus {
+    .menu-item {
+      padding: 12px 0;
+      margin: 0 24px;
+      text-align: center;
+      position: relative;
+      color: #555555;
+      cursor: pointer;
+      &::after {
+        width: 100%;
+        content: " ";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-bottom: 1px solid #dfdfdf;
+      }
+    }
   }
 }
-
-.schedule-float {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba($color: #000000, $alpha: .75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .mask {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+.schedule-page {
+  .header {
+    padding: 10px 0;
   }
   .container {
-    position: relative;
-    width: 80%;
-    height: 50vh;
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 4px;
-    z-index: 2;
-    .item {
-      padding: 10px 0;
-      input {
-        border: none;
+    .todo-item {
+      padding: 16px 4px;
+      margin: 0;
+      color: #333333;
+      position: relative;
+      cursor: pointer;
+      &:hover {
+        background-color: #f7f7f7;
+      }
+      &:after {
+        content: "";
+        border-bottom: 1px solid #f1f1f1;
+        position: absolute;
+        bottom: 0;
+        left: 0;
         width: 100%;
-        &:focus {
-          outline: none;
-        }
-        &:active {
-          border: none;
-        }
       }
-    }
-    .title {
-      input {
-        font-size: 20px;
-        font-weight: 800;
-      }
-    }
-    .status {
-      display: flex;
-      align-items: center;
-      span {
-        &.status-item {
-          display: inline-block;
-          background-color: #f1f1f1;
-          padding: 4px 8px;
-          margin: 4px;
-          font-size: 12px;
-          border-radius: 8px;
-          &.selected {
-            background-color: $primary;
-            color: #ffffff;
+      .check-circle {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #777;
+        border-radius: 50%;
+        margin: 0 8px;
+        z-index: 2;
+        .check {
+          height: 18px;
+          width: 18px;
+          visibility: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: scale(.8);
+          z-index: 0;
+          svg {
+            z-index: 0;
           }
         }
+        &:hover {
+          .check { visibility: visible; }
+        }
       }
-      input {
-        padding: 0 20px;
-        width: 100px;
-        font-size: 16px;
-        border-bottom: 1px solid #a1a1a1;
+      &.done {
+        color: #999999;
+        .check-circle {
+          .check { visibility: visible; }
+        }
       }
-    }
-    .date,.status {
-      font-size: 1rem;
-    }
-    .date {
-      display: flex;
-      align-items: center;
-      input {
-        width: 100px;
-        margin: 0 10px;
-        border: 1px solid #a1a1a1;
+      &.delete {
+        text-decoration: line-through;
+        color: #999999;
       }
-      .unset-date {
-        margin: 0;
+      .date {
+        font-size: 12px;
+        margin: 8px 36px;
+        color: #a1a1a1;
       }
-    }
-    .operate {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%) scale(1.4);
     }
   }
 }
