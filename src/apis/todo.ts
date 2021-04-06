@@ -4,7 +4,7 @@ export interface ITodo {
   // 基础字段 - 时间
   // create_at: Date,
   // update_at: Date,
-  _id: string,
+  _id?: string,
   title: string,
   status: string, // 'todo', 'done', 'delete'
   date?: string,
@@ -16,6 +16,10 @@ export interface ITodo {
 export default class {
   static getList = async () => {
     return await axios.get('/todos');
+  }
+
+  static postNew = async (form: ITodo) => {
+    return await axios.post('/todo', form);
   }
 
   static putById = async (id: string, form: any) => {

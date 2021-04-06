@@ -83,17 +83,18 @@
 
 // FadeIn
 .FadeInOut {
-  // &-enter {}
+  &-enter { opacity: 0; }
   &-enter-active {
-    animation: fadeIn 1s;
-  }
-  // &-enter-done {}
-  // &-exit {}
-  &-exit-active {
-    animation: fadeOut 1s;
+    animation: fadeIn .5s;
     animation-fill-mode: forwards;
   }
-  // &-exit-done {}
+  &-enter-done { opacity: 1; }
+  &-exit { opacity: 1; }
+  &-exit-active {
+    animation: fadeOut .5s;
+    // animation-fill-mode: forwards;
+  }
+  &-exit-done { opacity: 1; }
 }
 
 @keyframes fadeIn {

@@ -9,6 +9,7 @@ import Routes from '@/routes';
 
 const App: React.FC = () => {
   const [nightMode, setNightMode] = React.useState(false);
+
   const location = useLocation();
   const history = useHistory();
 

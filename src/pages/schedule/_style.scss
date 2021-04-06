@@ -1,14 +1,14 @@
 .schedule {
   background-color: #fff;
-  height: calc(100vh - 50px);
+  height: 100vh;
   border-top: 1px solid #f1f1f1;
   padding: 20px 30px;
 }
 .schedule-slide {
   width: 200px;
-  height: calc(100vh - 50px);
+  height: 100vh;
   position: fixed;
-  top: 50px;
+  top: 0;
   left: 0;
   background-color: #f1f1f1;
   z-index: 3;
@@ -17,7 +17,7 @@
     position: relative;
     height: 50px;
     .close {
-      font-size: 24px;
+      font-size: 32px;
       position: absolute;
       right: 12px;
       top: 4px;
@@ -45,6 +45,14 @@
 .schedule-page {
   .header {
     padding: 10px 0;
+    h2 {
+      display: inline-block;
+    }
+    span {
+      position: relative;
+      top: 2px;
+      left: 10px;
+    }
   }
   .container {
     .todo-item {
@@ -89,6 +97,11 @@
           .check { visibility: visible; }
         }
       }
+      &.todo {
+        .check-circle {
+          .check { visibility: hidden; }
+        }
+      }
       &.done {
         color: #999999;
         .check-circle {
@@ -106,4 +119,70 @@
       }
     }
   }
+}
+
+.schedule-add {
+  padding: 20px 0;
+  .container {
+    .input {
+      display: flex;
+      align-items: center;
+    }
+    span {
+      display: inline-block;
+      input {
+        height: 30px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+      }
+      &.plus {
+        margin: 0 12px;
+      }
+    }
+    .rich-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #a1a1a1;
+      border-radius: 4px;
+      .text {
+        min-height: 30px;
+        outline: none;
+        margin-bottom: 12px;
+        color: #777777;
+        &:empty::before {
+          content: attr(placeholder);
+        }
+      }
+      .date {
+        display: inline-block;
+        padding: 4px 8px;
+        border: 1px solid #a1a1a1;
+        border-radius: 4px;
+      }
+    }
+    .operate {
+      padding: 16px 0;
+      span {
+        padding: 8px 12px;
+        text-align: center;
+        color: #aaa;
+      }
+      .confirm {
+        background-color: #dd4b39;
+        border-radius: 4px;
+        color: #fff;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.schedule-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($color: #000000, $alpha: 0.7);
 }
