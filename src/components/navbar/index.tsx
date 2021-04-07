@@ -26,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 }
 
 Navbar.defaultProps = {
-  menus: ['home', 'gallery', 'law']
+  menus: ['home', 'gallery', 'schedule']
 }
 
 export default Navbar;
