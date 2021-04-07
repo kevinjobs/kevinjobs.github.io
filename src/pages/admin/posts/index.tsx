@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getPostList, deleteById } from '@/apis/post';
+import { PostApi, IPost } from '@/apis';
 import { Button, Pagination, Icon } from '@/components';
-import { IPost } from '@/types';
 import PostCard from '../../_partial/post-card';
 
 const AdminPostsPage: React.FC = () => {
@@ -13,7 +12,7 @@ const AdminPostsPage: React.FC = () => {
   const [postType, setPostType] = React.useState('article');
 
   React.useEffect(() => {
-    getPostList(postListPage, 5, postType)
+    PostApi.getPostList(postListPage, 5, postType)
       .then(res => {
         if (res.status === 200) {
           setPostList(res.data.data.items);
@@ -43,7 +42,7 @@ const AdminPostsPage: React.FC = () => {
   const handleDelete = (e: any, id: string) => {
     const r = window.confirm('确定删除这篇文章？');
     if (r) {
-      deleteById(id).then(res => {
+      PostApi.deleteById(id).then(res => {
         if (res.status === 200 && res.data.code === 1) {
           // window.alert('Deleted');
           setFresh(Math.random());

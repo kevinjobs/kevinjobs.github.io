@@ -5,6 +5,7 @@ import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 type AnimationName =
   | 'SlideInTop'
   | 'ExpandShrink'
+  | 'ExpandShrinkV'
   | 'FadeInOut'
   | 'SlideInLeft'
 

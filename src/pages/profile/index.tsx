@@ -2,9 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
-import { getPostList } from '@/apis/post';
+import { PostApi, IPost } from '@/apis';
 import { getUser } from '@/apis/auth';
-import { IPost } from '@/types';
 import multiavatar from '@multiavatar/multiavatar';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
 import { Icon } from '@/components';
@@ -32,7 +31,7 @@ const Profile: React.FC<ProfileProps | any> = (props) => {
   React.useEffect(() => {
     const username = props.match.params.username;
     // console.log(username);
-    getPostList(1, 8, 'article', {author: username})
+    PostApi.getPostList(1, 8, 'article', {author: username})
       .then(res => {
         if (res.status === 200 && res.data.data.items.length !== 0) {
           setPostList(res.data.data.items);

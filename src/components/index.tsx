@@ -33,6 +33,9 @@ export { default as Navbar } from './navbar';
 export type { PaginationProps } from './pagination';
 export { default as Pagination } from './pagination';
 
+export type { PullDownProps } from './pulldown';
+export { default as PullDown } from './pulldown';
+
 export { default as Switch } from './switch';
 
 export { default as Transition } from './transition';

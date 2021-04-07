@@ -1,9 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { getPostList } from '@/apis/post';
+import { PostApi, IPost } from '@/apis';
 import { HomePageProps } from '@/pages';
-import { IPost } from '@/types';
 import ArticleList from './home-list';
 import { Divider, Button } from '@/components';
 
@@ -16,7 +15,7 @@ const Homepage: React.FC<HomePageProps> = (props) => {
 
   const loadMore = (e: any) => {
     if (isMorePost) {
-      getPostList(currentPage, pageSize, 'article')
+      PostApi.getPostList(currentPage, pageSize, 'article')
       .then(res => {
         if (res.status === 200) {
           const { items, total } = res.data.data;
@@ -34,7 +33,7 @@ const Homepage: React.FC<HomePageProps> = (props) => {
   const handleScroll = (e: any) => {if (selectedPost) e.preventDefault();}
 
   React.useEffect(() => {
-    getPostList(1, 6, 'article')
+    PostApi.getPostList(1, 6, 'article')
       .then(res => setArticleList(res.data.data.items))
       .catch(err => console.error(err));
     document.body.addEventListener('touchmove', handleScroll, {passive:false});

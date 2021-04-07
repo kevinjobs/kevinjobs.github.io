@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Masonry, Icon } from '@/components';
-import { getPostById, getPostList } from '@/apis/post';
+import { PostApi } from '@/apis';
 import { ImageInterface } from '@/types';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
 
@@ -17,7 +17,7 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
 
   const loadmore = () => {
-    getPostList(currentPage, 12, 'picture').then(res => {
+    PostApi.getPostList(currentPage, 12, 'picture').then(res => {
       if (res.status === 200 && res.data.code === 1) {
         const { current_page, page_size, total } = res.data.data;
         if ((current_page - 1) * page_size <= total) {
@@ -32,7 +32,7 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
 
   const handleOpen = (e: any) => {
     const picid = e.target.dataset.picid;
-    getPostById(picid).then(res => {
+    PostApi.getPostById(picid).then(res => {
       if (res.status === 200 && res.data.code === 1) {
         setSelectedImg(res.data.data);
       }
@@ -40,7 +40,7 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   }
 
   React.useEffect(() => {
-    getPostList(1, 12, 'picture').then(res => {
+    PostApi.getPostList(1, 12, 'picture').then(res => {
       if (res.status === 200 && res.data.code === 1) {
         setImageList(res.data.data.items)
       }

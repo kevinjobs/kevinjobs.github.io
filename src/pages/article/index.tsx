@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import MarkdownIt from 'markdown-it';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
-import { getPostById } from '@/apis/post';
+import { PostApi, IPost } from '@/apis';
 import { Icon } from '@/components';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
 import { useTheme } from '@/hooks';
 import { MdPluginImage } from './md-plugins';
-import { IPost } from '@/types';
 
 export interface ArticlePageProps {
   id: string
@@ -22,7 +21,7 @@ const ArticlePage: React.FC<ArticlePageProps | any> = (props) => {
 
   React.useEffect(() => {
     const { id } = props.match.params;
-    getPostById(id).then(res => {
+    PostApi.getPostById(id).then(res => {
       if (res.status === 200 && res.data.code === 1) {
         setArticle(res.data.data);
       }

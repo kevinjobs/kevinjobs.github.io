@@ -1,0 +1,32 @@
+.mint-pull-down {
+  .mint-menus {
+    .mint-menu {
+      margin: 8px 0;
+      .mint-menu-header {
+        .mint-menu-arrow {
+          display: inline-block;
+          transform: rotate(-90deg);
+          margin: 4px;
+        }
+        .mint-menu-title {
+          cursor: pointer;
+          padding: 4px;
+          border-radius: 4px;
+          &:hover { background-color: #f1f1f1; }
+        }
+      }
+      .mint-menu-child {
+        margin: 4px 0 0 12px;
+        padding: 0 0 0 12px;
+        background-color: #fff;
+        .mint-child-item {
+          padding: 4px;
+          cursor: pointer;
+          width: fit-content;
+          border-radius: 4px;
+          &:hover { background-color: #f1f1f1; }
+        }
+      }
+    }
+  }
+}

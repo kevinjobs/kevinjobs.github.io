@@ -1,6 +1,5 @@
 import React from 'react';
-import { getPostList, getPostById, patchById, postNew, deleteById } from '@/apis/post';
-import { IPost } from '@/types';
+import { PostApi, IPost } from '@/apis';
 import { Button } from '@/components';
 import Editor from '@/pages/_partial/post-editor';
 import MarkdownIt from 'markdown-it';
@@ -15,7 +14,7 @@ const LawPage: React.FC = () => {
   const { width } = useViewport();
 
   React.useEffect(() => {
-    getPostList(1, 8, 'question').then(res => {
+    PostApi.getPostList(1, 8, 'question').then(res => {
       if (res.status === 200 && res.data.code === 1) {
         // console.log(res.data);
         setQuestions(res.data.data.items);
@@ -26,7 +25,7 @@ const LawPage: React.FC = () => {
   const handleSelect = (e: any) => {
     const id = e.target.dataset.id;
     // console.log(id);
-    getPostById(id).then(res => {
+    PostApi.getPostById(id).then(res => {
       if (res.status === 200 && res.data.code === 1) {
         setCurrentQuestion(res.data.data);
       }
@@ -47,12 +46,14 @@ const LawPage: React.FC = () => {
   }
 
   const handleDelete = (e: any) => {
-    deleteById(currentQuestion?.id).then(res => {
-      if (res.status === 200 && res.data.code === 1) {
-        alert('deleted');
-        setCurrentQuestion(undefined);
-      }
-    })
+    if (currentQuestion && currentQuestion.id) {
+      PostApi.deleteById(currentQuestion.id).then(res => {
+        if (res.status === 200 && res.data.code === 1) {
+          alert('deleted');
+          setCurrentQuestion(undefined);
+        }
+      })
+    } 
   }
 
   const handleSubmit = (e: any) => {
@@ -64,7 +65,7 @@ const LawPage: React.FC = () => {
     delete submitForm['exif'];
 
     if (articleForm && articleForm.id) {
-      patchById(articleForm.id, submitForm)
+      PostApi.patchById(articleForm.id, submitForm)
         .then(res => {
           if (res.status === 200 && res.data.code === 1) {
             alert('update success');
@@ -73,7 +74,7 @@ const LawPage: React.FC = () => {
           }
         }).catch(err => console.log(err));
     } else {
-      postNew(submitForm)
+      PostApi.postNew(submitForm)
         .then(res => {
           if (res.status === 200 && res.data.code === 1) {
             alert('post success');

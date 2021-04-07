@@ -1,0 +1,32 @@
+.ExpandShrinkV {
+  &-enter { opacity: 0; }
+  &-enter-active {
+    animation: expandV .3s;
+    animation-fill-mode: forwards;
+  }
+  &-enter-done { opacity: 1; }
+  &-exit { opacity: 1; }
+  &-exit-active {
+    animation: shrinkV .3s;
+    animation-fill-mode: forwards;
+  }
+  &-exit-done { opacity: 0; }
+}
+
+@keyframes expandV {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shrinkV {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
