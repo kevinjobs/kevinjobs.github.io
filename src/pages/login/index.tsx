@@ -84,11 +84,15 @@ const LoginPage: React.FC<LoginPageProps> = props => {
             autoComplete="on"
             value={password}
             name='password'
-            type='password' />
+            type='password'
+            onKeyDown={e => {
+              if (e.key === 'Enter') onSubmit(e);
+            }}
+          />
         </form>
       </div>
       <div className="handle">
-        <Button onClick={onSubmit} type='primary' onKeyDown={onSubmit}>Submit</Button>
+        <Button onClick={onSubmit} type='primary'>Submit</Button>
         <Button onClick={onCancel}>Cancel</Button>
       </div>
       <div className="other-methods">
