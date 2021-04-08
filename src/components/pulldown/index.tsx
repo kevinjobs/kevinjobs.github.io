@@ -14,7 +14,7 @@ export interface PullDownData {
 } 
 
 const PullDown: React.FC<PullDownProps> = props => {
-  const [childShow, setChildShow] = React.useState(false);
+  const [childShow, setChildShow] = React.useState(true);
 
   const { data, onSelect, ...restProps } = props;
 

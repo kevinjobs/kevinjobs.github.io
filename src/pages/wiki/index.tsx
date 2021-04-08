@@ -63,19 +63,6 @@ const WikiPage: React.FC<WikiPageProps> = props => {
     getPostListByCate('article');
   }, [])
 
-  const renderPostItem = (item: IPost, index: number) => {
-    return (
-      <div
-        className="post-item"
-        data-id={item._id}
-        key={index}
-        onClick={handleSelectPost}
-      >
-        { item.title }
-      </div>
-    )
-  }
-
   return (
     <div className="wiki-page">
       <div className="header"></div>
@@ -88,9 +75,6 @@ const WikiPage: React.FC<WikiPageProps> = props => {
             <PullDown data={data} style={{fontSize: 16}}
               onSelect={handleSelect} />
           </div>
-        </div>
-        <div className="post-list">
-          { posts && posts.map(renderPostItem) }
         </div>
         <div className="content">
           { post && <PostPanel post={post} /> }

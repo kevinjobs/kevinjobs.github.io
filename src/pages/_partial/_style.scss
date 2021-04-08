@@ -110,3 +110,48 @@
 .rc-md-editor .editor-container .sec-md .input {
   font-size: 18px !important;
 }
+
+.partial {
+  &-article-header {
+    margin-bottom: 20px;
+  }
+  &-article-datetime {
+    font-size: 14px;
+    color: #a1a1a1;
+    margin: 5px 0;
+  }
+  &-article-author {
+    color: #777;
+    a {
+      color: #000;
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+  &-article-author-icon {
+    margin-right: 10px;
+    color: inherit;
+  }
+  &-article-content {
+    line-height: 2;
+    p {
+      margin: 12px 0;
+      color: #555555;
+    }
+  }
+  &-article-content-image {
+    width: fit-content !important;
+    max-width: 80%;
+    margin: 15px auto 0 auto !important;
+    border-radius: 2px !important;
+    img {
+      width: 100% !important;
+      border-radius: 2px !important;
+    }
+  }
+  &-article-content-image-alt {
+    color: #999999;
+    text-align: center;
+  }
+}
