@@ -1,10 +1,6 @@
 import React from 'react';
-import MarkdownIt from 'markdown-it';
-import MdEditor from 'react-markdown-editor-lite';
-import 'react-markdown-editor-lite/lib/index.css';
-
-import { Button } from '@/components';
-import { IPost } from '@/types';
+import { Button, Editor } from '@/components';
+import { IPost } from '@/apis';
 
 export interface PostEditorProps {
   post: IPost | undefined,
@@ -14,8 +10,6 @@ export interface PostEditorProps {
 
 const ArticleEditor: React.FC<PostEditorProps> = props => {
   const [articleForm ,setArticleForm] = React.useState<IPost | undefined>(props.post);
-
-  const mdParser = new MarkdownIt();
 
   const handleChange = (e: any) => {
     const newArticleForm = JSON.parse(JSON.stringify(articleForm));
@@ -79,13 +73,7 @@ const ArticleEditor: React.FC<PostEditorProps> = props => {
           </div>
           <div className="editor">
             <div className="content">
-              <MdEditor
-                style={markdownStyle}
-                renderHTML={(text) => mdParser.render(text)}
-                onChange={handleContentChange}
-                value={articleForm?.content}
-                config={{view: {html: false}}}
-              />
+              <Editor value="# hello" />
             </div>
           </div>
         </div>

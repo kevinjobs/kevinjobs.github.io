@@ -10,6 +10,9 @@ export { default as Divider } from './divider';
 export type { DropdownProps } from './dropdown';
 export { default as Dropdown } from './dropdown';
 
+export type { EditorProps } from './editor';
+export { Editor } from './editor';
+
 export type { IconProps } from './icon';
 export { default as Icon } from './icon';
 
