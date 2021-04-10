@@ -24,48 +24,15 @@
         position: relative;
         padding: 12px 0;
         margin: 0 12px;
-        .title {
+        .more-item {
+          padding: 4px 0;
           cursor: pointer;
-          color: #fff;
           a {
-            color: #fff;
-            &:hover {
-              color: #dfdfdf;
-            }
+            &:visited { color: #000; }
+            color: #000;
           }
           &:hover {
-            color: #dfdfdf;
-          }
-          .down-arrow {
-            margin: 0 8px;
-          }
-        }
-        .more {
-          position: absolute;
-          background-color: #fff;
-          width: 100px;
-          left: -10px;
-          top: 36px;
-          margin-top: 8px;
-          padding: 12px 16px;
-          border-radius: 4px;
-          text-align: center;
-          z-index: 4;
-          border: 1px solid #dfdfdf;
-          .divider {
-            border-bottom: 1px solid #cfcfcf;
-            width: 100%;
-          }
-          .more-item {
-            padding: 8px 0;
-            cursor: pointer;
-            a {
-              &:visited { color: #000; }
-              color: #000;
-            }
-            &:hover {
-              color: $blue;
-            }
+            color: $blue;
           }
         }
       }

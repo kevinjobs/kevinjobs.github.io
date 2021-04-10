@@ -6,8 +6,17 @@ $theme-colors:
   "info":       $info,
   "warning":    $warning,
   "danger":     $danger,
-  "light":      $light,
-  "dark":       $dark
+  // new colors
+  "default": #000000,
+  "dark": #000000,
+  "light": #ffffff,
+  "red": #F44336,
+  "orange": #FF9800,
+  "yellow": #FDD835,
+  "green": #4CAF50,
+  "cyan": #00BCD4,
+  "blue": #2196F3,
+  "purple": #9C27B0
 );
 
 @each $key, $value in $theme-colors {

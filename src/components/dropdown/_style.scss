@@ -1,0 +1,38 @@
+.mint-dropdown {
+  &-container {
+    position: relative;
+    z-index: 4;
+    cursor: pointer;
+    &:hover {
+      .mint-dropdown-title {
+        color: $blue;
+      }
+    }
+  }
+  &-title {
+    display: flex;
+    align-items: center;
+    transition: all .1s ease-in-out;
+    color: $light;
+    p {
+      color: inherit;
+    }
+    span {
+      height: 20px;
+    }
+  }
+  &-content {
+    position: absolute;
+    min-width: 100px;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 12px 0;
+    .mint-dropdown-children {
+      background-color: #ffffff;
+      border: 1px solid #dfdfdf;
+      border-radius: 4px;
+      padding: 12px 16px;
+      text-align: center;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import multiavatar from '@multiavatar/multiavatar';
-import { Button, NavbarProps, Switch, Icon, Transition } from '@/components';
+import { Button, NavbarProps, Switch, Icon, Dropdown } from '@/components';
 import { UserInterface } from '@/types';
 import classNames from 'classnames';
 import { useTheme } from '@/hooks';
@@ -40,14 +40,8 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
           onMouseEnter={e => setMenuItemShow(true)}
           onMouseLeave={e => setMenuItemShow(false)}
         >
-          <span className="title">
-            探索更多
-            <span className="down-arrow">
-              <Icon icon="chevron-down" style={{color: '#f1f1f1', fontSize: 16}} />
-            </span>
-          </span>
-          <Transition className="more" timeout={100} in={menuItemShow} animation="FadeInOut">
-            <div>
+          <Dropdown title="探索更多">
+            <>
               <div className="more-item">
                 <Link to="/wiki">百科</Link>
               </div>
@@ -61,12 +55,20 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
               <div className="more-item">
                 <Link to="/admin">管理</Link>
               </div>
-            </div>
-          </Transition>
+            </>
+          </Dropdown>
         </div>
       </div>
     )
   }
+
+  const renderIcon = (username: string) => (
+    <div
+      className="avatar"
+      dangerouslySetInnerHTML={{
+        __html: multiavatar(username)
+    }}></div>
+  )
 
   const renderUserInfo = () => {
     const user = userInfo;
@@ -74,22 +76,14 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
     if (user) {
       return (
         <div className="DesktopNavbar--Container__Others--UserInfo">
-          <div className="avatar"
-            dangerouslySetInnerHTML={{__html: multiavatar(user.username)}}></div>
-          <div className="infos">
+          <Dropdown title={renderIcon(user.username)}>
             <div className="item">{user.username}</div>
             <div className="item">{user.role}</div>
             <div className="item">
               <Link to={`/profile/${user.username}`}>个人中心</Link>
             </div>
             <div className="item" onClick={onLogout}>Logout</div>
-          </div>
-        </div>
-      )
-    } else {
-      return (
-        <div className="DesktopNavbar--Container__Others--UserInfo">
-          <div className="avatar"><div>Null</div></div>
+          </Dropdown>
         </div>
       )
     }
