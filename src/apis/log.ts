@@ -3,8 +3,8 @@ import axios from '@/utils/axios';
 export interface ILog {}
 
 export default class {
-  static getList = async () => {
-    return await axios.get('/logs');
+  static getList = async (date: string) => {
+    return await axios.get(`/logs?date=${date}`);
   }
 
   static getByFileName = async (filename: string) => {

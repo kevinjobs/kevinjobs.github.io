@@ -3,28 +3,6 @@
   .container {
     height: calc(100vh - 150px);
     display: flex;
-    .log-list {
-      overflow-y: scroll;
-      table {
-        min-width: 300px;
-        tr {
-          cursor: pointer;
-          &:hover {
-            background-color: #dfdfdf;
-          }
-        }
-      }
-    }
-    .log-viewer {
-      padding: 20px;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      background-color: #333333;
-      flex-grow: 1;
-      color: #f1f1f1;
-      div {
-        white-space: pre;
-      }
-    }
+    overflow-y: scroll;
   }
 }

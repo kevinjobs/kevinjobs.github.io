@@ -3,6 +3,8 @@
     button { margin-left: 12px; }
   }
   .container {
+    height: calc(100vh - 180px);
+    overflow-y: scroll;
     table {
       padding: 8px;
       border-spacing: 0;
