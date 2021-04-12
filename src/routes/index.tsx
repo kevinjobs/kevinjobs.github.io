@@ -11,6 +11,7 @@ import {
   HomePage,
   LawPage,
   LoginPage,
+  MissivePage,
   ProfilePage,
   SchedulePage,
   WikiPage
@@ -29,6 +30,7 @@ const Routes: React.FC = () => {
       <Route exact path="/home" component={HomePage} />
       <Route exact path="/law" component={LawPage} />
       <Route exact path="/login" component={LoginPage} />
+      <Route exact path="/missive" component={MissivePage} />
       <Route
         exact
         path="/profile/:username"

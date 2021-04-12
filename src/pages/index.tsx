@@ -23,6 +23,9 @@ export { default as LawPage } from './law';
 export type { LoginPageProps } from './login';
 export { default as LoginPage } from './login';
 
+// missive page
+export { MissivePage } from './missive';
+
 // profile page
 export type { ProfileProps } from './profile';
 export { default as ProfilePage } from './profile';

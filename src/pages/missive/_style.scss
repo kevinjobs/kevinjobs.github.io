@@ -1,0 +1,24 @@
+.missive {
+  &-container {
+    height: calc(100vh - 65px);
+    display: flex;
+    .left {
+      width: 200px;
+      height: 100%;
+      background-color: #ffffff;
+    }
+  }
+}
+
+.mint-table {
+  background-color: #ffffff;
+  padding: 16px;
+  tbody {
+    tr {
+      td {
+        padding: 12px;
+        border-bottom: 1px solid #777777;
+      }
+    }
+  }
+}
