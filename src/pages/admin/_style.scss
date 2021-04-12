@@ -6,14 +6,13 @@ $radius: 25px;
 .Admin {
   display: flex;
   justify-content: center;
-  border-top: 1px solid #e1e1e1;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 65px);
 }
 
 .Admin-Left {
   width: 250px;
   min-width: 200px;
-  height: 100%;
+  height: calc(100vh - 65px);
   margin: 0;
   background-color: #364f6b;
   color: #f1f1f1;

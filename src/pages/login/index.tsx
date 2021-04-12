@@ -21,9 +21,9 @@ const LoginPage: React.FC<LoginPageProps> = props => {
   const onSubmit = (e: any) => {
     e.preventDefault();
     toLogin({username, password}).then(res => {
-      if (res.status === 200 && res.data.code === 1) {
+      if (res.data.code === 1) {
         message({text: '登录成功', type: 'success'});
-        const { token, user } = res.data;
+        const { token, user } = res.data.data;
         storeTokenAndUser(token, user);
         setIsLogined(true);
         setTimeout(() => history.goBack(), 500);
@@ -47,7 +47,12 @@ const LoginPage: React.FC<LoginPageProps> = props => {
 
   React.useEffect(() => {
     const token = localStorage.getItem('token');
-    token ? setIsLogined(true) : setIsLogined(false);
+    const user = localStorage.getItem('user');
+    if (token && token !== 'undenfied' && user && user !== 'undenfied') {
+      setIsLogined(true);
+    } else {
+      setIsLogined(false);
+    }
   }, [isLogined]);
 
   const classname = classNames('Login', {

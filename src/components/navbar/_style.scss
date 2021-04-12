@@ -24,9 +24,16 @@
         position: relative;
         padding: 12px 0;
         margin: 0 12px;
+        color: #ffffff;
+        .title {
+          a {
+            color: inherit;
+            &:hover {
+              color: $blue;
+            }
+          }
+        }
         .more-item {
-          padding: 4px 0;
-          cursor: pointer;
           a {
             &:visited { color: #000; }
             color: #000;

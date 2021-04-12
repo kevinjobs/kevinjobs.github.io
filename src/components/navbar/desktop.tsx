@@ -10,11 +10,13 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
   const [userInfo, setUserInfo] = React.useState<UserInterface>();
   const [menuItemShow, setMenuItemShow] = React.useState(false);
 
-  const { fresh, onLogin, onLogout, onSwitchTheme, menus } = props;
+  const { fresh, onLogin, onLogout, onSwitchTheme } = props;
 
   React.useEffect(() => {
     const user = localStorage.getItem('user');
-    setUserInfo(JSON.parse(user!));
+    if (user && user !== 'undenfied') {
+      setUserInfo(JSON.parse(user))
+    };
   }, [fresh]);
 
   const renderLoginButton = () => (
@@ -77,12 +79,14 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
       return (
         <div className="DesktopNavbar--Container__Others--UserInfo">
           <Dropdown title={renderIcon(user.username)}>
-            <div className="item">{user.username}</div>
-            <div className="item">{user.role}</div>
-            <div className="item">
-              <Link to={`/profile/${user.username}`}>个人中心</Link>
-            </div>
-            <div className="item" onClick={onLogout}>Logout</div>
+            <>
+              <div className="more-item">{user.username}</div>
+              <div className="more-item">{user.role}</div>
+              <div className="more-item">
+                <Link to={`/profile/${user.username}`}>个人中心</Link>
+              </div>
+              <div className="more-item" onClick={onLogout}>Logout</div>
+            </>
           </Dropdown>
         </div>
       )
