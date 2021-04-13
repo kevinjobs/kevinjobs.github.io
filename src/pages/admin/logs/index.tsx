@@ -27,12 +27,20 @@ const AdminLogPage: React.FC<AdminLogPageProps> = props => {
         if (res.data.code === 1) {
           const logs = res.data.data;
           const items = [];
+          
           for (let i = 0; i < logs.length; i ++) {
+            const ipLink = (
+              <a
+                target='blank'
+                href={`https://ip.tool.chinaz.com/${logs[i]['ip']}`}>
+              {logs[i]['ip']}</a>
+            )
+
             items.push([
               logs.length - i,
               dayjs(logs[i]['create_at'])
                 .format('YYYY-MM-DD HH:mm:ss'),
-              logs[i]['ip'],
+              ipLink,
               logs[i]['method'],
               logs[i]['url'],
               logs[i]['status'],
