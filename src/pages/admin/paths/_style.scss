@@ -5,26 +5,6 @@
   .container {
     height: calc(100vh - 180px);
     overflow-y: scroll;
-    table {
-      padding: 8px;
-      border-spacing: 0;
-      tr {
-        th {
-          padding: 8px;
-        }
-        td {
-          border-top: 1px solid #dfdfdf;
-          padding: 8px 16px;
-          text-align: center;
-          &:nth-child(3) {
-            min-width: 210px;
-          }
-          &:nth-child(4) {
-            min-width: 210px;
-          }
-        }
-      }
-    }
   }
 }
 

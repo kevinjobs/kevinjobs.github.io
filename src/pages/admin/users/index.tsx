@@ -1,22 +1,36 @@
 import React from 'react';
 import { UserApi, IUser } from '@/apis';
-import { Button } from '@/components';
+import { Button, Table } from '@/components';
 
 export interface AdminUserPageProps {}
 
 const AdminUserPage: React.FC<AdminUserPageProps> = props => {
-  const [user, setUsers] = React.useState<IUser[]>();
   const [newUser, setNewUser] = React.useState<IUser>();
+  const [table, setTable] = React.useState<any[]>();
+
+  const tableHead = [
+    { title: '序号', width: 50, height: 80 },
+    { title: '用户名', width: 100, height: 80 },
+    { title: '昵称', width: 100, height: 80 },
+    { title: '头像', width: 80, height: 80 },
+    { title: '个人主页', width: 250, height: 80 },
+    { title: '生日', width: 80, height: 80 },
+    { title: '性别', width: 80, height: 80 },
+    { title: '地址', width: 200, height: 80 },
+    { title: '个人宣言', width: 150, height: 80 },
+    { title: '描述', width: 130, height: 80 },
+    { title: '用户等级', width: 100, height: 80 },
+    { title: '操作', width: 150, height: 80 }
+  ]
 
   React.useEffect(() => getPathList(), [])
 
   const getPathList = () => {
     UserApi.getList().then((res: any) => {
       // console.log(res);
-      if (res.status === 200) {
-        if (res.data.code === 1) {
-          setUsers(res.data.data);
-        }
+      if (res.data.code === 1) {
+        const users = res.data.data;
+        renderRow(users);
       }
     }).catch(err => {
       if (err.response.status === 401) {
@@ -36,7 +50,7 @@ const AdminUserPage: React.FC<AdminUserPageProps> = props => {
   const handleDelete = (e: any) => {
     const id = e.target.dataset.id;
     // console.log(e.target.dataset);
-    if (window.confirm('确认要删除该路径？')) {
+    if (window.confirm('确认要删除该用户？')) {
       UserApi.deleteById(id).then(res => {
         if (res.status === 200) {
           if (res.data.code === 1) {
@@ -50,40 +64,33 @@ const AdminUserPage: React.FC<AdminUserPageProps> = props => {
     }
   }
 
-  const renderRow = (user: IUser, index: number) => {
-    const {
-      _id,
-      username,
-      nickname,
-      avatar,
-      homepage,
-      birthday,
-      gender,
-      location,
-      motto,
-      desc,
-      role
-    } = user;
-
-    return (
-      <tr key={index}>
-        <td>{ index + 1 }</td>
-        <td>{ username }</td>
-        <td>{ nickname }</td>
-        <td>{ avatar }</td>
-        <td>{ homepage }</td>
-        <td>{ birthday }</td>
-        <td>{ gender }</td>
-        <td>{ location }</td>
-        <td>{ motto }</td>
-        <td>{ desc }</td>
-        <td>{ role }</td>
-        <td>
-          <Button onClick={e => handleEdit(e, user)}>编辑</Button>
+  const renderRow = (users: IUser[]) => {
+    const tableData = [];
+    for (let i = 0; i < users.length; i ++) {
+      const {
+        _id,
+        username,
+        nickname,
+        avatar,
+        homepage,
+        birthday,
+        gender,
+        location,
+        motto,
+        desc,
+        role
+      } = users[i];
+      const operator = (
+        <>
+          <Button onClick={e => handleEdit(e, users[i])}>编辑</Button>
           <Button type="danger" onClick={handleDelete} data-id={_id}>删除</Button>
-        </td>
-      </tr>
-    )
+        </>
+      )
+      tableData.push([i+1, username, nickname, avatar, homepage, birthday,
+        gender, location, motto, desc, role, operator
+      ]);
+    };
+    setTable(tableData);
   }
 
   return (
@@ -93,25 +100,7 @@ const AdminUserPage: React.FC<AdminUserPageProps> = props => {
         <Button onClick={handleAdd}>新增用户</Button>
       </div>
       <div className="container">
-        <table>
-          <tbody>
-            <tr>
-              <th>序号</th>
-              <th>用户名</th>
-              <th>昵称</th>
-              <th>头像</th>
-              <th>个人主页</th>
-              <th>生日</th>
-              <th>性别</th>
-              <th>地址</th>
-              <th>个人宣言</th>
-              <th>描述</th>
-              <th>用户等级</th>
-              <th>操作</th>
-            </tr>
-            { user?.map(renderRow) }
-          </tbody>
-        </table>
+        { table && <Table head={tableHead} items={table} /> }
       </div>
     </div>
   )

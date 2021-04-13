@@ -1,22 +1,34 @@
 import React from 'react';
 import { PathApi, IPath } from '@/apis';
-import { Button } from '@/components';
+import { Button, Table } from '@/components';
 import AdminPathEditor from './path-editor';
 
 export interface AdminPathsPageProps {}
 
 const AdminPathsPage: React.FC<AdminPathsPageProps> = props => {
-  const [paths, setPaths] = React.useState<IPath[]>();
   const [newPath, setNewPath] = React.useState<IPath>();
+  const [table, setTable] = React.useState<any[]>();
 
-  React.useEffect(() => getPathList(), [])
+  const tableHead = [
+    { title: '序号', width: 50 },
+    { title: '路径名', width: 120 },
+    { title: '允许的方法', width: 300 },
+    { title: '需要认证的方法', width: 300 },
+    { title: '允许的用户等级', width: 300 },
+    { title: '操作', width: 200 }
+  ]
+
+  React.useEffect(() => {
+    getPathList();
+  }, [])
 
   const getPathList = () => {
     PathApi.getList().then((res: any) => {
       // console.log(res);
       if (res.status === 200) {
         if (res.data.code === 1) {
-          setPaths(res.data.data);
+          const paths = res.data.data;
+          renderRow(paths);
         }
       }
     }).catch(err => {
@@ -75,25 +87,45 @@ const AdminPathsPage: React.FC<AdminPathsPageProps> = props => {
       default:
         tagTheme = 'tag-default';
     }
-    return <span key={index} className={`tag ${tagTheme}-light`}>{item}</span>
-  }
 
-  const renderRow = (path: IPath, index: number) => {
-    const { pathname, allowMethods, allowRoles, authRequiredMethods, _id } = path;
+    console.log(item);
 
     return (
-      <tr key={index}>
-        <td>{ index + 1 }</td>
-        <td>{ "/" + pathname }</td>
-        <td>{ allowMethods?.map(renderSpan) }</td>
-        <td>{ authRequiredMethods?.map(renderSpan) }</td>
-        <td>{ allowRoles?.map(renderSpan) }</td>
-        <td>
-          <Button onClick={e => handleEdit(e, path)}>编辑</Button>
-          <Button type="danger" onClick={handleDelete} data-id={_id}>删除</Button>
-        </td>
-      </tr>
+      <span key={index} className={`tag ${tagTheme}-light`}>
+        { item }
+      </span>
     )
+  }
+
+  const renderRow = (paths: any[]) => {
+    const tableDataTmp = [];
+
+    if (paths) {
+      for (let i = 0; i < paths.length; i ++) {
+        const { pathname, allowMethods, allowRoles, authRequiredMethods, _id } = paths[i];
+
+        const operator = (
+          <>
+            <Button onClick={e => handleEdit(e, paths[i])} size="small">编辑</Button>
+            <Button type="danger" onClick={handleDelete} data-id={_id} size="small" style={{
+              marginLeft: 8
+            }}>删除</Button>
+          </>
+        )
+
+        const td = [
+          i + 1,
+          "/" + pathname,
+          allowMethods.map(renderSpan),
+          authRequiredMethods.map(renderSpan),
+          allowRoles.map(renderSpan),
+          operator
+        ];
+        tableDataTmp.push(td)
+      }
+    }
+    
+    setTable(tableDataTmp);
   }
 
   return (
@@ -103,19 +135,7 @@ const AdminPathsPage: React.FC<AdminPathsPageProps> = props => {
         <Button onClick={handleAdd}>新增路径</Button>
       </div>
       <div className="container">
-        <table>
-          <tbody>
-            <tr>
-              <th>序号</th>
-              <th>路径名</th>
-              <th>允许的方法</th>
-              <th>需要认证的方法</th>
-              <th>允许的用户等级</th>
-              <th>操作</th>
-            </tr>
-            { paths?.map(renderRow) }
-          </tbody>
-        </table>
+        { table && <Table head={tableHead} items={table} /> }
       </div>
       {
         newPath &&

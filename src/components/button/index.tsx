@@ -7,7 +7,8 @@ export type ButtonType = typeof ButtonTypes[number];
 
 export interface BaseButtonProps {
   type?: ButtonType,
-  children?: React.ReactNode
+  children?: React.ReactNode,
+  size?: 'small' | 'large' | 'medium'
 }
 
 export type NativeButtonProps = {
@@ -17,11 +18,12 @@ export type NativeButtonProps = {
 export type ButtonProps = Partial<NativeButtonProps>;
 
 const B: React.FC<ButtonProps> = (props: ButtonProps) => {
-  const { type, children, ...rest } = props;
+  const { type, children, size, ...rest } = props;
 
   const classnames = classNames({
     'mint-button': true,
-    [`mint-button-${type}`]: type
+    [`mint-button-${type}`]: type,
+    [`mint-button-${size}`]: size
   })
 
   return (

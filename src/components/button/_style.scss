@@ -17,19 +17,23 @@
     // outline: 3px solid rgba($color: #fff, $alpha: .65);
     box-shadow: 0 0 0 5px rgba($color: #fff, $alpha: .25);
   }
+  &-small {
+    padding: 2px 8px;
+    margin: 0;
+  }
 }
 .mint-button-primary {
-  border: none;
+  border: 1px solid $primary;
   color: #ffffff;
   background-color: $primary;
 }
 .mint-button-danger {
-  border: none;
+  border: 1px solid $red;
   color: #ffffff;
   background-color: $red;
 }
 .mint-button-success {
-  border: none;
+  border: 1px solid $green;
   color: #ffffff;
   background-color: $green;
 }

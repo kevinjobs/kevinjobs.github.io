@@ -41,6 +41,9 @@ export { default as PullDown } from './pulldown';
 
 export { default as Switch } from './switch';
 
+export type { TableProps } from './table';
+export { Table } from './table';
+
 export { default as Transition } from './transition';
 
 export type { UploadProps } from './upload';

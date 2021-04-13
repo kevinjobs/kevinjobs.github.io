@@ -1,14 +1,25 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import { LogApi } from '@/apis';
-import { Table } from '@/pages/missive/table';
+import { Table } from '@/components';
 
 export interface AdminLogPageProps {};
 
 const AdminLogPage: React.FC<AdminLogPageProps> = props => {
   const today = dayjs().format('YYYY-MM-DD');
+  const head = [
+    { title: 'id', width: 50 },
+    { title: '访问日期', width: 200 },
+    { title: 'ip', width: 150 },
+    { title: 'method', width: 100 },
+    { title: '访问地址', width: 500 },
+    { title: 'status', width: 100 },
+    { title: 'message', width: 150 },
+    { title: 'length', width: 100 },
+    { title: '用时', width: 100 }
+  ]
 
-  const [data, setData] = React.useState<any>();
+  const [data, setData] = React.useState<any[]>();
 
   React.useEffect(() => {
     LogApi.getList(today).then(res => {
@@ -18,8 +29,9 @@ const AdminLogPage: React.FC<AdminLogPageProps> = props => {
           const items = [];
           for (let i = 0; i < logs.length; i ++) {
             items.push([
-              logs[i]['_id'],
-              dayjs(logs[i]['create_at']).format('YYYY-MM-DD HH:mm:ss'),
+              logs.length - i,
+              dayjs(logs[i]['create_at'])
+                .format('YYYY-MM-DD HH:mm:ss'),
               logs[i]['ip'],
               logs[i]['method'],
               logs[i]['url'],
@@ -28,12 +40,8 @@ const AdminLogPage: React.FC<AdminLogPageProps> = props => {
               logs[i]['length'],
               logs[i]['spent']
             ]);
-          }
-          const d = {
-            head: ['id', 'date', 'ip', 'method', 'url', 'status', 'message', 'length', 'spent'],
-            items: items
-          }
-          setData(d);
+          };
+          setData(items);
         }
       }
     }).catch(err => {
@@ -49,7 +57,7 @@ const AdminLogPage: React.FC<AdminLogPageProps> = props => {
       </div>
       <div className="container">
         <div className="viewer">
-          { data && <Table data={data} /> }
+          { data && <Table head={head} items={data} /> }
         </div>
       </div>
     </div>
