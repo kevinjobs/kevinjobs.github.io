@@ -4,45 +4,35 @@ import classNames from 'classnames';
 import { PostApi, IPost } from '@/apis';
 import { HomePageProps } from '@/pages';
 import ArticleList from './home-list';
-import { Divider, Button } from '@/components';
+import { Button, message } from '@/components';
 
 const Homepage: React.FC<HomePageProps> = (props) => {
   const [articleList, setArticleList] = React.useState<IPost[]>();
-  const [currentPage, setCurrentPage] = React.useState(2);
-  const [pageSize, setPageSize] = React.useState(6);
-  const [selectedPost, setSelectedPost] = React.useState<IPost>();
+  const [currentPage, setCurrentPage] = React.useState(1);
   const [isMorePost, setIsMorePost] = React.useState(true);
 
   const loadMore = (e: any) => {
     if (isMorePost) {
-      PostApi.getPostList(currentPage, pageSize, 'article')
+      PostApi.getPostList(currentPage + 1, 9, 'article')
       .then(res => {
-        if (res.status === 200) {
-          const { items, total } = res.data.data;
+        if (res.data.code === 1) {
+          const { items, current_page } = res.data.data;
           setArticleList(articleList?.concat(items));
-          setCurrentPage(currentPage + 1);
-          if (currentPage * pageSize >= total) {
-            setIsMorePost(false);
-          }
+          setCurrentPage(current_page);
+        } else {
+          message({text: '没有更多了', type: 'danger'});
+          setIsMorePost(false);
         }
       })
       .catch(err => console.log(err));
     }
   }
 
-  const handleScroll = (e: any) => {if (selectedPost) e.preventDefault();}
-
   React.useEffect(() => {
-    PostApi.getPostList(1, 6, 'article')
+    PostApi.getPostList(1, 9, 'article')
       .then(res => setArticleList(res.data.data.items))
       .catch(err => console.error(err));
-    document.body.addEventListener('touchmove', handleScroll, {passive:false});
-    document.body.addEventListener('wheel', handleScroll, {passive:false});
-    return () => {
-      document.body.removeEventListener('touchmove', handleScroll);
-      document.body.removeEventListener('wheel', handleScroll);
-    }
-  }, [selectedPost])
+  }, [])
 
   const classnames = classNames({
     "Article": true,
@@ -58,14 +48,12 @@ const Homepage: React.FC<HomePageProps> = (props) => {
             : <div className="mint-loader"></div>
         }
       </div>
-      <div className="Article__LoadMore">
-        <Divider>
+      <div className="loadmore">
           {
             isMorePost
               ? <Button onClick={loadMore}>加载更多</Button>
               : <small>我是有底线的</small>
           }
-        </Divider>
       </div>
     </div>
   )

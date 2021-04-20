@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import multiavatar from '@multiavatar/multiavatar';
 import { IPost } from '@/types';
-import { Image } from '@/components';
+import { Transition } from '@/components';
 
 interface ListProps {
   articleList: IPost[],
@@ -11,6 +11,8 @@ interface ListProps {
 }
 
 const List: React.FC<ListProps> = (props: ListProps) => {
+  const [hover, setHover] = React.useState('');
+
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const { onOpen } = props;
     if (onOpen) {
@@ -18,43 +20,57 @@ const List: React.FC<ListProps> = (props: ListProps) => {
     }
   }
 
-  const ListCard = (a: IPost, index: number) => {
+  const handleMouseEnter = (e: any) => {
+    setHover(e.target.dataset['id']);
+  };
+
+  const renderItem = (a: IPost, index: number) => {
     return(
-      <div className="ArticleList__item shadow-card" key={index}>
-        {/* article cover */}
-        <Link to={`/article/${a._id}`}>
-          <Image
-            prefixCls="ArticleList__item--Cover"
-            src={a.cover}
-            alt={a.title}
-            data-picid={a._id}
-            onClick={handleClick}
-          />
-        </Link>
-        {/* article details */}
-        <div className="ArticleList__item--Info">
-          <span className="ArticleList__item--Info__datetime">
-            { dayjs(a.update_at).format('YYYY-MM-DD') }
-          </span>
-          <h3 className="ArticleList__item--Info__title">
-            <Link to={`/article/${a._id}`}>{a.title}</Link>
-          </h3>
-          <p className="ArticleList__item--Info__desc">{a.desc}</p>
-          <div className="ArticleList__item--Info__author">
-            <span
-              className="ArticleList__item--Info__author-avatar"
-              dangerouslySetInnerHTML={{__html: multiavatar(a.author)}}>
-            </span>
-            <span className="ArticleList__item--Info__author-name">
-              <Link to={`/profile/${a.author}`}>{a.author}</Link>
-            </span>
-          </div>
+      <div
+        className="article-list-item"
+        key={index}
+        data-id={a.id}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={e => setHover('')}
+      >
+        <div className="cover">
+          <Link to={`/article/${a._id}`} className="cover">
+            <img
+              src={a.cover}
+              alt={a.title}
+              data-id={a._id}
+              onClick={handleClick}
+            />
+          </Link>
         </div>
+        <Transition
+          in={hover === a._id ? true : false}
+          timeout={300}
+          animation="FadeInOut"
+        >
+          <div className="infos">
+            <span className="datetime">
+              { dayjs(a.update_at).format('YYYY年M月D日') }
+            </span>
+            <h3 className="title">
+              <Link to={`/article/${a._id}`}>{a.title}</Link>
+            </h3>
+            <div className="author">
+              <span
+                className="author-avatar"
+                dangerouslySetInnerHTML={{__html: multiavatar(a.author)}}>
+              </span>
+              <span className="author-name">
+                <Link to={`/profile/${a.author}`}>{a.author}</Link>
+              </span>
+            </div>
+          </div>
+        </Transition>
       </div>
     )
   }
 
-  return <>{ props.articleList.map(ListCard) }</>
+  return <>{ props.articleList.map(renderItem) }</>
 }
 
 export default List;

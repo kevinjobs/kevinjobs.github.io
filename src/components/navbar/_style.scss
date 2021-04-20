@@ -1,10 +1,10 @@
 .DesktopNavbar {
-  background-color: #333;
+  background-color: #f1f1f1;
   display: flex;
   align-items: center;
   padding: 10px 0;
   &.theme-night {
-    background-color: #222222;
+    background-color: #111111;
     a { color: #a1a1a1 !important; }
     a.active {
       background-color: #333333 !important;

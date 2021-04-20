@@ -67,9 +67,13 @@
       }
     }
   }
-  .Article__LoadMore {
+  .loadmore {
     margin: 20px auto;
     width: 940px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -78,39 +82,67 @@
     max-width: 1000px;
     margin-top: 10px;
     min-height: 600px;
-    .ArticleList__item {
-      width: 323px;
+    .article-list-item {
+      width: 316px;
       height: 370px;
-      margin: 5px;
-      .ArticleList__item--Cover {
-        height: 200px;
-        transition: height .5s cubic-bezier(0.075, 0.82, 0.165, 1);
-        opacity: .8;
-        &:hover {
-          height: 210px;
-          opacity: 1;
+      margin: 8px;
+      position: relative;
+      transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+      border-radius: 8px;
+      .cover {
+        height: 370px;
+        a {
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+          }
         }
       }
-      .ArticleList__item--Info {
+      .infos {
+        width: 100%;
+        display: block;
         padding: 10px 20px;
-        .ArticleList__item--Info__title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-radius: 8px;
+        background-color: rgba($color: #000000, $alpha: 0.75);
+        * {
+          color: #f1f1f1 !important;
+        }
+        .datetime {
+          font-size: 12px;
+        }
+        .title {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          margin: 4px 0 8px 0;
         }
-        .ArticleList__item--Info__desc {
-          margin: 10px 0;
-          line-height: 1.5;
-          height: 20px;
-          overflow: hidden;
-          color: #717171;
-        }
-        .ArticleList__item--Info__author {
-          position: static;
-          a {
-            color: #000;
+        .author {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          .author-avatar {
+            display: inline-block;
+            height: 28px;
+            width: 28px;
+          }
+          .author-name {
+            display: inline-block;
+            margin: 0 0 0 8px;
+            a {
+              &:hover {
+                color: $blue !important;
+              }
+            }
           }
         }
+      }
+      &:hover {
+        transform: scale(.95);
       }
     }
   }

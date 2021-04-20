@@ -8,7 +8,7 @@ import { Navbar, message } from '@/components';
 import Routes from '@/routes';
 
 const App: React.FC = () => {
-  const [nightMode, setNightMode] = React.useState(false);
+  const [nightMode, setNightMode] = React.useState(true);
 
   const location = useLocation();
   const history = useHistory();
@@ -26,7 +26,7 @@ const App: React.FC = () => {
 
   React.useEffect(() => {
     if (nightMode) {
-      document.body.style.backgroundColor = "#333333";
+      document.body.style.backgroundColor = "#111111";
     } else {
       document.body.style.backgroundColor = '#f1f1f1';
     }
