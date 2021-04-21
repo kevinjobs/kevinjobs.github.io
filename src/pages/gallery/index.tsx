@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Masonry, Icon } from '@/components';
+import { Masonry, Icon, Carousel } from '@/components';
 import { PostApi } from '@/apis';
 import { ImageInterface } from '@/types';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
@@ -40,8 +40,8 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   }
 
   React.useEffect(() => {
-    PostApi.getPostList(1, 12, 'picture').then(res => {
-      if (res.status === 200 && res.data.code === 1) {
+    PostApi.getPostList(1, 8, 'picture').then(res => {
+      if (res.data.code === 1) {
         setImageList(res.data.data.items)
       }
     }).catch(err => console.log(err));
@@ -88,6 +88,7 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   return (
     <div className={classname}>
       <div className="Gallery-Container">
+        { imageList && <Carousel items={imageList} /> }
         <div className="masonry">
           {
             imageList.length !== 0

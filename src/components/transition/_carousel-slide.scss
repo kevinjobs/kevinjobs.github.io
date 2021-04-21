@@ -1,0 +1,41 @@
+.CarouselSlide {
+  &-enter {
+    opacity: 1;
+  }
+  &-enter-active {
+    animation: leftIn .5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+  }
+  &-enter-done {
+    opacity: 1;
+  }
+  &-exit { opacity: 1; }
+  &-exit-active {
+    animation: rightOut .5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+  }
+  &-exit-done {
+    opacity: 0;
+  }
+}
+
+@keyframes leftIn {
+  from {
+    left: -500px;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes rightOut {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 500px;
+  }
+}

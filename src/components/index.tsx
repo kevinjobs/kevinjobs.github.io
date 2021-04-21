@@ -1,6 +1,9 @@
 export type { ButtonProps } from './button';
 export { default as Button } from './button';
 
+export type { CarouselProps } from './carousel';
+export { Carousel } from './carousel';
+
 export type { DialogProps } from './dialog';
 export { default as Dialog } from './dialog';
 
