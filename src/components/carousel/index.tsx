@@ -1,14 +1,12 @@
-import React from 'react';
-import { Transition } from '@/components';
+import React, { HTMLAttributes } from 'react';
+import { Motion, spring } from 'react-motion';
 
-export interface CarouselProps {
-  items: any[],
-  width?: number,
-  height?: number
-};
+export type CarouselProps = {
+  items: any[]
+} & HTMLAttributes<any>;
 
 export const Carousel: React.FC<CarouselProps> = props => {
-  const { items, width = 500, height = 300 } = props;
+  const { items, ...rest } = props;
   const length = items.length;
 
   const [currentItemIndex, setCurrentItemIndex] = React.useState(0);
@@ -30,22 +28,27 @@ export const Carousel: React.FC<CarouselProps> = props => {
   const handleSelect = (e: any) => {
     const i = e.target.dataset.index;
     setCurrentItemIndex(Number(i));
-    console.log(i);
   }
 
   const renderItem = (item: any, index: number) => {
     const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
 
-    const left = (index-currentItemIndex) * 500;
+    const style: any = rest.style;
+    const left = (index-currentItemIndex) * Number(style.width);
+    const show = currentItemIndex === index;
 
     return (
-      <Transition in={left === 0} timeout={500} animation="CarouselSlide" key={index}>
-        <div
-          className="carousel-item"
-          style={{left: left}}>
-          <img src={baseUrl+item.cover} alt={item.title} />
-        </div>
-      </Transition>
+      <Motion style={{x: spring(show ? 0 : left) }}>
+        {
+          ({x}) => (
+            <div
+              className="carousel-item"
+              style={{left: x}}>
+              <img src={baseUrl+item.cover} alt={item.title} />
+            </div>
+          )
+        }
+      </Motion>
     )
   }
 
@@ -69,7 +72,7 @@ export const Carousel: React.FC<CarouselProps> = props => {
   }
 
   return (
-    <div className="mint-carousel" style={{width: width, height: height}}>
+    <div className="mint-carousel" {...rest}>
       <div className="carousel-container">
         { items && items.map(renderItem) }
         <div className="item-prev" onClick={handlePrev}>Prev</div>

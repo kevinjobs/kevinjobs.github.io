@@ -1,3 +1,6 @@
+@import './style_moblie';
+@import './style_desktop';
+
 .Homepage {
   &.theme-night {
     padding-top: 1px;
@@ -14,7 +17,11 @@
   width: 100%;
   margin: 0 auto;
   padding-bottom: 50px;
-  .ArticleList {
+  .home-carousel {
+    width: 980px;
+    margin: 0 auto;
+  }
+  .article-list {
     margin: 0 auto;
     display: flex;
     justify-content: flex-start;
@@ -74,77 +81,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-}
-
-.Article.Desktop {
-  .ArticleList {
-    max-width: 1000px;
-    margin-top: 10px;
-    min-height: 600px;
-    .article-list-item {
-      width: 316px;
-      height: 370px;
-      margin: 8px;
-      position: relative;
-      transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
-      border-radius: 8px;
-      .cover {
-        height: 370px;
-        a {
-          img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-          }
-        }
-      }
-      .infos {
-        width: 100%;
-        display: block;
-        padding: 10px 20px;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        border-radius: 8px;
-        background-color: rgba($color: #000000, $alpha: 0.75);
-        * {
-          color: #f1f1f1 !important;
-        }
-        .datetime {
-          font-size: 12px;
-        }
-        .title {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          margin: 4px 0 8px 0;
-        }
-        .author {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          .author-avatar {
-            display: inline-block;
-            height: 28px;
-            width: 28px;
-          }
-          .author-name {
-            display: inline-block;
-            margin: 0 0 0 8px;
-            a {
-              &:hover {
-                color: $blue !important;
-              }
-            }
-          }
-        }
-      }
-      &:hover {
-        transform: scale(.95);
-      }
-    }
   }
 }
 

@@ -4,10 +4,11 @@ import classNames from 'classnames';
 import { PostApi, IPost } from '@/apis';
 import { HomePageProps } from '@/pages';
 import ArticleList from './home-list';
-import { Button, message } from '@/components';
+import { Button, message, Carousel } from '@/components';
 
 const Homepage: React.FC<HomePageProps> = (props) => {
   const [articleList, setArticleList] = React.useState<IPost[]>();
+  const [photos, setPhotos] = React.useState<IPost[]>();
   const [currentPage, setCurrentPage] = React.useState(1);
   const [isMorePost, setIsMorePost] = React.useState(true);
 
@@ -29,8 +30,11 @@ const Homepage: React.FC<HomePageProps> = (props) => {
   }
 
   React.useEffect(() => {
-    PostApi.getPostList(1, 9, 'article')
+    PostApi.getPostList(1, 8, 'article')
       .then(res => setArticleList(res.data.data.items))
+      .catch(err => console.error(err));
+    PostApi.getPostList(1, 5, 'picture')
+      .then(res => setPhotos(res.data.data.items))
       .catch(err => console.error(err));
   }, [])
 
@@ -41,7 +45,10 @@ const Homepage: React.FC<HomePageProps> = (props) => {
 
   return (
     <div className={classnames}>
-      <div className="ArticleList">
+      <div className="home-carousel">
+        { photos && <Carousel items={photos} style={{width: 700, height: 400, borderRadius: 8}} /> }
+      </div>
+      <div className="article-list">
         {
           articleList
             ? <ArticleList articleList={articleList} />

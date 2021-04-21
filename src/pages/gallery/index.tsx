@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Masonry, Icon, Carousel } from '@/components';
+import { Masonry, Icon } from '@/components';
 import { PostApi } from '@/apis';
 import { ImageInterface } from '@/types';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
@@ -88,7 +88,6 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   return (
     <div className={classname}>
       <div className="Gallery-Container">
-        { imageList && <Carousel items={imageList} /> }
         <div className="masonry">
           {
             imageList.length !== 0
