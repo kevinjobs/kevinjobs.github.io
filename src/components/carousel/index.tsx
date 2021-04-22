@@ -1,16 +1,34 @@
+/*
+ * @description: 组件 - 走马灯（轮播图）
+ * @author: kevinjobs
+ * @date: 2021-04-22
+ * @version: 0.0.1
+ */
 import React, { HTMLAttributes } from 'react';
 import { Motion, spring } from 'react-motion';
 
 export type CarouselProps = {
-  items: any[]
+  items: any[],
+  duration?: number, // 轮播图切换间隔时间
+  start?: number, // 开始图片的索引值
+  onClick?: React.MouseEventHandler<any>
 } & HTMLAttributes<any>;
 
+export interface ICarouselItem {
+  cover: string, // the url of image
+}
+
 export const Carousel: React.FC<CarouselProps> = props => {
-  const { items, ...rest } = props;
-  const length = items.length;
+  const { items, duration = 5000, start = 0, onClick, ...rest } = props;
+  const length = items.length; // 传入的图片列表长度
 
-  const [currentItemIndex, setCurrentItemIndex] = React.useState(0);
+  // 设置当前图片的索引值，从 props 获取，默认为 0
+  const [currentItemIndex, setCurrentItemIndex] = React.useState(start);
 
+  /**
+   * 上一张
+   * @param e 鼠标点击事件
+   */
   const handlePrev = (e: any) => {
     setCurrentItemIndex(currentItemIndex - 1);
     if (currentItemIndex === 0) {
@@ -18,6 +36,10 @@ export const Carousel: React.FC<CarouselProps> = props => {
     }
   }
 
+  /**
+   * 下一张
+   * @param e 鼠标点击事件
+   */
   const handleNext = (e: any) => {
     setCurrentItemIndex(currentItemIndex + 1);
     if (currentItemIndex === length - 1) {
@@ -25,11 +47,21 @@ export const Carousel: React.FC<CarouselProps> = props => {
     }
   }
 
+  /**
+   * 通过指示器选择图片
+   * @param e event of mouse click
+   */
   const handleSelect = (e: any) => {
     const i = e.target.dataset.index;
     setCurrentItemIndex(Number(i));
   }
 
+  /**
+   * 绘制走马灯的单张图片
+   * @param item ICarouselItem
+   * @param index the index of image
+   * @returns ReactNode
+   */
   const renderItem = (item: any, index: number) => {
     const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
 
@@ -38,13 +70,18 @@ export const Carousel: React.FC<CarouselProps> = props => {
     const show = currentItemIndex === index;
 
     return (
-      <Motion style={{x: spring(show ? 0 : left) }}>
+      <Motion style={{x: spring(show ? 0 : left) }} key={index}>
         {
           ({x}) => (
             <div
               className="carousel-item"
               style={{left: x}}>
-              <img src={baseUrl+item.cover} alt={item.title} />
+              <img
+                src={baseUrl+item.cover}
+                alt={item.title}
+                data-index={index}
+                onClick={onClick}
+              />
             </div>
           )
         }
@@ -52,9 +89,13 @@ export const Carousel: React.FC<CarouselProps> = props => {
     )
   }
 
+  /**
+   * 绘制轮播图（走马灯）指示器
+   * @param item ICarouselItem
+   * @param index the index of array map
+   * @returns ReactNode
+   */
   const renderNavi = (item: any, index: number) => {
-    console.log(index, currentItemIndex);
-
     const zoomWidth = currentItemIndex === index ? 40 : 30;
     const zoomHeight = currentItemIndex === index ? 6 : 4;
     const highlight = currentItemIndex === index ? '100%' : '75%';
@@ -70,6 +111,19 @@ export const Carousel: React.FC<CarouselProps> = props => {
       </span>
     )
   }
+
+  /**
+   * 使用副作用设置自动轮播时长
+   */
+  React.useEffect(() => {
+    setTimeout(() => {
+      if (currentItemIndex < length - 1) {
+        setCurrentItemIndex(currentItemIndex + 1);
+      } else {
+        setCurrentItemIndex(0);
+      }
+    }, duration);
+  })
 
   return (
     <div className="mint-carousel" {...rest}>

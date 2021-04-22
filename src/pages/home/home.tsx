@@ -46,7 +46,15 @@ const Homepage: React.FC<HomePageProps> = (props) => {
   return (
     <div className={classnames}>
       <div className="home-carousel">
-        { photos && <Carousel items={photos} style={{width: 700, height: 400, borderRadius: 8}} /> }
+        {
+          photos
+          &&
+          <Carousel
+            items={photos}
+            onClick={(e: any) => console.log(e.target.dataset['index'])}
+            style={{width: 700, height: 400, borderRadius: 8}}
+          />
+        }
       </div>
       <div className="article-list">
         {
