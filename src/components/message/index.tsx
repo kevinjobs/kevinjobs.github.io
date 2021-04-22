@@ -56,7 +56,7 @@ export const MessageContainer = () => {
     <div className="mint-message">
       <TransitionGroup>
         {
-          notices.map(({ text, key, type}) => (
+          notices.map(({text, key, type}) => (
             <Transition
               timeout={1000}
               in

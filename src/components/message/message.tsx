@@ -1,7 +1,5 @@
-import './_style.scss';
 import React from 'react';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { Icon } from '@/components';
+import { Info, Success, Remind, Caution } from '@icon-park/react';
 
 export type MessageType = 'info' | 'success' | 'danger' | 'warning';
 
@@ -14,31 +12,27 @@ const Message: React.FC<MessageProps> = (props: MessageProps) => {
   const { text, type } = props;
 
   const renderHeader = (type: MessageType): React.ReactElement => {
-    let icon: IconProp;
+    let icon;
 
     switch (type) {
       case 'info':
-        icon = 'circle-notch';
+        icon = <Info theme="filled" fill="#FBC02D" size="20" />;
         break;
       case 'success':
-        icon = 'check-circle';
+        icon = <Success theme="filled" fill="#52c41a" size="20" />;
         break;
       case 'danger':
-        icon = 'times';
+        icon = <Caution theme="filled" fill="#f5222d" size="20" />;
         break;
       case 'warning':
-        icon = "exclamation";
+        icon = <Remind theme="filled" fill="#fa8c16" size="20" />;
         break;
       default:
-        icon = 'info';
+        icon = <Info theme="filled" fill="#FBC02D" size="20" />;
         break
     }
 
-    return (
-      <div className="header">
-        <Icon icon={icon} theme={type} />
-      </div>
-    )
+    return <div className="header">{ icon }</div>;
   }
 
   return (
