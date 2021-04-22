@@ -2,6 +2,21 @@
   .article-list {
     max-width: 1000px;
     margin-top: 10px;
+    .header {
+      width: 100%;
+      padding: 16px 0 12px 12px;
+      margin-top: 20px;
+      position: relative;
+      &::before {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        left: 12px;
+        width: 98%;
+        height: 4;
+        border-top: 4px solid #777777;
+      }
+    }
     .article-list-item {
       width: 234px;
       height: 200px;

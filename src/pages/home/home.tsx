@@ -12,17 +12,21 @@ const Homepage: React.FC<HomePageProps> = (props) => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [isMorePost, setIsMorePost] = React.useState(true);
 
+  const articlePageSize = 8;
+  const picturePageSize = 5;
+
   const loadMore = (e: any) => {
     if (isMorePost) {
-      PostApi.getPostList(currentPage + 1, 9, 'article')
+      PostApi.getPostList(currentPage + 1, articlePageSize, 'article')
       .then(res => {
         if (res.data.code === 1) {
           const { items, current_page } = res.data.data;
           setArticleList(articleList?.concat(items));
           setCurrentPage(current_page);
-        } else {
-          message({text: '没有更多了', type: 'danger'});
-          setIsMorePost(false);
+          if (items.length < articlePageSize) {
+            message({text: '最后一页啦', type: 'danger'});
+            setIsMorePost(false);
+          }
         }
       })
       .catch(err => console.log(err));
@@ -30,10 +34,10 @@ const Homepage: React.FC<HomePageProps> = (props) => {
   }
 
   React.useEffect(() => {
-    PostApi.getPostList(1, 8, 'article')
+    PostApi.getPostList(1, articlePageSize, 'article')
       .then(res => setArticleList(res.data.data.items))
       .catch(err => console.error(err));
-    PostApi.getPostList(1, 5, 'picture')
+    PostApi.getPostList(1, picturePageSize, 'picture')
       .then(res => setPhotos(res.data.data.items))
       .catch(err => console.error(err));
   }, [])
@@ -57,6 +61,7 @@ const Homepage: React.FC<HomePageProps> = (props) => {
         }
       </div>
       <div className="article-list">
+        <h2 className="header">最 近 文 章</h2>
         {
           articleList
             ? <ArticleList articleList={articleList} />

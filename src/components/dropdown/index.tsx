@@ -40,7 +40,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
             className="mint-dropdown-children"
             timeout={200}
             in={mouseOver}
-            animation="FadeInOut">
+            animation="FadeDown">
             <div>{ children }</div>
           </Transition>
         </div>

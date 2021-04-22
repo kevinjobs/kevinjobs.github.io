@@ -112,18 +112,21 @@ export const Carousel: React.FC<CarouselProps> = props => {
     )
   }
 
+  console.log(currentItemIndex);
+
   /**
    * 使用副作用设置自动轮播时长
    */
   React.useEffect(() => {
-    setTimeout(() => {
+    const timer = setInterval(() => {
       if (currentItemIndex < length - 1) {
         setCurrentItemIndex(currentItemIndex + 1);
       } else {
         setCurrentItemIndex(0);
       }
     }, duration);
-  })
+    return () => clearInterval(timer);
+  }, [currentItemIndex])
 
   return (
     <div className="mint-carousel" {...rest}>

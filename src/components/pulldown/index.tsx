@@ -46,7 +46,7 @@ const PullDown: React.FC<PullDownProps> = props => {
             { menu.title }
           </span>
         </div>
-        <Transition in={childShow} timeout={300} animation="ExpandShrinkV">
+        <Transition in={childShow} timeout={300} animation="FadeDown">
           <div className="mint-menu-child" style={{borderLeft: childShow ? '1px dotted #000' : ''}}>
             { menu.children?.map(renderChild) }
           </div>

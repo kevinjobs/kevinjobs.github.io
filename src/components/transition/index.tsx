@@ -8,7 +8,7 @@ type AnimationName =
   | 'ExpandShrinkV'
   | 'FadeInOut'
   | 'SlideInLeft'
-  | 'CarouselSlide'
+  | 'FadeDown'
 
 type TransitionProps = CSSTransitionProps & {
   animation?: AnimationName,
