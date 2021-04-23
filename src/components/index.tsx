@@ -33,6 +33,9 @@ export { default as Menu } from './menu';
 
 export { default as message } from './message';
 
+export type { ModalProps } from './modal';
+export { Modal } from './modal';
+
 export type { NavbarProps } from './navbar';
 export { default as Navbar } from './navbar';
 
