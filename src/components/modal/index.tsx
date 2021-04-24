@@ -6,21 +6,14 @@ import { CloseSmall } from '@icon-park/react';
 export interface ModalProps {
   title?: string,
   content?: string,
-  visible?: boolean
+  visible?: boolean,
+  onClose: React.MouseEventHandler<HTMLDivElement> 
 };
 
 export const Modal: React.FC<ModalProps> = props => {
-  const { title, content, visible } = props;
+  const { title, content, visible, onClose } = props;
   const [modalVisible, setModalVisible] = React.useState(visible);
-  // 当点击内部的关闭按钮时，由于外部传进来的 visible 尚未转换
-  // 维护这样一个 state，用以翻转 visible
-  const [reverse, setReverse] = React.useState(false);
   const [iconColor, setIconColor] = React.useState('#333');
-
-  const handleClose = (e: any) => {
-    setModalVisible(false);
-    setReverse(!reverse);
-  }
 
   const handleIconHover = (e: any) => {
     if (iconColor === '#333') {
@@ -32,6 +25,7 @@ export const Modal: React.FC<ModalProps> = props => {
 
   const renderModal = () => (
     <div className="mint-modal" style={{display: modalVisible ? 'flex' : 'none'}}>
+      <div className="mint-modal-mask" onClick={onClose}></div>
       <Motion style={{x: spring(modalVisible ? 1 : 0)}}>
         {
           ({x}) => (
@@ -39,7 +33,7 @@ export const Modal: React.FC<ModalProps> = props => {
               <div className="header">
                 <div className="title">{ title }</div>
                 <div className="close"
-                  onClick={handleClose}
+                  onClick={onClose}
                   onMouseEnter={handleIconHover}
                   onMouseLeave={handleIconHover}>
                   <CloseSmall theme="outline" size="24" fill={iconColor} />
@@ -66,11 +60,7 @@ export const Modal: React.FC<ModalProps> = props => {
   }, [modalVisible, iconColor]);
 
   React.useEffect(() => {
-    if (reverse) {
-      setModalVisible(!visible);
-    } else {
-      setModalVisible(visible);
-    }
+    setModalVisible(visible);
   }, [visible]);
 
   return <></>;

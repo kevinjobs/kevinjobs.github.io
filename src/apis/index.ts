@@ -7,6 +7,9 @@ export { default as PathApi } from './path';
 export type { IPost } from './post';
 export { default as PostApi } from './post';
 
+export type { ITag } from './tag';
+export { default as TagApi } from './tag';
+
 export type { ITodo } from './todo';
 export { default as TodoApi } from './todo';
 

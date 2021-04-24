@@ -3,7 +3,7 @@ $dark: #000000;
 $light: #ffffff;
 $red: #F44336;
 $orange: #FF9800;
-$yellow: #FDD835;
+$yellow: #FBC02D;
 $green: #4CAF50;
 $cyan: #00BCD4;
 $blue: #2196F3;
@@ -32,3 +32,24 @@ $warning: #fa8c16;
 $danger: #f5222d;
 $light: #f5f5f5;
 $dark: #222222;
+
+$theme-colors: 
+(
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  // new colors
+  "default": $default,
+  "dark": $dark,
+  "light": $light,
+  "red": $red,
+  "orange": $orange,
+  "yellow": $yellow,
+  "green": $green,
+  "cyan": $cyan,
+  "blue": $blue,
+  "purple": $purple
+);

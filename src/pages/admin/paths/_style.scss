@@ -5,6 +5,9 @@
   .container {
     height: calc(100vh - 180px);
     overflow-y: scroll;
+    #allowMethods,#authRequiredMethods,#allowRoles {
+      width: 250px !important;
+    }
   }
 }
 

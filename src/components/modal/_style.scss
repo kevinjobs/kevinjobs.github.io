@@ -4,17 +4,26 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba($color: #000000, $alpha: 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 99999999;
   animation: fadeIn .5s;
+  &-mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.75);
+    z-index: 1;
+  }
   &-container {
     background-color: #fff;
     padding: 12px 24px;
     max-width: 80vh;
+    max-height: 90vh;
     line-height: 2;
+    overflow-y: scroll;
+    z-index: 999999999999;
     .header {
       padding: 0 0 16px 0;
       display: flex;

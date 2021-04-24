@@ -11,8 +11,28 @@ const AdminLogPage: React.FC<AdminLogPageProps> = props => {
   const today = dayjs().format('YYYY-MM-DD');
 
   React.useEffect(() => {
-    LogApi.getList(today).then(res => setLogs(res.data.data));
+    LogApi.getList(today).then(res => {
+      if (res.data.code === 1) {
+        setLogs(renderLogsTableData(res.data.data));
+      }
+    });
   }, [])
+
+  const renderLogsTableData = (logs: any[]) => {
+    const newLogs = logs.map((log: any) => {
+      let newLog = log;
+      delete newLog['_id'];
+      newLog['create_at'] = dayjs(log['create_at']).format('YYYY-MM-DD HH:mm:ss');
+      newLog['ip'] = (
+        <a
+          href={`https://ip.tool.chinaz.com/${log['ip']}`}
+          target="_blank"
+          >{log['ip']}</a>
+      )
+      return newLog;
+    });
+    return newLogs;
+  }
 
   return (
     <div className="admin-log-page admin-page">

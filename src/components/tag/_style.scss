@@ -1,0 +1,29 @@
+.mint-tag {
+  display: inline-block;
+  margin: 0 4px;
+  padding: 0 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+@each $key, $value in $theme-colors {
+  .mint-tag-#{$key} {
+    &.mint-tag-fill {
+      color: #fff;
+      background-color: $value;
+      border: 1px solid $value;
+    }
+    &.mint-tag-outline {
+      color: $value;
+      background-color: transparent;
+      border: none;
+    }
+  }
+  .mint-tag-default {
+    &.mint-tag-fill {
+      color: #333;
+      background-color: #f1f1f1;
+      border: 1px solid #f1f1f1;
+    }
+  }
+}

@@ -53,6 +53,9 @@ export { default as Switch } from './switch';
 export type { TableProps } from './table';
 export { Table } from './table';
 
+export type { TagProps } from './tag';
+export { Tag } from './tag';
+
 export { default as Transition } from './transition';
 
 export type { UploadProps } from './upload';

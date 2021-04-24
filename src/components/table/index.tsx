@@ -24,7 +24,6 @@ export const Table: React.FC<TableProps> = props => {
       const thChildren = Array.from(ref.current.children).slice(1);
       const widths = thChildren.map((child: any) => child.clientWidth);
       if (widths.length) {
-        console.log(widths);
         setHeadWidths(widths);
       }
     }
@@ -33,12 +32,12 @@ export const Table: React.FC<TableProps> = props => {
   const renderDataTr = (item: any, index: number) => {
     return (
       <tr key={index} ref={ref}>
-        <td><span style={{width: 50}}>{ index + 1 }</span></td>
+        <td key={0}><span style={{width: 50}}>{ index + 1 }</span></td>
         {
-          Object.entries(item).map((t: any, index: number) => {
+          Object.entries(item).map((t: any, i: number) => {
             return (
-              <td key={index}>
-                <span style={{width:headWidths[index]}} id={t[0]}>{t[1]}</span>
+              <td key={i+1}>
+                <span style={{width:headWidths[i]}} id={t[0]}>{t[1]}</span>
               </td>
             )
           })
@@ -53,11 +52,13 @@ export const Table: React.FC<TableProps> = props => {
         <thead>
           <tr>
             <th><span style={{width: 50}}>序号</span></th>
-            {heads?.map((item,index) => (
-              <th key={index}>
-                <span id={item} style={{width: headWidths[index]}}>{item}</span>
-              </th>
-            ))}
+            {
+              heads?.map((item,index) => (
+                <th key={index}>
+                  <span id={item} style={{width: headWidths[index]}}>{item}</span>
+                </th>
+              ))
+            }
           </tr>
         </thead>
       </table>

@@ -4,7 +4,7 @@ const instance = axios.create();
 
 let baseUrl: string;
 if (process.env.NODE_ENV === 'development') {
-  baseUrl = 'https://api.iyum.in:5000';
+  baseUrl = 'http://localhost:5000';
 } else {
   baseUrl = 'https://api.iyum.in:5000';
 }

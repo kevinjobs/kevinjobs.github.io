@@ -1,37 +1,72 @@
 import * as React from 'react';
-import { Table, Modal, Search } from '@/components';
-import { PostApi, IPost } from '@/apis';
+import { Table, Modal, Search, Tag, message } from '@/components';
+import { PostApi, IPost, ITag } from '@/apis';
+import dayjs from 'dayjs';
 
 export const MissivePage: React.FC = props => {
   const [current, setCurrent] = React.useState();
   const [visible, setVisible] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState('');
-  const [listData, setListData] = React.useState([]);
+  const [listData, setListData] = React.useState<any[]>([]);
 
   const handleSelect = (e: any) => {
     setCurrent(e.target.dataset['content']);
-    setVisible(!visible);
+    setVisible(true);
   }
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   }
 
-  const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSearch = (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>) => {
     e.preventDefault();
     console.log(searchValue);
-    PostApi.getPostList(1,9,'article',{keyword: '尘'})
+    PostApi.getPostList(1,9,'article',{keyword: searchValue})
       .then(res => {
-        setListData(res.data.data.items);
+        if (res.data.code === 1) {
+          const items = renderTableData(res.data.data['items']);
+          setListData(items);
+        } else {
+          message({type: 'warning', text: res.data.msg})
+        }
       });
   }
 
   React.useEffect(() => {
-    PostApi.getPostList(1,9,'article',{keyword: ''})
-      .then(res => {
-        setListData(res.data.data.items);
-      });
+    PostApi.getPostList(1,9,'article',{keyword: '的'}).then(res => {
+      const items = renderTableData(res.data.data['items']);
+      setListData(items);
+    })
   }, []);
+
+  const renderTableData = (items: IPost[]) => {
+    const newItems = items.map((item: any) => {
+      let newItem = item;
+      newItem['cover'] = (
+        <img
+          src={item['cover']}
+          alt={item['title']}
+          style={{width: 200, objectFit: 'cover'}}
+        />
+      )
+      // 绘制 tag
+      newItem['tags'] = item['tags'].map((tag: ITag) => <Tag theme="red">{tag.name}</Tag>);
+      // 转换时间
+      newItem['create_at'] = dayjs(item['create_at']).format('YYYY-MM-DD HH:mm:ss');
+      newItem['update_at'] = dayjs(item['update_at']).format('YYYY-MM-DD HH:mm:ss');
+      // 处理 content
+      newItem['content'] = (
+        <div
+          data-content={item['content']}
+          onClick={handleSelect}
+          style={{cursor:'pointer',whiteSpace:'nowrap',textOverflow:'ellipsis',width:300,overflow:'hidden'}}
+          >{ item['content'] }</div>
+      )
+      return newItem
+    });
+
+    return newItems;
+  }
 
   return (
     <div className="missive-page">
@@ -57,6 +92,7 @@ export const MissivePage: React.FC = props => {
                 placeholder="请输入关键词进行检索"
                 onChange={handleSearchChange}
                 onSearch={handleSearch}
+                onEnter={handleSearch}
               >查找句子</Search>
             </div>
             <div className="content">
@@ -65,7 +101,7 @@ export const MissivePage: React.FC = props => {
           </div>
         </div>
       </div>
-      <Modal title="test" content={current} visible={visible} />
+      <Modal title="test" content={current} visible={visible} onClose={e => setVisible(false)} />
     </div>
   )
 }

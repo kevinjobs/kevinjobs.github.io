@@ -6,11 +6,12 @@ export interface SearchProps {
   name: string,
   placeholder: string,
   onChange: React.ChangeEventHandler<HTMLInputElement>,
-  onSearch?: React.MouseEventHandler<HTMLButtonElement>
+  onSearch?: React.MouseEventHandler<HTMLButtonElement>,
+  onEnter?: React.KeyboardEventHandler<HTMLInputElement>
 };
 
 export const Search: React.FC<SearchProps> = props => {
-  const { value, name, placeholder, onChange, onSearch, children } = props;
+  const { value, name, placeholder, onChange, onSearch, onEnter, children } = props;
 
   return (
     <div className="mint-search">
@@ -18,6 +19,11 @@ export const Search: React.FC<SearchProps> = props => {
         value={value}
         name={name}
         onChange={onChange}
+        onKeyDown={e => {
+          if (e.key === 'Enter' && onEnter) {
+            onEnter(e)
+          }
+        }}
         placeholder={placeholder}
       />
       <Button type="primary" style={{height: 33}} onClick={onSearch}>

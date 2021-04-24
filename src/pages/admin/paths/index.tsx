@@ -1,22 +1,14 @@
-import React from 'react';
+import * as React from 'react';
+import dayjs from 'dayjs';
 import { PathApi, IPath } from '@/apis';
-import { Button, Table } from '@/components';
+import { Button, Table, Tag } from '@/components';
 import AdminPathEditor from './path-editor';
 
 export interface AdminPathsPageProps {}
 
 const AdminPathsPage: React.FC<AdminPathsPageProps> = props => {
   const [newPath, setNewPath] = React.useState<IPath>();
-  const [table, setTable] = React.useState<any[]>();
-
-  const tableHead = [
-    { title: '序号', width: 50 },
-    { title: '路径名', width: 120 },
-    { title: '允许的方法', width: 300 },
-    { title: '需要认证的方法', width: 300 },
-    { title: '允许的用户等级', width: 300 },
-    { title: '操作', width: 200 }
-  ]
+  const [paths, setPaths] = React.useState<any[]>();
 
   React.useEffect(() => {
     getPathList();
@@ -25,11 +17,9 @@ const AdminPathsPage: React.FC<AdminPathsPageProps> = props => {
   const getPathList = () => {
     PathApi.getList().then((res: any) => {
       // console.log(res);
-      if (res.status === 200) {
-        if (res.data.code === 1) {
-          const paths = res.data.data;
-          renderRow(paths);
-        }
+      if (res.data.code === 1) {
+        const paths = res.data.data;
+        setPaths(renderPathsTableData(paths));
       }
     }).catch(err => {
       if (err.response.status === 401) {
@@ -47,85 +37,79 @@ const AdminPathsPage: React.FC<AdminPathsPageProps> = props => {
     });
   }
 
-  const handleEdit = (e: any, path: IPath) => {
-    // console.log(path);
-    setNewPath(path);
+  const handleEdit = (e: React.MouseEvent<any>) => {
+    e.preventDefault();
+    const target = e.target as HTMLElement;
+    if (target.dataset['path']) {
+      const pathObj = JSON.parse(target.dataset['path']);
+      setNewPath(pathObj);
+    }
   }
 
-  const handleDelete = (e: any) => {
-    const id = e.target.dataset.id;
-    // console.log(e.target.dataset);
-    if (window.confirm('确认要删除该路径？')) {
+  const handleDelete = (e: React.MouseEvent<any>) => {
+    e.preventDefault();
+    const target = e.target as HTMLElement;
+    const id = target.dataset['id'];
+    if (window.confirm('确认要删除该路径？') && id) {
       PathApi.deleteById(id).then(res => {
-        if (res.status === 200) {
-          if (res.data.code === 1) {
-            console.log('删除成功');
-            getPathList();
-          } else {
-            window.alert('删除失败');
-          }
+        if (res.data.code === 1) {
+          console.log('删除成功');
+          getPathList();
+        } else {
+          window.alert('删除失败');
         }
       })
-    }
-  }
-
-  const renderSpan = (item: string, index: number) => {
-    let tagTheme;
-    switch (item) {
-      case 'get':
-        tagTheme = 'tag-green';
-        break;
-      case 'post':
-        tagTheme = 'tag-yellow';
-        break;
-      case 'put':
-        tagTheme = 'tag-blue';
-        break;
-      case 'delete':
-        tagTheme = 'tag-red';
-        break;
-      default:
-        tagTheme = 'tag-default';
-    }
-
-    console.log(item);
-
-    return (
-      <span key={index} className={`tag ${tagTheme}-light`}>
-        { item }
-      </span>
-    )
-  }
-
-  const renderRow = (paths: any[]) => {
-    const tableDataTmp = [];
-
-    if (paths) {
-      for (let i = 0; i < paths.length; i ++) {
-        const { pathname, allowMethods, allowRoles, authRequiredMethods, _id } = paths[i];
-
-        const operator = (
-          <>
-            <Button onClick={e => handleEdit(e, paths[i])} size="small">编辑</Button>
-            <Button type="danger" onClick={handleDelete} data-id={_id} size="small" style={{
-              marginLeft: 8
-            }}>删除</Button>
-          </>
-        )
-
-        const td = [
-          i + 1,
-          "/" + pathname,
-          allowMethods.map(renderSpan),
-          authRequiredMethods.map(renderSpan),
-          allowRoles.map(renderSpan),
-          operator
-        ];
-        tableDataTmp.push(td)
-      }
-    }
+    };
     
-    setTable(tableDataTmp);
+  }
+
+  const renderPathsTableData = (paths: IPath[]) => {
+    const newPaths = paths.map((path: any) => {
+      let newPath = path;
+
+      const dataPath = JSON.stringify(path);
+
+      newPath['allowMethods'] = renderTag(path['allowMethods']);
+      newPath['authRequiredMethods'] = renderTag(path['authRequiredMethods']);
+      newPath['allowRoles'] = path['allowRoles'].map((role: any) => <Tag>{ role }</Tag>);
+      newPath['pathname'] = path['pathname'];
+      newPath['create_at'] = dayjs(path['create_at']).format('YYYY-MM-DD HH:mm:ss');
+      newPath['update_at'] = dayjs(path['update_at']).format('YYYY-MM-DD HH:mm:ss');
+      newPath['操作'] = (
+        <>
+          <Button type="danger" data-id={path['_id']} onClick={handleDelete}>删除</Button>
+          <Button type="primary" data-path={dataPath} onClick={handleEdit}>编辑</Button>
+        </>
+      )
+      delete newPath['_id'];
+      
+      return newPath;
+    });
+
+    return newPaths;
+  }
+
+  const renderTag = (items: any[]) => {
+    return items.map((method: string) => {
+      let theme: string;
+      switch(method) {
+        case 'get':
+          theme = 'green';
+          break;
+        case 'post':
+          theme = 'yellow';
+          break;
+        case 'put':
+          theme = 'blue';
+          break;
+        case 'delete':
+          theme = 'red';
+          break;
+        default:
+          theme = 'default';
+      };
+      return <Tag theme={theme} type="outline">{ method }</Tag>;
+    });
   }
 
   return (
@@ -135,6 +119,7 @@ const AdminPathsPage: React.FC<AdminPathsPageProps> = props => {
         <Button onClick={handleAdd}>新增路径</Button>
       </div>
       <div className="container">
+        { paths && <Table data={paths} />}
       </div>
       {
         newPath &&

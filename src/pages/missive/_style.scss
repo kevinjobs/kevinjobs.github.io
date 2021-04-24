@@ -3,7 +3,7 @@
     height: calc(100vh - 65px);
     display: flex;
     .left {
-      width: 200px;
+      min-width: 200px;
       height: 100%;
       background-color: #ffffff;
     }
@@ -22,7 +22,16 @@
         .content {
           height: calc(100vh - 200px);
           margin: 24px 0 0 0;
+          overflow-y: scroll;
+          #tags { min-width: 50px !important; }
           #publish { width: 80px !important; }
+          #title { width: 150px !important; }
+          #content {
+            width: 350px !important;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+          #create_at,#update_at { width: 120px !important;}
         }
       }
     }
