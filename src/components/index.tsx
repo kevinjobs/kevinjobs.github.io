@@ -45,6 +45,9 @@ export { default as Pagination } from './pagination';
 export type { PullDownProps } from './pulldown';
 export { default as PullDown } from './pulldown';
 
+export type { SearchProps } from './search';
+export { Search } from './search';
+
 export { default as Switch } from './switch';
 
 export type { TableProps } from './table';

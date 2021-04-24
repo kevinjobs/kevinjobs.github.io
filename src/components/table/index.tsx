@@ -1,41 +1,69 @@
-import React from 'react';
+import * as React from 'react';
 
 export interface TableProps {
-  head: {
-    title: string,
-    width: number,
-    height?: number
-  }[],
-  items: any[][]
+  data: any[]
 };
 
 export const Table: React.FC<TableProps> = props => {
-  const { head, items } = props;
+  const [heads, setHeads] = React.useState<string[]>();
+  const [headWidths, setHeadWidths] = React.useState<number[]>([]);
+  const ref: any = React.useRef();
 
-  const renderHead = (item: any, index: number) => (
-    <th key={index} style={{width: item.width}}>{ item.title }</th>
-  )
+  const { data } = props;
 
-  const renderDataTd = (item: string, index: number) => (
-    <td key={index} style={{width:head[index]['width'],height:head[index]['height']||50}}>
-      { item }
-    </td>
-  )
+  React.useEffect(() => {
+    // 对传入的数据的第一项，取出其 keys 作为列表头
+    // 约定其他项的 keys 与第一项是一样的
+    if (data[0]) {
+      setHeads(Object.keys(data[0]));
+    }
+  }, [data])
 
-  const renderDataTr = (item: string[], index: number) => (
-    <tr key={index}>{ item.map(renderDataTd) }</tr>
-  )
+  React.useEffect(() => {
+    if (ref.current) {
+      const thChildren = Array.from(ref.current.children).slice(1);
+      const widths = thChildren.map((child: any) => child.clientWidth);
+      if (widths.length) {
+        console.log(widths);
+        setHeadWidths(widths);
+      }
+    }
+  }, [heads])
+
+  const renderDataTr = (item: any, index: number) => {
+    return (
+      <tr key={index} ref={ref}>
+        <td><span style={{width: 50}}>{ index + 1 }</span></td>
+        {
+          Object.entries(item).map((t: any, index: number) => {
+            return (
+              <td key={index}>
+                <span style={{width:headWidths[index]}} id={t[0]}>{t[1]}</span>
+              </td>
+            )
+          })
+        }
+      </tr>
+    )
+  }
 
   return (
     <div className="mint-table">
       <table className="mint-table-head">
         <thead>
-          <tr>{ head.map(renderHead) }</tr>
+          <tr>
+            <th><span style={{width: 50}}>序号</span></th>
+            {heads?.map((item,index) => (
+              <th key={index}>
+                <span id={item} style={{width: headWidths[index]}}>{item}</span>
+              </th>
+            ))}
+          </tr>
         </thead>
       </table>
       <table className="mint-table-body">
         <tbody>
-          { items.map(renderDataTr) }
+          { data.map(renderDataTr) }
         </tbody>
       </table>
     </div>

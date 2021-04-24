@@ -7,5 +7,24 @@
       height: 100%;
       background-color: #ffffff;
     }
+    .right {
+      flex-grow: 1;
+      padding: 20px 40px;
+      margin: 0 12px;
+      background-color: #fff;
+      .header {
+        padding: 8px 0 16px 0;
+      }
+      .container {
+        .search {
+          margin: 4px 0;
+        }
+        .content {
+          height: calc(100vh - 200px);
+          margin: 24px 0 0 0;
+          #publish { width: 80px !important; }
+        }
+      }
+    }
   }
 }

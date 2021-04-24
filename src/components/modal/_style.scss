@@ -9,9 +9,12 @@
   align-items: center;
   justify-content: center;
   z-index: 99999999;
+  animation: fadeIn .5s;
   &-container {
     background-color: #fff;
     padding: 12px 24px;
+    max-width: 80vh;
+    line-height: 2;
     .header {
       padding: 0 0 16px 0;
       display: flex;
@@ -28,5 +31,14 @@
         width: 24px;
       }
     }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

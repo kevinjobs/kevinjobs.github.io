@@ -1,7 +1,8 @@
 import axios from '@/utils/axios';
 
 export interface IPostRest {
-  author?: string
+  author?: string,
+  keyword?: string
 }
 
 export interface IPost {
@@ -28,6 +29,7 @@ export default class {
   static getPostList = async (page = 1, limit = 9, type = 'article', rest: IPostRest = {}) => {
     let queries = `current_page=${page}&page_size=${limit}&type=${type}`;
     if (rest.author) queries += `&author=${rest.author}`;
+    if (rest.keyword) queries += `&keyword=${rest.keyword}`;
     return await axios.get('/posts?' + queries);
   }
 

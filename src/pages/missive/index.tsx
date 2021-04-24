@@ -1,29 +1,37 @@
-import React from 'react';
-import { Table, Modal } from '@/components';
+import * as React from 'react';
+import { Table, Modal, Search } from '@/components';
+import { PostApi, IPost } from '@/apis';
 
 export const MissivePage: React.FC = props => {
   const [current, setCurrent] = React.useState();
   const [visible, setVisible] = React.useState(false);
-
-  const head = [
-    {title: '编号', width: 50 },
-    {title: '内容', width: 300 },
-    {title: '标签', width: 200 },
-    {title: '作者', width: 100 },
-    {title: '来源', width: 100 },
-    {title:　'创建时间', width: 200 }
-  ];
+  const [searchValue, setSearchValue] = React.useState('');
+  const [listData, setListData] = React.useState([]);
 
   const handleSelect = (e: any) => {
     setCurrent(e.target.dataset['content']);
     setVisible(!visible);
   }
 
-  const items = [
-    [1,
-    <div className="table-cell" onClick={handleSelect} data-content={'这是一条测试内容'}>这是一条测试内容</div>,
-    '测试', '测试员', '测试系统', '2021-04-12']
-  ]
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  }
+
+  const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log(searchValue);
+    PostApi.getPostList(1,9,'article',{keyword: '尘'})
+      .then(res => {
+        setListData(res.data.data.items);
+      });
+  }
+
+  React.useEffect(() => {
+    PostApi.getPostList(1,9,'article',{keyword: ''})
+      .then(res => {
+        setListData(res.data.data.items);
+      });
+  }, []);
 
   return (
     <div className="missive-page">
@@ -38,10 +46,21 @@ export const MissivePage: React.FC = props => {
           </div>
         </div>
         <div className="right">
-          <div className="header">查看</div>
+          <div className="header">
+            <h3 className="title">查看</h3>
+          </div>
           <div className="container">
+            <div className="search">
+              <Search
+                value={searchValue}
+                name="kw"
+                placeholder="请输入关键词进行检索"
+                onChange={handleSearchChange}
+                onSearch={handleSearch}
+              >查找句子</Search>
+            </div>
             <div className="content">
-              <Table head={head} items={items} />
+              <Table data={listData} />
             </div>
           </div>
         </div>

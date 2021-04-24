@@ -100,7 +100,6 @@ const AdminUserPage: React.FC<AdminUserPageProps> = props => {
         <Button onClick={handleAdd}>新增用户</Button>
       </div>
       <div className="container">
-        { table && <Table head={tableHead} items={table} /> }
       </div>
     </div>
   )

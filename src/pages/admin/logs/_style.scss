@@ -4,6 +4,10 @@
     height: calc(100vh - 150px);
     display: flex;
     overflow-y: scroll;
+    .viewer {
+      #method { width: 80px; }
+      #status { width: 80px; }
+    }
     a:hover {
       color: $blue;
     }

@@ -8,26 +8,28 @@ export type ButtonType = typeof ButtonTypes[number];
 export interface BaseButtonProps {
   type?: ButtonType,
   children?: React.ReactNode,
-  size?: 'small' | 'large' | 'medium'
+  size?: 'small' | 'large' | 'medium',
+  shape?: 'square' | 'round'
 }
 
 export type NativeButtonProps = {
-  onClick?: React.MouseEventHandler<HTMLElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 } & BaseButtonProps & Omit<React.ButtonHTMLAttributes<any>, 'type' | 'onClick'>;
 
 export type ButtonProps = Partial<NativeButtonProps>;
 
-const B: React.FC<ButtonProps> = (props: ButtonProps) => {
-  const { type, children, size, ...rest } = props;
+const B: React.FC<ButtonProps> = props => {
+  const { type, size, shape, onClick, children, ...rest } = props;
 
   const classnames = classNames({
     'mint-button': true,
     [`mint-button-${type}`]: type,
-    [`mint-button-${size}`]: size
+    [`mint-button-${size}`]: size,
+    [`mint-button-${shape}`]: shape
   })
 
   return (
-    <button className={classnames} {...rest}>{children}</button>
+    <button className={classnames} onClick={onClick} {...rest}>{children}</button>
   )
 }
 

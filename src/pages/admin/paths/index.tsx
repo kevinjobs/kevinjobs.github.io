@@ -135,7 +135,6 @@ const AdminPathsPage: React.FC<AdminPathsPageProps> = props => {
         <Button onClick={handleAdd}>新增路径</Button>
       </div>
       <div className="container">
-        { table && <Table head={tableHead} items={table} /> }
       </div>
       {
         newPath &&
