@@ -8,7 +8,7 @@ export interface SwitchProps {
 }
 
 const Switch: React.FC<SwitchProps> = props => {
-  const [toggle, setToggle] = React.useState(false);
+  const [toggle, setToggle] = React.useState(true);
 
   const { color = '#333', onSwitch, type = 'default' } = props;
 

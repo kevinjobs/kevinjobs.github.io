@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import multiavatar from '@multiavatar/multiavatar';
-import { Button, NavbarProps, Switch, Icon, Dropdown } from '@/components';
+import { Button, NavbarProps, Switch, Dropdown } from '@/components';
 import { UserInterface } from '@/types';
 import classNames from 'classnames';
 import { useTheme } from '@/hooks';
