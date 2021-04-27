@@ -1,7 +1,7 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import { LogApi } from '@/apis';
-import { Table } from '@/components';
+import { message, Table } from '@/components';
 
 export interface AdminLogPageProps {};
 
@@ -15,6 +15,8 @@ const AdminLogPage: React.FC<AdminLogPageProps> = props => {
       if (res.data.code === 1) {
         setLogs(renderLogsTableData(res.data.data));
       }
+    }).catch((err: any) => {
+      message({type: 'danger', text: err.response.data.msg });
     });
   }, [])
 

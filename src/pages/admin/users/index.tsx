@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserApi, IUser } from '@/apis';
-import { Button, Table } from '@/components';
+import { Button, message } from '@/components';
 
 export interface AdminUserPageProps {}
 
@@ -32,10 +32,8 @@ const AdminUserPage: React.FC<AdminUserPageProps> = props => {
         const users = res.data.data;
         renderRow(users);
       }
-    }).catch(err => {
-      if (err.response.status === 401) {
-        window.alert(err.response.data.msg);
-      }
+    }).catch((err: any) => {
+      message({type: 'danger', text: err.response.data.msg });
     })
   }
 

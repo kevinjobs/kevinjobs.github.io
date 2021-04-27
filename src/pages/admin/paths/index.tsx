@@ -1,7 +1,7 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
 import { PathApi, IPath } from '@/apis';
-import { Button, Table, Tag } from '@/components';
+import { Button, Table, Tag, message } from '@/components';
 import AdminPathEditor from './path-editor';
 
 export interface AdminPathsPageProps {}
@@ -23,7 +23,7 @@ const AdminPathsPage: React.FC<AdminPathsPageProps> = props => {
       }
     }).catch(err => {
       if (err.response.status === 401) {
-        window.alert(err.response.data.msg);
+        message({type: 'danger', text: err.response.data.msg});
       }
     })
   }
