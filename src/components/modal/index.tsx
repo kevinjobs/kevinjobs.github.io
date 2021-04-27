@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import ReactDOM from 'react-dom';
 import { Motion, spring } from 'react-motion';
 import { CloseSmall } from '@icon-park/react';
 
-export interface ModalProps {
+export type ModalProps = {
   title?: string,
   content?: string,
   visible?: boolean,
   onClose: React.MouseEventHandler<HTMLDivElement> 
-};
+} & HTMLAttributes<any>;
 
 export const Modal: React.FC<ModalProps> = props => {
-  const { title, content, visible, onClose } = props;
+  const { title, content, visible, children, onClose, ...rest } = props;
+
   const [modalVisible, setModalVisible] = React.useState(visible);
   const [iconColor, setIconColor] = React.useState('#333');
 
@@ -24,7 +25,7 @@ export const Modal: React.FC<ModalProps> = props => {
   }
 
   const renderModal = () => (
-    <div className="mint-modal" style={{display: modalVisible ? 'flex' : 'none'}}>
+    <div className="mint-modal" style={{display: modalVisible ? 'flex' : 'none'}} {...rest}>
       <div className="mint-modal-mask" onClick={onClose}></div>
       <Motion style={{x: spring(modalVisible ? 1 : 0)}}>
         {
@@ -39,7 +40,7 @@ export const Modal: React.FC<ModalProps> = props => {
                   <CloseSmall theme="outline" size="24" fill={iconColor} />
                 </div>
               </div>
-              <div className="content">{ content }</div>
+              <div className="content">{ children || content }</div>
             </div>
           )
         }

@@ -4,16 +4,23 @@ import classNames from 'classnames';
 import { PostApi, IPost } from '@/apis';
 import { HomePageProps } from '@/pages';
 import ArticleList from './home-list';
-import { Button, message, Carousel } from '@/components';
+import { Button, message, Carousel, Modal } from '@/components';
+import { IMG_BASE_URL } from '@/config';
 
 const Homepage: React.FC<HomePageProps> = (props) => {
   const [articleList, setArticleList] = React.useState<IPost[]>();
   const [photos, setPhotos] = React.useState<IPost[]>();
   const [currentPage, setCurrentPage] = React.useState(1);
   const [isMorePost, setIsMorePost] = React.useState(true);
+  const [ showPhoto, setShowPhoto ] = React.useState<string>();
 
   const articlePageSize = 8;
   const picturePageSize = 5;
+
+  const handleClick = (e: any, item: any) => {
+    console.log(item);
+    setShowPhoto(IMG_BASE_URL + item.cover);
+  }
 
   const loadMore = (e: any) => {
     if (isMorePost) {
@@ -55,7 +62,7 @@ const Homepage: React.FC<HomePageProps> = (props) => {
           &&
           <Carousel
             items={photos}
-            onClick={(e: any) => console.log(e.target.dataset['index'])}
+            onClick={handleClick}
           />
         }
       </div>
@@ -74,6 +81,12 @@ const Homepage: React.FC<HomePageProps> = (props) => {
               : <small>我是有底线的</small>
           }
       </div>
+      <Modal
+        onClose={e => setShowPhoto(undefined)}
+        visible={showPhoto ? true : false}
+      >
+        <img style={{width: 600}} src={showPhoto} />
+      </Modal>
     </div>
   )
 }

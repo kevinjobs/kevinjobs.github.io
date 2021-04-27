@@ -13,8 +13,8 @@ export type CarouselProps = {
   items: any[],
   duration?: number, // 轮播图切换间隔时间
   start?: number, // 开始图片的索引值
-  onClick?: React.MouseEventHandler<any>
-} & HTMLAttributes<any>;
+  onClick: (e: any, item: any) => void;
+} & Omit<HTMLAttributes<any>, 'onClick'>;
 
 export interface ICarouselItem {
   cover: string, // the url of image
@@ -106,7 +106,7 @@ export const Carousel: React.FC<CarouselProps> = props => {
                 src={baseUrl+item.cover}
                 alt={item.title}
                 data-index={index}
-                onClick={onClick}
+                onClick={e => onClick(e, item)}
               />
             </div>
           )
