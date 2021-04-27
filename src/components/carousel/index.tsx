@@ -1,8 +1,8 @@
 /*
  * @description: 组件 - 走马灯（轮播图）
  * @author: kevinjobs
- * @date: 2021-04-22
- * @version: 0.0.1
+ * @date: 2021-04-27
+ * @version: 0.0.2
  */
 import React, { HTMLAttributes } from 'react';
 import { Motion, spring } from 'react-motion';
@@ -22,8 +22,13 @@ export const Carousel: React.FC<CarouselProps> = props => {
   const { items, duration = 5000, start = 0, onClick, ...rest } = props;
   const length = items.length; // 传入的图片列表长度
 
+  // 新建一个 ref 用以获取组件宽度
+  const ref: any = React.useRef();
+
   // 设置当前图片的索引值，从 props 获取，默认为 0
-  const [currentItemIndex, setCurrentItemIndex] = React.useState(start);
+  const [ currentItemIndex, setCurrentItemIndex ] = React.useState(start);
+  // 获取组件宽度
+  const [ clientWidth, setClientWidth ] = React.useState<number>();
 
   /**
    * 上一张
@@ -65,8 +70,15 @@ export const Carousel: React.FC<CarouselProps> = props => {
   const renderItem = (item: any, index: number) => {
     const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
 
-    const style: any = rest.style;
-    const left = (index-currentItemIndex) * Number(style.width);
+    let width: any = 0;
+    if (rest.style) {
+      width = rest.style.width;
+    } else if (clientWidth) {
+      width = clientWidth;
+    } else {
+      width = 1000;
+    }
+    const left = (index-currentItemIndex) * Number(width);
     const show = currentItemIndex === index;
 
     return (
@@ -112,7 +124,9 @@ export const Carousel: React.FC<CarouselProps> = props => {
     )
   }
 
-  // console.log(currentItemIndex);
+  React.useEffect(() => {
+    setClientWidth(ref.current.clientWidth);
+  }, [])
 
   /**
    * 使用副作用设置自动轮播时长
@@ -129,7 +143,7 @@ export const Carousel: React.FC<CarouselProps> = props => {
   }, [currentItemIndex])
 
   return (
-    <div className="mint-carousel" {...rest}>
+    <div className="mint-carousel" {...rest} ref={ref}>
       <div className="carousel-container">
         { items && items.map(renderItem) }
         <div className="item-prev" onClick={handlePrev}>Prev</div>

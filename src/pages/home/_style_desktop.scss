@@ -1,4 +1,11 @@
 .Article.Desktop {
+  .home-carousel {
+    .mint-carousel {
+      width: 700px;
+      height: 400px;
+      border-radius: 8px !important;
+    }
+  }
   .article-list {
     max-width: 1000px;
     margin-top: 10px;

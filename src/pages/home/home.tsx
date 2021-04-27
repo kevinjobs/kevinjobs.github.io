@@ -56,12 +56,11 @@ const Homepage: React.FC<HomePageProps> = (props) => {
           <Carousel
             items={photos}
             onClick={(e: any) => console.log(e.target.dataset['index'])}
-            style={{width: 700, height: 400, borderRadius: 8}}
           />
         }
       </div>
       <div className="article-list">
-        <h2 className="header">最 近 文 章</h2>
+        <h2 className="header" style={{width: '100%'}}>最 近 文 章</h2>
         {
           articleList
             ? <ArticleList articleList={articleList} />

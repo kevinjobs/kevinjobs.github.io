@@ -84,36 +84,3 @@
   }
 }
 
-.Article.Mobile {
-  .ArticleList {
-    width: 100%;
-    margin-top: 0px;
-    .ArticleList__item {
-      width: 100%;
-      height: 300px;
-      margin: 5px;
-      .ArticleList__item--Cover {
-        height: 180px;
-        img {
-          height: 100%;
-        }
-      }
-      .ArticleList__item--Info {
-        .ArticleList__item--Info__desc {
-          display: none;
-        }
-        height: 120px;
-        padding: 10px 20px;
-        .ArticleList__item--Info__author {
-          bottom: 10px;
-          a {
-            color: #000;
-          }
-        }
-      }
-    }
-  }
-  .Article__LoadMore {
-    width: 94%;
-  }
-}
