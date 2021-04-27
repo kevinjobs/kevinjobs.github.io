@@ -112,7 +112,7 @@ export const Carousel: React.FC<CarouselProps> = props => {
     )
   }
 
-  console.log(currentItemIndex);
+  // console.log(currentItemIndex);
 
   /**
    * 使用副作用设置自动轮播时长
