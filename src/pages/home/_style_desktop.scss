@@ -24,6 +24,7 @@
       position: relative;
       transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
       border-radius: 8px;
+      overflow: hidden;
       .cover {
         height: 200px;
         a {
@@ -40,9 +41,7 @@
         display: block;
         padding: 10px 20px;
         position: absolute;
-        bottom: 0;
         left: 0;
-        border-radius: 8px;
         background-color: rgba($color: #000000, $alpha: 0.75);
         * {
           color: #f1f1f1 !important;
@@ -60,6 +59,7 @@
           width: 100%;
           display: flex;
           align-items: center;
+          margin: 8px 0;
           .author-avatar {
             display: inline-block;
             height: 28px;

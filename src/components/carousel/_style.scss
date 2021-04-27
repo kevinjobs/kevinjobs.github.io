@@ -49,6 +49,7 @@
       margin: 0 4px;
       background-color: #c1c1c1;
       cursor: pointer;
+      transition: all .2s ease-in-out;
       &:hover {
         width: 40px !important;
         height: 6px !important;

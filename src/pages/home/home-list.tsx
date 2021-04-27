@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Motion, spring } from 'react-motion';
 import dayjs from 'dayjs';
 import multiavatar from '@multiavatar/multiavatar';
 import { IPost } from '@/types';
@@ -24,6 +25,26 @@ const List: React.FC<ListProps> = (props: ListProps) => {
     setHover(e.target.dataset['id']);
   };
 
+  const renderInfo = (a: IPost, x: any) => (
+    <div className="infos" style={{top: x}}>
+      <h3 className="title">
+        <Link to={`/article/${a._id}`}>{a.title}</Link>
+      </h3>
+      <span className="datetime">
+        { dayjs(a.update_at).format('YYYY年M月D日') }
+      </span>
+      <div className="author">
+        <span
+          className="author-avatar"
+          dangerouslySetInnerHTML={{__html: multiavatar(a.author)}}>
+        </span>
+        <span className="author-name">
+          <Link to={`/profile/${a.author}`}>{a.author}</Link>
+        </span>
+      </div>
+    </div>
+  )
+
   const renderItem = (a: IPost, index: number) => {
     return(
       <div
@@ -43,29 +64,9 @@ const List: React.FC<ListProps> = (props: ListProps) => {
             />
           </Link>
         </div>
-        <Transition
-          in={hover === a._id ? true : false}
-          timeout={300}
-          animation="FadeInOut"
-        >
-          <div className="infos">
-            <span className="datetime">
-              { dayjs(a.update_at).format('YYYY年M月D日') }
-            </span>
-            <h3 className="title">
-              <Link to={`/article/${a._id}`}>{a.title}</Link>
-            </h3>
-            <div className="author">
-              <span
-                className="author-avatar"
-                dangerouslySetInnerHTML={{__html: multiavatar(a.author)}}>
-              </span>
-              <span className="author-name">
-                <Link to={`/profile/${a.author}`}>{a.author}</Link>
-              </span>
-            </div>
-          </div>
-        </Transition>
+        <Motion style={{x: spring(hover === a._id ? 80 : 150)}}>
+          { ({x}) => renderInfo(a, x) }
+        </Motion>
       </div>
     )
   }
