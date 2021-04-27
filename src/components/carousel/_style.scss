@@ -11,14 +11,17 @@
       z-index: 999;
       cursor: pointer;
       position: absolute;
-      display: none;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
     }
     .item-next {
       z-index: 999;
       cursor: pointer;
       position: absolute;
-      right: 0;
-      display: none;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 

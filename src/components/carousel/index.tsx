@@ -6,6 +6,8 @@
  */
 import React, { HTMLAttributes } from 'react';
 import { Motion, spring } from 'react-motion';
+import { LeftC, RightC } from '@icon-park/react';
+import { Transition } from '@/components';
 
 export type CarouselProps = {
   items: any[],
@@ -29,6 +31,8 @@ export const Carousel: React.FC<CarouselProps> = props => {
   const [ currentItemIndex, setCurrentItemIndex ] = React.useState(start);
   // 获取组件宽度
   const [ clientWidth, setClientWidth ] = React.useState<number>();
+  // 判断鼠标是否移入
+  const [ isMouseHover, setIsMouseHover ] = React.useState(false);
 
   /**
    * 上一张
@@ -59,6 +63,16 @@ export const Carousel: React.FC<CarouselProps> = props => {
   const handleSelect = (e: any) => {
     const i = e.target.dataset.index;
     setCurrentItemIndex(Number(i));
+  }
+
+  // 鼠标移入
+  const handleMouseEnter = (e: any) => {
+    setIsMouseHover(true);
+  }
+
+  // 鼠标移出
+  const handleMouseLeave = (e: any) => {
+    setIsMouseHover(false);
   }
 
   /**
@@ -144,10 +158,22 @@ export const Carousel: React.FC<CarouselProps> = props => {
 
   return (
     <div className="mint-carousel" {...rest} ref={ref}>
-      <div className="carousel-container">
+      <div
+        className="carousel-container"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         { items && items.map(renderItem) }
-        <div className="item-prev" onClick={handlePrev}>Prev</div>
-        <div className="item-next" onClick={handleNext}>Next</div>
+        <div className="item-prev" onClick={handlePrev}>
+          <Transition in={isMouseHover} timeout={500} animation="FadeDown">
+            <LeftC theme="filled" size="38" fill="#525252" />
+          </Transition>
+        </div>
+        <div className="item-next" onClick={handleNext}>
+          <Transition in={isMouseHover} timeout={500} animation="FadeDown">
+            <RightC theme="filled" size="38" fill="#525252" />
+          </Transition>
+        </div>
         <div className="navigator" style={{width: length * 40}}>
           { Array(length).fill('').map(renderNavi) }
         </div>
