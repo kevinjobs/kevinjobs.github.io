@@ -2,7 +2,15 @@ import React from 'react';
 import { Omit, tuple } from '../_utils/type';
 import classNames from 'classnames';
 
-const ButtonTypes = tuple('default', 'primary', 'danger', 'warning', 'success');
+const ButtonTypes = tuple(
+  'default',
+  'primary',
+  'danger',
+  'warning',
+  'success',
+  'dark',
+  'light'
+);
 export type ButtonType = typeof ButtonTypes[number];
 
 export interface BaseButtonProps {

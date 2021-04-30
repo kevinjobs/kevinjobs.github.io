@@ -29,13 +29,23 @@
   color: #ffffff;
   background-color: $primary;
 }
+.mint-button-success {
+  border: 1px solid $green;
+  color: #ffffff;
+  background-color: $green;
+}
+.mint-button-warning {
+  border: 1px solid $yellow;
+  color: #ffffff;
+  background-color: $yellow;
+}
 .mint-button-danger {
   border: 1px solid $red;
   color: #ffffff;
   background-color: $red;
 }
-.mint-button-success {
-  border: 1px solid $green;
+.mint-button-dark {
+  border: 1px solid #333;
   color: #ffffff;
-  background-color: $green;
+  background-color: #333;
 }

@@ -4,9 +4,6 @@ export { default as Button } from './button';
 export type { CarouselProps, ICarouselItem } from './carousel';
 export { Carousel } from './carousel';
 
-export type { DialogProps } from './dialog';
-export { default as Dialog } from './dialog';
-
 export type { DividerProps } from './divider';
 export { default as Divider } from './divider';
 
