@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import multiavatar from '@multiavatar/multiavatar';
 import { Button, NavbarProps, Switch, Dropdown } from '@/components';
 import { UserInterface } from '@/types';
@@ -8,7 +8,6 @@ import { useTheme } from '@/hooks';
 
 const DesktopNavbar: React.FC<NavbarProps> = (props) => {
   const [userInfo, setUserInfo] = React.useState<UserInterface>();
-  const [menuItemShow, setMenuItemShow] = React.useState(false);
 
   const { fresh, onLogin, onLogout, onSwitchTheme } = props;
 
@@ -38,11 +37,8 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
             <Link to="/schedule">待办事项</Link>
           </span>
         </div>
-        <div className="menu-item"
-          onMouseEnter={e => setMenuItemShow(true)}
-          onMouseLeave={e => setMenuItemShow(false)}
-        >
-          <Dropdown title="探索更多">
+        <div className="menu-item">
+          <Dropdown title="探索更多" theme="#f1f1f1">
             <>
               <div className="more-item">
                 <Link to="/wiki">百科</Link>

@@ -1,36 +1,38 @@
-import React from 'react';
+import * as React from 'react';
 import marked from 'marked';
 
-export interface EditorProps {
+export type EditorProps = {
   value?: string,
-  onChange?: any
-};
+  onChange?: (rawText: string | undefined, htmlText: string | undefined) => void,
+} & Omit<React.HTMLAttributes<any>, 'value' | 'onChange'>;
 
 export const Editor: React.FC<EditorProps> = props => {
-  const { value, onChange } = props;
+  const { value, onChange, style } = props;
 
-  const [raw, setRaw] = React.useState(value);
-  const [preview, setPreview] = React.useState<string>('');
+  const [htmlText, sethtmlText] = React.useState<string>('');
+  const [rawText, setRawText] = React.useState<string | undefined>(value);
 
   const ref: any = React.useRef();
 
-  const handleEnter = (e: any) => {
-    if (e.key === 'Enter') {
-      setPreview(marked(ref.current.innerText));
-    }
+  const handleKeyDown = (e: any) => {
+    setRawText(ref.current.innerText);
   }
 
   React.useEffect(() => {
-    raw && setPreview(marked(raw));
-  }, [raw])
+    onChange && onChange(rawText, htmlText);
+    sethtmlText(marked(ref.current.innerText));
+  }, [rawText, htmlText, onChange]);
 
   return (
-    <div className="mint-editor">
+    <div className="mint-editor" style={style}>
       <div className="mint-editor-container">
-        <div className="mint-editor-left" contentEditable ref={ref}
-          onKeyDown={handleEnter}></div>
+        <div
+          className="mint-editor-left"
+          contentEditable
+          ref={ref}
+          onKeyDown={handleKeyDown}>{ value }</div>
         <div className="mint-editor-right typo">
-          <div dangerouslySetInnerHTML={{__html: preview}}></div>
+          <div dangerouslySetInnerHTML={{__html: htmlText}}></div>
         </div>
       </div>
     </div>

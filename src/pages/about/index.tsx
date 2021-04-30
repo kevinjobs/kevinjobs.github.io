@@ -2,7 +2,9 @@ import * as React from 'react';
 import { HashRouter, Route, NavLink } from 'react-router-dom';
 import DemoButton from './demo-button';
 import DemoCarousel from './demo-carousel';
+import DemoDivider from './demo-divider';
 import DemoDropdown from './demo-dropdown';
+import DemoEditor from './demo-editor';
 
 const AboutPage: React.FC = () => {
   return (
@@ -10,15 +12,21 @@ const AboutPage: React.FC = () => {
       <div className="container">
         <div className="left-nav">
           <div className="menus">
-            <div className="menu-item">
-              <NavLink to={'/about/demo-button'}>Button</NavLink>
-            </div>
-            <div className="menu-item">
-              <NavLink to={'/about/demo-carousel'}>Carousel</NavLink>
-            </div>
-            <div className="menu-item">
-              <NavLink to={'/about/demo-dropdown'}>Dropdown</NavLink>
-            </div>
+            <NavLink className="menu-item" to={'/about/demo-button'}>
+              Button 按钮
+            </NavLink>
+            <NavLink className="menu-item" to={'/about/demo-carousel'}>
+              Carousel 走马灯/轮播图
+            </NavLink>
+            <NavLink className="menu-item" to={'/about/demo-divider'}>
+              Divider 分割线
+            </NavLink>
+            <NavLink className="menu-item" to={'/about/demo-dropdown'}>
+              Dropdown 下拉菜单
+            </NavLink>
+            <NavLink className="menu-item" to={'/about/demo-editor'}>
+              Editor 编辑器
+            </NavLink>
           </div>
         </div>
         <div className="right-content">
@@ -26,7 +34,9 @@ const AboutPage: React.FC = () => {
             <Route path="/about">
               <Route path="/about/demo-button"><DemoButton /></Route>
               <Route path="/about/demo-carousel"><DemoCarousel /></Route>
+              <Route path="/about/demo-divider" component={DemoDivider} />
               <Route path="/about/demo-dropdown"><DemoDropdown /></Route>
+              <Route path="/about/demo-editor" component={DemoEditor} />
             </Route>
           </HashRouter>
         </div>
