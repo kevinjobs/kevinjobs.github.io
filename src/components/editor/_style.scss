@@ -8,6 +8,7 @@
   &-left {
     width: 50%;
     min-height: 600px;
+    height: 100%;
     padding: 12px 16px;
     border-right: 1px solid #acacac;
     line-height: 1.5;
@@ -16,5 +17,23 @@
   &-right {
     width: 50%;
     padding: 12px 16px;
+    h1,h2,h3,h4,h5,p {
+      margin: 16px 0;
+    }
+    blockquote {
+      background-color: #f1f1f1;
+      padding: 8px 16px;
+    }
+    pre {
+      padding: 8px 16px;
+      background-color: #333;
+      color: #ccc;
+    }
+    ol {
+      margin-left: 16px;
+      li {
+        margin: 4px 0;
+      }
+    }
   }
 }
