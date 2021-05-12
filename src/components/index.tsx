@@ -19,6 +19,9 @@ export { default as Icon } from './icon';
 export type { ImageProps } from './image';
 export { default as Image } from './image';
 
+export type { ImagePreviewProps } from './image-preview';
+export { default as ImagePreview } from './image-preview';
+
 export type { InputProps } from './input';
 export { default as Input } from './input';
 

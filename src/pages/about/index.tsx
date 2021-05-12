@@ -5,6 +5,7 @@ import DemoCarousel from './demo-carousel';
 import DemoDivider from './demo-divider';
 import DemoDropdown from './demo-dropdown';
 import DemoEditor from './demo-editor';
+import DemoImagePreview from './demo-image-preview';
 
 const AboutPage: React.FC = () => {
   return (
@@ -27,6 +28,9 @@ const AboutPage: React.FC = () => {
             <NavLink className="menu-item" to={'/about/demo-editor'}>
               Editor 编辑器
             </NavLink>
+            <NavLink className="menu-item" to={'/about/demo-image-preview'}>
+              ImagePreview 图片预览
+            </NavLink>
           </div>
         </div>
         <div className="right-content">
@@ -37,6 +41,7 @@ const AboutPage: React.FC = () => {
               <Route path="/about/demo-divider" component={DemoDivider} />
               <Route path="/about/demo-dropdown"><DemoDropdown /></Route>
               <Route path="/about/demo-editor" component={DemoEditor} />
+              <Route path="/about/demo-image-preview" component={DemoImagePreview} />
             </Route>
           </HashRouter>
         </div>

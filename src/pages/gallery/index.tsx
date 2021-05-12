@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
-import { Masonry, Icon } from '@/components';
+import { Masonry, Icon, ImagePreview } from '@/components';
 import { PostApi } from '@/apis';
 import { ImageInterface } from '@/types';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
@@ -12,6 +12,7 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   const [imageList, setImageList] = React.useState<ImageInterface[]>([]);
   const [selectedImg, setSelectedImg] = React.useState<ImageInterface>();
   const [isMore, setIsMore] = React.useState(true);
+  const [isPreviewVisible, setIsPreviewVisible] = React.useState(false);
 
   const { width } = useViewport();
   const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
@@ -31,12 +32,15 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
   }
 
   const handleOpen = (e: any) => {
+    setIsPreviewVisible(true);
+    /*
     const picid = e.target.dataset.picid;
     PostApi.getPostById(picid).then(res => {
       if (res.status === 200 && res.data.code === 1) {
         setSelectedImg(res.data.data);
       }
     });
+    */
   }
 
   React.useEffect(() => {
@@ -55,6 +59,18 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
     gutter: width < breakpoint ? 5 : 10
   }
 
+  const convertData = (items: any[]) => {
+    const newItems = [];
+    for (let item of items) {
+      const newItem = { source: '', title: ''};
+      newItem['source'] = baseUrl + item['cover'];
+      newItem['title'] = item['title'];
+      newItems.push(newItem);
+    };
+    return newItems;
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const renderPreview = (image: ImageInterface) => {
     const { address, author, datetime, exposure_time, iso } = JSON.parse(String(image.exif));
     const { cover = '' } = image;
@@ -99,7 +115,13 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
           { isMore ? '加载更多图片' : '我是有底线的' }
         </div>
       </div>
-      { selectedImg && renderPreview(selectedImg) }
+      {
+        isPreviewVisible &&
+        <ImagePreview
+          data={convertData(imageList)}
+          onClose={(e: any) => setIsPreviewVisible(false)}
+        />
+      }
     </div>
   )
 }

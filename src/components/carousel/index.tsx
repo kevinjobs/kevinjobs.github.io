@@ -154,7 +154,7 @@ export const Carousel: React.FC<CarouselProps> = props => {
       }
     }, duration);
     return () => clearInterval(timer);
-  }, [currentItemIndex])
+  }, [currentItemIndex, duration, length])
 
   return (
     <div className="mint-carousel" {...rest} ref={ref}>
