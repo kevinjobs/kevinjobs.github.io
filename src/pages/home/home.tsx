@@ -55,12 +55,6 @@ const Homepage: React.FC<HomePageProps> = (props) => {
     return newItems;
   };
 
-  const handleWheel = (e: any) => {
-    // console.log(e);
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
   // 组件挂载时，请求图片和文章
   React.useEffect(() => {
     PostApi.getPostList(1, articlePageSize, 'article')
@@ -70,16 +64,6 @@ const Homepage: React.FC<HomePageProps> = (props) => {
       .then(res => setPhotos(res.data.data.items))
       .catch(err => console.error(err));
   }, []);
-
-  // 监听 scroll
-  React.useEffect(() => {
-    if (selectedPhotoIndex !== undefined) {
-      document.body.addEventListener('wheel', handleWheel, {passive: false});
-      return () => {
-        document.body.removeEventListener('wheel', handleWheel);
-      };
-    };
-  }, [selectedPhotoIndex]);
 
   const classnames = classNames({
     "Article": true,

@@ -39,9 +39,53 @@ export const Preview: React.FC<PreviewProps> = (props) => {
   const [prevButtonColor, setPrevButtonColor] = React.useState('#525252');
   const [nextButtonColor, setNextButtonColor] = React.useState('#525252');
 
+  const [zoom, setZoom] = React.useState(1000);
+  const [positionXStart, setPositionXStart] = React.useState(0);
+  const [positionYStart, setPositionYStart] = React.useState(0);
+  const [positionXEnd, setPositionXEnd] = React.useState(0);
+  const [positionYEnd, setPositionYEnd] = React.useState(0);
+  const [x, setX] = React.useState(0);
+  const [y, setY] = React.useState(0);
+
+  const imgRef: any = React.useRef();
+
   // 点击下方图片缩略图时，将对应的图片对象传入
   const handleClick = (e: any, index: number) => {
+    e.preventDefault();
     setSelectedImage(data[index]);
+  };
+
+  // 处理放大缩小
+  const handleZoom = (e: any) => {
+    e.preventDefault();
+    let delta = e.deltaY;
+    if (zoom <= 100) {
+      if (delta < 0) {
+        setZoom(zoom - delta)
+      };
+    } else {
+      setZoom(zoom - delta);
+    };
+  };
+
+  const handleDragStart = (e: any) => {
+    // e.preventDefault();
+    if (x === 0) {
+      setPositionXStart(e.clientX);
+      setPositionYStart(e.clientY);
+    };
+  };
+
+  const handleDragOver = (e: any) => {
+    e.preventDefault();
+    setPositionXEnd(e.clientX);
+    setPositionYEnd(e.clientY);
+  };
+
+  const handleDrop = (e: any) => {
+    e.preventDefault();
+    setPositionXEnd(e.clientX);
+    setPositionYEnd(e.clientY);
   };
 
   const handlePrev = (e: any) => {
@@ -86,6 +130,30 @@ export const Preview: React.FC<PreviewProps> = (props) => {
     )
   };
 
+  const handleWheel = (e: any) => {
+    // console.log(e);
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  // 监听 scroll
+  React.useEffect(() => {
+    document.body.addEventListener('wheel', handleWheel, {passive: false});
+    return () => {
+      document.body.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    setX(positionXEnd - positionXStart);
+    setY(positionYEnd - positionYStart);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [positionXEnd, positionYEnd]);
+
+  const styles = {
+    transform: `scale(${zoom/1000}, ${zoom/1000}) translate(${x}px,${y}px)`
+  } as React.CSSProperties;
+
   return (
     <div className="mint-image-preview">
       <div className="container">
@@ -95,7 +163,20 @@ export const Preview: React.FC<PreviewProps> = (props) => {
         <div className="preview">
           {/** 大图展示 */}
           <div className="preview-container">
-          { selectedImage && <img src={selectedImage.source} alt={selectedImage.title} /> }
+            {
+              selectedImage &&
+              <img
+                src={selectedImage.source}
+                alt={selectedImage.title}
+                onWheel={handleZoom}
+                style={styles}
+                draggable
+                onDragStart={handleDragStart}
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                ref={imgRef}
+              />
+            }
           </div>
         </div>
         <div className="list">
