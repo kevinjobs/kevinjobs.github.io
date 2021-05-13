@@ -4,22 +4,25 @@ import classNames from 'classnames';
 import { PostApi, IPost } from '@/apis';
 import { HomePageProps } from '@/pages';
 import ArticleList from './home-list';
-import { Button, message, Carousel, Modal } from '@/components';
-import { IMG_BASE_URL } from '@/config';
+import { Button, message, Carousel, ImagePreview } from '@/components';
+import { IMG } from "@/config.json";
 
 const Homepage: React.FC<HomePageProps> = (props) => {
-  const [articleList, setArticleList] = React.useState<IPost[]>();
+  // 文章
+  const [articleList, setArticleList] = React.useState<IPost[]>(); // 文章列表
+  const [currentPage, setCurrentPage] = React.useState(1); // 文章当前页面
+  const [isMorePost, setIsMorePost] = React.useState(true); // 是否有更多文章
+  // 轮播图
   const [photos, setPhotos] = React.useState<IPost[]>();
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const [isMorePost, setIsMorePost] = React.useState(true);
-  const [ showPhoto, setShowPhoto ] = React.useState<string>();
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = React.useState<number>();
 
   const articlePageSize = 8;
   const picturePageSize = 5;
 
-  const handleClick = (e: any, item: any) => {
-    console.log(item);
-    setShowPhoto(IMG_BASE_URL + item.cover);
+  // 处理走马灯组件点击图片时的动作
+  const handleSelect = (e: any, item: any, index: number) => {
+    console.log(index);
+    setSelectedPhotoIndex(index);
   }
 
   const loadMore = (e: any) => {
@@ -38,6 +41,18 @@ const Homepage: React.FC<HomePageProps> = (props) => {
       })
       .catch(err => console.log(err));
     }
+  };
+
+  // 将 IPost 转化为 ImagePreview 需要的对象格式
+  const convertPostToData = (items: IPost[]) => {
+    const newItems = [];
+    for (let item of items) {
+      const newItem = { source: '', title: '' };
+      newItem['title'] = item['title'];
+      newItem['source'] = IMG.baseUrl + item['cover'] || '';
+      newItems.push(newItem);
+    };
+    return newItems;
   }
 
   React.useEffect(() => {
@@ -62,7 +77,7 @@ const Homepage: React.FC<HomePageProps> = (props) => {
           &&
           <Carousel
             items={photos}
-            onClick={handleClick}
+            onClick={handleSelect}
           />
         }
       </div>
@@ -81,12 +96,15 @@ const Homepage: React.FC<HomePageProps> = (props) => {
               : <small>我是有底线的</small>
           }
       </div>
-      <Modal
-        onClose={e => setShowPhoto(undefined)}
-        visible={showPhoto ? true : false}
-      >
-        <img style={{width: 600}} src={showPhoto} />
-      </Modal>
+      {
+        // 此处要注意 selectedPhotoIndex 为 0 时会被布尔化为 false
+        selectedPhotoIndex !== undefined && photos &&
+        <ImagePreview
+          defaultIndex={selectedPhotoIndex}
+          data={convertPostToData(photos)}
+          onClose={(e: any) => setSelectedPhotoIndex(undefined)}
+        />
+      }
     </div>
   )
 }

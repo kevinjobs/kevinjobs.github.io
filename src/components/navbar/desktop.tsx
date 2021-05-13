@@ -38,6 +38,11 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
           </span>
         </div>
         <div className="menu-item">
+          <span className="title">
+            <Link to="/about">组件</Link>
+          </span>
+        </div>
+        <div className="menu-item">
           <Dropdown title="探索更多" theme="#f1f1f1">
             <>
               <div className="more-item">

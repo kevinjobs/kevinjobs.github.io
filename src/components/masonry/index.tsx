@@ -6,7 +6,7 @@ export interface MasonryProps {
   columnWidth: number,
   gutter: number,
   items: ImageInterface[],
-  openImage?: any
+  onSelect: (e: any, item: any, index: number) => void
 }
 /*
  * The classic "masonry" style Pinterest grid
@@ -18,7 +18,7 @@ export interface MasonryProps {
 const Masonry: React.FC<MasonryProps> = props => {
   const [height, setHeight] = React.useState(0);
 
-  const { items, columnWidth, columns, gutter, openImage } = props;
+  const { items, columnWidth, columns, gutter, onSelect } = props;
   const length = items.length;
 
   let longestHeight = 0;
@@ -80,16 +80,18 @@ const Masonry: React.FC<MasonryProps> = props => {
         style={getItemStyle(item, index)}
         key={index}
         data-picid={item._id}
-        onClick={openImage}
+        onClick={e => onSelect(e, item, index)}
         src={baseUrl + cover.replace('JPG', 'jpg')}
         alt={item.title || 'noname'}
       />
     );
   }
 
+  // 需要实时调整整个图框的高度，因此此处忽略这个提醒
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(() => {
     setHeight(longestHeight);
-  })
+  });
 
   const style = {
     position: 'relative',
