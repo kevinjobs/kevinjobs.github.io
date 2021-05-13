@@ -17,7 +17,7 @@ const Homepage: React.FC<HomePageProps> = (props) => {
   const [selectedPhotoIndex, setSelectedPhotoIndex] = React.useState<number>();
 
   const articlePageSize = 8;
-  const picturePageSize = 5;
+  const picturePageSize = 8;
 
   // 处理走马灯组件点击图片时的动作
   const handleSelect = (e: any, item: any, index: number) => {

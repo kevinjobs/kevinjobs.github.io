@@ -47,6 +47,7 @@
             .comps {
               padding: 16px;
               display: inline-block;
+              max-width: calc(100vw - 360px);
             }
             .detail {
               padding: 8px 16px;

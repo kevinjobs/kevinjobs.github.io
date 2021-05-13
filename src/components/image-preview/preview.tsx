@@ -36,10 +36,36 @@ export const Preview: React.FC<PreviewProps> = (props) => {
 
   const [selectedImage, setSelectedImage] = React.useState<IData>(data[defaultIndex]);
   const [offset, setOffset] = React.useState(convertDefaultIndex(defaultIndex));
+  const [prevButtonColor, setPrevButtonColor] = React.useState('#525252');
+  const [nextButtonColor, setNextButtonColor] = React.useState('#525252');
 
   // 点击下方图片缩略图时，将对应的图片对象传入
   const handleClick = (e: any, index: number) => {
     setSelectedImage(data[index]);
+  };
+
+  const handlePrev = (e: any) => {
+    setPrevButtonColor('#a1a1a1');
+    if (offset < 0) {
+      if (offset === -136) {
+        setOffset(0);
+      } else {
+        setOffset(offset + 136 * 2);
+      };
+    };
+    setTimeout(() => {
+      setPrevButtonColor('#525252');
+    }, 100);
+  };
+
+  const handleNext = (e: any) => {
+    setNextButtonColor('#a1a1a1');
+    if ((data.length * 136 + offset) > 1360) {
+      setOffset(offset - 136 * 2);
+    };
+    setTimeout(() => {
+      setNextButtonColor('#525252');
+    }, 100);
   };
 
   const renderItem = (item: IData, index: number) => {
@@ -74,8 +100,8 @@ export const Preview: React.FC<PreviewProps> = (props) => {
         </div>
         <div className="list">
           {/** 图片缩略图 */}
-          <div className="prev" onClick={e => {if (offset < 0) setOffset(offset + 200);}}>
-            <LeftC theme="filled" size="38" fill="#525252" />
+          <div className="prev" onClick={handlePrev}>
+            <LeftC theme="filled" size="38" fill={prevButtonColor} />
           </div>
           <div className="list-container">
             <Motion style={{x: spring(offset, {stiffness: 300, damping: 40})}}>
@@ -90,8 +116,8 @@ export const Preview: React.FC<PreviewProps> = (props) => {
               }
             </Motion>
           </div>
-          <div className="next" onClick={e => setOffset(offset - 200)}>
-            <RightC theme="filled" size="38" fill="#525252" />
+          <div className="next" onClick={handleNext}>
+            <RightC theme="filled" size="38" fill={nextButtonColor} />
           </div>
         </div>
       </div>

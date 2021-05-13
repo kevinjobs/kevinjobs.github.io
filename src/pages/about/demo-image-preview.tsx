@@ -40,7 +40,7 @@ export const Demo: React.FC<any> = (props) => {
 
   React.useEffect(() => {
     axios
-      .get('/zhihus?page_size=8')
+      .get('/zhihus?page_size=30')
       .then(res => {
         setImgs(res.data.data.items);
       }).catch(err => console.log(err));

@@ -84,7 +84,7 @@ const GalleryPage: React.FC<GalleryPageProps> = () => {
         </div>
       </div>
       {
-        selectedImgIndex &&
+        selectedImgIndex !== undefined &&
         <ImagePreview
           data={convertData(imageList)}
           defaultIndex={selectedImgIndex}
