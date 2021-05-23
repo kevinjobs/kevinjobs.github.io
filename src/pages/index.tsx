@@ -36,3 +36,5 @@ export { default as SchedulePage } from './schedule';
 // wiki
 export type { WikiPageProps } from './wiki';
 export { default as WikiPage } from './wiki';
+
+export { default as ZhihuPage } from './zhihu';

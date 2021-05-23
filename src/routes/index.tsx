@@ -14,7 +14,8 @@ import {
   MissivePage,
   ProfilePage,
   SchedulePage,
-  WikiPage
+  WikiPage,
+  ZhihuPage
 } from '@/pages';
 
 
@@ -38,6 +39,7 @@ const Routes: React.FC = () => {
       />
       <Route exact path="/schedule" component={SchedulePage} />
       <Route exact path="/wiki" component={WikiPage} />
+      <Route exact path="/zhihu" component={ZhihuPage} />
       <Route exact path="/" component={HomePage} />
     </>
   )
