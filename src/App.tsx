@@ -8,7 +8,7 @@ import { Navbar, message } from '@/components';
 import Routes from '@/routes';
 
 const App: React.FC = () => {
-  const [nightMode, setNightMode] = React.useState(true);
+  const [theme, setTheme] = React.useState('light');
 
   const location = useLocation();
   const history = useHistory();
@@ -24,26 +24,38 @@ const App: React.FC = () => {
     history.push('/login');
   }
 
-  React.useEffect(() => {
-    if (nightMode) {
-      document.body.style.backgroundColor = "#111111";
-    } else {
-      document.body.style.backgroundColor = '#f1f1f1';
+  const handleSwitchTheme = (e: any) => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else if (theme === 'dark') {
+      setTheme('light');
     }
-  }, [nightMode])
+  }
+
+  React.useEffect(() => {
+    let bgcolor :string;
+    switch (theme) {
+      case 'light':
+        bgcolor = '#f1f1f1';
+        break;
+      case 'dark':
+        bgcolor = '#111111';
+        break;
+      default:
+        bgcolor = '#f1f1f1';
+    }
+    document.body.style.backgroundColor = bgcolor;
+  }, [theme])
 
   return (
     <ViewportProvider>
-      <ThemeProvider value={nightMode ? 'night' : 'day'}>
+      <ThemeProvider value={theme}>
         <div className="App">
           <Navbar
             fresh={location.pathname}
             onLogin={handleLogin}
             onLogout={handleLogout}
-            onSwitchTheme={(e: any) => {
-              e.preventDefault();
-              setNightMode(!nightMode);  
-            }}
+            onSwitchTheme={handleSwitchTheme}
           />
           <Routes />
         </div>
