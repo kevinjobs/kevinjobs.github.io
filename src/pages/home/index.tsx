@@ -1,7 +1,6 @@
 import React from 'react';
 import Homepage from './home';
-import { useViewport, breakpoint } from '@/hooks/viewportCtx';
-import { useTheme } from '@/hooks';
+import { useTheme, useViewport, breakpoint } from '@/hooks';
 
 export interface HomePageProps {
   type: string; // 1: mobile; 2: desktop: 3: pad; 4: ...
@@ -9,7 +8,7 @@ export interface HomePageProps {
 
 export default function () {
   const { width } = useViewport();
-  const { theme } = useTheme();
+  const theme = useTheme();
   const type = width < breakpoint ? 'Mobile' : 'Desktop';
 
   const classname = "Homepage " + `theme-${theme}`

@@ -12,7 +12,6 @@
       height: 22px;
       border-radius: 11px;
       padding: 2px;
-      background-color: #dedede;
       position: relative;
       transition: background-color .3s ease-in-out;
       .handle {
@@ -27,7 +26,7 @@
         animation-fill-mode: backwards;
       }
     }
-    &.open {
+    &.right {
       .container {
         .handle {
           left: 24px;
@@ -46,7 +45,6 @@
       width: 100%;
       border-radius: 15px;
       transition: all .5s ease-in-out;
-      background-color: #444444;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -55,7 +53,7 @@
     &:focus {
       outline: none;
     }
-    &.open {
+    &.right {
       .container {
         background-color: #dedede !important;
         .handle { color: #333333; }

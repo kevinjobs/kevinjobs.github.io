@@ -1,7 +1,6 @@
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
 import DesktopNavbar from './desktop';
 import MobileNavbar from './mobile';
-import { useTheme } from '@/hooks'
 
 export interface NavbarProps {
   menus?: string[],
@@ -15,13 +14,12 @@ export interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = (props) => {
   const { width } = useViewport();
-  const { theme } = useTheme();
   const type = width < breakpoint ? 1 : 2;
 
   if (type === 1) {
-    return <MobileNavbar {...props} theme={theme} />
+    return <MobileNavbar {...props} />
   } else {
-    return <DesktopNavbar {...props} theme={theme} />
+    return <DesktopNavbar {...props} />
   }
 }
 

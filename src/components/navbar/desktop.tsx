@@ -5,8 +5,11 @@ import { Button, NavbarProps, Switch, Dropdown } from '@/components';
 import { UserInterface } from '@/types';
 import classNames from 'classnames';
 import { useTheme } from '@/hooks';
+import { THEME } from '@/config';
 
 const DesktopNavbar: React.FC<NavbarProps> = (props) => {
+  const theme: string = useTheme();
+
   const [userInfo, setUserInfo] = React.useState<UserInterface>();
 
   const { fresh, onLogin, onLogout, onSwitchTheme } = props;
@@ -43,7 +46,7 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
           </span>
         </div>
         <div className="menu-item">
-          <Dropdown title="探索更多" theme="#f1f1f1">
+          <Dropdown title="探索更多" theme={THEME[theme].textColor}>
             <>
               <div className="more-item">
                 <Link to="/wiki">百科</Link>
@@ -94,7 +97,6 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
     }
   }
 
-  const { theme } = useTheme();
   const classname = classNames(
     'DesktopNavbar',
     {
@@ -109,7 +111,7 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
         <div className="DesktopNavbar--Container__Others">
           <div className="DesktopNavbar--Container__Others--SearchBar"></div>
           { userInfo ? renderUserInfo() : renderLoginButton() }
-          <Switch color="#000" onSwitch={onSwitchTheme} />
+          <Switch color={THEME[theme].bgColor} hcolor={THEME[theme].textColor} onSwitch={onSwitchTheme} />
         </div>
       </div>
     </div>

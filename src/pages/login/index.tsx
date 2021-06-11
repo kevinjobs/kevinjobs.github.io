@@ -16,7 +16,7 @@ const LoginPage: React.FC<LoginPageProps> = props => {
 
   const history = useHistory();
   const { width } = useViewport();
-  const { theme } = useTheme();
+  const theme = useTheme();
 
   const onSubmit = (e: any) => {
     e.preventDefault();

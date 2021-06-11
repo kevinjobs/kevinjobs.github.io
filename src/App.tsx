@@ -2,8 +2,8 @@ import './App.scss';
 import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 //
+import { useTheme } from '@/hooks';
 import { ViewportProvider } from '@/hooks/viewportCtx';
-import { ThemeProvider } from '@/hooks';
 import { Navbar, message } from '@/components';
 import Routes from '@/routes';
 
@@ -33,33 +33,20 @@ const App: React.FC = () => {
   }
 
   React.useEffect(() => {
-    let bgcolor :string;
-    switch (theme) {
-      case 'light':
-        bgcolor = '#f1f1f1';
-        break;
-      case 'dark':
-        bgcolor = '#111111';
-        break;
-      default:
-        bgcolor = '#f1f1f1';
-    }
-    document.body.style.backgroundColor = bgcolor;
+    localStorage.setItem('theme', theme);
   }, [theme])
 
   return (
     <ViewportProvider>
-      <ThemeProvider value={theme}>
-        <div className="App">
-          <Navbar
-            fresh={location.pathname}
-            onLogin={handleLogin}
-            onLogout={handleLogout}
-            onSwitchTheme={handleSwitchTheme}
-          />
-          <Routes />
-        </div>
-      </ThemeProvider>
+      <div className="App">
+        <Navbar
+          fresh={location.pathname}
+          onLogin={handleLogin}
+          onLogout={handleLogout}
+          onSwitchTheme={handleSwitchTheme}
+        />
+        <Routes />
+      </div>
     </ViewportProvider>
   );
 }

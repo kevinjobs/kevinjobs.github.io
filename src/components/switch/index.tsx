@@ -3,25 +3,24 @@ import classNames from 'classnames';
 
 export interface SwitchProps {
   color?: string,
+  hcolor?: string,
   onSwitch?: any,
   type?: 'default' | 'dot'
 }
 
 const Switch: React.FC<SwitchProps> = props => {
-  const [toggle, setToggle] = React.useState(true);
+  const { color = '#333', hcolor = '#f1f1f1', onSwitch, type = 'default' } = props;
 
-  const { color = '#333', onSwitch, type = 'default' } = props;
+  const [toggle, setToggle] = React.useState("left");
 
   const handleClick = (e: any) => {
-    setToggle(!toggle);
-    if (onSwitch) {
-      onSwitch(e);
-    }
+    toggle === 'left' ? setToggle('right') : setToggle('left');
+    onSwitch && onSwitch(e);
   }
 
   const classname = classNames({
     [`mint-switch-${type}`]: type,
-    'open': toggle
+    [`${toggle}`]: true
   })
 
   return (
@@ -31,8 +30,8 @@ const Switch: React.FC<SwitchProps> = props => {
       onClick={handleClick}
     >
       <div className="container"
-        style={{backgroundColor: toggle ? color : ''}}>
-        <div className="handle">
+        style={{backgroundColor: color}}>
+        <div className="handle" style={{backgroundColor: hcolor}}>
           {
             type === 'dot' ? toggle ? '日' : '夜' : null
           }

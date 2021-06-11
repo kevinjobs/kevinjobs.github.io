@@ -15,7 +15,7 @@ export interface ArticlePageProps {
 
 const ArticlePage: React.FC<ArticlePageProps | any> = (props) => {
   const [article, setArticle] = React.useState<IPost>();
-  const { theme } = useTheme();
+  const theme = useTheme();
   const { width } = useViewport();
   const md = new MarkdownIt().use(MdPluginImage);
 

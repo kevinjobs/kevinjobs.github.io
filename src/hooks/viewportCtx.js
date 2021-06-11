@@ -30,6 +30,10 @@ const useViewport = () => {
 
 const breakpoint = 720;
 
+const useDevice = () => {
+  // to-do 2021-06-11
+}
+
 export {
   ViewportProvider,
   useViewport,

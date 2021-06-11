@@ -28,6 +28,9 @@ const Profile: React.FC<ProfileProps | any> = (props) => {
   const [user, setUser] = React.useState({username: '', role: 'common'});
   const [loginUser, setLoginUser] = React.useState('');
 
+  const { width } = useViewport();
+  const theme = useTheme();
+
   React.useEffect(() => {
     const username = props.match.params.username;
     // console.log(username);
@@ -136,9 +139,6 @@ const Profile: React.FC<ProfileProps | any> = (props) => {
       </div>
     )
   }
-
-  const { width } = useViewport();
-  const { theme } = useTheme();
 
   const classname = classNames(
     'Profile',
