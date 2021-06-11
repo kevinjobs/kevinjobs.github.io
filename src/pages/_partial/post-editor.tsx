@@ -73,7 +73,7 @@ const ArticleEditor: React.FC<PostEditorProps> = props => {
           </div>
           <div className="editor">
             <div className="content">
-              <Editor value="# hello" />
+              <Editor value="" />
             </div>
           </div>
         </div>

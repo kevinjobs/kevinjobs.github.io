@@ -6,17 +6,18 @@
     max-height: calc(100vh - 200px);
   }
   &-left {
-    width: 50%;
     min-height: 600px;
     height: 100%;
     padding: 12px 16px;
-    border-right: 1px solid #acacac;
     line-height: 1.5;
     outline: none;
+    flex-grow: 1;
+    background-color: #f1f1f1;
   }
   &-right {
-    width: 50%;
+    flex-grow: 1;
     padding: 12px 16px;
+    border-left: 1px solid #f1f1f1;
     h1,h2,h3,h4,h5,p {
       margin: 16px 0;
     }
