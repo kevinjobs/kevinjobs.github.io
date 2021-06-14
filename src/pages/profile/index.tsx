@@ -7,7 +7,6 @@ import { getUser } from '@/apis/auth';
 import multiavatar from '@multiavatar/multiavatar';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
 import { Icon } from '@/components';
-import { useTheme } from '@/hooks';
 
 export interface ProfileProps {
   fresh?: any
@@ -29,7 +28,6 @@ const Profile: React.FC<ProfileProps | any> = (props) => {
   const [loginUser, setLoginUser] = React.useState('');
 
   const { width } = useViewport();
-  const theme = useTheme();
 
   React.useEffect(() => {
     const username = props.match.params.username;
@@ -143,8 +141,7 @@ const Profile: React.FC<ProfileProps | any> = (props) => {
   const classname = classNames(
     'Profile',
     {
-      'Mobile': width < breakpoint,
-      [`theme-${theme}`]: theme
+      'Mobile': width < breakpoint
     }
   )
 

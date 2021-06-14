@@ -19,11 +19,9 @@
         width: 18px;
         height: 18px;
         border-radius: 9px;
-        background-color: #fff;
         left: 2px;
         top: 2px;
         animation: rightToLeft .3s;
-        animation-fill-mode: backwards;
       }
     }
     &.right {

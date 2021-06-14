@@ -1,23 +1,20 @@
-.DesktopNavbar {
-  background-color: #f1f1f1;
+.navbar.desktop {
+  background-color: #fff;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 10px 0;
-  &.theme-night {
-    background-color: #111111;
-    a { color: #a1a1a1 !important; }
-    a.active {
-      background-color: #333333 !important;
+  &.dark {
+    background-color: #333;
+    * {
+      color: #f1f1f1;
     }
   }
-  .DesktopNavbar--Container {
-    width: 1000px;
-    margin: 0 auto;
-    padding: 0 10px;
+  .container {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    .DesktopNavbar--Container__Menus {
+    .menus {
       display: flex;
       align-items: center;
       .menu-item {
@@ -42,14 +39,15 @@
         }
       }
     }
-    .DesktopNavbar--Container__Others {
+    .others {
       display: flex;
       align-items: center;
-      .DesktopNavbar--Container__Others--SearchBar {
+      .search-bar {
+        display: none;
         width: 100px;
         height: 20px;
       }
-      .DesktopNavbar--Container__Others--Login {
+      .login {
         width: 70px;
         height: 30px;
         border-radius: 15px;
@@ -59,7 +57,7 @@
         color: #fff;
         cursor: pointer;
       }
-      .DesktopNavbar--Container__Others--UserInfo {
+      .user-info {
         position: relative;
         width: 70px;
         &:hover {

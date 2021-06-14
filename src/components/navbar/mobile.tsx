@@ -4,15 +4,13 @@ import multiavatar from '@multiavatar/multiavatar';
 import { Menu, Transition, Switch } from '@/components';
 import { NavbarProps } from './index';
 import classNames from 'classnames';
-import { useTheme } from '@/hooks';
 
 const MobileNavbar: React.FC<NavbarProps> = (props) => {
-  const theme = useTheme();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userInfo, setUserInfo] = useState<{username: string}>();
 
-  const { menus, onSwitchTheme } = props;
+  const { menus } = props;
   const history = useHistory();
 
   React.useEffect(() => {
@@ -44,10 +42,7 @@ const MobileNavbar: React.FC<NavbarProps> = (props) => {
   )
 
   const classname = classNames(
-    'mint-navbar-mobile',
-    {
-      [`theme-${theme}`]: theme
-    }
+    'mint-navbar-mobile'
   )
 
   return (
@@ -65,7 +60,7 @@ const MobileNavbar: React.FC<NavbarProps> = (props) => {
               : <span></span>
           }
         </div>
-        <Switch onSwitch={onSwitchTheme} type="dot" />
+        <Switch type="dot" />
       </div>
       <Transition
         in={isMenuOpen}

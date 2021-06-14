@@ -5,7 +5,6 @@ import { Button, Divider, Input, message } from '@/components';
 import { toLogin } from '@/apis/auth';
 import { storeTokenAndUser, removeTokenAndUser } from '@/utils/user';
 import { useViewport, breakpoint } from '@/hooks/viewportCtx';
-import { useTheme } from '@/hooks';
 
 export interface LoginPageProps {};
 
@@ -16,7 +15,6 @@ const LoginPage: React.FC<LoginPageProps> = props => {
 
   const history = useHistory();
   const { width } = useViewport();
-  const theme = useTheme();
 
   const onSubmit = (e: any) => {
     e.preventDefault();
@@ -56,8 +54,7 @@ const LoginPage: React.FC<LoginPageProps> = props => {
   }, [isLogined]);
 
   const classname = classNames('Login', {
-    'Mobile': width < breakpoint,
-    [`theme-${theme}`]: theme
+    'Mobile': width < breakpoint
   })
 
   const renderLogined = (

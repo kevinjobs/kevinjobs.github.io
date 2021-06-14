@@ -31,11 +31,22 @@ const useViewport = () => {
 const breakpoint = 720;
 
 const useDevice = () => {
-  // to-do 2021-06-11
+  let device = 'desktop';
+
+  const { width } = React.useContext(viewportContext);
+
+  if (width < breakpoint) {
+    device = 'mobile';
+  } else {
+    device = 'desktop';
+  }
+
+  return device;
 }
 
 export {
   ViewportProvider,
   useViewport,
-  breakpoint
+  breakpoint,
+  useDevice
 }

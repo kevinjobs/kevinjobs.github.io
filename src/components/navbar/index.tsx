@@ -8,7 +8,6 @@ export interface NavbarProps {
   onLogout?: React.MouseEventHandler<HTMLElement>,
   fresh?: any,
   isLogin?: boolean,
-  onSwitchTheme?: any,
   theme?: string
 }
 

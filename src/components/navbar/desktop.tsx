@@ -4,15 +4,26 @@ import multiavatar from '@multiavatar/multiavatar';
 import { Button, NavbarProps, Switch, Dropdown } from '@/components';
 import { UserInterface } from '@/types';
 import classNames from 'classnames';
-import { useTheme } from '@/hooks';
-import { THEME } from '@/config';
+import { useTheme, useChangeTheme } from '@/hooks';
 
 const DesktopNavbar: React.FC<NavbarProps> = (props) => {
-  const theme: string = useTheme();
+  const theme = useTheme();
+  const change = useChangeTheme();
 
   const [userInfo, setUserInfo] = React.useState<UserInterface>();
 
-  const { fresh, onLogin, onLogout, onSwitchTheme } = props;
+  const { fresh, onLogin, onLogout } = props;
+
+  const handleSwitchTheme = (e: any) => {
+    if (theme === 'dark') change('light');
+    else if (theme === 'light') change('dark');
+  }
+
+  const renderLoginButton = () => (
+    <div className="login">
+      <Button type="primary" onClick={onLogin}>登录</Button>
+    </div>
+  )
 
   React.useEffect(() => {
     const user = localStorage.getItem('user');
@@ -21,15 +32,9 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
     };
   }, [fresh]);
 
-  const renderLoginButton = () => (
-    <div className="DesktopNavbar--Container__Others--Login">
-      <Button type="primary" onClick={onLogin}>登录</Button>
-    </div>
-  )
-
   const renderMenus = () => {
     return (
-      <div className="DesktopNavbar--Container__Menus">
+      <div className="menus">
         <div className="menu-item">
           <span className="title">
             <Link to="/">Mint Forge</Link>
@@ -46,7 +51,7 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
           </span>
         </div>
         <div className="menu-item">
-          <Dropdown title="探索更多" theme={THEME[theme].textColor}>
+          <Dropdown title="探索更多">
             <>
               <div className="more-item">
                 <Link to="/wiki">百科</Link>
@@ -81,7 +86,7 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
 
     if (user) {
       return (
-        <div className="DesktopNavbar--Container__Others--UserInfo">
+        <div className="user-info">
           <Dropdown title={renderIcon(user.username)}>
             <>
               <div className="more-item">{user.username}</div>
@@ -98,20 +103,18 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
   }
 
   const classname = classNames(
-    'DesktopNavbar',
-    {
-      [`theme-${theme}`]: theme
-    }
+    'navbar desktop',
+    `${theme}`
   )
 
   return(
     <div className={classname}>
-      <div className="DesktopNavbar--Container">
+      <div className="container">
         { renderMenus() }
-        <div className="DesktopNavbar--Container__Others">
-          <div className="DesktopNavbar--Container__Others--SearchBar"></div>
+        <div className="others">
+          <div className="search-bar"></div>
           { userInfo ? renderUserInfo() : renderLoginButton() }
-          <Switch color={THEME[theme].bgColor} hcolor={THEME[theme].textColor} onSwitch={onSwitchTheme} />
+          <Switch onClick={handleSwitchTheme} />
         </div>
       </div>
     </div>

@@ -3,9 +3,9 @@ import classNames from 'classnames';
 
 import { PostApi, IPost } from '@/apis';
 import { HomePageProps } from '@/pages';
-import ArticleList from './home-list';
+import ArticleList from './list';
 import { Button, message, Carousel, ImagePreview } from '@/components';
-import { IMG } from "@/config.json";
+import { CLOUD } from "@/config";
 
 const Homepage: React.FC<HomePageProps> = (props) => {
   // 文章
@@ -49,7 +49,7 @@ const Homepage: React.FC<HomePageProps> = (props) => {
     for (let item of items) {
       const newItem = { source: '', title: '' };
       newItem['title'] = item['title'];
-      newItem['source'] = IMG.baseUrl + item['cover'] || '';
+      newItem['source'] = CLOUD.tcy.baseUrl + item['cover'] || '';
       newItems.push(newItem);
     };
     return newItems;
@@ -66,7 +66,7 @@ const Homepage: React.FC<HomePageProps> = (props) => {
   }, []);
 
   const classnames = classNames({
-    "Article": true,
+    "home-container": true,
     [`${props.type}`]: props.type
   });
 

@@ -1,21 +1,37 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export interface SwitchProps {
-  color?: string,
-  hcolor?: string,
-  onSwitch?: any,
+export type SwitchProps = {
+  bgColor?: string,
+  handleColor?: string,
   type?: 'default' | 'dot'
-}
+} & React.AllHTMLAttributes<any>
 
 const Switch: React.FC<SwitchProps> = props => {
-  const { color = '#333', hcolor = '#f1f1f1', onSwitch, type = 'default' } = props;
+  const {
+    bgColor = '#333',
+    handleColor = '#fff',
+    type = 'default',
+    onClick
+  } = props;
 
   const [toggle, setToggle] = React.useState("left");
+  const [bColor, setBColor] = React.useState(bgColor);
+  const [hColor, setHColor] = React.useState(handleColor);
 
   const handleClick = (e: any) => {
-    toggle === 'left' ? setToggle('right') : setToggle('left');
-    onSwitch && onSwitch(e);
+    if (onClick) {
+      (onClick as React.MouseEventHandler<any>)(e);
+    };
+    if (toggle === 'left') {
+      setToggle('right');
+      setBColor(handleColor);
+      setHColor(bgColor);
+    } else if (toggle === 'right') {
+      setToggle('left');
+      setBColor(bgColor);
+      setHColor(handleColor);
+    }
   }
 
   const classname = classNames({
@@ -28,10 +44,11 @@ const Switch: React.FC<SwitchProps> = props => {
       className={classname}
       role="switch"
       onClick={handleClick}
+      aria-checked
     >
       <div className="container"
-        style={{backgroundColor: color}}>
-        <div className="handle" style={{backgroundColor: hcolor}}>
+        style={{backgroundColor: bColor}}>
+        <div className="handle" style={{backgroundColor: hColor}}>
           {
             type === 'dot' ? toggle ? '日' : '夜' : null
           }

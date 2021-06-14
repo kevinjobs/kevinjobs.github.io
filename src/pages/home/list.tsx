@@ -4,7 +4,6 @@ import { Motion, spring } from 'react-motion';
 import dayjs from 'dayjs';
 import multiavatar from '@multiavatar/multiavatar';
 import { IPost } from '@/types';
-import { Transition } from '@/components';
 
 interface ListProps {
   articleList: IPost[],

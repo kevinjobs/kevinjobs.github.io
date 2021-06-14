@@ -1,21 +1,24 @@
 import React from 'react';
 import Homepage from './home';
-import { useTheme, useViewport, breakpoint } from '@/hooks';
+import { Navbar } from '@/components';
+import { useDevice, useTheme } from '@/hooks';
 
 export interface HomePageProps {
   type: string; // 1: mobile; 2: desktop: 3: pad; 4: ...
 }
 
-export default function () {
-  const { width } = useViewport();
-  const theme = useTheme();
-  const type = width < breakpoint ? 'Mobile' : 'Desktop';
+export default function Home () {
+  const device: string = useDevice();
+  const theme: string = useTheme();
 
-  const classname = "Homepage " + `theme-${theme}`
-
+  const classname = `homepage ${device} ${theme}`
+  
   return (
-    <div className={classname}>
-      <Homepage type={type} />
-    </div>
+    <>
+      <Navbar />
+      <div className={classname}>
+        <Homepage type={'desktop'} />
+      </div>
+    </>
   )
 }

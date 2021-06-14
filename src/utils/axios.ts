@@ -1,12 +1,14 @@
+import { ENV } from '@/config';
+
 import axios from 'axios';
 
 const instance = axios.create();
 
 let baseUrl: string;
 if (process.env.NODE_ENV === 'development') {
-  baseUrl = 'https://api.iyum.in:5000';
+  baseUrl = ENV.prod.apiBaseUrl;
 } else {
-  baseUrl = 'https://api.iyum.in:5000';
+  baseUrl = ENV.prod.apiBaseUrl;
 }
 
 instance.defaults.baseURL = baseUrl;

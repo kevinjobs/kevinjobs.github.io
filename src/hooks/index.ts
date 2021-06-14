@@ -1,3 +1,2 @@
-export { useTheme } from './themeCtx';
-
-export { ViewportProvider, useViewport, breakpoint} from './viewportCtx';
+export { ViewportProvider, useViewport, breakpoint, useDevice} from './viewport'
+export { ThemeProvider, useTheme, useChangeTheme } from './theme';
