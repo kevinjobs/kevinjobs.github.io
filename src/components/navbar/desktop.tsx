@@ -11,17 +11,14 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
   const change = useChangeTheme();
 
   const [userInfo, setUserInfo] = React.useState<UserInterface>();
-  const [isThemeSwitchChecked, setIsThemeSwitchChecked] = React.useState(false);
 
   const { fresh, onLogin, onLogout } = props;
 
   const handleSwitchTheme = (checked: boolean, e: any) => {
-    if (theme === 'dark' && checked) {
-      change('light');
-      setIsThemeSwitchChecked(false);
-    } else if (theme === 'light' && !checked) {
+    if (!checked) {
       change('dark');
-      setIsThemeSwitchChecked(true);
+    } else {
+      change('light');
     }
   }
 
@@ -121,7 +118,7 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
           <div className="search-bar"></div>
           { userInfo ? renderUserInfo() : renderLoginButton() }
           <Switch
-            checked={isThemeSwitchChecked}
+            checked={theme === 'dark' ? true : false}
             onChange={handleSwitchTheme}
           />
         </div>

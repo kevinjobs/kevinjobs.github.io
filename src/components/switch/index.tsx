@@ -29,9 +29,9 @@ const Switch: React.FC<SwitchProps> = props => {
   const hColor = '#f1f1f1';
 
   const handleOnChange = (e: any) => {
-    setIsChecked(!isChecked);
     if (onChange) {
-      onChange(checked, e);
+      setIsChecked(!isChecked);
+      onChange(isChecked, e);
     };
   }
 

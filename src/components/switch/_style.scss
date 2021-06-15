@@ -21,14 +21,13 @@
         border-radius: 9px;
         left: 2px;
         top: 2px;
-        animation: rightToLeft .3s;
+        transition: all .2s ease-in-out;
       }
     }
     &.checked {
       .container {
         .handle {
           left: 24px;
-          animation: leftToRight .3s;
         }
       }
     }
@@ -58,14 +57,4 @@
       }
     }
   }
-}
-
-@keyframes leftToRight {
-  from { left: 2px; }
-  to { left: 24px; }
-}
-
-@keyframes rightToLeft {
-  from { left: 24px; }
-  to { left: 2px; }
 }

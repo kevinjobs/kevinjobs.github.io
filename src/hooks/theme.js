@@ -3,10 +3,11 @@ import React from 'react';
 const themeContext = React.createContext({});
 
 const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = React.useState('light');
+  const [theme, setTheme] = React.useState(localStorage.getItem('theme'));
 
-  const changeTheme = (ct) => {
-    setTheme(ct);
+  const changeTheme = (themeToChange) => {
+    setTheme(themeToChange);
+    localStorage.setItem('theme', themeToChange);
   };
 
   return (
