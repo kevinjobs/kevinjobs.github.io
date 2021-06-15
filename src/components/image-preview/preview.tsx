@@ -40,14 +40,8 @@ export const Preview: React.FC<PreviewProps> = (props) => {
   const [nextButtonColor, setNextButtonColor] = React.useState('#525252');
 
   const [zoom, setZoom] = React.useState(1000);
-  const [positionXStart, setPositionXStart] = React.useState(0);
-  const [positionYStart, setPositionYStart] = React.useState(0);
-  const [positionXEnd, setPositionXEnd] = React.useState(0);
-  const [positionYEnd, setPositionYEnd] = React.useState(0);
-  const [x, setX] = React.useState(0);
-  const [y, setY] = React.useState(0);
-
-  const imgRef: any = React.useRef();
+  const [offsetTop, setOffsetTop] = React.useState(0);
+  const [offsetLeft, setOffsetLeft] = React.useState(0);
 
   // 点击下方图片缩略图时，将对应的图片对象传入
   const handleClick = (e: any, index: number) => {
@@ -68,24 +62,17 @@ export const Preview: React.FC<PreviewProps> = (props) => {
     };
   };
 
-  const handleDragStart = (e: any) => {
-    // e.preventDefault();
-    if (x === 0) {
-      setPositionXStart(e.clientX);
-      setPositionYStart(e.clientY);
-    };
+  // 开始拖拽时，获取初始位置
+  const handleMouseDown = (e: any) => {
+    
   };
 
-  const handleDragOver = (e: any) => {
-    e.preventDefault();
-    setPositionXEnd(e.clientX);
-    setPositionYEnd(e.clientY);
-  };
+  const handleMouseMove = (e: any) => {
+  }
 
-  const handleDrop = (e: any) => {
-    e.preventDefault();
-    setPositionXEnd(e.clientX);
-    setPositionYEnd(e.clientY);
+  // 拖拽结束时，获取结束位置
+  const handleMouseUp = (e: any) => {
+    console.log(e);
   };
 
   const handlePrev = (e: any) => {
@@ -144,14 +131,8 @@ export const Preview: React.FC<PreviewProps> = (props) => {
     };
   }, []);
 
-  React.useEffect(() => {
-    setX(positionXEnd - positionXStart);
-    setY(positionYEnd - positionYStart);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [positionXEnd, positionYEnd]);
-
   const styles = {
-    transform: `scale(${zoom/1000}, ${zoom/1000}) translate(${x}px,${y}px)`
+    transform: `scale(${zoom/1000}, ${zoom/1000})`
   } as React.CSSProperties;
 
   return (
@@ -160,21 +141,23 @@ export const Preview: React.FC<PreviewProps> = (props) => {
         <div className="close-button" onClick={onClose}>
           <Close theme="filled" size="24" fill="#cecece"/>
         </div>
-        <div className="preview">
+        <div
+          className="preview"
+        >
           {/** 大图展示 */}
-          <div className="preview-container">
+          <div
+            className="preview-container"
+            onWheel={handleZoom}
+            style={styles}
+            draggable="true"
+          >
             {
               selectedImage &&
               <img
+               
                 src={selectedImage.source}
                 alt={selectedImage.title}
-                onWheel={handleZoom}
-                style={styles}
-                draggable
-                onDragStart={handleDragStart}
-                onDragOver={handleDragOver}
-                onDrop={handleDrop}
-                ref={imgRef}
+                
               />
             }
           </div>

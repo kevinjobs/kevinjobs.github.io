@@ -30,9 +30,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        user-select: none;
         img {
           max-height: 100%;
-          cursor: move;
+          user-select: none;
         }
       }
     }
