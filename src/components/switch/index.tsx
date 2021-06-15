@@ -2,55 +2,56 @@ import React from 'react';
 import classNames from 'classnames';
 
 export type SwitchProps = {
-  bgColor?: string,
-  handleColor?: string,
-  type?: 'default' | 'dot'
-} & React.AllHTMLAttributes<any>
+  checked?: boolean,
+  type?: 'default' | 'dot',
+  color?: 'default' | 'blue' | 'red' | 'orange',
+  onChange?: (checked: boolean, e: React.MouseEvent<any>) => void
+} & Omit<React.AllHTMLAttributes<any>, 'type' | 'onChange'>;
 
 const Switch: React.FC<SwitchProps> = props => {
   const {
-    bgColor = '#333',
-    handleColor = '#fff',
+    checked = false,
     type = 'default',
-    onClick
+    color = 'default',
+    onChange
   } = props;
 
-  const [toggle, setToggle] = React.useState("left");
-  const [bColor, setBColor] = React.useState(bgColor);
-  const [hColor, setHColor] = React.useState(handleColor);
+  const [isChecked, setIsChecked] = React.useState(checked);
 
-  const handleClick = (e: any) => {
-    if (onClick) {
-      (onClick as React.MouseEventHandler<any>)(e);
+  const ColorMap = {
+    default: '#313131',
+    blue: '#2196F3',
+    red: '#F44336',
+    orange: '#FF9800'
+  }
+
+  const bColor = ColorMap[color];
+  const hColor = '#f1f1f1';
+
+  const handleOnChange = (e: any) => {
+    setIsChecked(!isChecked);
+    if (onChange) {
+      onChange(checked, e);
     };
-    if (toggle === 'left') {
-      setToggle('right');
-      setBColor(handleColor);
-      setHColor(bgColor);
-    } else if (toggle === 'right') {
-      setToggle('left');
-      setBColor(bgColor);
-      setHColor(handleColor);
-    }
   }
 
   const classname = classNames({
     [`mint-switch-${type}`]: type,
-    [`${toggle}`]: true
+    'checked': isChecked
   })
 
   return (
     <button
       className={classname}
       role="switch"
-      onClick={handleClick}
+      onClick={handleOnChange}
       aria-checked
     >
       <div className="container"
-        style={{backgroundColor: bColor}}>
-        <div className="handle" style={{backgroundColor: hColor}}>
+        style={{backgroundColor: isChecked ? hColor : bColor}}>
+        <div className="handle" style={{backgroundColor: isChecked ? bColor : hColor}}>
           {
-            type === 'dot' ? toggle ? '日' : '夜' : null
+            type === 'dot' ? isChecked ? '日' : '夜' : null
           }
         </div>
       </div>

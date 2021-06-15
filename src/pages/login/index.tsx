@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Button, Divider, Input, message } from '@/components';
 import { toLogin } from '@/apis/auth';
 import { storeTokenAndUser, removeTokenAndUser } from '@/utils/user';
-import { useViewport, breakpoint } from '@/hooks/viewportCtx';
+import { useViewport, breakpoint } from '@/hooks';
 
 export interface LoginPageProps {};
 

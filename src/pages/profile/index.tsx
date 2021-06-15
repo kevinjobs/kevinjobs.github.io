@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { PostApi, IPost } from '@/apis';
 import { getUser } from '@/apis/auth';
 import multiavatar from '@multiavatar/multiavatar';
-import { useViewport, breakpoint } from '@/hooks/viewportCtx';
+import { useViewport, breakpoint } from '@/hooks';
 import { Icon } from '@/components';
 
 export interface ProfileProps {

@@ -60,7 +60,7 @@ const MobileNavbar: React.FC<NavbarProps> = (props) => {
               : <span></span>
           }
         </div>
-        <Switch type="dot" />
+        <Switch />
       </div>
       <Transition
         in={isMenuOpen}

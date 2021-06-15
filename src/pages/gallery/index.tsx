@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Masonry, ImagePreview } from '@/components';
 import { PostApi } from '@/apis';
 import { ImageInterface } from '@/types';
-import { useViewport, breakpoint } from '@/hooks/viewportCtx';
+import { useViewport, breakpoint } from '@/hooks';
 
 export interface GalleryPageProps {};
 

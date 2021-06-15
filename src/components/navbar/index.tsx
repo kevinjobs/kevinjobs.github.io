@@ -1,4 +1,4 @@
-import { useViewport, breakpoint } from '@/hooks/viewportCtx';
+import { useViewport, breakpoint } from '@/hooks';
 import DesktopNavbar from './desktop';
 import MobileNavbar from './mobile';
 

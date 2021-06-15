@@ -3,7 +3,7 @@ import { PostApi, IPost } from '@/apis';
 import { Button } from '@/components';
 import Editor from '@/pages/_partial/post-editor';
 import MarkdownIt from 'markdown-it';
-import { breakpoint, useViewport } from '@/hooks/viewportCtx';
+import { breakpoint, useViewport } from '@/hooks';
 
 const LawPage: React.FC = () => {
   const [questions, setQuestions] = React.useState<IPost[]>();
