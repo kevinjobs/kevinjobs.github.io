@@ -12,7 +12,7 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
 
   const [userInfo, setUserInfo] = React.useState<UserInterface>();
 
-  const { fresh, onLogin, onLogout } = props;
+  const { fresh, onLogin, onLogout, style } = props;
 
   const handleSwitchTheme = (checked: boolean, e: any) => {
     if (!checked) {
@@ -111,7 +111,7 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
   )
 
   return(
-    <div className={classname}>
+    <div className={classname} style={style}>
       <div className="container">
         { renderMenus() }
         <div className="others">

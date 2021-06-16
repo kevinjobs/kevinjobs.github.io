@@ -2,14 +2,14 @@ import { useViewport, breakpoint } from '@/hooks';
 import DesktopNavbar from './desktop';
 import MobileNavbar from './mobile';
 
-export interface NavbarProps {
+export type NavbarProps = {
   menus?: string[],
   onLogin?: React.MouseEventHandler<HTMLElement>,
   onLogout?: React.MouseEventHandler<HTMLElement>,
   fresh?: any,
   isLogin?: boolean,
   theme?: string
-}
+} & React.AllHTMLAttributes<any>;
 
 const Navbar: React.FC<NavbarProps> = (props) => {
   const { width } = useViewport();

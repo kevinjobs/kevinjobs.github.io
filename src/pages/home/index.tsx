@@ -14,11 +14,11 @@ export default function Home () {
   const classname = `homepage ${device} ${theme}`
   
   return (
-    <>
-      <Navbar />
-      <div className={classname}>
-        <Homepage type={'desktop'} />
+    <div className={classname}>
+      <div className="homepage-navbar">
+        <Navbar style={{borderRadius: '0 0 8px 8px'}} />
       </div>
-    </>
+      <Homepage type={'desktop'} />
+    </div>
   )
 }
