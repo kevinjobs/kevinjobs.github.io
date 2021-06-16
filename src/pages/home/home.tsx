@@ -81,9 +81,9 @@ const Homepage: React.FC<HomePageProps> = (props) => {
             onClick={handleSelect}
           />
         }
+        <div className="carousel-desc"></div>
       </div>
       <div className="article-list">
-        <h2 className="header" style={{width: '100%'}}>最 近 文 章</h2>
         {
           articleList
             ? <ArticleList articleList={articleList} />

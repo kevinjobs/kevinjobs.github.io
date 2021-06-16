@@ -25,7 +25,7 @@ const List: React.FC<ListProps> = (props: ListProps) => {
   };
 
   const renderInfo = (a: IPost, x: any) => (
-    <div className="infos" style={{top: x}}>
+    <div className="infos" style={{transform: `translateY(-${x}%)`}}>
       <h3 className="title">
         <Link to={`/article/${a._id}`}>{a.title}</Link>
       </h3>
@@ -63,7 +63,7 @@ const List: React.FC<ListProps> = (props: ListProps) => {
             />
           </Link>
         </div>
-        <Motion style={{x: spring(hover === a._id ? 80 : 150)}}>
+        <Motion style={{x: spring(hover === a._id ? 100 : 0)}}>
           { ({x}) => renderInfo(a, x) }
         </Motion>
       </div>
