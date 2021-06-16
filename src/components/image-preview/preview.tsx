@@ -39,9 +39,7 @@ export const Preview: React.FC<PreviewProps> = (props) => {
   const [prevButtonColor, setPrevButtonColor] = React.useState('#525252');
   const [nextButtonColor, setNextButtonColor] = React.useState('#525252');
 
-  const [zoom, setZoom] = React.useState(1000);
-  const [offsetTop, setOffsetTop] = React.useState(0);
-  const [offsetLeft, setOffsetLeft] = React.useState(0);
+  const [zoom, setZoom] = React.useState(5000);
 
   // 点击下方图片缩略图时，将对应的图片对象传入
   const handleClick = (e: any, index: number) => {
@@ -60,19 +58,6 @@ export const Preview: React.FC<PreviewProps> = (props) => {
     } else {
       setZoom(zoom - delta);
     };
-  };
-
-  // 开始拖拽时，获取初始位置
-  const handleMouseDown = (e: any) => {
-    
-  };
-
-  const handleMouseMove = (e: any) => {
-  }
-
-  // 拖拽结束时，获取结束位置
-  const handleMouseUp = (e: any) => {
-    console.log(e);
   };
 
   const handlePrev = (e: any) => {
@@ -132,7 +117,7 @@ export const Preview: React.FC<PreviewProps> = (props) => {
   }, []);
 
   const styles = {
-    transform: `scale(${zoom/1000}, ${zoom/1000})`
+    transform: `scale(${zoom/5000}, ${zoom/5000})`
   } as React.CSSProperties;
 
   return (
@@ -143,24 +128,12 @@ export const Preview: React.FC<PreviewProps> = (props) => {
         </div>
         <div
           className="preview"
-        >
-          {/** 大图展示 */}
-          <div
-            className="preview-container"
-            onWheel={handleZoom}
-            style={styles}
-            draggable="true"
-          >
-            {
-              selectedImage &&
-              <img
-               
-                src={selectedImage.source}
-                alt={selectedImage.title}
-                
-              />
-            }
-          </div>
+          style={styles}
+          onWheel={handleZoom}>
+          <img
+            src={selectedImage.source}
+            alt={selectedImage.title}
+          />
         </div>
         <div className="list">
           {/** 图片缩略图 */}

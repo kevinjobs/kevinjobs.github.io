@@ -5,6 +5,7 @@
  * @version: 0.0.1
  */
 import * as React from 'react';
+import Draggable from './draggable';
 
 export default function ZhihuPage () {
   return (
@@ -18,6 +19,7 @@ export default function ZhihuPage () {
           </select>
         </div>
       </div>
+      <Draggable />
     </div>
   )
 };
