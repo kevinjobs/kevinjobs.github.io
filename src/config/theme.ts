@@ -7,12 +7,12 @@ export interface ITheme {
 
 const THEME: ITheme = {
   dark: {
-    bgColor: "#000",
-    textColor: "#fff"
+    bgColor: "#212121",
+    textColor: "#f1f1f1"
   },
   light: {
-    bgColor: "#fff",
-    textColor: "#333"
+    bgColor: "#f1f1f1",
+    textColor: "#212121"
   }
 }
 

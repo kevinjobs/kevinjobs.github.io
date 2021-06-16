@@ -1,72 +1,99 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import MarkdownIt from 'markdown-it';
-import classNames from 'classnames';
-import dayjs from 'dayjs';
+import { Motion, spring, presets } from 'react-motion';
+import styled from 'styled-components';
 import { PostApi, IPost } from '@/apis';
-import { Icon } from '@/components';
-import { useViewport, breakpoint } from '@/hooks';
-
-import { MdPluginImage } from './md-plugins';
+import { Navbar } from '@/components';
+import { THEME } from '@/config';
+import { useDevice, useTheme } from '@/hooks';
+import ArticleContainer from './article';
 
 export interface ArticlePageProps {
   id: string
 }
 
 const ArticlePage: React.FC<ArticlePageProps | any> = (props) => {
+  const device = useDevice();
+  const theme = useTheme();
+
   const [article, setArticle] = React.useState<IPost>();
+  const [isNavbarHidden, setIsNavbarHidden] = React.useState(false);
 
-  const { width } = useViewport();
-  const md = new MarkdownIt().use(MdPluginImage);
+  const handleScroll = (e: any) => {
+    console.log(e.target.scrollingElement.scrollTop);
+    const scrollTop = e.target.scrollingElement.scrollTop;
+    if (scrollTop > 120) {
+      setIsNavbarHidden(true);
+    } else {
+      setIsNavbarHidden(false);
+    }
+  }
 
+  const Article = styled.div`
+    background-color: ${THEME[theme].bgColor};
+    padding: 0 0 32px 0;
+    .article-page-navbar {
+      width: 1000px;
+      height: 65px;
+      margin: 0 auto;
+      position: sticky;
+      top: 0;
+      overflow: hidden;
+      background-color: #fff;
+      box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+    }
+    .article-page-container {
+      margin: 8px 0 0 0;
+    }
+  `;
+
+  const TextNavbar = styled.div`
+    height: 65px;
+    padding: 0 64px;
+    display: flex;
+    align-items: center;
+  `;
+
+  // 获取文章
   React.useEffect(() => {
+    // 通过 url 最后获取文章 id
     const { id } = props.match.params;
+    // 取回文章
     PostApi.getPostById(id).then(res => {
-      if (res.status === 200 && res.data.code === 1) {
+      if (res.data.code === 1) {
         setArticle(res.data.data);
-      }
-    }).catch(err => console.log(err));
+      };
+    });
+  }, [props.match.params]);
+
+  // 监听滚动事件
+  React.useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
-  const classname = classNames(
-    'ArticlePage',
-    {
-      'Mobile': width < breakpoint
-    }
+  return (
+    <Article className={`article-page ${device} ${theme}`}>
+      <div className="article-page-navbar">
+        <Motion style={{x: spring(isNavbarHidden ? 100 : 0, presets.stiff)}}>
+          { ({x}) => <Navbar style={{transform: `translateY(-${x}%)`}} /> }
+        </Motion>
+        <Motion style={{x: spring(isNavbarHidden ? 100 : 0, presets.stiff)}}>
+          {
+            ({x}) => (
+              <TextNavbar style={{transform: `translateY(-${x}%)`}}>
+                <h2>{ article?.title }</h2>
+              </TextNavbar>
+            )
+          }
+        </Motion>
+      </div>
+      <div className="article-page-container">
+        { article && <ArticleContainer article={article} /> }
+      </div>
+    </Article>
   )
-
-  if (article) {
-    return (
-      <div className={classname}>
-        <div className="ArticlePage-Container shadow-card">
-          <div className="header">
-            <h2 className="title">{ article.title }</h2>
-            <div className="datetime">
-              { '创建于: ' + dayjs(article.create_at).format('YYYY-MM-DD HH:mm:ss') }
-            </div>
-            <div className="datetime"> 
-              { '更新于: ' + dayjs(article.update_at).format('YYYY-MM-DD HH:mm:ss') }
-            </div>
-            <div className="author">
-              <Icon icon='user' className="icon-dark author-icon" />
-              <Link to={`/profile/${article.author}`}>{ article.author }</Link>
-            </div>
-          </div>
-          <div className="content"
-            dangerouslySetInnerHTML={{__html: md.render(article.content)}}>
-          </div>
-        </div>
-      </div>
-    )
-  } else {
-    return (
-      <div className={classname}>
-        <div className="ArticlePage-Container shadow-card">
-          <p style={{textAlign: 'center'}}>未能获取文章详情</p>
-        </div>
-      </div>
-    )
-  }
 }
 
 export default ArticlePage;
