@@ -28,13 +28,6 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
     </div>
   )
 
-  React.useEffect(() => {
-    const user = localStorage.getItem('user');
-    if (user && user !== 'undenfied') {
-      setUserInfo(JSON.parse(user))
-    };
-  }, [fresh]);
-
   const renderMenus = () => {
     return (
       <div className="menus">
@@ -109,6 +102,13 @@ const DesktopNavbar: React.FC<NavbarProps> = (props) => {
     'navbar desktop',
     `${theme}`
   )
+
+  React.useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user && user !== 'undenfied') {
+      setUserInfo(JSON.parse(user))
+    };
+  }, [fresh]);
 
   return(
     <div className={classname} style={style}>

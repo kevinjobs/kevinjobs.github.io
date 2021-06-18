@@ -4,6 +4,7 @@ import multiavatar from '@multiavatar/multiavatar';
 import dayjs from 'dayjs';
 import { IPost } from '@/types';
 import { Icon } from '@/components';
+import { CLOUD } from '@/config';
 
 export const UserRoleLevel: {
   [key: number]: any
@@ -28,8 +29,6 @@ const PostGlance: React.FC<PostGlanceProps> = props => {
    * @param index
    */
   const { post, onEdit, onDelete } = props;
-
-  const baseUrl = 'https://mintforge-1252473272.cos.ap-nanjing.myqcloud.com/image/';
 
   return (
     <div className="post-glance">
@@ -68,7 +67,7 @@ const PostGlance: React.FC<PostGlanceProps> = props => {
       <div className="cover">
         {
           post.type === 'picture'
-            ? <img src={baseUrl + post.cover?.toLowerCase()} alt={post.title} />
+            ? <img src={CLOUD.tcy.baseUrl + post.cover?.toLowerCase()} alt={post.title} />
             : <img src={post.cover} alt={post.title} />
         }
       </div>

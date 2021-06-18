@@ -1,18 +1,67 @@
-import { HashRouter, Route, NavLink } from 'react-router-dom';
-import AdminLogPage from './logs';
-import AdminPathsPage from './paths';
-import AdminPostsOverview from './posts';
-import AdminNewPage from './new';
-import AdminUserPage from './users';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import AdminRoutes from './routes';
 
-export default function () {
-  const LeftPanel = () => (
-    <div className="navi-panel">
-      <div className="header">
-        <h3>后 台 导 航</h3>
-      </div>
-      <div className="container">
-        <div className="menus">
+export default function AdminPage () {
+  const Admin = styled.div`
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+  `;
+
+  const Navigator = styled.div`
+    padding: 16px 0;
+    background-color: #525288;
+    .header {
+      width: 100%;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      ul {
+        list-style: none;
+        width: 100%;
+        text-align: center;
+        li {
+          font-size: 1.2rem;
+          cursor: pointer;
+          width: 100%;
+          display: inline-block;
+          a {
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            padding: 16px 0;
+            color: #f1f1f1;
+            &:hover {
+              background-color: #333333;
+            }
+          }
+          a.active {
+            background-color: #333333;
+            color: #f1f1f1;
+          }
+        }
+      }
+    }
+  `;
+
+  const RightContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+  `;
+
+  return (
+    <Admin>
+      <Navigator>
+        <div className="header">
+          <h3>后 台 导 航</h3>
+        </div>
+        <div className="container">
           <ul>
             <li><NavLink to={'/admin/posts'}>概览</NavLink></li>
             <li><NavLink to={'/admin/tags'}>标签列表</NavLink></li>
@@ -21,26 +70,10 @@ export default function () {
             <li><NavLink to={'/admin/users'}>用户列表</NavLink></li>
           </ul>
         </div>
-      </div>
-    </div>
-  )
-
-  return (
-    <div className="Admin">
-      <div className="Admin-Left">
-        <LeftPanel />
-      </div>
-      <div className="Admin-Right">
-        <HashRouter>
-          <Route path="/admin">
-            <Route path="/admin/posts" component={AdminPostsOverview} />
-            <Route path="/admin/new" component={AdminNewPage} />
-            <Route path="/admin/paths" component={AdminPathsPage} />
-            <Route path="/admin/logs" component={AdminLogPage} />
-            <Route path="/admin/users" component={AdminUserPage} />
-          </Route>
-        </HashRouter>
-      </div>
-    </div>
+      </Navigator>
+      <RightContainer>
+        <AdminRoutes />
+      </RightContainer>
+    </Admin>
   )
 }
