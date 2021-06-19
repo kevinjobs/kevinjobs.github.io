@@ -7,21 +7,19 @@
       padding: 16px 0;
       background-color: #fff;
       border-right: 1px solid #f1f1f1;
-      .menus {
+      .menu-item {
+        display: block;
+        padding: 12px 0;
+        border-right: 4px solid transparent;
+        color: #777777;
         text-align: center;
-        .menu-item {
-          display: block;
-          padding: 12px 0;
-          border-right: 4px solid transparent;
-          color: #777777;
-          &.active {
-            background-color: rgba($color: #1890ff, $alpha: 0.2);
-            border-right: 4px solid #1890ff;
-            color: rgba($color: #1890ff, $alpha: 1.0);
-          }
-          &:hover {
-            color: $blue;
-          }
+        &.active {
+          background-color: rgba($color: #1890ff, $alpha: 0.2);
+          border-right: 4px solid #1890ff;
+          color: rgba($color: #1890ff, $alpha: 1.0);
+        }
+        &:hover {
+          color: $blue;
         }
       }
     }
@@ -29,35 +27,6 @@
       flex-grow: 1;
       background-color: #fff;
       padding: 24px 32px;
-      .demo {
-        .container {
-          .header {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 16px 0;
-          }
-          .desc {
-            margin: 16px 0;
-          }
-          .content {
-            border: 1px solid #f1f1f1;
-            border-radius:4px;
-            background-color: #fff;
-            margin: 16px 0;
-            .comps {
-              padding: 16px;
-              display: inline-block;
-              max-width: calc(100vw - 360px);
-            }
-            .detail {
-              padding: 8px 16px;
-              border-top: 1px dashed #afafaf;
-              color: #555;
-              font-size: 14px;
-            }
-          }
-        }
-      }
     }
   }
 }

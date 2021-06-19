@@ -1,49 +1,42 @@
 import * as React from 'react';
-import { HashRouter, Route, NavLink } from 'react-router-dom';
-import DemoButton from './demo-button';
-import DemoCarousel from './demo-carousel';
-import DemoDivider from './demo-divider';
-import DemoDropdown from './demo-dropdown';
-import DemoEditor from './demo-editor';
-import DemoImagePreview from './demo-image-preview';
+import DemoNavi from './navigator';
+import DemoRoutes from './routes';
+
+import DemoButton from './demos/button';
+import DemoCarousel from './demos/carousel';
+import DemoDivider from './demos/divider';
+import DemoDropdown from './demos/dropdown';
+import DemoEditor from './demos/editor';
+import DemoImagePreview from './demos/image-preview';
+import DemoInput from './demos/input';
+
+export interface IItem {
+  key: string,
+  nameEN: string,
+  nameCN: string,
+  path?: string,
+  component?: any
+}
 
 const AboutPage: React.FC = () => {
+  const menus: IItem[] = [
+    {key: '1', nameEN: 'button', nameCN: '按钮', component: DemoButton},
+    {key: '2', nameEN: 'carousel', nameCN: '走马灯', component: DemoCarousel},
+    {key: '3', nameEN: 'divider', nameCN: '分割线', component: DemoDivider},
+    {key: '4', nameEN: 'dropdown', nameCN: '下拉菜单', component: DemoDropdown},
+    {key: '5', nameEN: 'editor', nameCN: '编辑器', component: DemoEditor},
+    {key: '6', nameEN: 'image-preview', nameCN: '图片预览器', component: DemoImagePreview},
+    {key: '7', nameEN: 'input', nameCN: '输入框', component: DemoInput}
+  ]
+
   return (
     <div className="about-page">
       <div className="container">
         <div className="left-nav">
-          <div className="menus">
-            <NavLink className="menu-item" to={'/about/demo-button'}>
-              Button 按钮
-            </NavLink>
-            <NavLink className="menu-item" to={'/about/demo-carousel'}>
-              Carousel 走马灯/轮播图
-            </NavLink>
-            <NavLink className="menu-item" to={'/about/demo-divider'}>
-              Divider 分割线
-            </NavLink>
-            <NavLink className="menu-item" to={'/about/demo-dropdown'}>
-              Dropdown 下拉菜单
-            </NavLink>
-            <NavLink className="menu-item" to={'/about/demo-editor'}>
-              Editor 编辑器
-            </NavLink>
-            <NavLink className="menu-item" to={'/about/demo-image-preview'}>
-              ImagePreview 图片预览
-            </NavLink>
-          </div>
+          <DemoNavi items={menus} />
         </div>
         <div className="right-content">
-          <HashRouter>
-            <Route path="/about">
-              <Route path="/about/demo-button"><DemoButton /></Route>
-              <Route path="/about/demo-carousel"><DemoCarousel /></Route>
-              <Route path="/about/demo-divider" component={DemoDivider} />
-              <Route path="/about/demo-dropdown"><DemoDropdown /></Route>
-              <Route path="/about/demo-editor" component={DemoEditor} />
-              <Route path="/about/demo-image-preview" component={DemoImagePreview} />
-            </Route>
-          </HashRouter>
+          <DemoRoutes items={menus} />
         </div>
       </div>
     </div>
