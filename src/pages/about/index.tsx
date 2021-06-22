@@ -9,6 +9,7 @@ import DemoDropdown from './demos/dropdown';
 import DemoEditor from './demos/editor';
 import DemoImagePreview from './demos/image-preview';
 import DemoInput from './demos/input';
+import DemoModal from './demos/modal';
 
 export interface IItem {
   key: string,
@@ -26,7 +27,8 @@ const AboutPage: React.FC = () => {
     {key: '4', nameEN: 'dropdown', nameCN: '下拉菜单', component: DemoDropdown},
     {key: '5', nameEN: 'editor', nameCN: '编辑器', component: DemoEditor},
     {key: '6', nameEN: 'image-preview', nameCN: '图片预览器', component: DemoImagePreview},
-    {key: '7', nameEN: 'input', nameCN: '输入框', component: DemoInput}
+    {key: '7', nameEN: 'input', nameCN: '输入框', component: DemoInput},
+    {key: '8', nameEN: 'modal', nameCN: '模态框', component: DemoModal}
   ]
 
   return (
