@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { PostApi, IPost } from '@/apis';
-import { Button, Pagination, Icon, Dropdown } from '@/components';
+import { Button, Pagination, Dropdown, Modal } from '@/components';
 import PostCard from '../../_partial/post-card';
 
 const AdminPostsPage: React.FC = () => {
@@ -11,6 +11,9 @@ const AdminPostsPage: React.FC = () => {
   const [total, setTotal] = React.useState(0);
   const [fresh, setFresh] = React.useState<number>(0);
   const [postType, setPostType] = React.useState('article');
+
+  const [isModalVisible, setIsModalVisible] = React.useState(false);
+  const [postToBeDeletedId, setPostToBeDeletedId] = React.useState('');
 
   const history = useHistory();
 
@@ -36,17 +39,20 @@ const AdminPostsPage: React.FC = () => {
       window.alert('已经是最后一页');
     }
   }
+
+  const handleClickToDelete = (e: any, id: string) => {
+    setIsModalVisible(true);
+    setPostToBeDeletedId(id);
+  }
   
-  const handleDelete = (e: any, id: string) => {
-    const r = window.confirm('确定删除这篇文章？');
-    if (r) {
-      PostApi.deleteById(id).then(res => {
-        if (res.status === 200 && res.data.code === 1) {
-          // window.alert('Deleted');
-          setFresh(Math.random());
-        }
-      }).catch(err => alert(err));
-    }
+  const handleConfirm = (e: any) => {
+    const id = postToBeDeletedId;
+    PostApi.deleteById(id).then(res => {
+      if (res.status === 200 && res.data.code === 1) {
+        // window.alert('Deleted');
+        setFresh(Math.random());
+      }
+    }).catch(err => alert(err));
   }
 
   const PostsContainer = styled.div`
@@ -84,7 +90,7 @@ const AdminPostsPage: React.FC = () => {
   const renderPostItem = (post: any, index: number) => {
     return (
       <div key={index} className="item">
-        <PostCard post={post} onDelete={(e: any) => handleDelete(e, post._id)} />
+        <PostCard post={post} onDelete={(e: any) => handleClickToDelete(e, post._id)} />
       </div>
     )
   }
@@ -122,6 +128,14 @@ const AdminPostsPage: React.FC = () => {
           <Pagination onPrev={handlePrev} onNext={handleNext} />
         </div>
       </div>
+      <Modal
+        title="Delete Confirm"
+        content="Confirm to delete this post?"
+        visible={isModalVisible}
+        onConfirm={(e: any) => handleConfirm}
+        onCancel={(e: any) => setIsModalVisible(false)}
+        onClose={e => setIsModalVisible(false)}
+      />
     </PostsContainer>
   )
 }

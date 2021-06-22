@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   Route,
-  useLocation
+  useLocation,
+  Switch
 } from 'react-router-dom';
 import {
   AboutPage,
@@ -23,7 +24,7 @@ const Routes: React.FC = () => {
   const location = useLocation();
 
   return (
-    <>
+    <Switch>
       <Route path="/about" component={AboutPage} />
       <Route path="/admin" component={AdminPage} />
       <Route exact path="/article/:id" component={ArticlePage} />
@@ -41,7 +42,7 @@ const Routes: React.FC = () => {
       <Route exact path="/wiki" component={WikiPage} />
       <Route exact path="/zhihu" component={ZhihuPage} />
       <Route exact path="/" component={HomePage} />
-    </>
+    </Switch>
   )
 }
 

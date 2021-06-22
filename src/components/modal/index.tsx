@@ -3,16 +3,28 @@ import ReactDOM from 'react-dom';
 import { Motion, spring } from 'react-motion';
 import Draggable from 'react-draggable';
 import { CloseSmall } from '@icon-park/react';
+import { Button } from '@/components';
 
 export type ModalProps = {
   title?: string,
   content?: string,
   visible?: boolean,
-  onClose: React.MouseEventHandler<HTMLDivElement> 
+  onClose: React.MouseEventHandler<HTMLDivElement>,
+  onConfirm?: any,
+  onCancel?: any
 } & HTMLAttributes<any>;
 
 export const Modal: React.FC<ModalProps> = props => {
-  const { title, content, visible, children, onClose, ...rest } = props;
+  const {
+    title,
+    content,
+    visible,
+    children,
+    onClose,
+    onConfirm,
+    onCancel,
+    ...rest
+  } = props;
 
   const [modalVisible, setModalVisible] = React.useState(visible);
   const [iconColor, setIconColor] = React.useState('#555');
@@ -36,6 +48,10 @@ export const Modal: React.FC<ModalProps> = props => {
                     <CloseSmall theme="outline" size="24" fill={iconColor} />
                   </div>
                   <div className="content">{ children || content }</div>
+                  <div className="confirm" style={{display: onConfirm || onCancel ? 'block' : 'none'}}>
+                    <Button type="primary" onClick={onConfirm}>Confirm</Button>
+                    <Button type="default" onClick={onCancel}>Cancel</Button>
+                  </div>
                 </div>
               )
             }
@@ -43,7 +59,7 @@ export const Modal: React.FC<ModalProps> = props => {
         </div>
       </Draggable>
     </div> 
-  ), [children, content, iconColor, modalVisible, onClose, rest, title])
+  ), [children, content, iconColor, modalVisible, onCancel, onClose, onConfirm, rest, title]);
 
   // 渲染模态框
   React.useEffect(() => {

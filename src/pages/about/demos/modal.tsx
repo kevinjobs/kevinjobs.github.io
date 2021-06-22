@@ -14,6 +14,8 @@ export default function DemoModal () {
           content="hello window"
           visible={isModalVisible}
           onClose={e => setIsModalVisible(false)}
+          onConfirm={(e: any) => setIsModalVisible(false)}
+          onCancel={(e: any) => setIsModalVisible(false)}
         />
         <Button onClick={e => setIsModalVisible(!isModalVisible)}>Show Modal</Button>
       </>

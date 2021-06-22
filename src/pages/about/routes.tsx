@@ -1,4 +1,4 @@
-import { HashRouter, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { IItem } from './index';
 
 interface Props {
@@ -14,15 +14,15 @@ export default function DemoRoutes (props: Props) {
         path={`/about/demo-${item.nameEN || item.path}`}
         key={item.key}
         component={item.component}
-      ></Route>
+      />
     )
   }
 
   return (
-    <HashRouter>
+    <Router>
       <Route path="/about">
         { items && items.map(renderItem) }
       </Route>
-    </HashRouter>
+    </Router>
   )
 }
