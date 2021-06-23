@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { IItem } from './index';
 
 interface Props {
@@ -11,7 +11,7 @@ export default function DemoRoutes (props: Props) {
   const renderItem = (item: IItem) => {
     return (
       <Route
-        path={`/about/demo-${item.nameEN || item.path}`}
+        path={`/about/demo-${item.nameEN}`}
         key={item.key}
         component={item.component}
       />
@@ -19,10 +19,8 @@ export default function DemoRoutes (props: Props) {
   }
 
   return (
-    <Router>
-      <Route path="/about">
-        { items && items.map(renderItem) }
-      </Route>
-    </Router>
+    <Route path="/about">
+      { items && items.map(renderItem) }
+    </Route>
   )
 }

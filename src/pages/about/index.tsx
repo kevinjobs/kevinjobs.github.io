@@ -16,7 +16,7 @@ export interface IItem {
   nameEN: string,
   nameCN: string,
   path?: string,
-  component?: any
+  component?: React.ComponentType<any>
 }
 
 const AboutPage: React.FC = () => {
