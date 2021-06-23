@@ -1,39 +1,18 @@
 .mint-editor {
   border: 1px solid #f1f1f1;
-  &-container {
-    display: flex;
-    overflow-y: scroll;
-    max-height: calc(100vh - 200px);
-  }
-  &-left {
-    min-height: 600px;
-    height: 100%;
-    padding: 12px 16px;
-    line-height: 1.5;
-    outline: none;
-    flex-grow: 1;
-    background-color: #f1f1f1;
-  }
-  &-right {
-    flex-grow: 1;
-    padding: 12px 16px;
-    border-left: 1px solid #f1f1f1;
-    h1,h2,h3,h4,h5,p {
-      margin: 16px 0;
-    }
-    blockquote {
-      background-color: #f1f1f1;
-      padding: 8px 16px;
-    }
-    pre {
-      padding: 8px 16px;
-      background-color: #333;
-      color: #ccc;
-    }
-    ol {
-      margin-left: 16px;
-      li {
-        margin: 4px 0;
+  .mint-editor-container {
+    min-height: 500px;
+    padding: 8px 16px;
+    .block-item-container {
+      display: flex;
+      align-items: center;
+      padding: 4px 8px;
+      margin: 8px 0;
+      &:hover {
+        background-color: #f5f5f5;
+        .block-item-edit {
+          visibility: visible;
+        }
       }
     }
   }
