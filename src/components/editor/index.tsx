@@ -18,7 +18,8 @@ export type EditorProps = {
 interface IBlock {
   type: 'text' | 'image' | 'link' | 'code',
   content: string,
-  key: string
+  key: string,
+  ref?: any
 }
 
 export const Editor: React.FC<EditorProps> = (props) => {
@@ -34,31 +35,39 @@ export const Editor: React.FC<EditorProps> = (props) => {
 
   const containerRef: any = React.createRef();
 
-  // 点击 block 时，获取焦点
-  const handleBlockItemClick = (e: any, key: string) => {
-    setNodeKeyFocused(key);
+  // 点击 block 时，将焦点移动到被点击的 block
+  const handleBlockItemClick = (e: any, item: IBlock) => {
+    e.preventDefault();
+    setNodeKeyFocused(item.key);
   };
 
-  // 新建 block 时，自动获取焦点
-  const handleBlockItemKeyDown = (e: React.KeyboardEvent<HTMLDivElement>, index: number) => {
+  //
+  const handleBlockItemKeyDown = (e: React.KeyboardEvent<HTMLDivElement>, item: IBlock) => {
     /**
      * 处理键盘输入，当按键弹起时触发
      * @param e 键盘事件
      * @return {void}
      */
-    if (e.keyCode === 13) {
+    // console.log(e);
+    // 复制一份新的 block 用于之后的操作
+    const blocksCopy = blocks.concat();
+    // 获取当前 block 在数组中的索引值
+    const indexOfBlock = blocksCopy.indexOf(item);
+    
+    // 如果在聚焦的 block 按回车键，则在其之后添加一个新的 block
+    if (e.key === 'Enter') {
       e.preventDefault();
-
+      // 创建一个新的 block
       const shortUUID = short.generate();
       const newBlock: IBlock = {
         type: 'text',
         content: '',
         key: shortUUID
       };
+      // 在当前 block 之后插入新的 block
+      blocksCopy.splice(indexOfBlock + 1, 0, newBlock);
+      // 获取焦点
       setNodeKeyFocused(shortUUID);
-
-      const blocksCopy = blocks;
-      blocksCopy.splice(index + 1, 0, newBlock);
       setBlocks(blocksCopy);
     };
   };
@@ -89,6 +98,9 @@ export const Editor: React.FC<EditorProps> = (props) => {
   const BlockItem = styled.div`
     width: 100%;
     outline: none;
+    &.text {
+      color: #242526;
+    }
     .block-item-edit {
       display: inline-block;
       position: absolute;
@@ -104,21 +116,19 @@ export const Editor: React.FC<EditorProps> = (props) => {
     }
   `;
 
-  const renderBlock = (item: IBlock) => {
-    const indexOfBlock = blocks.indexOf(item);
-
+  const RenderBlock = (item: IBlock) => {
     return (
       <div className="block-item-container">
         <BlockItem
-          className="block-item"
+          className={`block-item ${item.type}`}
           key={item.key}
-          onClick={e => handleBlockItemClick(e, item.key)}
-          onKeyDown={e => handleBlockItemKeyDown(e, indexOfBlock)}
+          onClick={e => handleBlockItemClick(e, item)}
+          onKeyDown={e => handleBlockItemKeyDown(e, item)}
+          data-content={item.content}
           data-key={item.key}
+          data-type={item.type}
           contentEditable
-        >
-          { item.content }
-        </BlockItem>
+        ></BlockItem>
         <BlockItemEdit className="block-item-edit">
           <span className="operator">
            <AlignRightTwo theme="outline" size="24" fill="#999" strokeWidth={2}/>
@@ -130,23 +140,15 @@ export const Editor: React.FC<EditorProps> = (props) => {
 
   React.useEffect(() => {
     if (containerRef.current) {
-      console.log(containerRef);
       for (let childNode of containerRef.current.childNodes) {
-        // 遍历所有 block，并设置焦点
-        if (childNode['childNodes'][0].dataset['key'] === nodeKeyFocused) {
-          childNode['childNodes'][0].focus();
+        const targetNode = childNode['childNodes'][0];
+        // 如果当前 block 被选中，设置焦点
+        if (targetNode.dataset['key'] === nodeKeyFocused) {
+          targetNode.focus();
         };
-        // 当焦点切换时，将 block 的内容写入
-        const newBlocks = blocks;
-        for (let i = 0; i < newBlocks.length; i ++) {
-          if (childNode['childNodes'][0].dataset['key'] === newBlocks[i]['key']) {
-            newBlocks[i]['content'] = childNode['childNodes'][0].innerText;
-          }
-        };
-        setBlocks(newBlocks);
-      }
-    }
-  }, [containerRef, nodeKeyFocused, blocks]);
+      };
+    };
+  }, [containerRef, nodeKeyFocused]);
 
   return (
     <div className="mint-editor">
@@ -169,7 +171,7 @@ export const Editor: React.FC<EditorProps> = (props) => {
         </span>
       </Toolbar>
       <div className="mint-editor-container" ref={containerRef}>
-        { blocks && blocks.map(renderBlock) }
+        { blocks && blocks.map(RenderBlock) }
       </div>
     </div>
   )
