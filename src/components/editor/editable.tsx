@@ -1,9 +1,9 @@
 import React from 'react';
 
-const replaceCaret = (el: HTMLElement) => {
+const replaceCaret = (el: any) => {
   const target = document.createTextNode('');
-  el.appendChild(target);
-  const isTargetFocused = document.activeElement === el;
+  el.current.appendChild(target);
+  const isTargetFocused = document.activeElement === el.current;
   if (target !== null && target.nodeValue !== null && isTargetFocused) {
     let sel = window.getSelection();
     if (sel !== null) {
@@ -13,13 +13,14 @@ const replaceCaret = (el: HTMLElement) => {
       sel.removeAllRanges();
       sel.addRange(range);
     };
-    if (el instanceof HTMLElement) el.focus();
+    el.current.focus();
   }
 }
 
 type EditableProps = {
-  disabled: boolean
-} & React.HTMLAttributes<any>
+  disabled?: boolean,
+  onChange?: (event: React.SyntheticEvent<any>, text: string, html: string) => void;
+} & Omit<React.HTMLAttributes<any>, 'onChange'>;
 
 const Editable: React.FC<EditableProps> = (props) => {
   const {
@@ -27,19 +28,25 @@ const Editable: React.FC<EditableProps> = (props) => {
     onChange,
     onKeyDown,
     onKeyUp,
-    disabled = false
+    disabled = false,
+    ...restProps
   } = props;
 
-  const el: any = React.useRef();
+  const el: any = React.createRef();
+
+  const [text, setText] = React.useState('');
+  const [html, setHtml] = React.useState('');
 
   const emitChange = (originalEvt: React.SyntheticEvent<any>) => {
-    const html = el.innerHTML;
-    const evt = Object.assign({}, originalEvt, {
-      target: {
-        value: html
-      }
-    });
-    onChange(evt);
+    const innerText = el.current.innerText;
+    const innerHTML = el.current.innerHTML;
+    // console.log(originalEvt);
+    innerText && setText(innerText);
+    innerHTML && setHtml(innerHTML);
+    replaceCaret(el);
+    if (onChange) {
+      onChange(originalEvt, text, html);
+    };
   };
 
   return (
@@ -47,10 +54,11 @@ const Editable: React.FC<EditableProps> = (props) => {
       ref={el}
       className="mint-editable"
       onInput={emitChange}
-      onBlur={onBlur || emitChange}
-      onKeyDown={onKeyDown || emitChange}
-      onKeyUp={onKeyUp || emitChange}
+      onBlur={onBlur}
+      onKeyDown={onKeyDown}
+      onKeyUp={onKeyUp}
       contentEditable={!disabled}
+      {...restProps}
     ></div>
   )
 };
