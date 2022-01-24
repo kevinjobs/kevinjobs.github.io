@@ -1,0 +1,1 @@
+This is my blog powered by NEXT.js
