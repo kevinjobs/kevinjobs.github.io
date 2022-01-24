@@ -1,0 +1,33 @@
+.base {
+  color: #414243;
+  position: fixed;
+  cursor: pointer;
+  background-color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.leftTop {
+  @extend .base;
+  left: 0;
+  top: 0;
+}
+
+.leftBottom {
+  @extend .base;
+  left: 0;
+  bottom: 0;
+}
+
+.rightTop {
+  @extend .base;
+  right: 0;
+  top: 0;
+}
+
+.rightBottom {
+  @extend .base;
+  right: 32px;
+  bottom: 32px;
+}
