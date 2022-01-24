@@ -19,17 +19,52 @@
 }
 
 .menu {
-  padding: 0 120px;
+  padding: 0 32px;
+  height: 64px;
   ul {
-    li {
-      display: inline-block;
-      list-style: none;
-      margin: 0 8px;
-      a {
-        text-decoration: none;
-        font-weight: 600;
-        color: #343538;
-      }
+    height: 64px;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.link {
+  display: inline-block;
+  list-style: none;
+  padding: 0 16px;
+  line-height: 64px;
+  cursor: pointer;
+  &:hover {
+    background-color: #232425;
+    a {
+      color: #fff;
     }
+  }
+  a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #343538;
+  }
+}
+
+.activedLink {
+  display: inline-block;
+  list-style: none;
+  padding: 0 16px;
+  line-height: 64px;
+  cursor: pointer;
+  background-color: #414243;
+  a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+  }
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  img {
+    width: 100%;
   }
 }

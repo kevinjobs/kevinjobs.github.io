@@ -1,5 +1,5 @@
 .home {
-  max-width: 600px;
+  max-width: 768px;
   margin: 32px auto;
   padding: 16px 0;
   border-radius: 4px;
@@ -9,7 +9,7 @@
 .item {
   display: flex;
   align-items: center;
-  padding: 8px 32px;
+  padding: 0px 32px;
 }
 
 .date {
@@ -17,12 +17,38 @@
   font-size: 0.8rem;
   color: #717479;
 }
+.category {
+  font-size: 0.6rem;
+  padding: 0 8px;
+  span {
+    background-color: #313335;
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+}
 .title {
-  margin: 0 0 0 8px;
-  color: #616469;
+  margin: 0;
+  color: #111;
   cursor: pointer;
   flex-grow: 1;
   &:hover {
-    color: #212233;
+    color: #3498DB;
+  }
+  h3 {
+    margin: 8px 0;
+    font-weight: 300;
+  }
+}
+.author {
+  padding: 4px;
+  margin-right: 8px;
+  font-size: 0.8rem;
+  a {
+    text-decoration: none;
+    color: #414349;
+    &:hover {
+      color: #3498DB;
+    }
   }
 }
