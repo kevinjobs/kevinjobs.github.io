@@ -1,0 +1,44 @@
+<!DOCTYPE html><html style="height:100%"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/66c4a2e709c4301c.css" as="style"/><link rel="stylesheet" href="/_next/static/css/66c4a2e709c4301c.css" data-n-g=""/><link rel="preload" href="/_next/static/css/4e872a51eb6349b7.css" as="style"/><link rel="stylesheet" href="/_next/static/css/4e872a51eb6349b7.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script src="/_next/static/chunks/webpack-514908bffb652963.js" defer=""></script><script src="/_next/static/chunks/framework-2f4098b33796a7a4.js" defer=""></script><script src="/_next/static/chunks/main-0d730b68786c2eae.js" defer=""></script><script src="/_next/static/chunks/pages/_app-fc5da8528a2d7618.js" defer=""></script><script src="/_next/static/chunks/pages/article/%5Bid%5D-078947aae0eeda6b.js" defer=""></script><script src="/_next/static/P_yMnr-QEQW1NA8Vjwy90/_buildManifest.js" defer=""></script><script src="/_next/static/P_yMnr-QEQW1NA8Vjwy90/_ssgManifest.js" defer=""></script><script src="/_next/static/P_yMnr-QEQW1NA8Vjwy90/_middlewareManifest.js" defer=""></script></head><body style="margin:0;padding:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif"><div id="__next" data-reactroot=""><div class="app_app__3X0V5"><div class="app_nav__6yR3Q"><div class="app_logo__AMa5N"><img src="/_next/static/media/logo.c5d5069e.png" alt="logo"/></div><div class="app_menu__Lm_y_"><ul><li class="app_link__fWUwy"><a href="/">Home</a></li><li class="app_link__fWUwy"><a href="/category">Category</a></li><li class="app_link__fWUwy"><a href="/about">About</a></li></ul></div></div><div class="article_article__3tTrV"><h3 class="article_title__E6r7y">mac 双系统大小调整</h3><div class="article_content__5RXjl"><h1 id="mac-双系统-调整大小">mac 双系统 调整大小</h1>
+<p>mac 安装了双系统之后，有时候会发现两个系统的大小不是那么合意，想要调整一下大小，但是 bootcamp 助手又不给力。这里提供一个曲线救国的方法，即，使用 winclone 软件来备份 Windows 系统，然后再恢复的方法。</p>
+<p>总体分四步：</p>
+<ol>
+<li>利用 winclone 备份 Windows 为一个镜像( winclone 格式)；</li>
+<li>用 bootcamp 助手将硬盘恢复为一整个 mac 系统分区；</li>
+<li>用 磁盘工具 将磁盘分区，分出适合的大小供 Windows 使用；</li>
+<li>将备份的镜像恢复到分出的 Windows 分区；</li>
+</ol>
+<p>以下是具体步骤：</p>
+<p>第一步：备份 Windows 为镜像文件</p>
+<ul>
+<li>打开 winclone ，选定你的 windows 分区(我这里是 System )，然后点击右边的 Save Image，然后点选下方的 Save Image，保存到你喜欢的地方。注意文件大小取决于你的 windows 分区大小，如果你的 mac 空间比较吃紧，那么最好有另外的存储设备。看图更加直观。图1-1 ，图1-2
+<img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE1-1.jpg" alt="pic1-1">
+<img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE1-2.jpg" alt="pic1-2"></li>
+</ul>
+<p>第二步：恢复为 mac 系统的单个分区</p>
+<ul>
+<li>打开 bootcamp 助手(Bootcamp Assistant)，选择恢复(Restore)，这会将硬盘恢复为一个 mac 系统分区。只要正常操作 mac 系统的文件不会被修改。图2
+<img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE2.jpg" alt="pic2"></li>
+</ul>
+<p>第三步：进行磁盘分区</p>
+<ul>
+<li><p>打开 磁盘工具(Disk Utility)，选择 mac 的磁盘进行分区，分出你喜欢的空间给 windows 分区。图3-1，图3-2
+<img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE3-1.jpg" alt="pic3-1">
+<img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE3-2.jpg" alt="pic3-2"></p>
+</li>
+<li><p>分区之后，将分出来的空间抹掉(在 PC 中一般称之为&quot;格式化&quot;)，抹掉为 MS-DOS(FAT) 格式，也即 FAT32。图4
+<img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE4.jpg" alt="pic4"></p>
+</li>
+</ul>
+<p>第四步：恢复镜像</p>
+<ul>
+<li>回到 winclone 软件中，这时候备份好的 .winclone 文件已经被自动读取了，点选它，然后在右侧点选你要恢复到的 windows 分区(我这里是System)，然后点击右下方恢复(Restore to Volume…)。图5
+<img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE5.jpg" alt="pic5"></li>
+</ul>
+<p>第五步：完成</p>
+<ul>
+<li>等待，完成！</li>
+</ul>
+<blockquote>
+<p>本文首发于<a href="http://blog.mintin.me">Mint Forge</a>，转载请注明。</p>
+</blockquote>
+</div><div class="to-top_rightBottom__dn0Ea" style="visibility:hidden"><span>回到顶部</span></div></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"postData":{"id":"双系统调整大小","content":"\u003ch1 id=\"mac-双系统-调整大小\"\u003emac 双系统 调整大小\u003c/h1\u003e\n\u003cp\u003emac 安装了双系统之后，有时候会发现两个系统的大小不是那么合意，想要调整一下大小，但是 bootcamp 助手又不给力。这里提供一个曲线救国的方法，即，使用 winclone 软件来备份 Windows 系统，然后再恢复的方法。\u003c/p\u003e\n\u003cp\u003e总体分四步：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e利用 winclone 备份 Windows 为一个镜像( winclone 格式)；\u003c/li\u003e\n\u003cli\u003e用 bootcamp 助手将硬盘恢复为一整个 mac 系统分区；\u003c/li\u003e\n\u003cli\u003e用 磁盘工具 将磁盘分区，分出适合的大小供 Windows 使用；\u003c/li\u003e\n\u003cli\u003e将备份的镜像恢复到分出的 Windows 分区；\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e以下是具体步骤：\u003c/p\u003e\n\u003cp\u003e第一步：备份 Windows 为镜像文件\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e打开 winclone ，选定你的 windows 分区(我这里是 System )，然后点击右边的 Save Image，然后点选下方的 Save Image，保存到你喜欢的地方。注意文件大小取决于你的 windows 分区大小，如果你的 mac 空间比较吃紧，那么最好有另外的存储设备。看图更加直观。图1-1 ，图1-2\n\u003cimg src=\"http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE1-1.jpg\" alt=\"pic1-1\"\u003e\n\u003cimg src=\"http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE1-2.jpg\" alt=\"pic1-2\"\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e第二步：恢复为 mac 系统的单个分区\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e打开 bootcamp 助手(Bootcamp Assistant)，选择恢复(Restore)，这会将硬盘恢复为一个 mac 系统分区。只要正常操作 mac 系统的文件不会被修改。图2\n\u003cimg src=\"http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE2.jpg\" alt=\"pic2\"\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e第三步：进行磁盘分区\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cp\u003e打开 磁盘工具(Disk Utility)，选择 mac 的磁盘进行分区，分出你喜欢的空间给 windows 分区。图3-1，图3-2\n\u003cimg src=\"http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE3-1.jpg\" alt=\"pic3-1\"\u003e\n\u003cimg src=\"http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE3-2.jpg\" alt=\"pic3-2\"\u003e\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e分区之后，将分出来的空间抹掉(在 PC 中一般称之为\u0026quot;格式化\u0026quot;)，抹掉为 MS-DOS(FAT) 格式，也即 FAT32。图4\n\u003cimg src=\"http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE4.jpg\" alt=\"pic4\"\u003e\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e第四步：恢复镜像\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e回到 winclone 软件中，这时候备份好的 .winclone 文件已经被自动读取了，点选它，然后在右侧点选你要恢复到的 windows 分区(我这里是System)，然后点击右下方恢复(Restore to Volume…)。图5\n\u003cimg src=\"http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE5.jpg\" alt=\"pic5\"\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e第五步：完成\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e等待，完成！\u003c/li\u003e\n\u003c/ul\u003e\n\u003cblockquote\u003e\n\u003cp\u003e本文首发于\u003ca href=\"http://blog.mintin.me\"\u003eMint Forge\u003c/a\u003e，转载请注明。\u003c/p\u003e\n\u003c/blockquote\u003e\n","layout":"post","title":"mac 双系统大小调整","description":"介绍如何给安装了双系统的 mac 电脑调整两个系统分区的大小","keywords":"mac, pc, windows, macOS","category":"mac","createAt":"2019-05-22","tags":["mac","pc","windows"]}},"__N_SSG":true},"page":"/article/[id]","query":{"id":"双系统调整大小"},"buildId":"P_yMnr-QEQW1NA8Vjwy90","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
