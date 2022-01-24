@@ -1,0 +1,28 @@
+.home {
+  max-width: 600px;
+  margin: 32px auto;
+  padding: 16px 0;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 8px 32px;
+}
+
+.date {
+  padding: 4px;
+  font-size: 0.8rem;
+  color: #717479;
+}
+.title {
+  margin: 0 0 0 8px;
+  color: #616469;
+  cursor: pointer;
+  flex-grow: 1;
+  &:hover {
+    color: #212233;
+  }
+}

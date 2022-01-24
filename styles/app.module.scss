@@ -1,0 +1,35 @@
+.app {
+  background-color: #f1f1f1;
+  min-height: calc(100vh - 32px);
+  height: 100%;
+  padding: 0 0 32px 0;
+}
+
+.nav {
+  background-color: #fff;
+  height: 64px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px 1px rgba($color: #000000, $alpha: 0.15);
+}
+
+.menu {
+  padding: 0 120px;
+  ul {
+    li {
+      display: inline-block;
+      list-style: none;
+      margin: 0 8px;
+      a {
+        text-decoration: none;
+        font-weight: 600;
+        color: #343538;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+$width: 720px;
+$paddingBetween: 48px;
+
+.article {
+  margin: 16px 0 32px 0;
+}
+
+.title {
+  max-width: $width;
+  text-align: center;
+  background-color: #fff;
+  padding: 32px $paddingBetween;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 4px 4px 0 0;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid #d1d5d9;
+  }
+}
+
+.content {
+  max-width: $width;
+  margin: 0 auto;
+  padding: 16px $paddingBetween;
+  background-color: #fff;
+  border-radius: 0 0 4px 4px;
+  line-height: 2;
+  img {
+    display: block;
+    margin: 32px auto;
+    max-width: 90%;
+  }
+}

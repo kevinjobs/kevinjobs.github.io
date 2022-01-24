@@ -1,12 +1,15 @@
 /*
  * @Author       : Kevin Jobs
  * @Date         : 2022-01-24 10:32:23
- * @LastEditTime : 2022-01-24 11:17:29
+ * @LastEditTime : 2022-01-24 17:53:24
  * @lastEditors  : Kevin Jobs
- * @FilePath     : \nextjs-blog\pages\index.js
+ * @FilePath     : \kevinjobs.github.io\pages\index.js
  * @Description  : 
  */
+import Layout from '../components/layout';
 import { getSortedPostsData } from '../lib/posts';
+import styles from '../styles/home.module.scss';
+import Link from 'next/link';
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
@@ -19,25 +22,28 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allPostsData }) {
-  console.log(allPostsData)
-
   return (
-    <div className="container">
-      <ul className='list'>
-        {allPostsData.map(({ id, date, title, content}) => {
+    <div className="home" className={styles.home}>
+      <div className='list'>
+        {allPostsData.map(({ id, createAt, title }) => {
           return (
-            <li className='list-item' key={id}>
-              {title}
-              <br />
-              {id}
-              <br />
-              {date}
-              <br />
-              {content}
-            </li>
+            <div className={styles.item} key={id}>
+              <div className={styles.title}>
+                <Link href={`/article/${id}`}><h3>{ title }</h3></Link>
+              </div>
+              <div className={styles.date}>
+                <div className='month'>{ createAt }</div>
+              </div>
+            </div>
           )
         })}
-      </ul>
+      </div>
     </div>
+  )
+}
+
+Home.getLayout = function getLayout(page) {
+  return (
+    <Layout>{ page }</Layout>
   )
 }
