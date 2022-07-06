@@ -1,0 +1,10 @@
+{
+  "name": "hexo-theme-mintin",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "hexo-auto-category": "^0.2.0",
+    "hexo-excerpt": "^1.1.4",
+    "hexo-tag-cloud": "^2.0.11"
+  }
+}

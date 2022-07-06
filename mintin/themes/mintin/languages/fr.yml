@@ -1,0 +1,9 @@
+navbar:
+  cate: "catégories"
+  tags: "Mots clés"
+  about: "À propos de moi"
+cate_page: "catégories"
+tags_cloud: "nuage de tags"
+prev_page: "page précédente"
+next_page: "page suivante"
+reproduce: "S'il vous plaît contacter l'auteur avant de reproduire."

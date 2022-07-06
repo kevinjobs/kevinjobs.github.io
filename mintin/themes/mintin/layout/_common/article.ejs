@@ -1,0 +1,25 @@
+<div class="article-container">
+    <h2 class="title"><%= post.title %></h2>
+    <span class="info"><%- date(post.date, 'YYYY年M月D日') %></span>
+    
+    <% if (toc(post.content)) { %>
+        <div class="toc">
+            <%- toc(post.content) %>
+        </div>
+    <% } %>
+
+    <div class="content"><%- post.content %></div>
+    <hr>
+    <div class="tags"></div>
+</div>
+<div class="paging">
+    <% if (!post.prev) { %>
+        <a id="prev" href="/">回到首页</a>
+    <% } %>
+    <% if (post.prev) { %>
+        <a id="prev" href="<%- url_for(post.prev.path) %>"><%= __('prev_page').toUpperCase() %></a>
+    <% } %>
+    <% if (post.next) { %>
+        <a id="next" href="<%- url_for(post.next.path) %>"><%= __('next_page').toUpperCase() %></a>
+    <% } %>
+</div>

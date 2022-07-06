@@ -1,0 +1,29 @@
+.tags {
+  background-color: #fff;
+  margin: .5rem auto;
+  .title {
+    font-size: 2rem;
+    width: 6rem;
+    margin: 0 auto;
+    padding: 1rem 0;
+  }
+  .tags-cloud {
+    text-align: center;
+  }
+}
+.about {
+  background-color: #fff;
+  margin: .5rem auto;
+  height: 300px;
+  text-align: center;
+  line-height: 300px;
+  p {
+    display: inline-block;
+    line-height: 300px;
+  }
+  a {
+    display: inline-block;
+    line-height: 300px;
+    text-decoration: none;
+  }
+}

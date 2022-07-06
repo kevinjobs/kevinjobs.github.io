@@ -1,0 +1,9 @@
+<div class="container">
+	<div class="card-container">
+		<% page.posts.each(function(post) { %>
+			<%- partial('_common/index-card', { post: post })%>
+		<% }) %>
+		<%- partial('_common/pagination') %>
+	</div>
+	<%- partial("_common/widgets") %>
+</div>

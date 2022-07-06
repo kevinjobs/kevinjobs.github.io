@@ -1,0 +1,24 @@
+<div class="cate_page">
+    <div class='title'>
+        <h1><%= __('cate_page').toUpperCase() %></h2>
+    </div>
+    <div class="cate-list-container">
+    <% site.categories.each(function(cate) { %>
+        <div class="cate-list">
+            <span id="img"><%- image_tag('/img/tag.png') %></span>
+            <span id="catename">
+                <h3><a href="<%- url_for(cate.path) %>"><%= cate.name %></a></h3>
+            </span>
+            <ul>
+            <% cate.posts.each(function(post) { %>
+                <li>
+                    <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+                    <span><%- date(post.date, "Y-M-D") %></span>
+                </li>
+            <% }) %>
+            </ul>
+            <hr>
+        </div>
+    <% }) %>
+    </div>
+</div>

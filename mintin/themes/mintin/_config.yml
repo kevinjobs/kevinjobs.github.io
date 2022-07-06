@@ -1,0 +1,21 @@
+# Custom nav
+title: "Mint Forge"
+author: yiming
+
+# Social media
+social:
+  GitHub: ""
+  Weibo: ""
+  Facebook: ""
+  Flickr: ""
+  Tumblr: ""
+
+# Custom Copyright
+mail: kevinjobs@qq.com
+copyright: All rights reserved @Kevin JOBS
+
+# sass plugin
+node_sass:
+  outputStyle: nested
+  precision: 5
+  sourceComments: false

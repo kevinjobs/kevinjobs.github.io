@@ -1,0 +1,137 @@
+$toColor: rgb(184,220,115);
+$link: rgb(46,169,223);
+$bqColor: rgb(231,148,96);
+
+.article-container {
+	width: 100%;
+	margin: .5rem auto;
+	padding: 2rem;
+	background-color: #fff;
+	border: 1px solid rgba($color: #000000, $alpha: 0.1);
+	border-radius: .5rem;
+	font-size: 1rem;
+	.title {
+		text-align: center;
+		padding: .5rem;
+	}
+	.info {
+		display: block;
+		text-align: center;
+		padding: .5rem;
+	}
+	.toc {
+		width: 100%;
+		padding: 1rem;
+		background-color: $toColor;
+		a {
+			text-decoration: none;
+			color: #000;
+		}
+		a:hover {
+			color: $link;
+		}
+		ol {
+			list-style: none;
+		}
+		ol:nth-child(n+2) {
+			margin-left: 1rem;
+		}
+	}
+	.content {
+		margin: 1rem auto;
+		padding: 0 .5rem;
+		line-height: 2rem;
+		font-size: 1rem;
+		h1,h2,h3,h4,h5,h6 {
+			margin: 1rem auto;
+		}
+		hr {
+			margin: 1rem auto;
+		}
+		p {
+			text-indent: 2rem;
+			code {
+				text-indent: 0rem;
+				display: inline-block;
+				padding: 0 .5rem;
+				background-color: #fafafa;
+				border-radius: .5rem;
+				word-wrap: break-word;
+				word-break: break-all;
+			}
+		}
+		blockquote {
+			background-color: #ccc;
+			padding: .2rem .5rem;
+		}
+		a {
+			text-decoration: none;
+			color: $link;
+		}
+		img {
+			display: block;
+			width: auto;
+			max-width: 100%;
+			margin: 1rem auto;
+			box-shadow: 10px 10px 10px rgba(0,0,0,.5);
+      /*考虑浏览器兼容性*/
+      -moz-box-shadow: 10px 10px 10px rgba(0,0,0,.5);
+      -webkit-box-shadow: 10px 10px 10px rgba(0,0,0,.5);
+      border-radius: .5rem;
+		}
+		ul,ol {
+			margin-left: 1rem;
+		}
+		pre {
+			overflow: scroll;
+			margin: .5rem auto;
+		}
+		.tags {
+			visibility: hidden;
+		}
+	}
+}
+.paging {
+	display: block;
+	margin: 。5rem auto;
+	a {
+		display: inline-block;
+		text-decoration: none;
+		width: 50%;
+		height: 3rem;
+		line-height: 3rem;
+		text-align: center;
+		background-color: #fff;
+		color: #000;
+		border: 1px solid rgba(0,0,0,0.1);
+		border-radius: .5rem;
+	}
+	a:visited {
+		color: #000;
+	}
+	a:hover {
+		background-color: $toColor;
+		color: #fff;
+	}
+	a#next {
+		width: 49.44%;
+	}
+}
+.footer {
+	width: 100%;
+	margin: .5rem auto;
+	margin-bottom: 5%;
+	background-color: #fff;
+	border-radius: 0;
+	text-align: center;
+	height: 4rem;
+	line-height: 4rem;
+	border: 1px solid rgba(0,0,0,0.1);
+	border-radius: .5rem;
+	p {
+		a {
+			text-decoration: none;
+			color: $link;
+		}
+	}
+}

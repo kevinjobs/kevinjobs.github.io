@@ -1,0 +1,31 @@
+.pagination {
+  width: 80%;
+  margin: .5rem auto 2rem auto;
+  height: 4rem;
+  line-height: 4rem;
+  .pages {
+    width: auto;
+    margin: 0 auto;
+    text-align: center;
+    a {
+      margin: 0 .5rem;
+      color: #777;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #777;
+    }
+    span {
+      margin: 0 .5rem;
+    }
+    span.current {
+      font-size: 1.5rem;
+    }
+  }
+  #desktop {
+    visibility: visible;
+  }
+  #mobile {
+    visibility: hidden;
+  }
+}

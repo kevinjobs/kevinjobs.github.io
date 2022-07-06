@@ -1,0 +1,43 @@
+$avColor: rgb(199,62,58);
+/* index-card */
+.card-container {
+  margin-top: 0;
+}
+.index-card {
+  width: 100%;
+  margin: .2rem auto;
+  background-color: #fff;
+  border-radius: 0;
+  .info {
+    text-align: center;
+    .title {
+      padding: 1rem 1rem 0 1rem;
+      font-size: 1.3rem;
+    }
+    .divider {
+      visibility: hidden;
+      display: none;
+      width: 90%;
+      margin: .5rem auto;
+    }
+    .infos {
+      margin: .5rem auto;
+      font-size: .7rem;
+      .item {
+        display: inline-block;
+      }
+    }
+    .readmore {
+      visibility: hidden;
+      font-size: 1rem;
+      padding: .2rem;
+    }
+  }
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+  a:visited {
+    color: $avColor;
+  }
+}
