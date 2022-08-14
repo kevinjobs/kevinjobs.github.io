@@ -1,32 +1,28 @@
 {
-  "private": true,
+  "name": "kevinjobs.github.io",
+  "version": "0.0.1",
+  "description": "Kevin Jobs Github Pages",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "export": "next build && next export -o dist",
-    "deploy": "npm run export && node bin/deploy.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "pnpm --filter blog run export && pnpm --filter mintin run build && node scripts/deploy.js"
   },
-  "dependencies": {
-    "gray-matter": "^4.0.3",
-    "next": "latest",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinjobs/kevinjobs.github.io.git"
   },
+  "keywords": [
+    "ghpage",
+    "nextjs",
+    "static"
+  ],
+  "author": "Kevin Jobs (me@kevinjobs.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevinjobs/kevinjobs.github.io/issues"
+  },
+  "homepage": "https://github.com/kevinjobs/kevinjobs.github.io#readme",
   "devDependencies": {
-    "@babel/core": ">=7.0.0 <8.0.0",
-    "@types/marked": "^4.0.1",
-    "@types/node": "^18.7.3",
-    "@types/react": "^18.0.17",
-    "eslint": "^8.22.0",
-    "eslint-config-next": "12.2.5",
-    "gh-pages": "^3.2.3",
-    "marked": "^4.0.10",
-    "react-icons": "^4.4.0",
-    "sass": "^1.49.0",
-    "typescript": "^4.7.4"
-  },
-  "peerDependencies": {
-    "@babel/core": ">=7.0.0 <8.0.0"
+    "gh-pages": "^4.0.0"
   }
 }
