@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-01-24 10:32:23
- * @LastEditTime : 2022-01-24 21:28:30
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \kevinjobs.github.io\pages\index.js
- * @Description  : 
- */
 import Layout from '../components/layout';
 import { getSortedPostsData } from '../lib/posts';
 import styles from '../styles/home.module.scss';
@@ -23,7 +15,7 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }) {
   return (
-    <div className="home" className={styles.home}>
+    <div className={styles.home}>
       <div className='list'>
         {allPostsData.map(({ id, createAt, title, category, author }) => {
           return (

@@ -1,15 +1,13 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-01-24 21:33:58
- * @LastEditTime : 2022-01-24 22:03:14
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \kevinjobs.github.io\components\to-top.js
- * @Description  : 
- */
 import styles from '../styles/to-top.module.scss';
 import React from 'react';
 
-export default function({position}) {
+export interface TotopProps {
+  position?: string;
+}
+
+export default function(props: TotopProps) {
+  const { position } = props;
+
   let cls;
   let timer = null;
   

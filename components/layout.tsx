@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-01-24 15:00:04
- * @LastEditTime : 2022-01-24 21:23:46
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \kevinjobs.github.io\components\layout.js
- * @Description  :
- */
 import styles from '../styles/app.module.scss';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

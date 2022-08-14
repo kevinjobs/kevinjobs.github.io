@@ -1,19 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-01-24 16:47:00
- * @LastEditTime : 2022-01-24 20:46:09
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \kevinjobs.github.io\pages\_document.js
- * @Description  :
- */
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-01-24 15:20:40
- * @LastEditTime : 2022-01-24 15:22:04
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \kevinjobs.github.io\pages\_document.js
- * @Description  :
- */
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 const bodyStyle = {
@@ -35,7 +19,7 @@ class MyDocument extends Document {
       <Html style={{ height: '100%' }}>
         <Head />
         <body style={bodyStyle}>
-          <Main style={{ height: '100%' }} />
+          <Main />
           <NextScript />
         </body>
       </Html>

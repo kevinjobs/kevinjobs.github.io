@@ -1,14 +1,14 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-01-24 16:31:44
- * @LastEditTime : 2022-01-24 21:42:19
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \kevinjobs.github.io\pages\article\[id].js
- * @Description  :
- */
-import { getAllPostIds, getPostData } from '../../lib/posts';
+import {getAllPostIds, getPostData, PostData} from '../../lib/posts';
 import styles from '../../styles/article.module.scss';
 import ToTop from '../../components/to-top';
+
+export interface ArticleProps {
+  postData: PostData
+}
+
+export type StaticProps = {
+  params: any;
+}
 
 export async function getStaticPaths() {
   const paths = getAllPostIds();
@@ -19,7 +19,9 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps(props: StaticProps) {
+  const { params }= props;
+
   const postData = getPostData(params.id);
 
   return {
@@ -29,7 +31,9 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function Article({ postData }) {
+export default function Article(props: ArticleProps) {
+  const { postData } = props;
+
   return (
     <div className={styles.article}>
       <h3 className={styles.title}>{postData.title}</h3>
