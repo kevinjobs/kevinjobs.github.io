@@ -44,7 +44,8 @@ export default function Nav(props: NavProps) {
           }
         }}
       >
-        <span>{item.title}</span>
+        {item.icon && <div>{ item.icon }</div>}
+        <div>{ item.title }</div>
       </div>
     );
   }

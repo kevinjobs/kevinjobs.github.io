@@ -1,11 +1,11 @@
 import styles from '../styles/to-top.module.scss';
 import React from 'react';
 
-export interface TotopProps {
+export interface ToTopProps {
   position?: string;
 }
 
-export default function(props: TotopProps) {
+export default function ToTop(props: ToTopProps) {
   const { position } = props;
 
   let cls;

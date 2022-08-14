@@ -8,6 +8,13 @@
 
 .navItem {
   text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  div {
+    display: flex;
+    align-items: center;
+    margin: 0 4px;
+  }
 }
 
 @media screen and (max-width: 768px) {
