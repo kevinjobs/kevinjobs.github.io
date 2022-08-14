@@ -28,6 +28,15 @@ export default function Layout({ children }) {
       }
     },
     {
+      title: "mintin",
+      key: "hexo-theme-mintin",
+      to: "/mintin",
+      onClick(e: React.MouseEvent<HTMLDivElement>, item: NavItem) {
+        e.preventDefault();
+        router.push(item.to).then();
+      }
+    },
+    {
       title: "",
       key: "go-to-github",
       to: "https://github.com/kevinjobs",
