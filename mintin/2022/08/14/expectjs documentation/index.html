@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+        <title>Expect.js 文档 | Mint Forge</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel='shortcut icon' href="/favicon.ico">
+    
+<link rel="stylesheet" href="/mintin/css/index.css">
+
+    
+<link rel="stylesheet" href="/mintin/css/plugins/highlight/dark.css">
+
+    
+<link rel="stylesheet" href="/mintin/css/plugins/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+    <div class="navbar-container">
+    <div class="navbar">
+        <ul>
+            <li><a href="/">MINT FORGE</a></li>
+            <li><a href="/">首页</a></li>
+            <li><a href='/categories'>CATEGORIES</a></li>
+            <li><a href="/tags">TAGS</a></li>
+            <li><a href="/about">ABOUT</a></li>
+        </ul>
+    </div>
+</div>
+    <div class="all-container">
+        <div class="article-container">
+    <h2 class="title">Expect.js 文档</h2>
+    <span class="info">2022年8月14日</span>
+    
+    
+        <div class="toc">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Expect"><span class="toc-number">1.</span> <span class="toc-text">Expect</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Features"><span class="toc-number">1.1.</span> <span class="toc-text">Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-use"><span class="toc-number">1.2.</span> <span class="toc-text">How to use</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Node"><span class="toc-number">1.2.1.</span> <span class="toc-text">Node</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Browser"><span class="toc-number">1.2.2.</span> <span class="toc-text">Browser</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API"><span class="toc-number">1.3.</span> <span class="toc-text">API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-with-a-test-framework"><span class="toc-number">1.4.</span> <span class="toc-text">Using with a test framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Differences-with-should-js"><span class="toc-number">1.5.</span> <span class="toc-text">Differences with should.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Running-tests"><span class="toc-number">1.6.</span> <span class="toc-text">Running tests</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-1"><span class="toc-number">1.6.1.</span> <span class="toc-text">Node</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Browser-1"><span class="toc-number">1.6.2.</span> <span class="toc-text">Browser</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Credits"><span class="toc-number">1.7.</span> <span class="toc-text">Credits</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3rd-party"><span class="toc-number">1.7.1.</span> <span class="toc-text">3rd-party</span></a></li></ol></li></ol></li></ol>
+        </div>
+    
+
+    <div class="content"><h1 id="Expect"><a href="#Expect" class="headerlink" title="Expect"></a>Expect</h1><p>Minimalistic BDD assertion toolkit based on<br><a target="_blank" rel="noopener" href="http://github.com/visionmedia/should.js">should.js</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>(<span class="variable language_">window</span>.<span class="property">r</span>).<span class="property">to</span>.<span class="title function_">be</span>(<span class="literal">undefined</span>);</span><br><span class="line"><span class="title function_">expect</span>(&#123; <span class="attr">a</span>: <span class="string">&#x27;b&#x27;</span> &#125;).<span class="property">to</span>.<span class="title function_">eql</span>(&#123; <span class="attr">a</span>: <span class="string">&#x27;b&#x27;</span> &#125;)</span><br><span class="line"><span class="title function_">expect</span>(<span class="number">5</span>).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">a</span>(<span class="string">&#x27;number&#x27;</span>);</span><br><span class="line"><span class="title function_">expect</span>([]).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">an</span>(<span class="string">&#x27;array&#x27;</span>);</span><br><span class="line"><span class="title function_">expect</span>(<span class="variable language_">window</span>).<span class="property">not</span>.<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">an</span>(<span class="title class_">Image</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><ul>
+<li>Cross-browser: works on IE6+, Firefox, Safari, Chrome, Opera.</li>
+<li>Compatible with all test frameworks.</li>
+<li>Node.JS ready (<code>require(&#39;expect.js&#39;)</code>).</li>
+<li>Standalone. Single global with no prototype extensions or shims.</li>
+</ul>
+<h2 id="How-to-use"><a href="#How-to-use" class="headerlink" title="How to use"></a>How to use</h2><h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p>Install it with NPM or add it to your <code>package.json</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install expect.js</span><br></pre></td></tr></table></figure>
+
+<p>Then:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> expect = <span class="built_in">require</span>(<span class="string">&#x27;expect.js&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Browser"><a href="#Browser" class="headerlink" title="Browser"></a>Browser</h3><p>Expose the <code>index.js</code> found at the top level of this repository.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;expect.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p><strong>ok</strong>: asserts that the value is <em>truthy</em> or not</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>(<span class="number">1</span>).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">ok</span>();</span><br><span class="line"><span class="title function_">expect</span>(<span class="literal">true</span>).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">ok</span>();</span><br><span class="line"><span class="title function_">expect</span>(&#123;&#125;).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">ok</span>();</span><br><span class="line"><span class="title function_">expect</span>(<span class="number">0</span>).<span class="property">to</span>.<span class="property">not</span>.<span class="property">be</span>.<span class="title function_">ok</span>();</span><br></pre></td></tr></table></figure>
+
+<p><strong>be</strong> / <strong>equal</strong>: asserts <code>===</code> equality</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>(<span class="number">1</span>).<span class="property">to</span>.<span class="title function_">be</span>(<span class="number">1</span>)</span><br><span class="line"><span class="title function_">expect</span>(<span class="title class_">NaN</span>).<span class="property">not</span>.<span class="property">to</span>.<span class="title function_">equal</span>(<span class="title class_">NaN</span>);</span><br><span class="line"><span class="title function_">expect</span>(<span class="number">1</span>).<span class="property">not</span>.<span class="property">to</span>.<span class="title function_">be</span>(<span class="literal">true</span>)</span><br><span class="line"><span class="title function_">expect</span>(<span class="string">&#x27;1&#x27;</span>).<span class="property">to</span>.<span class="property">not</span>.<span class="title function_">be</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>eql</strong>: asserts loose equality that works with objects</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>(&#123; <span class="attr">a</span>: <span class="string">&#x27;b&#x27;</span> &#125;).<span class="property">to</span>.<span class="title function_">eql</span>(&#123; <span class="attr">a</span>: <span class="string">&#x27;b&#x27;</span> &#125;);</span><br><span class="line"><span class="title function_">expect</span>(<span class="number">1</span>).<span class="property">to</span>.<span class="title function_">eql</span>(<span class="string">&#x27;1&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>a</strong>/<strong>an</strong>: asserts <code>typeof</code> with support for <code>array</code> type and <code>instanceof</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// typeof with optional `array`</span></span><br><span class="line"><span class="title function_">expect</span>(<span class="number">5</span>).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">a</span>(<span class="string">&#x27;number&#x27;</span>);</span><br><span class="line"><span class="title function_">expect</span>([]).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">an</span>(<span class="string">&#x27;array&#x27;</span>);  <span class="comment">// works</span></span><br><span class="line"><span class="title function_">expect</span>([]).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">an</span>(<span class="string">&#x27;object&#x27;</span>); <span class="comment">// works too, since it uses `typeof`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// constructors</span></span><br><span class="line"><span class="title function_">expect</span>([]).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">an</span>(<span class="title class_">Array</span>);</span><br><span class="line"><span class="title function_">expect</span>(tobi).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">a</span>(<span class="title class_">Ferret</span>);</span><br><span class="line"><span class="title function_">expect</span>(person).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">a</span>(<span class="title class_">Mammal</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>match</strong>: asserts <code>String</code> regular expression match</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>(program.<span class="property">version</span>).<span class="property">to</span>.<span class="title function_">match</span>(<span class="regexp">/[0-9]+\.[0-9]+\.[0-9]+/</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>contain</strong>: asserts indexOf for an array or string</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>([<span class="number">1</span>, <span class="number">2</span>]).<span class="property">to</span>.<span class="title function_">contain</span>(<span class="number">1</span>);</span><br><span class="line"><span class="title function_">expect</span>(<span class="string">&#x27;hello world&#x27;</span>).<span class="property">to</span>.<span class="title function_">contain</span>(<span class="string">&#x27;world&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>length</strong>: asserts array <code>.length</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>([]).<span class="property">to</span>.<span class="property">have</span>.<span class="title function_">length</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_">expect</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]).<span class="property">to</span>.<span class="property">have</span>.<span class="title function_">length</span>(<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>empty</strong>: asserts that an array is empty or not</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>([]).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">empty</span>();</span><br><span class="line"><span class="title function_">expect</span>(&#123;&#125;).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">empty</span>();</span><br><span class="line"><span class="title function_">expect</span>(&#123; <span class="attr">length</span>: <span class="number">0</span>, <span class="attr">duck</span>: <span class="string">&#x27;typing&#x27;</span> &#125;).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">empty</span>();</span><br><span class="line"><span class="title function_">expect</span>(&#123; <span class="attr">my</span>: <span class="string">&#x27;object&#x27;</span> &#125;).<span class="property">to</span>.<span class="property">not</span>.<span class="property">be</span>.<span class="title function_">empty</span>();</span><br><span class="line"><span class="title function_">expect</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]).<span class="property">to</span>.<span class="property">not</span>.<span class="property">be</span>.<span class="title function_">empty</span>();</span><br></pre></td></tr></table></figure>
+
+<p><strong>property</strong>: asserts presence of an own property (and value optionally)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>(<span class="variable language_">window</span>).<span class="property">to</span>.<span class="property">have</span>.<span class="title function_">property</span>(<span class="string">&#x27;expect&#x27;</span>)</span><br><span class="line"><span class="title function_">expect</span>(<span class="variable language_">window</span>).<span class="property">to</span>.<span class="property">have</span>.<span class="title function_">property</span>(<span class="string">&#x27;expect&#x27;</span>, expect)</span><br><span class="line"><span class="title function_">expect</span>(&#123;<span class="attr">a</span>: <span class="string">&#x27;b&#x27;</span>&#125;).<span class="property">to</span>.<span class="property">have</span>.<span class="title function_">property</span>(<span class="string">&#x27;a&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>key</strong>/<strong>keys</strong>: asserts the presence of a key. Supports the <code>only</code> modifier</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>(&#123; <span class="attr">a</span>: <span class="string">&#x27;b&#x27;</span> &#125;).<span class="property">to</span>.<span class="property">have</span>.<span class="title function_">key</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line"><span class="title function_">expect</span>(&#123; <span class="attr">a</span>: <span class="string">&#x27;b&#x27;</span>, <span class="attr">c</span>: <span class="string">&#x27;d&#x27;</span> &#125;).<span class="property">to</span>.<span class="property">only</span>.<span class="property">have</span>.<span class="title function_">keys</span>(<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>);</span><br><span class="line"><span class="title function_">expect</span>(&#123; <span class="attr">a</span>: <span class="string">&#x27;b&#x27;</span>, <span class="attr">c</span>: <span class="string">&#x27;d&#x27;</span> &#125;).<span class="property">to</span>.<span class="property">only</span>.<span class="property">have</span>.<span class="title function_">keys</span>([<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]);</span><br><span class="line"><span class="title function_">expect</span>(&#123; <span class="attr">a</span>: <span class="string">&#x27;b&#x27;</span>, <span class="attr">c</span>: <span class="string">&#x27;d&#x27;</span> &#125;).<span class="property">to</span>.<span class="property">not</span>.<span class="property">only</span>.<span class="property">have</span>.<span class="title function_">key</span>(<span class="string">&#x27;a&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>throw</strong>/<strong>throwException</strong>/<strong>throwError</strong>: asserts that the <code>Function</code> throws or not when called</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>(fn).<span class="property">to</span>.<span class="keyword">throw</span>(); <span class="comment">// synonym of throwException</span></span><br><span class="line"><span class="title function_">expect</span>(fn).<span class="property">to</span>.<span class="title function_">throwError</span>(); <span class="comment">// synonym of throwException</span></span><br><span class="line"><span class="title function_">expect</span>(fn).<span class="property">to</span>.<span class="title function_">throwException</span>(<span class="keyword">function</span> (<span class="params">e</span>) &#123; <span class="comment">// get the exception object</span></span><br><span class="line">  <span class="title function_">expect</span>(e).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">a</span>(<span class="title class_">SyntaxError</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="title function_">expect</span>(fn).<span class="property">to</span>.<span class="title function_">throwException</span>(<span class="regexp">/matches the exception message/</span>);</span><br><span class="line"><span class="title function_">expect</span>(fn2).<span class="property">to</span>.<span class="property">not</span>.<span class="title function_">throwException</span>();</span><br></pre></td></tr></table></figure>
+
+<p><strong>withArgs</strong>: creates anonymous function to call fn with arguments</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>(fn).<span class="title function_">withArgs</span>(invalid, arg).<span class="property">to</span>.<span class="title function_">throwException</span>();</span><br><span class="line"><span class="title function_">expect</span>(fn).<span class="title function_">withArgs</span>(valid, arg).<span class="property">to</span>.<span class="property">not</span>.<span class="title function_">throwException</span>();</span><br></pre></td></tr></table></figure>
+
+<p><strong>within</strong>: asserts a number within a range</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>(<span class="number">1</span>).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">within</span>(<span class="number">0</span>, <span class="title class_">Infinity</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>greaterThan</strong>/<strong>above</strong>: asserts <code>&gt;</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>(<span class="number">3</span>).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">above</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_">expect</span>(<span class="number">5</span>).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">greaterThan</span>(<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>lessThan</strong>/<strong>below</strong>: asserts <code>&lt;</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>(<span class="number">0</span>).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">below</span>(<span class="number">3</span>);</span><br><span class="line"><span class="title function_">expect</span>(<span class="number">1</span>).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">lessThan</span>(<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>fail</strong>: explicitly forces failure.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">expect</span>().<span class="title function_">fail</span>()</span><br><span class="line"><span class="title function_">expect</span>().<span class="title function_">fail</span>(<span class="string">&quot;Custom failure message&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Using-with-a-test-framework"><a href="#Using-with-a-test-framework" class="headerlink" title="Using with a test framework"></a>Using with a test framework</h2><p>For example, if you create a test suite with<br><a target="_blank" rel="noopener" href="http://github.com/visionmedia/mocha">mocha</a>.</p>
+<p>Let’s say we wanted to test the following program:</p>
+<p><strong>math.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">add</span> (a, b) &#123; <span class="keyword">return</span> a + b; &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Our test file would look like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;test suite&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">it</span>(<span class="string">&#x27;should expose a function&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">expect</span>(add).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">a</span>(<span class="string">&#x27;function&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="title function_">it</span>(<span class="string">&#x27;should do math&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">expect</span>(<span class="title function_">add</span>(<span class="number">1</span>, <span class="number">3</span>)).<span class="property">to</span>.<span class="title function_">equal</span>(<span class="number">4</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>If a certain expectation fails, an exception will be raised which gets captured<br>and shown/processed by the test runner.</p>
+<h2 id="Differences-with-should-js"><a href="#Differences-with-should-js" class="headerlink" title="Differences with should.js"></a>Differences with should.js</h2><ul>
+<li>No need for static <code>should</code> methods like <code>should.strictEqual</code>. For example,<br><code>expect(obj).to.be(undefined)</code> works well.</li>
+<li>Some API simplifications / changes.</li>
+<li>API changes related to browser compatibility.</li>
+</ul>
+<h2 id="Running-tests"><a href="#Running-tests" class="headerlink" title="Running tests"></a>Running tests</h2><p>Clone the repository and install the developer dependencies:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/LearnBoost/expect.js.git expect</span><br><span class="line">cd expect &amp;&amp; npm install</span><br></pre></td></tr></table></figure>
+
+<h3 id="Node-1"><a href="#Node-1" class="headerlink" title="Node"></a>Node</h3><p><code>make test</code></p>
+<h3 id="Browser-1"><a href="#Browser-1" class="headerlink" title="Browser"></a>Browser</h3><p><code>make test-browser</code></p>
+<p>and point your browser(s) to <code>http://localhost:3000/test/</code></p>
+<h2 id="Credits"><a href="#Credits" class="headerlink" title="Credits"></a>Credits</h2><p>(The MIT License)</p>
+<p>Copyright (c) 2011 Guillermo Rauch &lt;<a href="mailto:&#x67;&#117;&#105;&#x6c;&#108;&#x65;&#x72;&#x6d;&#111;&#x40;&#x6c;&#101;&#97;&#x72;&#x6e;&#x62;&#111;&#x6f;&#115;&#116;&#46;&#99;&#x6f;&#109;">&#x67;&#117;&#105;&#x6c;&#108;&#x65;&#x72;&#x6d;&#111;&#x40;&#x6c;&#101;&#97;&#x72;&#x6e;&#x62;&#111;&#x6f;&#115;&#116;&#46;&#99;&#x6f;&#109;</a>&gt;</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining<br>a copy of this software and associated documentation files (the<br>‘Software’), to deal in the Software without restriction, including<br>without limitation the rights to use, copy, modify, merge, publish,<br>distribute, sublicense, and/or sell copies of the Software, and to<br>permit persons to whom the Software is furnished to do so, subject to<br>the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be<br>included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED ‘AS IS’, WITHOUT WARRANTY OF ANY KIND,<br>EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF<br>MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.<br>IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY<br>CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,<br>TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE<br>SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<h3 id="3rd-party"><a href="#3rd-party" class="headerlink" title="3rd-party"></a>3rd-party</h3><p>Heavily borrows from <a target="_blank" rel="noopener" href="http://github.com/visionmedia/should.js">should.js</a> by TJ<br>Holowaychuck - MIT.</p>
+</div>
+    <hr>
+    <div class="tags"></div>
+</div>
+<div class="paging">
+    
+    
+        <a id="prev" href="/mintin/2022/08/14/SQL%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E5%8F%A5%E6%80%BB%E7%BB%93/">PREV_PAGE</a>
+    
+    
+        <a id="next" href="/mintin/2022/08/14/Electron%20%E7%9A%84%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/">NEXT_PAGE</a>
+    
+</div>
+<div class="footer">
+    <p><a href="/about/">Please Contact the Author before Reproduce.</a></p>
+</div>
+
+<script src="/mintin/js/highlight.pack.js"></script>
+
+</script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="/mintin/js/iconfont.js"></script>
+
+<style>
+    .icon {
+      width: 1rem;
+      height: 1rem;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+</style>
+    
+    </div>
+    <div class='rights'>
+	<p>©<span id='years'></span> Mint Forge. All Rights Reserved.</p>
+</div>
+<script type="text/javascript">
+	var today = new Date()
+	var years = today.getFullYear()
+	document.getElementById('years').innerHTML=years
+</script>
+    
+<script src="/mintin/js/iconfont.js"></script>
+
+<style>
+    .icon {
+      width: 1rem;
+      height: 1rem;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+</style>
+    
+</body>
+</html>

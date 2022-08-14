@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+        <title>mac 双系统大小调整 | Mint Forge</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel='shortcut icon' href="/favicon.ico">
+    
+<link rel="stylesheet" href="/mintin/css/index.css">
+
+    
+<link rel="stylesheet" href="/mintin/css/plugins/highlight/dark.css">
+
+    
+<link rel="stylesheet" href="/mintin/css/plugins/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+    <div class="navbar-container">
+    <div class="navbar">
+        <ul>
+            <li><a href="/">MINT FORGE</a></li>
+            <li><a href="/">首页</a></li>
+            <li><a href='/categories'>CATEGORIES</a></li>
+            <li><a href="/tags">TAGS</a></li>
+            <li><a href="/about">ABOUT</a></li>
+        </ul>
+    </div>
+</div>
+    <div class="all-container">
+        <div class="article-container">
+    <h2 class="title">mac 双系统大小调整</h2>
+    <span class="info">2022年8月14日</span>
+    
+    
+        <div class="toc">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mac-%E5%8F%8C%E7%B3%BB%E7%BB%9F-%E8%B0%83%E6%95%B4%E5%A4%A7%E5%B0%8F"><span class="toc-number">1.</span> <span class="toc-text">mac 双系统 调整大小</span></a></li></ol>
+        </div>
+    
+
+    <div class="content"><h1 id="mac-双系统-调整大小"><a href="#mac-双系统-调整大小" class="headerlink" title="mac 双系统 调整大小"></a>mac 双系统 调整大小</h1><p>mac 安装了双系统之后，有时候会发现两个系统的大小不是那么合意，想要调整一下大小，但是 bootcamp 助手又不给力。这里提供一个曲线救国的方法，即，使用 winclone 软件来备份 Windows 系统，然后再恢复的方法。</p>
+<p>总体分四步：</p>
+<ol>
+<li>利用 winclone 备份 Windows 为一个镜像( winclone 格式)；</li>
+<li>用 bootcamp 助手将硬盘恢复为一整个 mac 系统分区；</li>
+<li>用 磁盘工具 将磁盘分区，分出适合的大小供 Windows 使用；</li>
+<li>将备份的镜像恢复到分出的 Windows 分区；</li>
+</ol>
+<p>以下是具体步骤：</p>
+<p>第一步：备份 Windows 为镜像文件</p>
+<ul>
+<li>打开 winclone ，选定你的 windows 分区(我这里是 System )，然后点击右边的 Save Image，然后点选下方的 Save Image，保存到你喜欢的地方。注意文件大小取决于你的 windows 分区大小，如果你的 mac 空间比较吃紧，那么最好有另外的存储设备。看图更加直观。图1-1 ，图1-2<br><img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE1-1.jpg" alt="pic1-1"><br><img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE1-2.jpg" alt="pic1-2"></li>
+</ul>
+<p>第二步：恢复为 mac 系统的单个分区</p>
+<ul>
+<li>打开 bootcamp 助手(Bootcamp Assistant)，选择恢复(Restore)，这会将硬盘恢复为一个 mac 系统分区。只要正常操作 mac 系统的文件不会被修改。图2<br><img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE2.jpg" alt="pic2"></li>
+</ul>
+<p>第三步：进行磁盘分区</p>
+<ul>
+<li><p>打开 磁盘工具(Disk Utility)，选择 mac 的磁盘进行分区，分出你喜欢的空间给 windows 分区。图3-1，图3-2<br><img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE3-1.jpg" alt="pic3-1"><br><img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE3-2.jpg" alt="pic3-2"></p>
+</li>
+<li><p>分区之后，将分出来的空间抹掉(在 PC 中一般称之为”格式化”)，抹掉为 MS-DOS(FAT) 格式，也即 FAT32。图4<br><img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE4.jpg" alt="pic4"></p>
+</li>
+</ul>
+<p>第四步：恢复镜像</p>
+<ul>
+<li>回到 winclone 软件中，这时候备份好的 .winclone 文件已经被自动读取了，点选它，然后在右侧点选你要恢复到的 windows 分区(我这里是System)，然后点击右下方恢复(Restore to Volume…)。图5<br><img src="http://os77kcgn0.bkt.clouddn.com/%E5%9B%BE5.jpg" alt="pic5"></li>
+</ul>
+<p>第五步：完成</p>
+<ul>
+<li>等待，完成！</li>
+</ul>
+<blockquote>
+<p>本文首发于<a target="_blank" rel="noopener" href="http://blog.mintin.me/">Mint Forge</a>，转载请注明。</p>
+</blockquote>
+</div>
+    <hr>
+    <div class="tags"></div>
+</div>
+<div class="paging">
+    
+    
+        <a id="prev" href="/mintin/2022/08/14/%E8%BF%98%E5%9C%A8%E5%90%AC%E6%9C%AC%E5%9C%B0%E9%9F%B3%E4%B9%90%E5%90%97%EF%BC%9F/">PREV_PAGE</a>
+    
+    
+        <a id="next" href="/mintin/2022/08/14/%E4%BB%8E%E7%8E%B0%E4%BB%A3%E7%9A%84%E8%99%9A%E6%97%A0%E4%B8%AD%E8%A7%A3%E8%84%B1/">NEXT_PAGE</a>
+    
+</div>
+<div class="footer">
+    <p><a href="/about/">Please Contact the Author before Reproduce.</a></p>
+</div>
+
+<script src="/mintin/js/highlight.pack.js"></script>
+
+</script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="/mintin/js/iconfont.js"></script>
+
+<style>
+    .icon {
+      width: 1rem;
+      height: 1rem;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+</style>
+    
+    </div>
+    <div class='rights'>
+	<p>©<span id='years'></span> Mint Forge. All Rights Reserved.</p>
+</div>
+<script type="text/javascript">
+	var today = new Date()
+	var years = today.getFullYear()
+	document.getElementById('years').innerHTML=years
+</script>
+    
+<script src="/mintin/js/iconfont.js"></script>
+
+<style>
+    .icon {
+      width: 1rem;
+      height: 1rem;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+</style>
+    
+</body>
+</html>
