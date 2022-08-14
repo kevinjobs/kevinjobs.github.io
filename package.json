@@ -4,8 +4,8 @@
   "description": "Kevin Jobs Github Pages",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "pnpm --filter blog run export && pnpm --filter mintin run build && node scripts/deploy.js"
+    "build": "pnpm --filter blog run export && pnpm --filter mintin run build",
+    "deploy": "pnpm build && node scripts/deploy.js"
   },
   "repository": {
     "type": "git",
