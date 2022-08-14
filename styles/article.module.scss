@@ -1,36 +1,40 @@
-$width: 768px;
-$paddingBetween: 48px;
+$paddingBetween: 24px;
+$paddingBetweenDesktop: 64px;
 
 .article {
-  margin: 16px 0 32px 0;
+  background-color: #f1f1f1;
 }
 
 .title {
-  max-width: $width;
   text-align: center;
   background-color: #fff;
   padding: 32px $paddingBetween;
   margin: 0 auto;
   position: relative;
-  border-radius: 4px 4px 0 0;
+  @media screen and (min-width: 768px) {
+    width: 800px;
+    padding: 32px $paddingBetweenDesktop;
+  }
   &::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    border-top: 1px solid #d1d5d9;
+    border-top: 1px solid #e8e8e8;
   }
 }
 
 .content {
-  max-width: $width;
   margin: 0 auto;
   padding: 16px $paddingBetween;
   background-color: #fff;
-  border-radius: 0 0 4px 4px;
   line-height: 2;
   color: #484249;
+  @media screen and (min-width: 768px) {
+    width: 800px;
+    padding: 16px $paddingBetweenDesktop;
+  }
   a {
     color: #3498DB;
     text-decoration: none;

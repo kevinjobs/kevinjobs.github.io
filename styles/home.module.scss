@@ -1,27 +1,54 @@
-.home {
-  max-width: 768px;
-  margin: 32px auto;
-  padding: 16px 0;
-  border-radius: 4px;
+.container {
   background-color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.postList {
+  padding: 32px 0 16px 0;
+  width: 800px;
+  min-height: calc(100vh - 80px);
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .item {
   display: flex;
   align-items: center;
-  padding: 0px 32px;
+  flex-wrap: wrap;
+  @media screen and (min-width: 768px) {
+    flex-wrap: nowrap;
+  }
+  padding: 16px 32px;
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    background-color: #e6e6e6;
+    height: 1px;
+    width: 90%;
+    transform: translateX(-50%);
+  }
+  &:last-child:after {
+    display: none;
+  }
 }
 
 .date {
   padding: 4px;
   font-size: 0.8rem;
   color: #717479;
+  min-width: fit-content;
 }
 .category {
   font-size: 0.6rem;
-  padding: 0 8px;
+  min-width: fit-content;
   span {
-    background-color: #313335;
+    background-color: #3e3c3c;
     color: #fff;
     padding: 2px 4px;
     border-radius: 4px;
@@ -32,6 +59,7 @@
   color: #111;
   cursor: pointer;
   flex-grow: 1;
+  width: 100%;
   &:hover {
     color: #3498DB;
   }
@@ -44,6 +72,7 @@
   padding: 4px;
   margin-right: 8px;
   font-size: 0.8rem;
+  min-width: fit-content;
   a {
     text-decoration: none;
     color: #414349;

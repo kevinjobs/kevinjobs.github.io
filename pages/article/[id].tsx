@@ -36,7 +36,7 @@ export default function Article(props: ArticleProps) {
 
   return (
     <div className={styles.article}>
-      <h3 className={styles.title}>{postData.title}</h3>
+      <h1 className={styles.title}>{postData.title}</h1>
       <div
         className={styles.content}
         dangerouslySetInnerHTML={{ __html: postData.content }}

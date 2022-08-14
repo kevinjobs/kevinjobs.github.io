@@ -1,48 +1,42 @@
-import styles from '../styles/app.module.scss';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Logo from '../public/logo.png';
-
-const urls = [
-  {
-    name: 'Home',
-    path: '/',
-  },
-  {
-    name: 'Category',
-    path: '/category',
-  },
-  {
-    name: 'About',
-    path: '/about',
-  },
-];
+import styles from '../styles/layout.module.scss';
+import Navi, {NavItem} from "./navi";
+import Footer from "./footer";
+import { useRouter } from "next/router";
+import React from "react";
 
 export default function Layout({ children }) {
   const router = useRouter();
 
+  const NAV_ITEMS: NavItem[] = [
+    {
+      title: "category",
+      key: "page-category",
+      to: "/category",
+      onClick(e: React.MouseEvent<HTMLDivElement>, item: NavItem) {
+        e.preventDefault();
+        router.push(item.to).then();
+      }
+    },
+    {
+      title: "about",
+      key: "page-about",
+      to: "/about",
+      onClick(e: React.MouseEvent<HTMLDivElement>, item: NavItem) {
+        e.preventDefault();
+        router.push(item.to).then();
+      }
+    }
+  ]
+
   return (
-    <div className={styles.app}>
-      <div className={styles.nav}>
-        <div className={styles.logo}>
-          <Link href="/">
-            <img src={Logo.src} alt="logo" />
-          </Link>
-        </div>
-        <div className={styles.menu}>
-          <ul>
-            {urls.map((u) => {
-              const cls = u.path === router.asPath ? styles.activedLink : styles.link;
-              return (
-                <li key={u.name} className={cls}>
-                  <Link href={u.path}>{u.name}</Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+    <div className={styles.container}>
+      <div className={styles.main}>
+        <Navi items={NAV_ITEMS} />
+        {children}
       </div>
-      {children}
+      <div className={styles.footer}>
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -14,6 +14,7 @@ export type PostData = {
   author: string;
   createAt: string;
   desc?: string;
+  category?: string;
 }
 
 const encodeId = (filename: string) => {
@@ -42,7 +43,7 @@ export function getSortedPostsData() {
   });
 
   return allPostsData.sort((prev, next) => {
-    return prev.createAt > next.createAt ? 1 : -1;
+    return prev.createAt < next.createAt ? 1 : -1;
   });
 }
 

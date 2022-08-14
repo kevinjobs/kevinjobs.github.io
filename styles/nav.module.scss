@@ -1,0 +1,127 @@
+.logo {
+  a {
+    text-decoration: none;
+    color: #f1f1f1;
+    text-transform: uppercase;
+  }
+}
+
+.navItem {
+  text-transform: capitalize;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    background-color: #212223;
+    color: #f6f6f6;
+    overflow: hidden;
+    font-size: 1.5rem;
+    transition: all .15s ease-in-out;
+    .logoLine {
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      .logo {
+        flex-grow: 1;
+        text-align: center;
+      }
+      .menuButton {
+        .closeOrOpen {
+          width: 36px;
+          height: 32px;
+          position: relative;
+          .handleOne,.handleTwo,.handleOneOpen,.handleTwoOpen {
+            width: 36px;
+            height: 4px;
+            background-color: #f6f6f6;
+            position: absolute;
+            transition: all .15s ease-in-out;
+          }
+          .handleOne {
+            top: 0;
+          }
+          .handleOneOpen {
+            top: 14px;
+            transform: rotate(45deg);
+          }
+          .handleTwo {
+            top: 28px;
+          }
+          .handleTwoOpen {
+            top: 14px;
+            transform: rotate(-45deg);
+          }
+        }
+      }
+    }
+    .navItems {
+      .navItem {
+        text-align: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        user-select: none;
+        background-color: transparent;
+        color: #9d9d9d;
+        span {
+          z-index: 0;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 90%;
+          height: 1px;
+          background-color: #454545;
+          transform: translateX(-50%);
+        }
+        &:last-child::after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #212223;
+    cursor: pointer;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    color: #f1f1f1;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #ececec;
+    }
+  }
+  .logoLine {
+    display: flex;
+    align-items: center;
+    .menuButton {
+      display: none;
+    }
+  }
+  .navItems {
+    display: flex;
+    align-items: center;
+    padding: 0 64px;
+    .navItem {
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+    }
+  }
+}
