@@ -4,8 +4,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export",
-    "deploy": "next build && next export && node bin/deploy.js"
+    "export": "next build && next export -o dist",
+    "deploy": "npm run export && node bin/deploy.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

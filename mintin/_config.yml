@@ -11,6 +11,8 @@ author: John Doe
 language: en
 timezone: ''
 
+root: /mintin
+
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: http://example.com
@@ -22,7 +24,7 @@ pretty_urls:
 
 # Directory
 source_dir: source
-public_dir: public
+public_dir: ../dist/mintin
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
