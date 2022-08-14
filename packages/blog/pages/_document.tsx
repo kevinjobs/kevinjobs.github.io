@@ -16,7 +16,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html style={{ height: '100%' }}>
+      <Html lang={"zh"}>
         <Head />
         <body style={bodyStyle}>
           <Main />

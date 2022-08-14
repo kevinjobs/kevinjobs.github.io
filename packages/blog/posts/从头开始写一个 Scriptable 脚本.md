@@ -2,6 +2,7 @@
 title: '从头开始写一个 Scriptable 脚本'
 author: 'Kevin Jobs'
 createAt: '2021-11-09'
+category: "App"
 ---
 
 iOS 14 发布后，出现了许多提供高定制性的小组件 app。这其中，使用 JS 写脚本的 Scriptable 的定制性不说第一，前三是没问题的。今天给酷友做一个较为详尽的教程，希望大家都能写出自己的优秀脚本。

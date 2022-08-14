@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-01-24 10:43:56
- * @LastEditTime : 2022-02-10 16:42:21
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \kevinjobs.github.io\bin\deploy.js
- * @Description  : 
- */
 const ghpages = require('gh-pages');
 const fs = require('fs');
 const deployConfig = require('../deploy.config');
