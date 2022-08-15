@@ -1,5 +1,6 @@
 import styles from "../styles/nav.module.scss";
 import React from "react";
+import { BiWorld } from "react-icons/bi";
 import Link from "next/link";
 
 export interface NavItem {
@@ -57,7 +58,8 @@ export default function Nav(props: NavProps) {
     >
       <div className={styles.logoLine} style={{height}}>
         <div className={styles.logo}>
-          <Link href={"/"}>Kevin Jobs</Link>
+          <span className={styles.logoIcon}><BiWorld /></span>
+          <Link href={"/"}>Mint Forge</Link>
         </div>
         <div className={styles.menuButton}>
           <div className={styles.closeOrOpen} onClick={handleClickOpen}>
