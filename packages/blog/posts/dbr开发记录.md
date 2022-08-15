@@ -3,6 +3,16 @@ title: 'DBR System Develop Record'
 author: 'Kevin Jobs'
 createAt: '2021-11-09'
 category: "Electron"
+tags:
+  - "javascript"
+  - "electron"
+  - "tag1"
+  - "tag1"
+  - "tag1"
+  - "tag1"
+  - "tag1"
+  - "tag1"
+  - "tag1"
 ---
 
 时间：2021-11-24

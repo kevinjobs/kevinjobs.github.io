@@ -3,6 +3,11 @@ title: 'SQL 常用语句总结'
 author: 'Vijini Mallawa'
 createAt: '2021-11-09'
 category: "database"
+tags:
+  - "database"
+  - "sql"
+  - "doc"
+  - "documentation"
 ---
 
 作者：[Vijini Mallawa](https://link.zhihu.com/?target=https%3A//vijinimallawaarachchi.wordpress.com/)[ar](https://link.zhihu.com/?target=https%3A//www.jqr.com/service/company%3Fbusiness%3D17)achchi

@@ -15,6 +15,7 @@ export type PostData = {
   createAt: string;
   desc?: string;
   category?: string;
+  tags?: string[];
 }
 
 const encodeId = (filename: string) => {

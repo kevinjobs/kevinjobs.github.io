@@ -15,12 +15,6 @@
 }
 
 .item {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  @media screen and (min-width: 768px) {
-    flex-wrap: nowrap;
-  }
   padding: 16px 32px;
   position: relative;
   &:after {
@@ -38,46 +32,98 @@
   }
 }
 
-.date {
-  padding: 4px;
-  font-size: 0.8rem;
-  color: #717479;
-  min-width: fit-content;
-}
-.category {
-  font-size: 0.6rem;
-  min-width: fit-content;
-  span {
-    background-color: #3e3c3c;
-    color: #fff;
-    padding: 2px 4px;
-    border-radius: 4px;
+.itemBaseInfo {
+  display: flex;
+  align-items: center;
+  .title {
+    margin: 0;
+    cursor: pointer;
+    h3 {
+      color: #535353;
+      margin: 8px 0;
+      font-weight: 500;
+      &:hover {
+        color: #3498DB;
+      }
+    }
   }
 }
-.title {
-  margin: 0;
-  color: #111;
+
+.itemMoreInfo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: #b3b3b3;
+  padding: 4px 0 0 0;
+  font-size: 13px;
+  .date {
+    display: flex;
+    .dateIcon {
+      display: flex;
+      align-items: center;
+    }
+    .dateText {
+      margin-left: 4px;
+    }
+  }
+  .author {
+    margin-left: 8px;
+    .authorContainer {
+      display: flex;
+    }
+    .authorIcon {
+      display: flex;
+      align-items: center;
+    }
+    .authorText {
+      margin-left: 4px;
+      cursor: pointer;
+      &:hover {
+        color: #41a6de;
+        text-decoration: underline;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: #414349;
+      &:hover {
+        color: #3498DB;
+      }
+    }
+  }
+  .category {
+    display: flex;
+    margin-left: 8px;
+    .cateIcon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cateText {
+      margin-left: 4px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #c5c5c5;
+  padding-top: 8px;
+  max-width: 100%;
   cursor: pointer;
-  flex-grow: 1;
-  width: 100%;
-  &:hover {
-    color: #3498DB;
+  .tagIcon {
+    display: flex;
+    align-items: center;
   }
-  h3 {
-    margin: 8px 0;
-    font-weight: 300;
-  }
-}
-.author {
-  padding: 4px;
-  margin-right: 8px;
-  font-size: 0.8rem;
-  min-width: fit-content;
-  a {
-    text-decoration: none;
-    color: #414349;
+  .tag {
+    display: inline-block;
+    margin: 4px;
     &:hover {
-      color: #3498DB;
+      color: #41a6de;
+      text-decoration: underline;
     }
   }
 }

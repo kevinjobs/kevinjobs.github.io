@@ -1,3 +1,7 @@
+$HandleHeight: 2px;
+$MenuButtonHeight: 22px;
+$MenuButtonWidth: 26px;
+
 .logo {
   a {
     text-decoration: none;
@@ -22,7 +26,7 @@
     background-color: #212223;
     color: #f6f6f6;
     overflow: hidden;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     transition: all .15s ease-in-out;
     .logoLine {
       display: flex;
@@ -34,12 +38,12 @@
       }
       .menuButton {
         .closeOrOpen {
-          width: 36px;
-          height: 32px;
+          width: $MenuButtonWidth;
+          height: $MenuButtonHeight;
           position: relative;
           .handleOne,.handleTwo,.handleOneOpen,.handleTwoOpen {
-            width: 36px;
-            height: 4px;
+            width: $MenuButtonWidth;
+            height: $HandleHeight;
             background-color: #f6f6f6;
             position: absolute;
             transition: all .15s ease-in-out;
@@ -48,14 +52,14 @@
             top: 0;
           }
           .handleOneOpen {
-            top: 14px;
+            top: $MenuButtonHeight/2 - $HandleHeight;
             transform: rotate(45deg);
           }
           .handleTwo {
-            top: 28px;
+            top: $MenuButtonHeight - $HandleHeight;
           }
           .handleTwoOpen {
-            top: 14px;
+            top: $MenuButtonHeight/2 - $HandleHeight;
             transform: rotate(-45deg);
           }
         }

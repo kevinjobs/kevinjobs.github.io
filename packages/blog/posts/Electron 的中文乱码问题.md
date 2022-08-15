@@ -3,6 +3,11 @@ title: 'Electron 中文乱码问题'
 author: 'Kevin Jobs'
 createAt: '2021-11-09'
 category: "Electron"
+tags:
+  - "electron"
+  - "javascript"
+  - "terminal"
+  - "windows"
 ---
 
 解决办法

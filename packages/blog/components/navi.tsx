@@ -21,7 +21,7 @@ export interface NavProps {
 }
 
 export default function Nav(props: NavProps) {
-  const { height=80, itemHeight=68, items } = props;
+  const { height=52, itemHeight=48, items } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
 

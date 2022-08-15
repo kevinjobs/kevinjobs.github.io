@@ -3,6 +3,11 @@ title: 'Expect.js 文档'
 author: ''
 createAt: '2021-11-09'
 category: "javascript"
+tags:
+  - "doc"
+  - "javascript"
+  - "test"
+  - "documentation"
 ---
 
 # Expect
