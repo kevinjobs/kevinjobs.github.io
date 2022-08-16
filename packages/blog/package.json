@@ -9,6 +9,7 @@
     "export": "next build && next export -o ../../dist"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "gray-matter": "^4.0.3",
     "next": "latest",
     "react": "17.0.2",

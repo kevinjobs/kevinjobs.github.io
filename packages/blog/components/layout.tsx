@@ -19,9 +19,9 @@ export default function Layout({ children }) {
       }
     },
     {
-      title: "about",
-      key: "page-about",
-      to: "/about",
+      title: "gallery",
+      key: "page-gallery",
+      to: "/gallery",
       onClick(e: React.MouseEvent<HTMLDivElement>, item: NavItem) {
         e.preventDefault();
         router.push(item.to).then();
