@@ -7,3 +7,55 @@
   justify-content: center;
   padding-top: 8px;
 }
+
+.preview {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(30, 29, 29, 0.98);
+  z-index: 999;
+  user-select: none;
+  img {
+    max-height: 95vh;
+  }
+  @media screen and (min-width: 768px) {
+    .prev,.next {
+      visibility: hidden;
+      transition: all .15s ease-in-out;
+    }
+    &:hover {
+      .prev,.next {
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.prev,.next {
+  position: absolute;
+  z-index: 1000;
+  background-color: rgba(23, 22, 22, 0.82);
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  color: #f1f1f1;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+}
+
+.prevIcon,.nextIcon {
+  polyline {
+    stroke: rgba(234, 234, 234, 0.89);
+  }
+}
+
+.prev {
+  left: 4px;
+}
+
+.next {
+  right: 4px;
+}

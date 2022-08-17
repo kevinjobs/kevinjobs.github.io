@@ -5,7 +5,7 @@ export interface MasonryProps {
   colWidth?: number;
   gutter?: number;
   data: any;
-  onClickItem(e: React.MouseEvent<HTMLElement>, item: MasonryItem): void;
+  onClickItem(e: React.MouseEvent<HTMLElement>, item: MasonryItem, idx?: number): void;
 }
 
 export interface MasonryItem {
@@ -61,7 +61,7 @@ export default function Masonry(props: MasonryProps) {
     const style = generateItemStyle(item, idx);
 
     return (
-      <div style={style} key={key} onClick={e => onClickItem(e, item)}>
+      <div style={style} key={key} onClick={e => onClickItem(e, item, idx)}>
         { child }
       </div>
     )

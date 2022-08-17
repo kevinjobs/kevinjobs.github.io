@@ -4,6 +4,7 @@ import Masonry from "../../components/masonry";
 import styles from "../../styles/gallery.module.scss";
 import { getImagesData } from "../../lib/images";
 import {StaticProps} from "../article/[id]";
+import { GrPrevious, GrNext } from "react-icons/gr";
 
 export interface GalleryImage {
   source: string;
@@ -37,8 +38,10 @@ export default function GalleryPage(props: GalleryProps) {
 
   const [cols, setCols] = React.useState<number>();
   const [itemWidth, setItemWidth] = React.useState<number>();
+  const [selectedItem, setSelectedItem] = React.useState<GalleryImage>();
+  const [selectedIdx, setSelectedIdx] = React.useState(0);
 
-  const data = imagesData.map(d => {
+  const data: GalleryImage[] = imagesData.map(d => {
     return {
       ...d,
       key: d.title,
@@ -55,17 +58,50 @@ export default function GalleryPage(props: GalleryProps) {
   });
 
   const handleResize = (e) => {
-    const innerWidth = e.target.innerWidth;
-    const outerWidth = e.target.outerWidth;
-    const delta = outerWidth - innerWidth;
-    const pureWidth = innerWidth - delta * 1.5;
-    const [w, c] = generateColsAndWidth(pureWidth, gutter);
+    const el = document.body
+    const offsetWidth = el.offsetWidth;
+    const [w, c] = generateColsAndWidth(offsetWidth, gutter);
     setItemWidth(w);
     setCols(c);
   }
 
+  const handleClickItem = (e: React.MouseEvent<HTMLElement>, item, idx) => {
+    e.preventDefault();
+    setSelectedItem(item);
+    setSelectedIdx(idx);
+  }
+
+  const renderPreview = (item: GalleryImage) => {
+    return (
+      <div className={styles.preview}>
+        <div className={styles.prev} onClick={e => {
+          setSelectedItem(data[selectedIdx - 1]);
+          setSelectedIdx((selectedIdx) => selectedIdx - 1);
+        }}>
+          <GrPrevious size={32} className={styles.prevIcon} />
+        </div>
+        <div className={styles.next} onClick={e => {
+          setSelectedItem(data[selectedIdx + 1]);
+          setSelectedIdx((selectedIdx) => selectedIdx + 1);
+        }}>
+          <GrNext size={32} className={styles.nextIcon} />
+        </div>
+        <Image
+          src={item.source}
+          width={item.width}
+          height={item.height}
+          alt={item.title}
+          onClick={e => {
+            e.preventDefault();
+            setSelectedItem(null);
+          }}
+        />
+      </div>
+    )
+  }
+
   React.useEffect(() => {
-    const [w, c] = generateColsAndWidth(window.innerWidth, gutter);
+    const [w, c] = generateColsAndWidth(document.body.offsetWidth, gutter);
     setItemWidth(w);
     setCols(c);
 
@@ -81,8 +117,9 @@ export default function GalleryPage(props: GalleryProps) {
         colWidth={itemWidth}
         cols={cols}
         data={data}
-        onClickItem={(e, item) => {}}
+        onClickItem={handleClickItem}
       />
+      {selectedItem && renderPreview(selectedItem)}
     </div>
   )
 }
