@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="content-type" content="text/html" charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <title>调研文章报送系统</title>
+    <link rel="stylesheet" href="./static/css/style.css" />
+    <link rel="stylesheet" href="./static/layui-2.6.8/css/layui.css" />
+    <link rel='stylesheet' href='./static/fullcalendar-2.0.0/fullcalendar.css' />
+    <!-- 使用自带的 jquery 以防止 layui 合成的失效 -->
+    <script src="./static/js/jquery-1.11.1.min.js"></script>
+    <script src="./static/fullcalendar-2.0.0/lib/jquery-ui.custom.min.js"></script>
+    <script src="./static/fullcalendar-2.0.0/lib/moment.min.js"></script>
+    <script src='./static/fullcalendar-2.0.0/fullcalendar.min.js'></script>
+    <script src="./static/fullcalendar-2.0.0/lang/zh-cn.js"></script>
+  </head>
+  <body>
+    <div class="banner" style="text-align: center;margin: 80px 0 60px 0;">
+      <h1>调研文章报送</h1>
+    </div>
+    <form class="layui-form" action="" style="width: 500px; margin: 0 auto;">
+      <div class="layui-form-item">
+        <label class="layui-form-label">报送项目</label>
+        <div class="layui-input-block">
+          <select name="submitProject" lay-verify="required" id="project-select">
+            <option value=""></option>
+          </select>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">文章标题</label>
+        <div class="layui-input-block">
+          <input class="layui-input" type="text" name="articleTitle" required lay-verify="required" placeholder="如果名称过长可只填写主标题" />
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">作者姓名</label>
+        <div class="layui-input-block">
+          <input class="layui-input" type="text" name="authorName" required lay-verify="required" placeholder="多个作者请用空格分隔" />
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">所在部门</label>
+        <div class="layui-input-block">
+          <select name="authorDepartment" lay-verify="required">
+            <option value=""></option>
+            <option value="立案庭">立案庭</option>
+            <option value="刑庭">刑庭</option>
+            <option value="民一庭">民一庭</option>
+            <option value="民二庭">民二庭</option>
+            <option value="金融庭">金融庭</option>
+            <option value="少家庭">少家庭</option>
+            <option value="速裁庭">速裁庭</option>
+            <option value="执行局">执行局</option>
+            <option value="审管办">审管办</option>
+            <option value="办公室">办公室</option>
+            <option value="政治部">政治部</option>
+            <option value="司法行政科">司法行政科</option>
+            <option value="法警大队">法警大队</option>
+          </select>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-block">
+          <input class="layui-input" type="text" name="postScript" required lay-verify="" placeholder="可添加备注" />
+        </div>
+      </div>
+      <hr />
+      <!-- 上传进度条 -->
+      <div class="layui-progress" lay-filter="upload-file-progress" id="upload-file-progress" hidden>
+        <div class="layui-progress-bar"></div>
+      </div>
+      <br />
+      <!-- 文件上传 -->
+      <div class="layui-form-item">
+        <label class="layui-form-label">文章正文</label>
+        <div class="layui-input-block" id="articleBody">
+          <button type="button" class="layui-btn" id="uploadFile">
+            <i class="layui-icon">&#xe67c;</i>点击上传
+          </button>
+          <span id="upload-article-body" class="upload-remind"></span>
+          <span id="del-upload-body" hidden>
+            <i class="layui-icon layui-icon-close" style="margin-left: 8px; color:#f61515; cursor: pointer;"></i>
+          </span>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">附件1</label>
+        <div class="layui-input-block" id="attach1Wrapper">
+          <button type="button" class="layui-btn" id="uploadAttach1">
+            <i class="layui-icon">&#xe67c;</i>点击上传
+          </button>
+          <span id="upload-attach1" class="upload-remind"></span>
+          <span id="del-upload-attach1" hidden>
+            <i class="layui-icon layui-icon-close" style="margin-left: 8px; color:#f61515; cursor: pointer;"></i>
+          </span>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">附件2</label>
+        <div class="layui-input-block" id="attach2Wrapper">
+          <button type="button" class="layui-btn" id="uploadAttach2">
+            <i class="layui-icon">&#xe67c;</i>点击上传
+          </button>
+          <span id="upload-attach2" class="upload-remind"></span>
+          <span id="del-upload-attach2" hidden>
+            <i class="layui-icon layui-icon-close" style="margin-left: 8px; color:#f61515; cursor: pointer;"></i>
+          </span>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">附件3</label>
+        <div class="layui-input-block" id="attach3Wrapper">
+          <button type="button" class="layui-btn" id="uploadAttach3">
+            <i class="layui-icon">&#xe67c;</i>点击上传
+          </button>
+          <span id="upload-attach3" class="upload-remind"></span>
+          <span id="del-upload-attach3" hidden>
+            <i class="layui-icon layui-icon-close" style="margin-left: 8px; color:#f61515; cursor: pointer;"></i>
+          </span>
+        </div>
+      </div>
+      <span id="attach-hint">* 超过三个附件请使用软件压缩为一个文件上传</span>
+      <br /><hr /><br />
+      <div class="layui-form-item">
+        <div style="text-align: center;">
+          <button type="button" class="layui-btn" lay-submit lay-filter="my-form">提交</button>
+          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+      </div>
+    </form>
+    <hr style="margin: 40px 0;"/>
+    <h1 style="text-align: center;margin: 40px 0 20px 0;">调研报送日程提醒</h1>
+    <div style="text-align:center;margin-bottom: 40px;"><span>* 点击对应项目，可下载格式要求</span></div>
+    <div id='calendar' style="width: 900px;margin: 0 auto"></div>
+    <script src="./static/layui-2.6.8/layui.js"></script>
+    <!-- 解决 ajax 请求在 ie8 下无法正确发送的问题 -->
+    <script src="./static/js/jQuery.xdomainrequest.js"></script>
+    <script src="./common.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

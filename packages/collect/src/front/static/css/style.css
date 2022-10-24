@@ -1,0 +1,26 @@
+body {
+  background-color: #fff;
+  padding: 0 0 180px 0 !important;
+}
+
+#attach-hint {
+  padding: 0 0 0 60px;
+  font-size: 12px;
+}
+
+.fc-list-event-title {
+  cursor: pointer !important;
+}
+
+.fc-event-title {
+  cursor: pointer !important;
+}
+
+.upload-remind {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 232px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
