@@ -4,8 +4,8 @@
   "description": "Kevin Jobs Github Pages",
   "main": "index.js",
   "scripts": {
-    "build": "pnpm --filter blog run export && pnpm --filter mintin run build",
-    "deploy": "pnpm build && node scripts/deploy.js"
+    "build": "",
+    "deploy": "node scripts/deploy.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,10 @@
   },
   "homepage": "https://github.com/kevinjobs/kevinjobs.github.io#readme",
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
     "gh-pages": "^4.0.0"
+  },
+  "dependencies": {
+    "fs-extra": "^10.1.0"
   }
 }
