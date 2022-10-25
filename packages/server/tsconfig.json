@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es6",
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "sourceMap": true,
+    "rootDir": ".",
+    "outDir": "dist",
+    "watch": true,
+    "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
+    "allowJs": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["./src/**/*", "app.ts", "bin/*", "test/*"],
+  "exclude": ["views", "public", "node_modules/**/*"]
+}

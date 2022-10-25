@@ -1,0 +1,19 @@
+{
+  "development": {
+    "database": "database_development",
+    "dialect": "sqlite",
+    "storage": "mintforge.dev.sqlite"
+  },
+  "test": {
+    "database": "database_test",
+    "dialect": "sqlite",
+    "storage": "mintforge.test.sqlite",
+    "logging": false
+  },
+  "production": {
+    "database": "database_production",
+    "dialect": "sqlite",
+    "storage": "mintforge.sqlite",
+    "logging": false
+  }
+}

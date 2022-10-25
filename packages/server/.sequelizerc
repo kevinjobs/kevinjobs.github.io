@@ -1,0 +1,18 @@
+/*
+ * @Author       : Kevin Jobs
+ * @Date         : 2022-03-17 22:08:18
+ * @LastEditTime : 2022-03-18 11:57:12
+ * @lastEditors  : Kevin Jobs
+ * @FilePath     : \koa-restful-api\.sequelizerc
+ * @Description  : 
+ */
+const path = require('path');
+
+const dbPath = path.resolve('./src/db');
+
+module.exports = {
+  'config': path.resolve(dbPath, 'database.json'),
+  'migrations-path': path.resolve(dbPath, 'migrations'),
+  'models-path': path.resolve(dbPath, 'models'),
+  'seeders-path': path.resolve(dbPath, 'seeders'),
+}
