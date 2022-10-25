@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  basePath: "/blog",
   sassOptions: {
     includePaths: [
       path.join(__dirname, 'styles')

@@ -1,5 +1,5 @@
 {
-  "name": "inbox",
+  "name": "collect",
   "version": "0.2.3",
   "scripts": {
     "start:server": "node src/server/app.js",
