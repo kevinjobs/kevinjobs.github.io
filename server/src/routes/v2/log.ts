@@ -1,4 +1,4 @@
-import { IRoute } from "@/types";
+import { IRoute } from "../../types";
 import { LogsController } from "../../controllers";
 
 const logRoutes: IRoute[] = [

@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-08 17:50:30
- * @LastEditTime : 2022-03-16 17:21:02
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\controllers\index.ts
- * @Description  : 
- */
 import AuthController from './auth.ctrl';
 import ArticleController from './article.ctrl';
 import PictureController from './picture.ctrl';

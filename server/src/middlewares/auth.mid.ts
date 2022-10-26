@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-08 17:50:30
- * @LastEditTime : 2022-03-17 23:45:15
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\middlewares\auth.mid.ts
- * @Description  : 
- */
 import jwt from 'jsonwebtoken';
 import Koa from 'koa';
 import config from '../configs';
@@ -13,10 +5,10 @@ import { IRoute, IUser } from '../types';
 
 export default function Auth(level: number = 5) {
   return async function (ctx: Koa.Context, next: Koa.Next) {
-    const authorizaiton = ctx.headers['authorization'];
-    if (authorizaiton) {
-      if (isAuthorizationValid(authorizaiton)) {
-        const token = authorizationToken(authorizaiton);
+    const authorization = ctx.headers['authorization'];
+    if (authorization) {
+      if (isAuthorizationValid(authorization)) {
+        const token = authorizationToken(authorization);
         const user = verifyToken(token) as IUser;
         if (user) {
           // 判断用户等级是否满足

@@ -1,23 +1,14 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-17 16:24:05
- * @LastEditTime : 2022-03-17 23:46:22
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\middlewares\validate.mid.ts
- * @Description  : 
- */
 import koa from 'koa';
 import Ajv from 'ajv';
 import { pick, ApiError } from '../utils';
 import httpStatus from 'http-status';
-import { IRoute } from '@/types';
+import { IRoute } from '../types';
 
 export default function (validation: IRoute['validation']) {
   const ajv = new Ajv();
 
-  const schema = validation;
-  const validSchema = pick(schema, ['params', 'body', 'query']);
-  
+  const validSchema = pick(validation, ['params', 'body', 'query']);
+
   return async (ctx: koa.Context, next: koa.Next) => {
     const objects = pick(ctx.request, Object.keys(validSchema));
     const errors = [];

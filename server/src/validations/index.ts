@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-17 11:57:40
- * @LastEditTime : 2022-03-17 18:07:11
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\validations\index.ts
- * @Description  : 
- */
 const register = {
   body: {
     type: 'object',

@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-16 09:53:34
- * @LastEditTime : 2022-03-18 12:10:54
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\services\user.service.ts
- * @Description  : 
- */
 import { UserModel, InvitationModel } from '../db/models';
 import { ApiError } from '../utils';
 import { IUser } from '../types';

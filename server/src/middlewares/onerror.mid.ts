@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-08 17:50:30
- * @LastEditTime : 2022-03-16 17:53:36
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\middlewares\onerror.mid.ts
- * @Description  : 
- */
 import Koa from 'koa';
 
 export default function onerror () {

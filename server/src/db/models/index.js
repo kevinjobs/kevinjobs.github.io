@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-18 09:11:48
- * @LastEditTime : 2022-03-18 11:58:20
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\db\models\index.js
- * @Description  : 
- */
 'use strict';
 
 const fs = require('fs');

@@ -1,14 +1,6 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-08 17:50:30
- * @LastEditTime : 2022-03-17 19:34:47
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\routes\v2\article.ts
- * @Description  : 
- */
 import { ArticleController } from '../../controllers';
 
-import { IRoute } from '@/types';
+import { IRoute } from '../../types';
 
 const articleRoutes: IRoute[] = [
   // 文章系列

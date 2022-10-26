@@ -6,17 +6,15 @@
     "noImplicitAny": false,
     "noImplicitThis": false,
     "sourceMap": true,
-    "rootDir": ".",
+    "rootDir": "./src",
     "outDir": "dist",
-    "watch": true,
+    "watch": false,
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "allowJs": true,
     "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "paths": {}
   },
-  "include": ["./src/**/*", "app.ts", "bin/*", "test/*"],
+  "include": ["./src/**/*", "test/*"],
   "exclude": ["views", "public", "node_modules/**/*"]
 }

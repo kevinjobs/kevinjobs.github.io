@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-09 22:31:37
- * @LastEditTime : 2022-03-18 10:55:48
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\configs\index.ts
- * @Description  : 
- */
 import { IConfig } from '../types';
 
 const config: IConfig = {

@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-17 11:26:44
- * @LastEditTime : 2022-03-18 11:56:55
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\services\logs.service.ts
- * @Description  : 
- */
 import { ApiError } from '../utils';
 import { Op } from 'sequelize';
 import { LoggerModel } from '../db/models';

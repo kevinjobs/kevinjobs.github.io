@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-18 12:06:58
- * @LastEditTime : 2022-03-18 12:08:13
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\utils\crypto.js
- * @Description  : 
- */
 const crypto = require('crypto');
 
 const encrypt = (

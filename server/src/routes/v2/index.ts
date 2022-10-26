@@ -1,14 +1,6 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-08 17:50:30
- * @LastEditTime : 2022-03-17 19:59:48
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\routes\v2\index.ts
- * @Description  : 
- */
 import Router from '@koa/router';
 import validate from '../../middlewares/validate.mid';
-import { IRoute } from '@/types';
+import { IRoute } from '../../types';
 import auth from '../../middlewares/auth.mid';
 
 import articleRoutes from './article';

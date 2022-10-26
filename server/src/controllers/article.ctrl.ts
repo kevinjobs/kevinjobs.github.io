@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-09 22:31:37
- * @LastEditTime : 2022-03-17 19:23:53
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\controllers\article.ctrl.ts
- * @Description  : 
- */
 import { ArticleService } from '../services';
 import Koa from 'koa';
 

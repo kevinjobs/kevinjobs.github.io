@@ -1,12 +1,4 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-16 11:27:01
- * @LastEditTime : 2022-03-18 11:56:38
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\services\picture.service.ts
- * @Description  : 
- */
-import { IPicture } from '@/types';
+import { IPicture } from '../types';
 import httpStatus from 'http-status';
 import { PictureModel } from '../db/models';
 import { ApiError } from '../utils';

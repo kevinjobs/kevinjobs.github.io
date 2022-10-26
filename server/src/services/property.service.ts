@@ -1,4 +1,4 @@
-import { IProperty } from '@/types';
+import { IProperty } from '../types';
 import httpStatus from 'http-status';
 import { PropertyModel } from '../db/models';
 import { ApiError } from '../utils';

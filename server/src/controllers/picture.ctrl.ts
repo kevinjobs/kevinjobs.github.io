@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-09 22:31:37
- * @LastEditTime : 2022-03-17 19:24:38
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\controllers\picture.ctrl.ts
- * @Description  : 
- */
 import Koa from 'koa';
 import { PictureService } from '../services';
 

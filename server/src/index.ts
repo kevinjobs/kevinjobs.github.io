@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-18 14:24:09
- * @LastEditTime : 2022-03-18 14:25:34
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\index.ts
- * @Description  : 
- */
 import https from 'https';
 import http from 'http';
 import fs from 'fs';
@@ -32,7 +24,7 @@ if (isDev || isTest) {
   server = http.createServer(app.callback()).listen(port, host)
 } else if (isProd) {
   server = https.createServer(options, app.callback()).listen(port, host)
-};
+}
 
 console.log(`Start at ${host}:${port}...`);
 
