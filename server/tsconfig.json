@@ -6,7 +6,7 @@
     "noImplicitAny": false,
     "noImplicitThis": false,
     "sourceMap": true,
-    "rootDir": "./src",
+    "rootDir": "./",
     "outDir": "dist",
     "watch": false,
     "esModuleInterop": true,

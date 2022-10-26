@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-09 22:31:37
- * @LastEditTime : 2022-03-18 16:15:19
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\test\routes-test\article.test.ts
- * @Description  : 
- */
 import app from '../../src';
 import request from 'supertest';
 import { expect } from 'chai';

@@ -2,11 +2,12 @@
   "name": "server",
   "scripts": {
     "build": "node scripts/build.js",
-    "serve": "npm run build && cross-env NODE_ENV=production node dist/index.js",
+    "serve": "npm run build && cross-env NODE_ENV=production node dist/src/index.js",
     "start": "cross-env NODE_ENV=development nodemon --watch src/**/* -e ts src/index.ts",
     "db:migrate": "node scripts/migrate.js",
-    "test": "cross-env NODE_ENV=test mocha --require ts-node/register test/**/*.ts --reporter mochawesome --exit",
-    "coverage": "cross-env NODE_ENV=test nyc --reporter=html yarn test"
+    "test": "cross-env NODE_ENV=test mocha --require ts-node/register test/**/*.ts --exit",
+    "report": "cross-env NODE_ENV=test mocha --require ts-node/register test/**/*.ts --reporter mochawesome --exit",
+    "coverage": "cross-env NODE_ENV=test nyc --reporter=html npm run test"
   },
   "dependencies": {
     "@koa/cors": "3.1.0",

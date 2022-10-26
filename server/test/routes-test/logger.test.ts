@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-08 17:50:30
- * @LastEditTime : 2022-03-18 14:27:29
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\test\routes-test\logger.test.ts
- * @Description  : 
- */
 import app from '../../src';
 import request from 'supertest';
 import { token } from './auth.test';
