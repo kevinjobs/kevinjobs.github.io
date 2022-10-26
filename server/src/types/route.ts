@@ -34,5 +34,5 @@ interface IRoute {
 }
 
 export {
-  IRoute,
-}
+    IRoute,
+};

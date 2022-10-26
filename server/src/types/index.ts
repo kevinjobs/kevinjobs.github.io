@@ -109,12 +109,12 @@ export interface IProperty extends IBase {
 }
 
 export {
-  IConfig,
-  IBase,
-  IPost,
-  IArticle,
-  IPicture,
-  ILog,
-  //
-  IRoute,
-}
+    IConfig,
+    IBase,
+    IPost,
+    IArticle,
+    IPicture,
+    ILog,
+    //
+    IRoute,
+};

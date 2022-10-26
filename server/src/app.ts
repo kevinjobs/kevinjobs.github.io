@@ -1,11 +1,3 @@
-/*
- * @Author       : Kevin Jobs
- * @Date         : 2022-03-08 17:50:30
- * @LastEditTime : 2022-03-18 16:18:16
- * @lastEditors  : Kevin Jobs
- * @FilePath     : \koa-restful-api\src\app.ts
- * @Description  : 
- */
 import Koa from 'koa';
 import koaBody from 'koa-body';
 import cors from '@koa/cors';
@@ -28,9 +20,9 @@ app.use(cors({maxAge: 86400}));
 
 // [中间件] body
 app.use(koaBody({                 
-  multipart: true,
-  jsonLimit: '10mb',
-  formLimit: '10mb',
+    multipart: true,
+    jsonLimit: '10mb',
+    formLimit: '10mb',
 }));
 
 // [中间件] 路由

@@ -8,16 +8,16 @@
  */
 'use strict';
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Invitations', {
-      createAt: { type: Sequelize.NUMBER, allowNull: true, defaultValue: new Date().valueOf(), },
-      updateAt: { type: Sequelize.NUMBER, allowNull: true, defaultValue: new Date().valueOf(), },
-      id: { type: Sequelize.INTEGER, allowNull: true, autoIncrement: true, primaryKey: true, },
-      code: { type: Sequelize.STRING, allowNull: false, unique: true, },
-      available: { type: Sequelize.BOOLEAN, allowNull: true, defaultValue: true },
-    });
-  },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Invitations');
-  }
+    async up(queryInterface, Sequelize) {
+        await queryInterface.createTable('Invitations', {
+            createAt: { type: Sequelize.NUMBER, allowNull: true, defaultValue: new Date().valueOf(), },
+            updateAt: { type: Sequelize.NUMBER, allowNull: true, defaultValue: new Date().valueOf(), },
+            id: { type: Sequelize.INTEGER, allowNull: true, autoIncrement: true, primaryKey: true, },
+            code: { type: Sequelize.STRING, allowNull: false, unique: true, },
+            available: { type: Sequelize.BOOLEAN, allowNull: true, defaultValue: true },
+        });
+    },
+    async down(queryInterface, Sequelize) {
+        await queryInterface.dropTable('Invitations');
+    }
 };

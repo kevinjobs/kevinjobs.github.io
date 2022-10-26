@@ -1,19 +1,19 @@
 function execCallback(err, stdout, stderr, cb=null) {
-  if (err) {
-    console.error(err);
-    return;
-  }
+    if (err) {
+        console.error(err);
+        return;
+    }
 
-  if (stderr) {
-    console.error(stderr);
-    return;
-  }
+    if (stderr) {
+        console.error(stderr);
+        return;
+    }
 
-  console.log(stdout);
+    console.log(stdout);
 
-  if (cb) cb();
+    if (cb) cb();
 }
 
 module.exports = {
-  execCallback
-}
+    execCallback
+};

@@ -11,22 +11,22 @@ import { expect } from 'chai';
 import validator from 'validator';
 
 describe('#Utils', () => {
-  it('#test encrypt', () => {
-    const hex = encrypt('hello');
-    expect(hex).to.be.a('string');
-    expect(validator.isHexadecimal(hex)).to.be.true;
-  })
+    it('#test encrypt', () => {
+        const hex = encrypt('hello');
+        expect(hex).to.be.a('string');
+        expect(validator.isHexadecimal(hex)).to.be.true;
+    });
 
-  it('#test genInvitationCode', async () => {
-    const codes = await genInvitationCode(5);
-    expect(codes).to.be.an('array');
-    expect(codes).to.has.length(5);
-  })
+    it('#test genInvitationCode', async () => {
+        const codes = await genInvitationCode(5);
+        expect(codes).to.be.an('array');
+        expect(codes).to.has.length(5);
+    });
 
-  it('#test ApiError', () => {
-    function fn() {
-      throw new ApiError(404, '');
-    }
-    expect(fn).to.throw();
-  })
-})
+    it('#test ApiError', () => {
+        function fn() {
+            throw new ApiError(404, '');
+        }
+        expect(fn).to.throw();
+    });
+});

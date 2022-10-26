@@ -4,8 +4,8 @@ import pick from './pick';
 import ApiError from './api-error';
 
 export {
-  encrypt,
-  genInvitationCode,
-  pick,
-  ApiError,
-}
+    encrypt,
+    genInvitationCode,
+    pick,
+    ApiError,
+};

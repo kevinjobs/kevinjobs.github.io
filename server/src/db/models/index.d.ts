@@ -13,7 +13,7 @@ declare namespace db {
   class InvitationModel extends Model {}
   class PictureModel extends Model {}
   class UserModel extends Model {
-    isCorrectPassword(passwd: string): boolean;
+      isCorrectPassword(passwd: string): boolean;
   }
   class LoggerModel extends Model {}
   class PropertyModel extends Model {}

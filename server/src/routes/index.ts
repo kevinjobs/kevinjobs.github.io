@@ -11,7 +11,7 @@ import Router from '@koa/router';
 import { router as v2router } from './v2';
 
 const router = new Router({
-  prefix: '/v2'
+    prefix: '/v2'
 });
 
 router.use(v2router.routes());

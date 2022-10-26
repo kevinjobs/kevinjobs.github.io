@@ -9,34 +9,34 @@
 'use strict';
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+    async up (queryInterface, Sequelize) {
     /**
      * Add altering commands here.
      *
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    const date = new Date();
-    const aWeekLater = date.setDate(date.getDate()+7).valueOf();
+        const date = new Date();
+        const aWeekLater = date.setDate(date.getDate()+7).valueOf();
 
-    await queryInterface.addColumn(
-      'Invitations',
-      'expireAt',
-      {
-        type: Sequelize.NUMBER,
-        allowNull: true,
-        defaultValue: aWeekLater
-      },
-    )
-  },
+        await queryInterface.addColumn(
+            'Invitations',
+            'expireAt',
+            {
+                type: Sequelize.NUMBER,
+                allowNull: true,
+                defaultValue: aWeekLater
+            },
+        );
+    },
 
-  async down (queryInterface, Sequelize) {
+    async down (queryInterface, Sequelize) {
     /**
      * Add reverting commands here.
      *
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.removeColumn('Invitations', 'expireAt', { },)
-  }
+        await queryInterface.removeColumn('Invitations', 'expireAt', { },);
+    }
 };
